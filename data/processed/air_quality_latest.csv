@@ -1,0 +1,45 @@
+name,measure,measure_info,geo_type_name,geo_place_name,time_period,year,data_value
+Boiler emissions (NOx),Tons,per square kilometer,UHF42,Chelsea - Clinton,2019,2019,123.8845412
+Boiler emissions (NOx),Tons,per square kilometer,UHF34,Chelsea-Village,2019,2019,114.6977569
+Boiler emissions (NOx),Tons,per square kilometer,Borough,Manhattan,2019,2019,93.60610038
+Boiler emissions (NOx),Tons,per square kilometer,Citywide,New York City,2019,2019,20.7784713
+Boiler emissions (PM2.5),Tons,per square kilometer,UHF42,Chelsea - Clinton,2019,2019,7.967764618
+Boiler emissions (PM2.5),Tons,per square kilometer,UHF34,Chelsea-Village,2019,2019,7.432522453
+Boiler emissions (PM2.5),Tons,per square kilometer,Borough,Manhattan,2019,2019,6.127765661
+Boiler emissions (PM2.5),Tons,per square kilometer,Citywide,New York City,2019,2019,1.378979965
+Boiler emissions (SO2),Tons,per square kilometer,UHF42,Chelsea - Clinton,2015,2015,36.4
+Boiler emissions (SO2),Tons,per square kilometer,Borough,Manhattan,2015,2015,26.8
+Boiler emissions (SO2),Tons,per square kilometer,Citywide,New York City,2015,2015,3.5
+Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",UHF42,Chelsea - Clinton,2017-2019,2017,26.0
+Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",Borough,Manhattan,2017-2019,2017,33.0
+Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",Citywide,New York City,2017-2019,2017,33.0
+Fine particles (PM 2.5),Annual mean,mcg/m3,UHF42,Chelsea - Clinton,2024,2024,9.513455582
+Fine particles (PM 2.5),Annual mean,mcg/m3,UHF34,Chelsea-Village,2024,2024,9.31876552
+Fine particles (PM 2.5),Annual mean,mcg/m3,CD,Clinton and Chelsea (CD4),2024,2024,8.782176536
+Fine particles (PM 2.5),Annual mean,mcg/m3,Borough,Manhattan,2024,2024,7.712711937
+Fine particles (PM 2.5),Annual mean,mcg/m3,Citywide,New York City,2024,2024,6.255051193
+Fine particles (PM 2.5),Summer mean,mcg/m3,UHF42,Chelsea - Clinton,2024,2024,11.6372734
+Fine particles (PM 2.5),Summer mean,mcg/m3,UHF34,Chelsea-Village,2024,2024,11.4327091
+Fine particles (PM 2.5),Summer mean,mcg/m3,CD,Clinton and Chelsea (CD4),2024,2024,10.75049854
+Fine particles (PM 2.5),Summer mean,mcg/m3,Borough,Manhattan,2024,2024,9.553281391
+Fine particles (PM 2.5),Summer mean,mcg/m3,Citywide,New York City,2024,2024,7.852111384
+Fine particles (PM 2.5),Winter mean,mcg/m3,UHF42,Chelsea - Clinton,2024,2024,8.356762614
+Fine particles (PM 2.5),Winter mean,mcg/m3,UHF34,Chelsea-Village,2024,2024,8.244268963
+Fine particles (PM 2.5),Winter mean,mcg/m3,CD,Clinton and Chelsea (CD4),2024,2024,7.971873214
+Fine particles (PM 2.5),Winter mean,mcg/m3,Borough,Manhattan,2024,2024,7.237969019
+Fine particles (PM 2.5),Winter mean,mcg/m3,Citywide,New York City,2024,2024,6.016778561
+Nitrogen dioxide (NO2),Annual mean,ppb,UHF42,Chelsea - Clinton,2024,2024,22.31126311
+Nitrogen dioxide (NO2),Annual mean,ppb,UHF34,Chelsea-Village,2024,2024,21.37192366
+Nitrogen dioxide (NO2),Annual mean,ppb,CD,Clinton and Chelsea (CD4),2024,2024,20.68261693
+Nitrogen dioxide (NO2),Annual mean,ppb,Borough,Manhattan,2024,2024,18.63149789
+Nitrogen dioxide (NO2),Annual mean,ppb,Citywide,New York City,2024,2024,14.11295099
+Nitrogen dioxide (NO2),Summer mean,ppb,UHF42,Chelsea - Clinton,2024,2024,20.95912082
+Nitrogen dioxide (NO2),Summer mean,ppb,UHF34,Chelsea-Village,2024,2024,20.03915699
+Nitrogen dioxide (NO2),Summer mean,ppb,CD,Clinton and Chelsea (CD4),2024,2024,19.34898416
+Nitrogen dioxide (NO2),Summer mean,ppb,Borough,Manhattan,2024,2024,17.00851792
+Nitrogen dioxide (NO2),Summer mean,ppb,Citywide,New York City,2024,2024,11.44055583
+Nitrogen dioxide (NO2),Winter mean,ppb,UHF42,Chelsea - Clinton,2024,2024,24.98678767
+Nitrogen dioxide (NO2),Winter mean,ppb,UHF34,Chelsea-Village,2024,2024,24.40881846
+Nitrogen dioxide (NO2),Winter mean,ppb,CD,Clinton and Chelsea (CD4),2024,2024,23.84692448
+Nitrogen dioxide (NO2),Winter mean,ppb,Borough,Manhattan,2024,2024,22.4833103
+Nitrogen dioxide (NO2),Winter mean,ppb,Citywide,New York City,2024,2024,19.18633418

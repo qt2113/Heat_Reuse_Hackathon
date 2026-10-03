@@ -1,0 +1,512 @@
+unique_id,indicator_id,name,measure,measure_info,geo_type_name,geo_join_id,geo_place_name,time_period,start_date,data_value
+130378,639,Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",UHF42,306,Chelsea - Clinton,2005-2007,2005-01-01T00:00:00.000,57.5
+130420,640,Boiler emissions (SO2),Tons,per square kilometer,UHF42,306,Chelsea - Clinton,2013,2013-01-01T00:00:00.000,67.4
+131578,639,Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",UHF42,306,Chelsea - Clinton,2009-2011,2009-01-01T00:00:00.000,39.7
+175272,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF42,306,Chelsea - Clinton,2009,2009-01-01T00:00:00.000,44.2
+175314,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF42,306,Chelsea - Clinton,2010,2010-01-01T00:00:00.000,37.4
+175356,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF42,306,Chelsea - Clinton,2011,2011-01-01T00:00:00.000,39.66
+175398,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF42,306,Chelsea - Clinton,2012,2012-01-01T00:00:00.000,34.33
+175440,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF42,306,Chelsea - Clinton,2013,2013-01-01T00:00:00.000,35.62
+175902,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF42,306,Chelsea - Clinton,2009,2009-01-01T00:00:00.000,37.13
+175944,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF42,306,Chelsea - Clinton,2010,2010-01-01T00:00:00.000,34.75
+175986,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF42,306,Chelsea - Clinton,2011,2011-01-01T00:00:00.000,34.57
+176028,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF42,306,Chelsea - Clinton,2012,2012-01-01T00:00:00.000,32.85
+176070,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF42,306,Chelsea - Clinton,2013,2013-01-01T00:00:00.000,30.68
+176532,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF42,306,Chelsea - Clinton,2009,2009-01-01T00:00:00.000,39.87
+176574,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF42,306,Chelsea - Clinton,2010,2010-01-01T00:00:00.000,36.03
+176616,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF42,306,Chelsea - Clinton,2011,2011-01-01T00:00:00.000,36.33
+176658,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF42,306,Chelsea - Clinton,2012,2012-01-01T00:00:00.000,34.33
+176700,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF42,306,Chelsea - Clinton,2013,2013-01-01T00:00:00.000,33.35
+177162,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF42,306,Chelsea - Clinton,2009,2009-01-01T00:00:00.000,16.68
+177204,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF42,306,Chelsea - Clinton,2010,2010-01-01T00:00:00.000,13.18
+177246,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF42,306,Chelsea - Clinton,2011,2011-01-01T00:00:00.000,15.72
+177288,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF42,306,Chelsea - Clinton,2012,2012-01-01T00:00:00.000,12.42
+177330,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF42,306,Chelsea - Clinton,2013,2013-01-01T00:00:00.000,14.31
+177792,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF42,306,Chelsea - Clinton,2009,2009-01-01T00:00:00.000,14.29
+177834,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF42,306,Chelsea - Clinton,2010,2010-01-01T00:00:00.000,14.8
+177876,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF42,306,Chelsea - Clinton,2011,2011-01-01T00:00:00.000,14.24
+177918,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF42,306,Chelsea - Clinton,2012,2012-01-01T00:00:00.000,13.33
+177960,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF42,306,Chelsea - Clinton,2013,2013-01-01T00:00:00.000,13.38
+178422,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF42,306,Chelsea - Clinton,2009,2009-01-01T00:00:00.000,14.24
+178464,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF42,306,Chelsea - Clinton,2010,2010-01-01T00:00:00.000,13.21
+178506,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF42,306,Chelsea - Clinton,2011,2011-01-01T00:00:00.000,13.27
+178548,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF42,306,Chelsea - Clinton,2012,2012-01-01T00:00:00.000,12.42
+178590,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF42,306,Chelsea - Clinton,2013,2013-01-01T00:00:00.000,12.41
+179804,640,Boiler emissions (SO2),Tons,per square kilometer,UHF42,306,Chelsea - Clinton,2015,2015-01-01T00:00:00.000,36.4
+212313,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF42,306,Chelsea - Clinton,2014,2014-01-01T00:00:00.000,36.89
+212439,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF42,306,Chelsea - Clinton,2014,2014-01-01T00:00:00.000,28.44
+212565,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF42,306,Chelsea - Clinton,2014,2014-01-01T00:00:00.000,31.9
+212691,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF42,306,Chelsea - Clinton,2014,2014-01-01T00:00:00.000,15.8
+212817,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF42,306,Chelsea - Clinton,2014,2014-01-01T00:00:00.000,11.83
+212943,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF42,306,Chelsea - Clinton,2014,2014-01-01T00:00:00.000,12.53
+334021,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF42,306,Chelsea - Clinton,2015,2015-01-01T00:00:00.000,11.39
+334022,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF42,306,Chelsea - Clinton,2015,2015-01-01T00:00:00.000,12.01
+334023,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF42,306,Chelsea - Clinton,2015,2015-01-01T00:00:00.000,12.11
+336559,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF42,306,Chelsea - Clinton,2015,2015-01-01T00:00:00.000,29.17
+336560,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF42,306,Chelsea - Clinton,2015,2015-01-01T00:00:00.000,25.55
+336561,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF42,306,Chelsea - Clinton,2015,2015-01-01T00:00:00.000,32.14
+410804,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF42,306,Chelsea - Clinton,2016,2016-01-01T00:00:00.000,10.66
+410805,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF42,306,Chelsea - Clinton,2016,2016-01-01T00:00:00.000,10.75
+410806,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF42,306,Chelsea - Clinton,2016,2016-01-01T00:00:00.000,10.32
+412496,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF42,306,Chelsea - Clinton,2016,2016-01-01T00:00:00.000,30.85
+412497,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF42,306,Chelsea - Clinton,2016,2016-01-01T00:00:00.000,24.97
+412498,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF42,306,Chelsea - Clinton,2016,2016-01-01T00:00:00.000,28.36
+518767,639,Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",UHF42,306,Chelsea - Clinton,2012-2014,2012-01-02T00:00:00.000,40.18420814
+547437,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF42,306,Chelsea - Clinton,2017,2017-01-01T00:00:00.000,11.34
+547438,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF42,306,Chelsea - Clinton,2017,2017-01-01T00:00:00.000,9.91
+547439,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF42,306,Chelsea - Clinton,2017,2017-01-01T00:00:00.000,10.05
+549829,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF42,306,Chelsea - Clinton,2017,2017-01-01T00:00:00.000,26.19
+549830,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF42,306,Chelsea - Clinton,2017,2017-01-01T00:00:00.000,28.46
+549831,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF42,306,Chelsea - Clinton,2017,2017-01-01T00:00:00.000,32.93
+602771,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF42,306,Chelsea - Clinton,2018,2018-01-01T00:00:00.000,27.57
+602772,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF42,306,Chelsea - Clinton,2018,2018-01-01T00:00:00.000,24.85
+602773,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF42,306,Chelsea - Clinton,2018,2018-01-01T00:00:00.000,31.91
+605732,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF42,306,Chelsea - Clinton,2018,2018-01-01T00:00:00.000,9.97
+605733,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF42,306,Chelsea - Clinton,2018,2018-01-01T00:00:00.000,11.25
+605734,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF42,306,Chelsea - Clinton,2018,2018-01-01T00:00:00.000,11.21
+628412,639,Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",UHF42,306,Chelsea - Clinton,2015-2017,2015-01-01T00:00:00.000,31.7
+643387,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF42,306,Chelsea - Clinton,2019,2019-01-01T00:00:00.000,26.02
+643388,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF42,306,Chelsea - Clinton,2019,2019-01-01T00:00:00.000,24.86
+643389,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF42,306,Chelsea - Clinton,2019,2019-01-01T00:00:00.000,29.47
+649732,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF42,306,Chelsea - Clinton,2019,2019-01-01T00:00:00.000,10.21
+649733,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF42,306,Chelsea - Clinton,2019,2019-01-01T00:00:00.000,11.24
+649734,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF42,306,Chelsea - Clinton,2019,2019-01-01T00:00:00.000,11.75
+667195,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF42,306,Chelsea - Clinton,2020,2020-01-01T00:00:00.000,23.87
+667196,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF42,306,Chelsea - Clinton,2020,2020-01-01T00:00:00.000,33.6
+667197,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF42,306,Chelsea - Clinton,2020,2020-01-01T00:00:00.000,19.29
+669767,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF42,306,Chelsea - Clinton,2020,2020-01-01T00:00:00.000,8.7
+669768,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF42,306,Chelsea - Clinton,2020,2020-01-01T00:00:00.000,11.38
+669769,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF42,306,Chelsea - Clinton,2020,2020-01-01T00:00:00.000,8.5
+740962,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF42,306,Chelsea - Clinton,2021,2021-01-01T00:00:00.000,26.71253911
+740963,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF42,306,Chelsea - Clinton,2021,2021-01-01T00:00:00.000,20.20289563
+740964,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF42,306,Chelsea - Clinton,2021,2021-01-01T00:00:00.000,23.31831242
+742231,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF42,306,Chelsea - Clinton,2021,2021-01-01T00:00:00.000,8.569511769
+742232,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF42,306,Chelsea - Clinton,2021,2021-01-01T00:00:00.000,10.41677206
+742233,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF42,306,Chelsea - Clinton,2021,2021-01-01T00:00:00.000,8.44115285
+823255,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF42,306,Chelsea - Clinton,2022,2022-01-01T00:00:00.000,8.378450902
+823256,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF42,306,Chelsea - Clinton,2022,2022-01-01T00:00:00.000,8.340367159
+823257,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF42,306,Chelsea - Clinton,2022,2022-01-01T00:00:00.000,9.318093123
+825726,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF42,306,Chelsea - Clinton,2022,2022-01-01T00:00:00.000,22.87959806
+825727,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF42,306,Chelsea - Clinton,2022,2022-01-01T00:00:00.000,19.50581497
+825728,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF42,306,Chelsea - Clinton,2022,2022-01-01T00:00:00.000,26.81178899
+827548,639,Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",UHF42,306,Chelsea - Clinton,2017-2019,2017-01-01T00:00:00.000,26
+874475,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF42,306,Chelsea - Clinton,2023,2023-01-01T00:00:00.000,8.367823453
+874476,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF42,306,Chelsea - Clinton,2023,2023-01-01T00:00:00.000,9.716882785
+874477,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF42,306,Chelsea - Clinton,2023,2023-01-01T00:00:00.000,8.076770315
+876929,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF42,306,Chelsea - Clinton,2023,2023-01-01T00:00:00.000,24.13254441
+876930,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF42,306,Chelsea - Clinton,2023,2023-01-01T00:00:00.000,21.23435622
+876931,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF42,306,Chelsea - Clinton,2023,2023-01-01T00:00:00.000,25.83280383
+906359,642,Boiler emissions (NOx),Tons,per square kilometer,UHF42,306,Chelsea - Clinton,2019,2019-01-01T00:00:00.000,123.8845412
+906416,641,Boiler emissions (PM2.5),Tons,per square kilometer,UHF42,306,Chelsea - Clinton,2019,2019-01-01T00:00:00.000,7.967764618
+979252,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF42,306,Chelsea - Clinton,2024,2024-01-01T00:00:00.000,9.513455582
+979395,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF42,306,Chelsea - Clinton,2024,2024-01-01T00:00:00.000,11.6372734
+979487,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF42,306,Chelsea - Clinton,2024,2024-01-01T00:00:00.000,8.356762614
+980019,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF42,306,Chelsea - Clinton,2024,2024-01-01T00:00:00.000,22.31126311
+980151,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF42,306,Chelsea - Clinton,2024,2024-01-01T00:00:00.000,24.98678767
+980292,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF42,306,Chelsea - Clinton,2024,2024-01-01T00:00:00.000,20.95912082
+171587,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF34,306308,Chelsea-Village,2009,2009-01-01T00:00:00.000,42.67
+171621,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF34,306308,Chelsea-Village,2010,2010-01-01T00:00:00.000,36.13
+171655,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF34,306308,Chelsea-Village,2011,2011-01-01T00:00:00.000,38.71
+171689,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF34,306308,Chelsea-Village,2012,2012-01-01T00:00:00.000,33.42
+171723,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF34,306308,Chelsea-Village,2013,2013-01-01T00:00:00.000,34.64
+172097,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF34,306308,Chelsea-Village,2009,2009-01-01T00:00:00.000,35.28
+172131,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF34,306308,Chelsea-Village,2010,2010-01-01T00:00:00.000,33.01
+172165,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF34,306308,Chelsea-Village,2011,2011-01-01T00:00:00.000,32.81
+172199,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF34,306308,Chelsea-Village,2012,2012-01-01T00:00:00.000,31
+172233,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF34,306308,Chelsea-Village,2013,2013-01-01T00:00:00.000,29.16
+172607,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF34,306308,Chelsea-Village,2009,2009-01-01T00:00:00.000,38.16
+172641,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF34,306308,Chelsea-Village,2010,2010-01-01T00:00:00.000,34.61
+172675,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF34,306308,Chelsea-Village,2011,2011-01-01T00:00:00.000,34.96
+172709,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF34,306308,Chelsea-Village,2012,2012-01-01T00:00:00.000,32.87
+172743,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF34,306308,Chelsea-Village,2013,2013-01-01T00:00:00.000,31.96
+173117,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF34,306308,Chelsea-Village,2009,2009-01-01T00:00:00.000,16.17
+173151,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF34,306308,Chelsea-Village,2010,2010-01-01T00:00:00.000,12.59
+173185,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF34,306308,Chelsea-Village,2011,2011-01-01T00:00:00.000,15.35
+173219,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF34,306308,Chelsea-Village,2012,2012-01-01T00:00:00.000,12
+173253,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF34,306308,Chelsea-Village,2013,2013-01-01T00:00:00.000,13.72
+173627,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF34,306308,Chelsea-Village,2009,2009-01-01T00:00:00.000,13.83
+173661,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF34,306308,Chelsea-Village,2010,2010-01-01T00:00:00.000,14.42
+173695,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF34,306308,Chelsea-Village,2011,2011-01-01T00:00:00.000,13.86
+173729,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF34,306308,Chelsea-Village,2012,2012-01-01T00:00:00.000,12.92
+173763,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF34,306308,Chelsea-Village,2013,2013-01-01T00:00:00.000,12.93
+174137,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF34,306308,Chelsea-Village,2009,2009-01-01T00:00:00.000,13.74
+174171,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF34,306308,Chelsea-Village,2010,2010-01-01T00:00:00.000,12.66
+174205,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF34,306308,Chelsea-Village,2011,2011-01-01T00:00:00.000,12.85
+174239,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF34,306308,Chelsea-Village,2012,2012-01-01T00:00:00.000,11.94
+174273,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF34,306308,Chelsea-Village,2013,2013-01-01T00:00:00.000,11.87
+211580,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF34,306308,Chelsea-Village,2014,2014-01-01T00:00:00.000,35.91
+211682,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF34,306308,Chelsea-Village,2014,2014-01-01T00:00:00.000,26.92
+211784,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF34,306308,Chelsea-Village,2014,2014-01-01T00:00:00.000,30.59
+211886,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF34,306308,Chelsea-Village,2014,2014-01-01T00:00:00.000,15.31
+211988,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF34,306308,Chelsea-Village,2014,2014-01-01T00:00:00.000,11.48
+212090,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF34,306308,Chelsea-Village,2014,2014-01-01T00:00:00.000,12.08
+334162,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF34,306308,Chelsea-Village,2015,2015-01-01T00:00:00.000,11.13
+334163,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF34,306308,Chelsea-Village,2015,2015-01-01T00:00:00.000,11.69
+334164,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF34,306308,Chelsea-Village,2015,2015-01-01T00:00:00.000,11.74
+336700,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF34,306308,Chelsea-Village,2015,2015-01-01T00:00:00.000,28.2
+336701,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF34,306308,Chelsea-Village,2015,2015-01-01T00:00:00.000,24.49
+336702,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF34,306308,Chelsea-Village,2015,2015-01-01T00:00:00.000,31.49
+410945,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF34,306308,Chelsea-Village,2016,2016-01-01T00:00:00.000,10.51
+410946,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF34,306308,Chelsea-Village,2016,2016-01-01T00:00:00.000,10.44
+410947,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF34,306308,Chelsea-Village,2016,2016-01-01T00:00:00.000,10.05
+412637,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF34,306308,Chelsea-Village,2016,2016-01-01T00:00:00.000,30.24
+412638,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF34,306308,Chelsea-Village,2016,2016-01-01T00:00:00.000,24.03
+412639,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF34,306308,Chelsea-Village,2016,2016-01-01T00:00:00.000,27.55
+547578,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF34,306308,Chelsea-Village,2017,2017-01-01T00:00:00.000,11.11
+547579,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF34,306308,Chelsea-Village,2017,2017-01-01T00:00:00.000,9.61
+547580,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF34,306308,Chelsea-Village,2017,2017-01-01T00:00:00.000,9.74
+549970,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF34,306308,Chelsea-Village,2017,2017-01-01T00:00:00.000,24.9
+549971,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF34,306308,Chelsea-Village,2017,2017-01-01T00:00:00.000,27.51
+549972,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF34,306308,Chelsea-Village,2017,2017-01-01T00:00:00.000,31.99
+602912,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF34,306308,Chelsea-Village,2018,2018-01-01T00:00:00.000,26.64
+602913,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF34,306308,Chelsea-Village,2018,2018-01-01T00:00:00.000,23.74
+602914,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF34,306308,Chelsea-Village,2018,2018-01-01T00:00:00.000,31.14
+605873,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF34,306308,Chelsea-Village,2018,2018-01-01T00:00:00.000,9.58
+605874,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF34,306308,Chelsea-Village,2018,2018-01-01T00:00:00.000,10.8
+605875,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF34,306308,Chelsea-Village,2018,2018-01-01T00:00:00.000,10.88
+643528,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF34,306308,Chelsea-Village,2019,2019-01-01T00:00:00.000,25.2
+643529,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF34,306308,Chelsea-Village,2019,2019-01-01T00:00:00.000,24.12
+643530,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF34,306308,Chelsea-Village,2019,2019-01-01T00:00:00.000,28.8
+649873,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF34,306308,Chelsea-Village,2019,2019-01-01T00:00:00.000,10.02
+649874,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF34,306308,Chelsea-Village,2019,2019-01-01T00:00:00.000,11.09
+649875,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF34,306308,Chelsea-Village,2019,2019-01-01T00:00:00.000,11.51
+667477,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF34,306308,Chelsea-Village,2020,2020-01-01T00:00:00.000,23.02
+667478,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF34,306308,Chelsea-Village,2020,2020-01-01T00:00:00.000,32.94
+667479,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF34,306308,Chelsea-Village,2020,2020-01-01T00:00:00.000,18.26
+669626,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF34,306308,Chelsea-Village,2020,2020-01-01T00:00:00.000,8.61
+669627,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF34,306308,Chelsea-Village,2020,2020-01-01T00:00:00.000,11.26
+669628,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF34,306308,Chelsea-Village,2020,2020-01-01T00:00:00.000,8.41
+741103,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF34,306308,Chelsea-Village,2021,2021-01-01T00:00:00.000,26.27910353
+741104,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF34,306308,Chelsea-Village,2021,2021-01-01T00:00:00.000,19.43502198
+741105,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF34,306308,Chelsea-Village,2021,2021-01-01T00:00:00.000,22.64299704
+742372,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF34,306308,Chelsea-Village,2021,2021-01-01T00:00:00.000,8.502505784
+742373,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF34,306308,Chelsea-Village,2021,2021-01-01T00:00:00.000,10.35523474
+742374,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF34,306308,Chelsea-Village,2021,2021-01-01T00:00:00.000,8.368387811
+823369,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF34,306308,Chelsea-Village,2022,2022-01-01T00:00:00.000,8.266753158
+823370,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF34,306308,Chelsea-Village,2022,2022-01-01T00:00:00.000,8.24066025
+823371,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF34,306308,Chelsea-Village,2022,2022-01-01T00:00:00.000,9.219575766
+825869,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF34,306308,Chelsea-Village,2022,2022-01-01T00:00:00.000,22.06694294
+825870,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF34,306308,Chelsea-Village,2022,2022-01-01T00:00:00.000,18.53090846
+825871,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF34,306308,Chelsea-Village,2022,2022-01-01T00:00:00.000,26.10760258
+874549,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF34,306308,Chelsea-Village,2023,2023-01-01T00:00:00.000,8.279870171
+874550,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF34,306308,Chelsea-Village,2023,2023-01-01T00:00:00.000,9.667046114
+874551,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF34,306308,Chelsea-Village,2023,2023-01-01T00:00:00.000,8.017380994
+877070,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF34,306308,Chelsea-Village,2023,2023-01-01T00:00:00.000,23.44066631
+877071,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF34,306308,Chelsea-Village,2023,2023-01-01T00:00:00.000,20.93267044
+877072,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF34,306308,Chelsea-Village,2023,2023-01-01T00:00:00.000,25.2817114
+906312,642,Boiler emissions (NOx),Tons,per square kilometer,UHF34,306308,Chelsea-Village,2019,2019-01-01T00:00:00.000,114.6977569
+906463,641,Boiler emissions (PM2.5),Tons,per square kilometer,UHF34,306308,Chelsea-Village,2019,2019-01-01T00:00:00.000,7.432522453
+979173,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,UHF34,306308,Chelsea-Village,2024,2024-01-01T00:00:00.000,9.31876552
+979348,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,UHF34,306308,Chelsea-Village,2024,2024-01-01T00:00:00.000,11.4327091
+979502,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,UHF34,306308,Chelsea-Village,2024,2024-01-01T00:00:00.000,8.244268963
+980087,1431,Nitrogen dioxide (NO2),Annual mean,ppb,UHF34,306308,Chelsea-Village,2024,2024-01-01T00:00:00.000,21.37192366
+980245,1432,Nitrogen dioxide (NO2),Summer mean,ppb,UHF34,306308,Chelsea-Village,2024,2024-01-01T00:00:00.000,20.03915699
+980363,1433,Nitrogen dioxide (NO2),Winter mean,ppb,UHF34,306308,Chelsea-Village,2024,2024-01-01T00:00:00.000,24.40881846
+165742,1433,Nitrogen dioxide (NO2),Winter mean,ppb,CD,104,Clinton and Chelsea (CD4),2009,2009-01-01T00:00:00.000,40.88
+165801,1433,Nitrogen dioxide (NO2),Winter mean,ppb,CD,104,Clinton and Chelsea (CD4),2010,2010-01-01T00:00:00.000,34.44
+165860,1433,Nitrogen dioxide (NO2),Winter mean,ppb,CD,104,Clinton and Chelsea (CD4),2011,2011-01-01T00:00:00.000,37.32
+165919,1433,Nitrogen dioxide (NO2),Winter mean,ppb,CD,104,Clinton and Chelsea (CD4),2012,2012-01-01T00:00:00.000,32.42
+165978,1433,Nitrogen dioxide (NO2),Winter mean,ppb,CD,104,Clinton and Chelsea (CD4),2013,2013-01-01T00:00:00.000,33.8
+166627,1432,Nitrogen dioxide (NO2),Summer mean,ppb,CD,104,Clinton and Chelsea (CD4),2009,2009-01-01T00:00:00.000,32.98
+166686,1432,Nitrogen dioxide (NO2),Summer mean,ppb,CD,104,Clinton and Chelsea (CD4),2010,2010-01-01T00:00:00.000,31.25
+166745,1432,Nitrogen dioxide (NO2),Summer mean,ppb,CD,104,Clinton and Chelsea (CD4),2011,2011-01-01T00:00:00.000,30.93
+166804,1432,Nitrogen dioxide (NO2),Summer mean,ppb,CD,104,Clinton and Chelsea (CD4),2012,2012-01-01T00:00:00.000,28.92
+166863,1432,Nitrogen dioxide (NO2),Summer mean,ppb,CD,104,Clinton and Chelsea (CD4),2013,2013-01-01T00:00:00.000,27.36
+167512,1431,Nitrogen dioxide (NO2),Annual mean,ppb,CD,104,Clinton and Chelsea (CD4),2009,2009-01-01T00:00:00.000,36.27
+167571,1431,Nitrogen dioxide (NO2),Annual mean,ppb,CD,104,Clinton and Chelsea (CD4),2010,2010-01-01T00:00:00.000,32.87
+167630,1431,Nitrogen dioxide (NO2),Annual mean,ppb,CD,104,Clinton and Chelsea (CD4),2011,2011-01-01T00:00:00.000,33.45
+167689,1431,Nitrogen dioxide (NO2),Annual mean,ppb,CD,104,Clinton and Chelsea (CD4),2012,2012-01-01T00:00:00.000,31.4
+167748,1431,Nitrogen dioxide (NO2),Annual mean,ppb,CD,104,Clinton and Chelsea (CD4),2013,2013-01-01T00:00:00.000,30.56
+168397,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2009,2009-01-01T00:00:00.000,15.48
+168456,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2010,2010-01-01T00:00:00.000,11.74
+168515,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2011,2011-01-01T00:00:00.000,15.03
+168574,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2012,2012-01-01T00:00:00.000,11.47
+168633,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2013,2013-01-01T00:00:00.000,13.33
+169282,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2009,2009-01-01T00:00:00.000,13.34
+169341,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2010,2010-01-01T00:00:00.000,14.09
+169400,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2011,2011-01-01T00:00:00.000,13.52
+169459,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2012,2012-01-01T00:00:00.000,12.53
+169518,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2013,2013-01-01T00:00:00.000,12.48
+170167,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2009,2009-01-01T00:00:00.000,13.22
+170226,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2010,2010-01-01T00:00:00.000,11.95
+170285,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2011,2011-01-01T00:00:00.000,12.43
+170344,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2012,2012-01-01T00:00:00.000,11.43
+170403,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2013,2013-01-01T00:00:00.000,11.39
+213226,1433,Nitrogen dioxide (NO2),Winter mean,ppb,CD,104,Clinton and Chelsea (CD4),2014,2014-01-01T00:00:00.000,34.78
+213403,1432,Nitrogen dioxide (NO2),Summer mean,ppb,CD,104,Clinton and Chelsea (CD4),2014,2014-01-01T00:00:00.000,25.35
+213580,1431,Nitrogen dioxide (NO2),Annual mean,ppb,CD,104,Clinton and Chelsea (CD4),2014,2014-01-01T00:00:00.000,29.23
+213757,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2014,2014-01-01T00:00:00.000,14.89
+213934,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2014,2014-01-01T00:00:00.000,11.09
+214111,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2014,2014-01-01T00:00:00.000,11.62
+334192,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2015,2015-01-01T00:00:00.000,10.91
+334193,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2015,2015-01-01T00:00:00.000,11.44
+334194,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2015,2015-01-01T00:00:00.000,11.52
+336730,1431,Nitrogen dioxide (NO2),Annual mean,ppb,CD,104,Clinton and Chelsea (CD4),2015,2015-01-01T00:00:00.000,27.25
+336731,1432,Nitrogen dioxide (NO2),Summer mean,ppb,CD,104,Clinton and Chelsea (CD4),2015,2015-01-01T00:00:00.000,23.42
+336732,1433,Nitrogen dioxide (NO2),Winter mean,ppb,CD,104,Clinton and Chelsea (CD4),2015,2015-01-01T00:00:00.000,30.68
+410975,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2016,2016-01-01T00:00:00.000,10.21
+410976,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2016,2016-01-01T00:00:00.000,10.21
+410977,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2016,2016-01-01T00:00:00.000,9.76
+412667,1433,Nitrogen dioxide (NO2),Winter mean,ppb,CD,104,Clinton and Chelsea (CD4),2016,2016-01-01T00:00:00.000,29.55
+412668,1432,Nitrogen dioxide (NO2),Summer mean,ppb,CD,104,Clinton and Chelsea (CD4),2016,2016-01-01T00:00:00.000,22.98
+412669,1431,Nitrogen dioxide (NO2),Annual mean,ppb,CD,104,Clinton and Chelsea (CD4),2016,2016-01-01T00:00:00.000,26.68
+547608,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2017,2017-01-01T00:00:00.000,11.02
+547609,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2017,2017-01-01T00:00:00.000,9.36
+547610,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2017,2017-01-01T00:00:00.000,9.5
+550000,1432,Nitrogen dioxide (NO2),Summer mean,ppb,CD,104,Clinton and Chelsea (CD4),2017,2017-01-01T00:00:00.000,23.8
+550001,1431,Nitrogen dioxide (NO2),Annual mean,ppb,CD,104,Clinton and Chelsea (CD4),2017,2017-01-01T00:00:00.000,26.64
+550002,1433,Nitrogen dioxide (NO2),Winter mean,ppb,CD,104,Clinton and Chelsea (CD4),2017,2017-01-01T00:00:00.000,31.19
+602942,1431,Nitrogen dioxide (NO2),Annual mean,ppb,CD,104,Clinton and Chelsea (CD4),2018,2018-01-01T00:00:00.000,25.71
+602943,1432,Nitrogen dioxide (NO2),Summer mean,ppb,CD,104,Clinton and Chelsea (CD4),2018,2018-01-01T00:00:00.000,22.78
+602944,1433,Nitrogen dioxide (NO2),Winter mean,ppb,CD,104,Clinton and Chelsea (CD4),2018,2018-01-01T00:00:00.000,30.19
+605903,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2018,2018-01-01T00:00:00.000,9.14
+605904,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2018,2018-01-01T00:00:00.000,10.35
+605905,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2018,2018-01-01T00:00:00.000,10.42
+643558,1431,Nitrogen dioxide (NO2),Annual mean,ppb,CD,104,Clinton and Chelsea (CD4),2019,2019-01-01T00:00:00.000,24.6
+643559,1432,Nitrogen dioxide (NO2),Summer mean,ppb,CD,104,Clinton and Chelsea (CD4),2019,2019-01-01T00:00:00.000,23.54
+643560,1433,Nitrogen dioxide (NO2),Winter mean,ppb,CD,104,Clinton and Chelsea (CD4),2019,2019-01-01T00:00:00.000,28.31
+649903,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2019,2019-01-01T00:00:00.000,9.32
+649904,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2019,2019-01-01T00:00:00.000,10.41
+649905,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2019,2019-01-01T00:00:00.000,10.61
+667537,1431,Nitrogen dioxide (NO2),Annual mean,ppb,CD,104,Clinton and Chelsea (CD4),2020,2020-01-01T00:00:00.000,22.53
+667538,1433,Nitrogen dioxide (NO2),Winter mean,ppb,CD,104,Clinton and Chelsea (CD4),2020,2020-01-01T00:00:00.000,32.14
+667539,1432,Nitrogen dioxide (NO2),Summer mean,ppb,CD,104,Clinton and Chelsea (CD4),2020,2020-01-01T00:00:00.000,17.82
+669596,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2020,2020-01-01T00:00:00.000,8.32
+669597,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2020,2020-01-01T00:00:00.000,10.55
+669598,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2020,2020-01-01T00:00:00.000,7.96
+741133,1433,Nitrogen dioxide (NO2),Winter mean,ppb,CD,104,Clinton and Chelsea (CD4),2021,2021-01-01T00:00:00.000,25.80933499
+741134,1432,Nitrogen dioxide (NO2),Summer mean,ppb,CD,104,Clinton and Chelsea (CD4),2021,2021-01-01T00:00:00.000,19.19069483
+741135,1431,Nitrogen dioxide (NO2),Annual mean,ppb,CD,104,Clinton and Chelsea (CD4),2021,2021-01-01T00:00:00.000,22.2763914
+742402,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2021,2021-01-01T00:00:00.000,8.210055018
+742403,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2021,2021-01-01T00:00:00.000,10.01578762
+742404,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2021,2021-01-01T00:00:00.000,8.070489512
+823213,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2022,2022-01-01T00:00:00.000,7.818004398
+823214,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2022,2022-01-01T00:00:00.000,8.03547456
+823215,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2022,2022-01-01T00:00:00.000,8.681031801
+825839,1431,Nitrogen dioxide (NO2),Annual mean,ppb,CD,104,Clinton and Chelsea (CD4),2022,2022-01-01T00:00:00.000,21.39165783
+825840,1432,Nitrogen dioxide (NO2),Summer mean,ppb,CD,104,Clinton and Chelsea (CD4),2022,2022-01-01T00:00:00.000,17.81243819
+825841,1433,Nitrogen dioxide (NO2),Winter mean,ppb,CD,104,Clinton and Chelsea (CD4),2022,2022-01-01T00:00:00.000,25.48092615
+874519,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2023,2023-01-01T00:00:00.000,7.906916789
+874520,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2023,2023-01-01T00:00:00.000,9.655789883
+874521,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2023,2023-01-01T00:00:00.000,7.835329515
+877100,1431,Nitrogen dioxide (NO2),Annual mean,ppb,CD,104,Clinton and Chelsea (CD4),2023,2023-01-01T00:00:00.000,22.93707442
+877101,1432,Nitrogen dioxide (NO2),Summer mean,ppb,CD,104,Clinton and Chelsea (CD4),2023,2023-01-01T00:00:00.000,20.54838938
+877102,1433,Nitrogen dioxide (NO2),Winter mean,ppb,CD,104,Clinton and Chelsea (CD4),2023,2023-01-01T00:00:00.000,24.88228661
+979163,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2024,2024-01-01T00:00:00.000,8.782176536
+979338,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2024,2024-01-01T00:00:00.000,10.75049854
+979512,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,CD,104,Clinton and Chelsea (CD4),2024,2024-01-01T00:00:00.000,7.971873214
+980077,1431,Nitrogen dioxide (NO2),Annual mean,ppb,CD,104,Clinton and Chelsea (CD4),2024,2024-01-01T00:00:00.000,20.68261693
+980235,1432,Nitrogen dioxide (NO2),Summer mean,ppb,CD,104,Clinton and Chelsea (CD4),2024,2024-01-01T00:00:00.000,19.34898416
+980373,1433,Nitrogen dioxide (NO2),Winter mean,ppb,CD,104,Clinton and Chelsea (CD4),2024,2024-01-01T00:00:00.000,23.84692448
+130442,640,Boiler emissions (SO2),Tons,per square kilometer,Borough,3,Manhattan,2013,2013-01-01T00:00:00.000,50.6
+130784,639,Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",Borough,3,Manhattan,2005-2007,2005-01-01T00:00:00.000,64
+131600,639,Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",Borough,3,Manhattan,2009-2011,2009-01-01T00:00:00.000,50
+179270,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Borough,3,Manhattan,2009,2009-01-01T00:00:00.000,38.35
+179275,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Borough,3,Manhattan,2010,2010-01-01T00:00:00.000,32.17
+179280,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Borough,3,Manhattan,2011,2011-01-01T00:00:00.000,35.38
+179285,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Borough,3,Manhattan,2012,2012-01-01T00:00:00.000,30.21
+179290,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Borough,3,Manhattan,2013,2013-01-01T00:00:00.000,31.61
+179345,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Borough,3,Manhattan,2009,2009-01-01T00:00:00.000,30.87
+179350,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Borough,3,Manhattan,2010,2010-01-01T00:00:00.000,28.52
+179355,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Borough,3,Manhattan,2011,2011-01-01T00:00:00.000,27.72
+179360,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Borough,3,Manhattan,2012,2012-01-01T00:00:00.000,25.83
+179365,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Borough,3,Manhattan,2013,2013-01-01T00:00:00.000,24.71
+179420,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Borough,3,Manhattan,2009,2009-01-01T00:00:00.000,33.89
+179425,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Borough,3,Manhattan,2010,2010-01-01T00:00:00.000,30.58
+179430,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Borough,3,Manhattan,2011,2011-01-01T00:00:00.000,30.96
+179435,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Borough,3,Manhattan,2012,2012-01-01T00:00:00.000,28.74
+179440,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Borough,3,Manhattan,2013,2013-01-01T00:00:00.000,28.02
+179495,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Borough,3,Manhattan,2009,2009-01-01T00:00:00.000,15.34
+179500,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Borough,3,Manhattan,2010,2010-01-01T00:00:00.000,11.98
+179505,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Borough,3,Manhattan,2011,2011-01-01T00:00:00.000,14.76
+179510,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Borough,3,Manhattan,2012,2012-01-01T00:00:00.000,11.32
+179515,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Borough,3,Manhattan,2013,2013-01-01T00:00:00.000,12.83
+179570,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Borough,3,Manhattan,2009,2009-01-01T00:00:00.000,12.55
+179575,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Borough,3,Manhattan,2010,2010-01-01T00:00:00.000,13.41
+179580,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Borough,3,Manhattan,2011,2011-01-01T00:00:00.000,12.86
+179585,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Borough,3,Manhattan,2012,2012-01-01T00:00:00.000,11.85
+179590,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Borough,3,Manhattan,2013,2013-01-01T00:00:00.000,11.81
+179645,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Borough,3,Manhattan,2009,2009-01-01T00:00:00.000,12.63
+179650,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Borough,3,Manhattan,2010,2010-01-01T00:00:00.000,11.61
+179655,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Borough,3,Manhattan,2011,2011-01-01T00:00:00.000,11.94
+179660,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Borough,3,Manhattan,2012,2012-01-01T00:00:00.000,10.92
+179665,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Borough,3,Manhattan,2013,2013-01-01T00:00:00.000,10.73
+179809,640,Boiler emissions (SO2),Tons,per square kilometer,Borough,3,Manhattan,2015,2015-01-01T00:00:00.000,26.8
+179857,641,Boiler emissions (PM2.5),Tons,per square kilometer,Borough,3,Manhattan,2015,2015-01-01T00:00:00.000,3.7
+211362,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Borough,3,Manhattan,2014,2014-01-01T00:00:00.000,32.41
+211377,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Borough,3,Manhattan,2014,2014-01-01T00:00:00.000,22.69
+211392,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Borough,3,Manhattan,2014,2014-01-01T00:00:00.000,26.7
+211407,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Borough,3,Manhattan,2014,2014-01-01T00:00:00.000,14.13
+211422,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Borough,3,Manhattan,2014,2014-01-01T00:00:00.000,10.27
+211437,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Borough,3,Manhattan,2014,2014-01-01T00:00:00.000,10.85
+333943,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Borough,3,Manhattan,2015,2015-01-01T00:00:00.000,10.19
+333944,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Borough,3,Manhattan,2015,2015-01-01T00:00:00.000,10.79
+333945,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Borough,3,Manhattan,2015,2015-01-01T00:00:00.000,10.93
+336481,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Borough,3,Manhattan,2015,2015-01-01T00:00:00.000,25.18
+336482,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Borough,3,Manhattan,2015,2015-01-01T00:00:00.000,21.25
+336483,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Borough,3,Manhattan,2015,2015-01-01T00:00:00.000,28.69
+410726,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Borough,3,Manhattan,2016,2016-01-01T00:00:00.000,9.45
+410727,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Borough,3,Manhattan,2016,2016-01-01T00:00:00.000,9.49
+410728,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Borough,3,Manhattan,2016,2016-01-01T00:00:00.000,8.97
+412418,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Borough,3,Manhattan,2016,2016-01-01T00:00:00.000,27.51
+412419,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Borough,3,Manhattan,2016,2016-01-01T00:00:00.000,20.56
+412420,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Borough,3,Manhattan,2016,2016-01-01T00:00:00.000,24.35
+518741,639,Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",Borough,3,Manhattan,2012-2014,2012-01-02T00:00:00.000,44.02314672
+547359,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Borough,3,Manhattan,2017,2017-01-01T00:00:00.000,10.43
+547360,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Borough,3,Manhattan,2017,2017-01-01T00:00:00.000,8.72
+547361,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Borough,3,Manhattan,2017,2017-01-01T00:00:00.000,8.96
+549751,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Borough,3,Manhattan,2017,2017-01-01T00:00:00.000,21.33
+549752,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Borough,3,Manhattan,2017,2017-01-01T00:00:00.000,24.55
+549753,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Borough,3,Manhattan,2017,2017-01-01T00:00:00.000,29.74
+602693,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Borough,3,Manhattan,2018,2018-01-01T00:00:00.000,23.43
+602694,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Borough,3,Manhattan,2018,2018-01-01T00:00:00.000,19.67
+602695,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Borough,3,Manhattan,2018,2018-01-01T00:00:00.000,28.62
+605654,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Borough,3,Manhattan,2018,2018-01-01T00:00:00.000,8.46
+605655,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Borough,3,Manhattan,2018,2018-01-01T00:00:00.000,9.74
+605656,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Borough,3,Manhattan,2018,2018-01-01T00:00:00.000,9.6
+628386,639,Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",Borough,3,Manhattan,2015-2017,2015-01-01T00:00:00.000,38
+643309,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Borough,3,Manhattan,2019,2019-01-01T00:00:00.000,21.71
+643310,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Borough,3,Manhattan,2019,2019-01-01T00:00:00.000,19.7
+643311,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Borough,3,Manhattan,2019,2019-01-01T00:00:00.000,26.02
+649654,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Borough,3,Manhattan,2019,2019-01-01T00:00:00.000,8.31
+649655,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Borough,3,Manhattan,2019,2019-01-01T00:00:00.000,9.44
+649656,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Borough,3,Manhattan,2019,2019-01-01T00:00:00.000,9.33
+667039,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Borough,3,Manhattan,2020,2020-01-01T00:00:00.000,20.54
+667040,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Borough,3,Manhattan,2020,2020-01-01T00:00:00.000,29.31
+667041,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Borough,3,Manhattan,2020,2020-01-01T00:00:00.000,15.97
+669845,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Borough,3,Manhattan,2020,2020-01-01T00:00:00.000,7.8
+669846,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Borough,3,Manhattan,2020,2020-01-01T00:00:00.000,9.13
+669847,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Borough,3,Manhattan,2020,2020-01-01T00:00:00.000,7.16
+740884,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Borough,3,Manhattan,2021,2021-01-01T00:00:00.000,23.67404351
+740885,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Borough,3,Manhattan,2021,2021-01-01T00:00:00.000,16.36850296
+740886,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Borough,3,Manhattan,2021,2021-01-01T00:00:00.000,19.96942812
+742153,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Borough,3,Manhattan,2021,2021-01-01T00:00:00.000,7.462985659
+742154,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Borough,3,Manhattan,2021,2021-01-01T00:00:00.000,9.364910777
+742155,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Borough,3,Manhattan,2021,2021-01-01T00:00:00.000,7.406968016
+823333,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Borough,3,Manhattan,2022,2022-01-01T00:00:00.000,6.964430444
+823334,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Borough,3,Manhattan,2022,2022-01-01T00:00:00.000,7.483450557
+823335,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Borough,3,Manhattan,2022,2022-01-01T00:00:00.000,7.860386604
+825804,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Borough,3,Manhattan,2022,2022-01-01T00:00:00.000,19.05686321
+825805,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Borough,3,Manhattan,2022,2022-01-01T00:00:00.000,15.44110312
+825806,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Borough,3,Manhattan,2022,2022-01-01T00:00:00.000,23.43545911
+827574,639,Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",Borough,3,Manhattan,2017-2019,2017-01-01T00:00:00.000,33
+874367,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Borough,3,Manhattan,2023,2023-01-01T00:00:00.000,7.197011273
+874368,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Borough,3,Manhattan,2023,2023-01-01T00:00:00.000,9.34171697
+874369,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Borough,3,Manhattan,2023,2023-01-01T00:00:00.000,7.306428575
+876851,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Borough,3,Manhattan,2023,2023-01-01T00:00:00.000,19.52330736
+876852,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Borough,3,Manhattan,2023,2023-01-01T00:00:00.000,16.74988488
+876853,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Borough,3,Manhattan,2023,2023-01-01T00:00:00.000,22.57471752
+906385,642,Boiler emissions (NOx),Tons,per square kilometer,Borough,3,Manhattan,2019,2019-01-01T00:00:00.000,93.60610038
+906390,641,Boiler emissions (PM2.5),Tons,per square kilometer,Borough,3,Manhattan,2019,2019-01-01T00:00:00.000,6.127765661
+979278,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Borough,3,Manhattan,2024,2024-01-01T00:00:00.000,7.712711937
+979421,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Borough,3,Manhattan,2024,2024-01-01T00:00:00.000,9.553281391
+979461,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Borough,3,Manhattan,2024,2024-01-01T00:00:00.000,7.237969019
+979993,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Borough,3,Manhattan,2024,2024-01-01T00:00:00.000,18.63149789
+980177,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Borough,3,Manhattan,2024,2024-01-01T00:00:00.000,22.4833103
+980318,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Borough,3,Manhattan,2024,2024-01-01T00:00:00.000,17.00851792
+130439,640,Boiler emissions (SO2),Tons,per square kilometer,Citywide,1,New York City,2013,2013-01-01T00:00:00.000,6.1
+130487,641,Boiler emissions (PM2.5),Tons,per square kilometer,Citywide,1,New York City,2013,2013-01-01T00:00:00.000,0.7
+130781,639,Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",Citywide,1,New York City,2005-2007,2005-01-01T00:00:00.000,64.7
+131597,639,Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",Citywide,1,New York City,2009-2011,2009-01-01T00:00:00.000,48.2
+179103,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Citywide,1,New York City,2009,2009-01-01T00:00:00.000,27.92
+179104,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Citywide,1,New York City,2010,2010-01-01T00:00:00.000,24.77
+179105,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Citywide,1,New York City,2011,2011-01-01T00:00:00.000,28.07
+179106,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Citywide,1,New York City,2012,2012-01-01T00:00:00.000,22.54
+179107,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Citywide,1,New York City,2013,2013-01-01T00:00:00.000,23.47
+179118,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Citywide,1,New York City,2009,2009-01-01T00:00:00.000,18.9
+179119,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Citywide,1,New York City,2010,2010-01-01T00:00:00.000,17.59
+179120,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Citywide,1,New York City,2011,2011-01-01T00:00:00.000,17.14
+179121,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Citywide,1,New York City,2012,2012-01-01T00:00:00.000,15.77
+179122,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Citywide,1,New York City,2013,2013-01-01T00:00:00.000,15.2
+179133,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Citywide,1,New York City,2009,2009-01-01T00:00:00.000,22.72
+179134,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Citywide,1,New York City,2010,2010-01-01T00:00:00.000,21.11
+179135,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Citywide,1,New York City,2011,2011-01-01T00:00:00.000,21.58
+179136,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Citywide,1,New York City,2012,2012-01-01T00:00:00.000,19.58
+179137,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Citywide,1,New York City,2013,2013-01-01T00:00:00.000,18.83
+179148,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Citywide,1,New York City,2009,2009-01-01T00:00:00.000,12.89
+179149,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Citywide,1,New York City,2010,2010-01-01T00:00:00.000,9.86
+179150,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Citywide,1,New York City,2011,2011-01-01T00:00:00.000,12.56
+179151,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Citywide,1,New York City,2012,2012-01-01T00:00:00.000,9.15
+179152,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Citywide,1,New York City,2013,2013-01-01T00:00:00.000,10.35
+179163,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Citywide,1,New York City,2009,2009-01-01T00:00:00.000,10.7
+179164,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Citywide,1,New York City,2010,2010-01-01T00:00:00.000,11.83
+179165,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Citywide,1,New York City,2011,2011-01-01T00:00:00.000,11.46
+179166,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Citywide,1,New York City,2012,2012-01-01T00:00:00.000,10.31
+179167,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Citywide,1,New York City,2013,2013-01-01T00:00:00.000,10.15
+179178,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Citywide,1,New York City,2009,2009-01-01T00:00:00.000,10.43
+179179,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Citywide,1,New York City,2010,2010-01-01T00:00:00.000,9.54
+179180,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Citywide,1,New York City,2011,2011-01-01T00:00:00.000,10.1
+179181,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Citywide,1,New York City,2012,2012-01-01T00:00:00.000,8.95
+179182,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Citywide,1,New York City,2013,2013-01-01T00:00:00.000,8.63
+179808,640,Boiler emissions (SO2),Tons,per square kilometer,Citywide,1,New York City,2015,2015-01-01T00:00:00.000,3.5
+211327,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Citywide,1,New York City,2014,2014-01-01T00:00:00.000,26.31
+211330,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Citywide,1,New York City,2014,2014-01-01T00:00:00.000,13.91
+211333,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Citywide,1,New York City,2014,2014-01-01T00:00:00.000,18.89
+211336,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Citywide,1,New York City,2014,2014-01-01T00:00:00.000,11.88
+211339,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Citywide,1,New York City,2014,2014-01-01T00:00:00.000,8.53
+211342,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Citywide,1,New York City,2014,2014-01-01T00:00:00.000,8.93
+334180,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Citywide,1,New York City,2015,2015-01-01T00:00:00.000,8.5604
+334181,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Citywide,1,New York City,2015,2015-01-01T00:00:00.000,9.3688
+334182,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Citywide,1,New York City,2015,2015-01-01T00:00:00.000,9.1446
+336718,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Citywide,1,New York City,2015,2015-01-01T00:00:00.000,18.396
+336719,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Citywide,1,New York City,2015,2015-01-01T00:00:00.000,13.5728
+336720,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Citywide,1,New York City,2015,2015-01-01T00:00:00.000,23.7404
+410963,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Citywide,1,New York City,2016,2016-01-01T00:00:00.000,8.01
+410964,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Citywide,1,New York City,2016,2016-01-01T00:00:00.000,8.1
+410965,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Citywide,1,New York City,2016,2016-01-01T00:00:00.000,7.45
+412655,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Citywide,1,New York City,2016,2016-01-01T00:00:00.000,22.12
+412656,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Citywide,1,New York City,2016,2016-01-01T00:00:00.000,13.2
+412657,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Citywide,1,New York City,2016,2016-01-01T00:00:00.000,17.58
+518786,639,Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",Citywide,1,New York City,2012-2014,2012-01-02T00:00:00.000,40.6
+547596,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Citywide,1,New York City,2017,2017-01-01T00:00:00.000,8.95
+547597,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Citywide,1,New York City,2017,2017-01-01T00:00:00.000,7.38
+547598,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Citywide,1,New York City,2017,2017-01-01T00:00:00.000,7.89
+549988,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Citywide,1,New York City,2017,2017-01-01T00:00:00.000,13.4
+549989,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Citywide,1,New York City,2017,2017-01-01T00:00:00.000,17.77
+549990,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Citywide,1,New York City,2017,2017-01-01T00:00:00.000,24.12
+602930,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Citywide,1,New York City,2018,2018-01-01T00:00:00.000,17
+602931,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Citywide,1,New York City,2018,2018-01-01T00:00:00.000,12.32
+602932,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Citywide,1,New York City,2018,2018-01-01T00:00:00.000,23.06
+605891,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Citywide,1,New York City,2018,2018-01-01T00:00:00.000,7
+605892,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Citywide,1,New York City,2018,2018-01-01T00:00:00.000,8.32
+605893,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Citywide,1,New York City,2018,2018-01-01T00:00:00.000,8.2
+628431,639,Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",Citywide,1,New York City,2015-2017,2015-01-01T00:00:00.000,37.7
+643546,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Citywide,1,New York City,2019,2019-01-01T00:00:00.000,15.59
+643547,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Citywide,1,New York City,2019,2019-01-01T00:00:00.000,12.98
+643548,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Citywide,1,New York City,2019,2019-01-01T00:00:00.000,20.34
+649891,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Citywide,1,New York City,2019,2019-01-01T00:00:00.000,6.6
+649892,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Citywide,1,New York City,2019,2019-01-01T00:00:00.000,7.93
+649893,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Citywide,1,New York City,2019,2019-01-01T00:00:00.000,7.25
+667513,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Citywide,1,New York City,2020,2020-01-01T00:00:00.000,15.17
+667514,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Citywide,1,New York City,2020,2020-01-01T00:00:00.000,22.98
+667515,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Citywide,1,New York City,2020,2020-01-01T00:00:00.000,10.61
+669608,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Citywide,1,New York City,2020,2020-01-01T00:00:00.000,6.95
+669609,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Citywide,1,New York City,2020,2020-01-01T00:00:00.000,7.43
+669610,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Citywide,1,New York City,2020,2020-01-01T00:00:00.000,6.06
+741121,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Citywide,1,New York City,2021,2021-01-01T00:00:00.000,20.89668004
+741122,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Citywide,1,New York City,2021,2021-01-01T00:00:00.000,11.06293137
+741123,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Citywide,1,New York City,2021,2021-01-01T00:00:00.000,15.67989723
+742390,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Citywide,1,New York City,2021,2021-01-01T00:00:00.000,6.736339132
+742391,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Citywide,1,New York City,2021,2021-01-01T00:00:00.000,8.32619358
+742392,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Citywide,1,New York City,2021,2021-01-01T00:00:00.000,6.538726113
+823351,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Citywide,1,New York City,2022,2022-01-01T00:00:00.000,5.762955083
+823352,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Citywide,1,New York City,2022,2022-01-01T00:00:00.000,6.446784508
+823353,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Citywide,1,New York City,2022,2022-01-01T00:00:00.000,6.761879295
+825851,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Citywide,1,New York City,2022,2022-01-01T00:00:00.000,14.72587893
+825852,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Citywide,1,New York City,2022,2022-01-01T00:00:00.000,10.63421392
+825853,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Citywide,1,New York City,2022,2022-01-01T00:00:00.000,20.05472481
+827529,639,Deaths due to PM2.5,Estimated annual rate (age 30+),"per 100,000 adults",Citywide,1,New York City,2017-2019,2017-01-01T00:00:00.000,33
+874531,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Citywide,1,New York City,2023,2023-01-01T00:00:00.000,6.149905318
+874532,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Citywide,1,New York City,2023,2023-01-01T00:00:00.000,8.809497546
+874533,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Citywide,1,New York City,2023,2023-01-01T00:00:00.000,6.659279692
+877088,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Citywide,1,New York City,2023,2023-01-01T00:00:00.000,15.51087278
+877089,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Citywide,1,New York City,2023,2023-01-01T00:00:00.000,11.86882363
+877090,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Citywide,1,New York City,2023,2023-01-01T00:00:00.000,19.8247288
+906306,642,Boiler emissions (NOx),Tons,per square kilometer,Citywide,1,New York City,2019,2019-01-01T00:00:00.000,20.7784713
+906469,641,Boiler emissions (PM2.5),Tons,per square kilometer,Citywide,1,New York City,2019,2019-01-01T00:00:00.000,1.378979965
+979167,1425,Fine particles (PM 2.5),Annual mean,mcg/m3,Citywide,1,New York City,2024,2024-01-01T00:00:00.000,6.255051193
+979342,1426,Fine particles (PM 2.5),Summer mean,mcg/m3,Citywide,1,New York City,2024,2024-01-01T00:00:00.000,7.852111384
+979508,1427,Fine particles (PM 2.5),Winter mean,mcg/m3,Citywide,1,New York City,2024,2024-01-01T00:00:00.000,6.016778561
+980081,1431,Nitrogen dioxide (NO2),Annual mean,ppb,Citywide,1,New York City,2024,2024-01-01T00:00:00.000,14.11295099
+980239,1432,Nitrogen dioxide (NO2),Summer mean,ppb,Citywide,1,New York City,2024,2024-01-01T00:00:00.000,11.44055583
+980369,1433,Nitrogen dioxide (NO2),Winter mean,ppb,Citywide,1,New York City,2024,2024-01-01T00:00:00.000,19.18633418

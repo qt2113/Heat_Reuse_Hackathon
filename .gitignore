@@ -1,2 +1,4 @@
 # Organizer source documents (223 MB, re-downloadable from the shared Drive links)
 sources/
+data/cache/
+__pycache__/

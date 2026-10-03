@@ -1,0 +1,7 @@
+fuel,period,coefficient,unit,tCO2e_per_MWh,verified_in_law_text,source
+electricity_grid,2024-2029,0.000288962,tCO2e/kWh,0.288962,True,"NYC Local Law 97 of 2019, Admin. Code §28-320.3.1.1 (2024-2029 coefficients)"
+natural_gas,2024-2029,5.311e-05,tCO2e/kBtu,0.18121886161999998,True,"NYC Local Law 97 of 2019, Admin. Code §28-320.3.1.1 (2024-2029 coefficients)"
+fuel_oil_2,2024-2029,7.421e-05,tCO2e/kBtu,0.25321505782,True,"NYC Local Law 97 of 2019, Admin. Code §28-320.3.1.1 (2024-2029 coefficients)"
+fuel_oil_4,2024-2029,7.529e-05,tCO2e/kBtu,0.25690017118,True,"NYC Local Law 97 of 2019, Admin. Code §28-320.3.1.1 (2024-2029 coefficients)"
+district_steam,2024-2029,4.493e-05,tCO2e/kBtu,0.15330754006,True,"NYC Local Law 97 of 2019, Admin. Code §28-320.3.1.1 (2024-2029 coefficients)"
+penalty,2024+,268.0,USD/tCO2e over limit,,,NYC Admin. Code §28-320.6 (LL97)

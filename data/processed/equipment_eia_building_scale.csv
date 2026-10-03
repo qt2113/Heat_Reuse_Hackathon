@@ -1,0 +1,14 @@
+technology,pdf_page,parameter,value,unit,value_converted,unit_converted,column,verified_in_pdf_text
+Commercial gas-fired boiler (800 kBtu/h),123,thermal_efficiency,0.85,fraction,,,2022 Typical,True
+Commercial gas-fired boiler (800 kBtu/h),123,installed_cost,56.0,USD2022/kBtu/h,16412.0,USD2022/kW_th,2022 Typical,True
+Commercial gas-fired boiler (800 kBtu/h),123,lifetime,25.0,yr,,,2022 Typical,True
+Commercial gas-fired boiler (800 kBtu/h),123,maintenance,3.0,USD2022/kBtu/h/yr,,,2022 Typical,True
+"Commercial centrifugal chiller, water-cooled (400 ton)",129,cop_full_load,6.8,-,,,2022 Typical,True
+"Commercial centrifugal chiller, water-cooled (400 ton)",129,installed_cost,560.0,USD2022/ton,159.2,USD2022/kW_th(cooling),2022 Typical,True
+"Commercial centrifugal chiller, water-cooled (400 ton)",129,lifetime,25.0,yr,,,2022 Typical,True
+"Commercial centrifugal chiller, water-cooled (400 ton)",129,maintenance,30.0,USD2022/ton/yr,,,2022 Typical,True
+Commercial ground-source (water-to-water loop) heat pump (48 kBtu/h),145,cop_heating,3.5,-,,,2022 Typical,True
+Commercial ground-source (water-to-water loop) heat pump (48 kBtu/h),145,installed_cost,466.0,USD2022/kBtu/h,136571.1,USD2022/kW_th,2022 Typical,True
+Commercial heat pump water heater (171 kBtu/h),158,cop_heating,3.9,-,,,2022 Typical,True
+Commercial heat pump water heater (171 kBtu/h),158,installed_cost,351.0,USD2022/kBtu/h,102867.9,USD2022/kW_th,2022 Typical,True
+Commercial heat pump water heater (171 kBtu/h),158,lifetime,15.0,yr,,,2022 Typical,True

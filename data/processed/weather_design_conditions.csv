@@ -1,0 +1,9 @@
+parameter,value,unit,basis
+source_location,"LOCATION,New.York-Central.Park.Obs-Belvedere.Castle,NY,USA,SRC-TMYx,725053,40.77889,-73.96917,-5.0,48.0",,EPW header
+design_conditions_source,2025 ASHRAE Handbook -- Fundamentals - Chapter 14 Climatic Design Information,,EPW header
+heating_design_DB_99.6pct_C,-10.5,C,ASHRAE HoF 2025 Ch.14
+heating_design_DB_99.0pct_C,-8.0,C,ASHRAE HoF 2025 Ch.14
+cooling_design_DB_0.4pct_C,32.8,C,ASHRAE HoF 2025 Ch.14
+annual_HDD_18C,2383.0,K*day,computed from hourly TMYx
+min_hourly_dry_bulb_C,-9.4,C,TMYx hourly
+mean_dry_bulb_C,13.6,C,TMYx hourly

@@ -1,0 +1,13 @@
+run 2026-10-03T15:25:33 offline=False
+[ok]   s02_pluto
+[ok]   s01_ll84
+[ok]   s03_nycha
+[ok]   s04_dac
+[ok]   s05_nyccas
+[ok]   s06_hvi
+[ok]   s07_weather
+[ok]   s08_eia_prices
+[ok]   s09_nyiso
+[ok]   s10_dea
+[ok]   s11_eia_equipment
+[ok]   s12_ll97

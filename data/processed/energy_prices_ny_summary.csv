@@ -1,0 +1,5 @@
+parameter,value,from,to
+electricity_residential_USD_MWh_12mo_mean,283.6166666666667,2025-08-01,2026-07-01
+electricity_commercial_USD_MWh_12mo_mean,222.0,2025-08-01,2026-07-01
+gas_residential_USD_MWh_fuel_12mo_mean,73.26553937258687,2025-08-01,2026-07-01
+gas_commercial_USD_MWh_fuel_12mo_mean,38.85318705920206,2025-08-01,2026-07-01
