@@ -1,0 +1,11 @@
+metric,value,unit,url,quote,verified,accessed,note
+existing_NYCHA_apartments_replaced,2056,apartments,https://www.nyc.gov/site/nycha/about/press/pr-2025/pr-20250328.page,"rebuild all 2,056 existing units",,2026-10-03,transcribed via browser fetch; nyc.gov refuses scripted downloads
+new_mixed_income_units_up_to,3454,units,https://www.nyc.gov/site/nycha/about/press/pr-2025/pr-20250328.page,"up to 3,454 new mixed-income units",,2026-10-03,transcribed via browser fetch; nyc.gov refuses scripted downloads
+new_affordable_apartments_approx,875,apartments,https://www.nyc.gov/site/nycha/about/press/pr-2025/pr-20250328.page,approximately 875 new affordable apartments,,2026-10-03,transcribed via browser fetch; nyc.gov refuses scripted downloads
+households_staying_during_construction,0.94,share,https://www.nyc.gov/site/nycha/about/press/pr-2025/pr-20250328.page,94 percent of all households,,2026-10-03,transcribed via browser fetch; nyc.gov refuses scripted downloads
+first_demolition,"Chelsea Addition and Fulton 11, summer 2025 (subject to EIS)",,https://www.fultonelliottchelsea.com/faqs,Demolition of Chelsea Addition and Fulton 11 is currently scheduled for summer of 2025,True,2026-10-03,
+first_move_ins,end of 2028,,https://www.fultonelliottchelsea.com/faqs,The anticipated start for the first move-ins is the end of 2028,True,2026-10-03,
+phase_sequence,Phase 2 commences once Phase 1 completes,,https://www.fultonelliottchelsea.com/faqs,Phase 2 shall commence once Phase 1 completes,True,2026-10-03,
+new_building_heating,move from gas and steam towards electric and renewable powered heating and cooling,,https://www.fultonelliottchelsea.com/faqs,The new buildings will move from gas and steam heating systems towards electric and renewable powered heating and cooling systems,True,2026-10-03,
+in_unit_controls,each new unit has controllable heating and cooling,,https://www.fultonelliottchelsea.com/faqs,controllable heating and cooling,True,2026-10-03,
+jobs,"4,000 construction + 300 property management",jobs,https://www.fultonelliottchelsea.com/faqs,"An estimated 4,000 construction and 300 property management jobs",True,2026-10-03,

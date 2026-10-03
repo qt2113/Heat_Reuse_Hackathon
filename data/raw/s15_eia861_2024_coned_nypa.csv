@@ -1,0 +1,4 @@
+year,utility_number,utility_name,part,service_type,data_type,state,ownership,ba,res_rev_kUSD,res_MWh,res_cust,com_rev_kUSD,com_MWh,com_cust,ind_rev_kUSD,ind_MWh,ind_cust,tra_rev_kUSD,tra_MWh,tra_cust,tot_rev_kUSD,tot_MWh,tot_cust
+2024,4226.0,Consolidated Edison Co-NY Inc,A,Bundled,O,NY,Investor Owned,NYIS,4240108,11889829,2715069,2819770,10000499,454400,117953,381055,6961,109,414,1,7177940.0,22271797.0,3176431.0
+2024,4226.0,Consolidated Edison Co-NY Inc,C,Delivery,O,NY,Investor Owned,NYIS,431703,1754139,348969,2746033,25041350,117849,220572,922837,3537,147444,2435847,1,3545752.0,30154173.0,470356.0
+2024,15296.0,New York Power Authority,B,Energy,O,NY,State,NYIS,0,0,0,560527,7769397,361,285479,7026856,543,234021,2697361,3,1080027.0,17493614.0,907.0

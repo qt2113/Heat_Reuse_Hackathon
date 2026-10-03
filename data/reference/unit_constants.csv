@@ -1,0 +1,4 @@
+constant,value,unit,verified,source,url
+district_steam_energy_content,1194.0,kBtu per Mlb (Btu/lb),True,ENERGY STAR Portfolio Manager Technical Reference: Thermal Energy Conversions,https://portfoliomanager.energystar.gov/pdf/reference/Thermal%20Conversions.pdf
+kBtu_per_MWh,3412.142,kBtu/MWh,True,definition,
+ENERGY_STAR_cold_climate_ASHP_min_COP_at_5F,1.75,COP at 5 F (-15 C),True,"EIA Updated Buildings Sector Equipment Costs (2023), Residential ASHP section, citing ENERGY STAR cold-climate criteria",https://www.eia.gov/analysis/studies/buildings/equipcosts/pdf/full.pdf

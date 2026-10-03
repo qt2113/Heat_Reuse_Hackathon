@@ -1,4 +1,4 @@
-run 2026-10-03T15:25:33 offline=False
+run 2026-10-03T15:58:05 offline=False
 [ok]   s02_pluto
 [ok]   s01_ll84
 [ok]   s03_nycha
@@ -11,3 +11,10 @@ run 2026-10-03T15:25:33 offline=False
 [ok]   s10_dea
 [ok]   s11_eia_equipment
 [ok]   s12_ll97
+[ok]   s13_chelsea_uten
+[ok]   s14_coned_steam
+[ok]   s15_eia861
+[ok]   s16_macro
+[ok]   s17_ap42
+[ok]   s18_context_and_rates
+[ok]   s19_constants

@@ -1,5 +1,7 @@
 # Site 1 data: sufficiency audit (111 8th Ave, Chelsea)
 
+> **Superseded by `DATA_READINESS.md`** (the coverage audit). It adds sources S13–S19, `coverage_matrix.csv` and `reference/assumptions_scenarios.csv`. The text below is the first audit and is kept for history.
+
 Rebuild everything with `python scripts/fetch_site1_data.py`. A clean run takes about 35 s and about 22 MB. Add `--offline` to re-process from `data/raw` and `data/cache`.
 `data/validation_report.csv` shows that all 33 CSVs load with pandas. `data_dictionary.csv` passes a check that every file and column it names exists.
 

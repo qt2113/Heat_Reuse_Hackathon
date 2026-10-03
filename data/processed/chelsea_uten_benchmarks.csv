@@ -1,0 +1,17 @@
+metric,value,unit,formula,basis
+useful_heat_supplied_by_UTEN,2680.4277195966642,MWh/yr,sum(Table 5 DHW + 401 W 16th space heating) / 3.412,derived from chelsea_uten_pilot_stage2.csv
+steam_saved,9961.0,Mlb/yr,Table 6 steam pre - during,derived from chelsea_uten_pilot_stage2.csv
+steam_to_useful_heat_efficiency,0.7689957332760244,-,useful MMBtu / (steam saved Mlb x 1.194 MMBtu/Mlb),derived from chelsea_uten_pilot_stage2.csv
+implied_marginal_steam_cost_per_Mlb,37.64682260817187,USD/Mlb,Table 14 steam savings / steam saved,derived from chelsea_uten_pilot_stage2.csv
+implied_marginal_steam_cost_per_MWh_steam,107.58484471347803,USD/MWh(steam energy),steam savings / (Mlb x 1.194 / 3.412),derived from chelsea_uten_pilot_stage2.csv
+implied_steam_cost_per_MWh_useful_heat,139.90304504701507,USD/MWh(useful),steam savings / useful MWh,derived from chelsea_uten_pilot_stage2.csv
+heat_purchase_price_per_MWh,88.71569199999999,USD/MWh,26 USD/MMBtu x 3.412,derived from chelsea_uten_pilot_stage2.csv
+customer_thermal_rate_per_MWh,90.86534146,USD/MWh,26.63 USD/MMBtu x 3.412,derived from chelsea_uten_pilot_stage2.csv
+electricity_added_customer_plus_source,1513.55,MWh/yr,Table 6 delta + Table 8 delta,derived from chelsea_uten_pilot_stage2.csv
+system_heat_per_electricity_added,1.7709541935163453,MWh_th/MWh_e,useful heat / all added electricity (cooling of 401 W 16th also served; approximate system COP),derived from chelsea_uten_pilot_stage2.csv
+construction_cost_per_apartment,156460.48109965635,USD/apartment,45.53 M / 291,derived from chelsea_uten_pilot_stage2.csv
+all_stage_cost_per_apartment,328281.78694158077,USD/apartment,95.53 M / 291,derived from chelsea_uten_pilot_stage2.csv
+UDS_cost_per_route_ft,8936.0,USD/route-ft,"11.17 M / 1,250 ft (two pipes)",derived from chelsea_uten_pilot_stage2.csv
+UDS_cost_per_route_m,29317.58530183727,USD/route-m,11.17 M / 381 m,derived from chelsea_uten_pilot_stage2.csv
+customer_building_cost_per_apartment,63814.43298969072,USD/apartment,18.57 M / 291,derived from chelsea_uten_pilot_stage2.csv
+annual_GHG_change_LL97_factors,97.01355452000007,tCO2e/yr,"steam saved x 1,194 kBtu/Mlb x 4.493e-5 - added kWh x 2.88962e-4 (LL97 2024-29)",derived from chelsea_uten_pilot_stage2.csv

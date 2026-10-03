@@ -500,7 +500,7 @@ def validate():
     Also check that each file and column named in data_dictionary.csv exists."""
     rows = []
     files = [f for folder in (RAW, PROC, REF) for f in sorted(folder.glob("*.csv"))]
-    files += [ROOT / "data" / "dataset_inventory.csv", ROOT / "data" / "data_dictionary.csv"]
+    files += [ROOT / "data" / f for f in ("dataset_inventory.csv", "data_dictionary.csv", "coverage_matrix.csv")]
     for f in files:
         if not f.exists():
             continue
@@ -542,6 +542,10 @@ def validate():
 if __name__ == "__main__":
     for fn in (s02_pluto, s01_ll84, s03_nycha, s04_dac, s05_nyccas, s06_hvi, s07_weather, s08_eia_prices,
                s09_nyiso, s10_dea, s11_eia_equipment, s12_ll97):
+        step(fn)
+    sys.path.insert(0, str(Path(__file__).parent))
+    from fetch_site1_gapfill import STEPS as GAPFILL_STEPS  # S13-S19 targeted gap-fill sources
+    for fn in GAPFILL_STEPS:
         step(fn)
     validate()
     (ROOT / "data" / "fetch_log.txt").write_text(

@@ -1,0 +1,6 @@
+parameter,value,unit,basis
+fuel_adjustment_last12_mean,4.25375,USD/Mlb,mean of last 12 monthly statements
+SC2_RateII_winter_tail_block,26.974,USD/Mlb,"Dec-Mar >25,000 Mlb block"
+SC2_RateII_winter_5000_25000_block,31.782,USD/Mlb,"Dec-Mar 5,000-25,000 Mlb block"
+SC2_RateII_summer_tail_block,16.799,USD/Mlb,"May-Oct >1,000 Mlb block"
+steam_energy_content,1.194,MMBtu/Mlb,ENERGY STAR Portfolio Manager conversion (S19)

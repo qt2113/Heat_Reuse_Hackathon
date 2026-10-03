@@ -1,0 +1,3 @@
+parameter,value,unit,quote,verified,source,url
+DOE_FEMP_real_discount_rate,0.03,fraction/yr,Real rate (excluding general price inflation): 3.0 %,True,"NIST IR 85-3273-39, Energy Price Indices and Discount Factors for LCC Analysis - 2024 Annual Supplement to NIST Handbook 135",https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=957696
+DOE_FEMP_nominal_discount_rate,0.042,fraction/yr,Nominal rate (including general price inflation): 4.2 %,True,"NIST IR 85-3273-39, Energy Price Indices and Discount Factors for LCC Analysis - 2024 Annual Supplement to NIST Handbook 135",https://tsapps.nist.gov/publication/get_pdf.cfm?pub_id=957696
