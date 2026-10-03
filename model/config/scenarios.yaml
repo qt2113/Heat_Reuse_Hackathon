@@ -1,0 +1,71 @@
+# Site 1 scenarios for the A -> B -> C pipeline.
+# A scenario = which buildings connect + how their heat is served. Model A runs every scenario
+# with the same weather year, assumption set and rules; only the connection set and sizing change.
+# Buildings are referenced by LL84 property_id (see outputs/features/offtakers_features.csv).
+
+site:
+  name: 111 8th Avenue
+  bbl: "1007390001"
+  lat: 40.7413598
+  lon: -74.0032081
+  property_id: "7536925"
+
+# Fixed physical rules used by Model A (documented in model/README.md)
+physics:
+  dhw_supply_C: 60          # H4 Legionella floor (pilot DHW design 140 F)
+  dhw_cold_in_C: 4.4        # pilot: DHW heated from 40 F
+  sh_new_supply_C: 45       # rebuilt towers designed low-temperature (FAQ: electric/renewable heating)
+  approach_cond_K: 5        # heat-pump condenser approach
+  approach_evap_K: 5        # heat-pump evaporator approach
+  approach_hx_K: 2          # source heat exchanger (pilot design 2 F ~ 1.1 K; rounded up)
+  loop_dT_K: 5              # ambient-loop supply/return difference
+  pue: 1.5                  # E20 colocation upper bound
+  f_heat: 0.95              # E01 low end (conservative)
+  f_capture: 0.85           # E02 upper bound; HX capacity binds well before this
+  dhw_hp_frac: 1.0         # DHW heat pumps sized to 100% of (flat) DHW demand; design grid applies to space heat
+  grid_rotation_deg: 29     # Manhattan street grid vs true north (route length = L1 distance on the grid)
+
+# Design grid run for every scenario; the reference design is used for sensitivity runs.
+design_grid:
+  hp_frac: [0.5, 0.75, 1.0]     # space-heat heat-pump capacity as a share of the class design peak
+  tank_hours: [0, 2, 6]         # A13 storage, hours of each class's design peak
+reference_design: {hp_frac: 0.75, tank_hours: 2}
+
+# Operating-mode stress tests (cooling independence and backup), run on each scenario's reference design.
+operating_modes:
+  M1_normal: {description: "Typical year as simulated (includes 18 source-outage hours in the coldest hours)"}
+  M2_dc_outage_72h: {description: "Data-center heat unavailable for 72 h in the coldest week", source_off_hours: 72}
+  M3_hp_maintenance: {description: "Half of every building's heat-pump capacity out (one of two units) for the coldest week", hp_scale: 0.5, hours: 168}
+  M4_network_outage_72h: {description: "Network cannot deliver heat for 72 h in the coldest week (pipe repair); buildings on backup, DC rejects all heat to its towers", offtake_off_hours: 72}
+  M5_summer: {description: "July operation: hot water only; surplus data-center heat rejected by towers as today", month: 7}
+
+# Assumptions varied one-at-a-time (Low/High) around Base for the reference design (Model A relevant only).
+sensitivity_assumptions: [A01, A02, A03, A04, A10, A11, A16, A17, A18, A19, A20]
+
+scenarios:
+  S0:
+    label: Today's heating (no network)
+    description: Steam and gas boilers as today; data-center heat rejected by cooling towers.
+    members: []
+  S1:
+    label: Internal reuse at 111 8th Ave
+    description: The building uses its own data-center heat. Steam-heated, so only hot water / base load is served (H7).
+    members: ["7536925"]
+  S2:
+    label: Nearby commercial network
+    description: S1 plus commercial buildings within ~300 m (Chelsea Market, two hotels, school M440, 61 9th Ave).
+    members: ["7536925", "4040951", "19906892", "4978579", "1633052", "8899918"]
+  S3:
+    label: Community network (existing NYCHA buildings)
+    description: S1 plus Fulton (joining the Con Ed pilot loop), Elliott-Chelsea and NYCHA Chelsea. Existing NYCHA buildings get hot water only (steam radiators, H7).
+    members: ["7536925", "2831044", "4473909", "2830989"]
+  S3R:
+    label: Community network after the rebuild
+    description: S1 plus the rebuilt Fulton / Elliott-Chelsea campus (2,056 replacement + up to 3,454 new units) designed for 45 C space heat and 60 C hot water. Full build-out year.
+    members: ["7536925"]
+    rebuild:
+      units: 5510               # S18: 2,056 + 3,454
+      sites:                    # unit split by today's apartments (Fulton 944 : Elliott+Chelsea+Addition 1,129)
+        - {name: "Rebuilt Fulton", anchor_property_id: "2831044", share: 0.4554}
+        - {name: "Rebuilt Elliott-Chelsea", anchor_property_id: "4473909", share: 0.5446}
+      backup: electric_boiler   # FAQ: new buildings move to electric heating

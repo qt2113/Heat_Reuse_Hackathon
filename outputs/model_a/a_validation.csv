@@ -1,0 +1,23 @@
+test_id,test,status,value,expected,detail
+V1a,Pilot DHW heat-pump COP,pass,2.993,3.011 (pilot) +/-15%,"error -0.6%; loop 24.2 C, DHW 60.0 C"
+V1b,Pilot space-heat heat-pump COP,pass,4.058,3.790 (pilot) +/-15%,"error +7.1%; loop 24.2 C, DHW 60.0 C"
+V1c,Pilot heat-pump electricity (MWh/yr),pass,864.964,866.545 (pilot) +/-15%,"error -0.2%; loop 24.2 C, DHW 60.0 C"
+V1d,DEA 10 MW datasheet COP at its own temperatures (info),info,2.41,"4.7 (DEA, two-stage, glide-optimised)",Single-stage Carnot model is conservative for large two-stage DH heat pumps
+V2,Energy balances close in every run,pass,2.842170943040401e-13,< 1e-6,
+V3,Demand split adds up (DHW + space heat served + not served = useful demand),pass,1.4551915228366852e-11,< 1e-6,
+V3b,Served demand = network + backup + unserved,pass,7.275957614183426e-12,< 1e-6,
+V3c,Building allocation sums to system totals,pass,1.4551915228366852e-11,< 1e-6,
+V4,S0 (today) has zero network heat and electricity,pass,0.0,0,
+V5,"Technical constraints H1-H5, H7 in all base runs",pass,0,0 failures,
+V5b,H6 (affordability) deferred to Model B,pass,pending_model_B,pending_model_B,
+V6,Coverage never falls when heat pumps or storage grow,pass,0,0,
+V7,Non-residential base-load share reproduces July/January = A20,pass,0.2,0.2,base-load share = 0.393
+V8a,Lower DC share (A01 low) lowers recoverable heat,pass,56.9,< 102.4,
+V8b,Warmer source loop (A02 high) raises SCOP,pass,4.26,> 3.47,
+V9,Recoverable heat <= metered electricity x DC share,pass,102403.70950275284,<= E_el x A01,
+V10,Duplicate LL84 filings removed (Maritime = 363 W 16th St; 61 9th Ave single row),pass,695,"Maritime dropped, 61 9th once",
+V11,Composite refused with Technical KPIs only,pass,refused,ValueError,"Composite refused: no KPI yet for ['Economic + Delivery', 'Environmental', 'Social + Regenerative']. Run Model B first."
+V12,"Operating modes M1-M5: no unserved heat, DC heat always rejectable",pass,0,0 failures,
+V12b,"Network outage: towers take 100% of DC heat; buildings on backup + local tanks, no unserved heat",pass,100.0,100% and 0 MWh unserved,network_heat during M4 is discharge from building tanks only
+V13,Every official requirement (39) maps to a registered output,pass,0,0,
+V14,"Governance register covers all aspects and the three stakeholders, every item sourced",pass,37,"7 aspects, 3 stakeholders",missing aspects []; missing stakeholders []; unsourced []

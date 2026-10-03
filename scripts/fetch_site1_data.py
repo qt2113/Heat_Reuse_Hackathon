@@ -448,7 +448,7 @@ def s11_eia_equipment():
             ok = f" {seq} " in page_nums
         conv = None
         if unit == "USD2022/kBtu/h":
-            conv = (val * 1000 / 3.412142, "USD2022/kW_th")
+            conv = (val * 3.412142, "USD2022/kW_th")  # 1 kW = 3.412142 kBtu/h
         elif unit == "USD2022/ton":
             conv = (val / 3.51685, "USD2022/kW_th(cooling)")
         rows.append(dict(technology=tech, pdf_page=pg, parameter=par, value=val, unit=unit,

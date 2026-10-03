@@ -79,6 +79,8 @@ UTEN = [  # section, metric, value, unit, page, quote
     ("energy", "customer_steam_peak_pre", 16, "Mlb/h", 67, "23,093 16"),
     ("energy", "customer_steam_peak_during", 13, "Mlb/h", 67, "13,132 13"),
     ("energy", "source_building_electricity_delta", 666060, "kWh/yr", 68, "Delta 666,060"),
+    ("energy", "customer_hp_electricity_space_heating", 91721, "kWh/yr", 67, "During-UTEN 91,721 774,824 83,794 950,338"),
+    ("energy", "customer_hp_electricity_water_heating", 774824, "kWh/yr", 67, "During-UTEN 91,721 774,824 83,794 950,338"),
     ("energy", "source_building_january_peak_delta", -8, "kW", 68, "Delta 666,060 688,719 -22,658 -8 -24"),
     ("energy", "pilot_vs_ASHP_annual_electricity", "about 40% more electricity throughout the year (10-15% more on peak days)", "", 68, "use about 40% more electricity throughout the year"),
     ("carbon", "lifetime_GHG_reduction_claim", 15000, "tCO2e (lifetime)", 14, "15,000 metric tons of lifetime Greenhouse Gas (GHG) emissions equivalent"),
