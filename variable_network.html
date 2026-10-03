@@ -1,0 +1,1047 @@
+<title>Heat Reuse Model Graph</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: three-panel instrument console — explorer | dependency graph | inspector. Dark-first, thermal palette. */
+:root{
+  color-scheme: dark;
+  --bg:#0e1316; --panel:#141b1f; --panel2:#1a2328; --line:#2a363d; --fg:#e3eaec; --muted:#8fa1a8; --faint:#55656c;
+  --accent:#f08a4b; --focus:#ffd28a;
+  --cA:#f08a4b; --cB:#e8708f; --cC:#5aa9e6; --cD:#a98bf5; --cE:#3cc8b4; --cF:#93c35a; --cG:#f2d16b;
+  --ok:#5fd08a; --warn:#f0b44b; --bad:#ef6b6b;
+  --f-display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){
+  color-scheme: light;
+  --bg:#f3f5f4; --panel:#ffffff; --panel2:#eef2f1; --line:#d3dbdb; --fg:#172126; --muted:#56666d; --faint:#9aa8ad;
+  --accent:#c4561b; --focus:#a86400;
+  --cA:#cf5f1e; --cB:#c23f66; --cC:#2a7fc0; --cD:#7a55d6; --cE:#14917f; --cF:#5d8f22; --cG:#a37d00;
+  --ok:#1f8f4e; --warn:#b07400; --bad:#c43a3a;
+}}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --bg:#f3f5f4; --panel:#ffffff; --panel2:#eef2f1; --line:#d3dbdb; --fg:#172126; --muted:#56666d; --faint:#9aa8ad;
+  --accent:#c4561b; --focus:#a86400;
+  --cA:#cf5f1e; --cB:#c23f66; --cC:#2a7fc0; --cD:#7a55d6; --cE:#14917f; --cF:#5d8f22; --cG:#a37d00;
+  --ok:#1f8f4e; --warn:#b07400; --bad:#c43a3a;
+}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:13px;line-height:1.45;margin:0}
+*{box-sizing:border-box}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.app{display:grid;grid-template-columns:290px minmax(0,1fr) 370px;grid-template-rows:auto minmax(0,1fr);height:100%;padding-inline:0}
+header{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--panel)}
+header h1{font-family:var(--f-display);font-weight:600;font-size:17px;margin:0;letter-spacing:.01em}
+header .sub{color:var(--muted);font-size:12px}
+header .sp{flex:1}
+.btn{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:5px 10px;cursor:pointer;font-size:12px;white-space:nowrap}
+.btn:hover{border-color:var(--muted)}
+.btn.on{border-color:var(--accent);color:var(--accent)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.seg button{border:0;background:var(--panel2);padding:5px 9px;cursor:pointer;font-size:12px}
+.seg button.on{background:var(--accent);color:var(--bg)}
+aside{background:var(--panel);overflow:auto;min-height:0;min-width:0}
+aside.left{border-right:1px solid var(--line)}
+aside.right{border-left:1px solid var(--line)}
+.tabs{display:flex;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel);z-index:2}
+.tabs button{flex:1;border:0;background:none;padding:9px 6px;cursor:pointer;font-size:12px;color:var(--muted);border-bottom:2px solid transparent;font-family:var(--f-display);letter-spacing:.04em;text-transform:uppercase}
+.tabs button.on{color:var(--fg);border-bottom-color:var(--accent)}
+.pane{padding:12px 14px;display:flex;flex-direction:column;gap:12px}
+.lbl{font-family:var(--f-display);text-transform:uppercase;letter-spacing:.08em;font-size:11px;color:var(--muted);margin:0}
+input[type=search]{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:7px 9px}
+.views{display:flex;flex-wrap:wrap;gap:6px}
+.cats{display:flex;flex-direction:column;gap:2px}
+.cat-row{display:flex;align-items:center;gap:8px;padding:3px 0;cursor:pointer}
+.sw{width:11px;height:11px;border-radius:3px;flex:none}
+details.grp{border-top:1px solid var(--line);padding-top:6px}
+details.grp summary{cursor:pointer;display:flex;align-items:center;gap:8px;font-weight:600;font-size:12px;list-style:none}
+details.grp summary::-webkit-details-marker{display:none}
+details.grp summary .n{color:var(--muted);font-weight:400;margin-left:auto;font-variant-numeric:tabular-nums}
+.vlist{display:flex;flex-direction:column;margin-top:4px}
+.vitem{display:flex;gap:8px;align-items:baseline;padding:3px 6px;border-radius:4px;cursor:pointer}
+.vitem:hover{background:var(--panel2)}
+.vitem .sym{font-family:var(--f-mono);font-size:11px;color:var(--muted);margin-left:auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:45%}
+.vitem.sel{background:var(--panel2);outline:1px solid var(--accent)}
+.vitem.hid{display:none}
+.center{position:relative;min-width:0;min-height:0}
+.app.concise-mode{grid-template-columns:0 minmax(0,1fr) 370px}
+.app.concise-mode aside.left{visibility:hidden;overflow:hidden;border:0}
+.app.concise-mode .legend{display:none}
+#cy,#g3d,#cyc{position:absolute;inset:0;overflow:hidden}
+#cyc{background:var(--bg)}
+.hint3d{position:absolute;left:12px;top:52px;display:flex;flex-direction:column;gap:2px;font-size:12px;background:color-mix(in srgb,var(--panel) 92%,transparent);border:1px solid var(--line);border-radius:8px;padding:8px 10px;max-width:min(330px,calc(100% - 24px))}
+.scene-tooltip{font-family:var(--f-body)!important;font-size:12px!important;background:var(--panel)!important;color:var(--fg)!important;border:1px solid var(--line);border-radius:6px;padding:6px 8px!important}
+.legend{position:absolute;left:12px;bottom:12px;background:color-mix(in srgb,var(--panel) 92%,transparent);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:11px;display:flex;flex-direction:column;gap:4px;max-width:calc(100% - 24px)}
+.legend .row{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:center}
+.lg{display:inline-flex;align-items:center;gap:5px;color:var(--muted)}
+.lg i{display:inline-block;width:16px;height:10px;border:1.5px solid var(--muted);border-radius:2px}
+.toolbar{position:absolute;right:12px;top:12px;display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end;max-width:calc(100% - 24px)}
+.status{position:absolute;left:12px;top:12px;font-size:12px;color:var(--muted);background:color-mix(in srgb,var(--panel) 92%,transparent);border:1px solid var(--line);border-radius:6px;padding:5px 9px;max-width:55%}
+.tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:7px 9px;font-size:12px;max-width:300px;box-shadow:0 6px 20px rgb(0 0 0 / .3);z-index:5}
+.tip b{display:block}
+.tip .m{color:var(--muted);font-family:var(--f-mono);font-size:11px}
+.insp h2{font-family:var(--f-display);font-size:19px;font-weight:600;margin:0;text-wrap:balance}
+.meta{display:grid;grid-template-columns:max-content 1fr;gap:4px 10px;font-size:12px}
+.meta dt{color:var(--muted)}
+.meta dd{margin:0;min-width:0}
+.pill{display:inline-block;border:1px solid currentColor;border-radius:99px;padding:0 7px;font-size:11px;line-height:17px}
+.formula{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:8px 10px;overflow-x:auto;font-size:15px}
+.formula math{font-size:1.05em}
+.links{display:flex;flex-wrap:wrap;gap:5px}
+.chip{border:1px solid var(--line);background:var(--panel2);border-radius:5px;padding:2px 7px;cursor:pointer;font-family:var(--f-mono);font-size:11px;display:inline-flex;gap:5px;align-items:center}
+.chip:hover{border-color:var(--muted)}
+.chip .d{width:7px;height:7px;border-radius:2px}
+ul.notes{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.path{font-family:var(--f-mono);font-size:11px;color:var(--muted);line-height:1.6}
+.path b{color:var(--fg);font-weight:500}
+.ds{border:1px solid var(--line);border-radius:8px;padding:9px 10px;display:flex;flex-direction:column;gap:5px;cursor:pointer;background:var(--panel)}
+.ds:hover{border-color:var(--muted)}
+.ds.sel{border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
+.ds.linked{border-color:var(--cC);box-shadow:inset 3px 0 0 var(--cC)}
+.ds.linkedup{border-style:dashed;border-color:var(--cC)}
+.ds h3{margin:0;font-size:13px;font-weight:600}
+.ds .pub{color:var(--muted);font-size:11px}
+.ds .row{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:11px;color:var(--muted)}
+.ds a{color:var(--cC);font-size:11px;word-break:break-all}
+.ds .warnurl{color:var(--warn);font-size:11px}
+.check{display:flex;gap:8px;align-items:flex-start;font-size:12px}
+.check .s{font-family:var(--f-mono);font-size:11px;flex:none;width:38px}
+.s.ok{color:var(--ok)}.s.warn{color:var(--warn)}.s.bad{color:var(--bad)}
+.toggle{display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer}
+.muted{color:var(--muted)}
+.empty{color:var(--muted);font-size:12px;border:1px dashed var(--line);border-radius:8px;padding:12px}
+.modal{position:fixed;inset:0;background:rgb(0 0 0 / .5);display:flex;align-items:center;justify-content:center;z-index:20;padding:16px}
+.modal .box{background:var(--panel);border:1px solid var(--line);border-radius:10px;max-width:900px;width:100%;max-height:90%;display:flex;flex-direction:column;gap:10px;padding:14px}
+.modal textarea{width:100%;min-height:300px;background:var(--panel2);border:1px solid var(--line);border-radius:6px;color:var(--fg);font-family:var(--f-mono);font-size:11px;padding:8px}
+.modal img{max-width:100%;max-height:60vh;object-fit:contain;background:var(--bg);border:1px solid var(--line)}
+.issue{border-left:3px solid var(--warn);padding:2px 0 2px 9px;font-size:12px}
+.issue.fix{border-left-color:var(--ok)}
+.issue b{display:block}
+@media (max-width: 960px){
+  .app{grid-template-columns:minmax(0,1fr);grid-template-rows:auto 62vh auto auto;height:auto}
+  .app.concise-mode{grid-template-columns:minmax(0,1fr)}
+  aside.left,aside.right{border:0;border-top:1px solid var(--line);max-height:none}
+  .center{order:1}
+  aside.right{order:2}
+  aside.left{order:3}
+}
+@media (prefers-reduced-motion: reduce){ *{transition:none!important;animation:none!important} }
+</style>
+
+<div class="app">
+  <header>
+    <h1>Heat Reuse Model Graph</h1>
+    <span class="sub">Site 1 · 111 8th Ave, Chelsea, Manhattan · structure of the 8,760-hour model (MVP)</span>
+    <span class="sp"></span>
+    <span class="seg" role="group" aria-label="Trace mode"><button id="mDirect" class="on">Direct dependencies</button><button id="mFull">Full trace</button></span>
+    <span class="seg" role="group" aria-label="Node colors"><button id="colCat" class="on">Category</button><button id="colCov">Data coverage</button></span>
+    <span class="seg" role="group" aria-label="View"><button id="vC" class="on">Concise</button><button id="v2d">Detailed 2D</button><button id="v3d">Detailed 3D</button></span>
+    <button class="btn" id="fmBtn" aria-pressed="false">Formula mode</button>
+    <button class="btn" id="themeBtn">Theme</button>
+  </header>
+
+  <aside class="left">
+    <div class="tabs" role="tablist"><button id="tVars" class="on">Model explorer</button><button id="tData">Datasets</button></div>
+    <div class="pane" id="paneVars">
+      <input type="search" id="q" placeholder="Search name or symbol (e.g. COP, LCOH, T_out)" aria-label="Search variables">
+      <div><p class="lbl">Model views · layer focus</p><div class="views" id="views"></div></div>
+      <div><p class="lbl">Categories</p><div class="cats" id="cats"></div></div>
+      <button class="btn" id="resetBtn">Reset graph</button>
+      <div id="vgroups"></div>
+    </div>
+    <div class="pane" id="paneData" hidden>
+      <label class="toggle"><input type="checkbox" id="dsDown"> Show downstream impact</label>
+      <p class="muted" style="margin:0">Click a dataset to light up the variables it supplies. Solid edges are direct; dashed edges are indirect impact.</p>
+      <div id="dslist" style="display:flex;flex-direction:column;gap:8px"></div>
+    </div>
+  </aside>
+
+  <main class="center">
+    <div id="cy" aria-label="Variable dependency network"></div>
+    <div id="g3d" hidden aria-label="3D variable dependency network"></div>
+    <div id="cyc" aria-label="Concise block diagram of the model"></div>
+    <div class="hint3d" id="hint3d" hidden><b>Reading the 3D view</b><span>Left → right: order of computation, from datasets to KPIs.</span><span>Each coloured translucent layer (front to back) is one category.</span><span>Moving particles show the flow along the selected trace.</span><span class="muted">It rotates until you touch it. Drag to rotate · scroll to zoom · right-drag to pan · click a node to fly to it</span></div>
+    <div class="status" id="status">Click any variable. Click empty space to clear.</div>
+    <div class="toolbar">
+      <button class="btn" id="kpiBtn" disabled>Trace to final KPIs</button>
+      <button class="btn" id="fitBtn">Fit</button>
+      <button class="btn" id="pngBtn">PNG</button>
+      <button class="btn" id="svgBtn">SVG</button>
+      <button class="btn" id="jsonBtn">Variables JSON</button>
+      <button class="btn" id="csvBtn">Dataset CSV</button>
+    </div>
+    <div class="legend" id="legend"></div>
+    <div class="tip" id="tip" hidden></div>
+  </main>
+
+  <aside class="right">
+    <div class="tabs"><button id="tInsp" class="on">Inspector</button><button id="tInt">Integrity</button><button id="tFix">Spec fixes</button></div>
+    <div class="pane insp" id="paneInsp"></div>
+    <div class="pane" id="paneInt" hidden></div>
+    <div class="pane" id="paneFix" hidden></div>
+  </aside>
+</div>
+<div class="modal" id="modal" hidden><div class="box"><div style="display:flex;gap:8px;align-items:center"><b id="mTitle"></b><span class="sp" style="flex:1"></span><button class="btn" id="mCopy">Copy</button><button class="btn" id="mClose">Close</button></div><p class="muted" id="mNote" style="margin:0"></p><div id="mBody" style="min-height:0;overflow:auto"></div></div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dagre/0.8.5/dagre.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cytoscape-dagre@2.5.0/cytoscape-dagre.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cytoscape-svg@0.4.0/cytoscape-svg.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three-spritetext@1.9.6/dist/three-spritetext.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/3d-force-graph@1.77.0/dist/3d-force-graph.min.js"></script>
+<script>
+/* =====================================================================
+   SINGLE SOURCE OF TRUTH: CATEGORIES, DATASETS, VARIABLES.
+   Edges, dataset->variable maps, usedBy lists, views and checks are all
+   generated from these arrays. To add a variable: push one V(...) entry.
+   A dependency written as "SOC@lag" is a time-lagged edge (value at h-1).
+   ===================================================================== */
+const R = String.raw;
+const CATS = {
+  A:{name:"Data center / heat supply", tok:"--cA"},
+  B:{name:"Heat offtakers / demand", tok:"--cB"},
+  C:{name:"Weather & temporal inputs", tok:"--cC"},
+  D:{name:"Design & technology parameters", tok:"--cD"},
+  E:{name:"Hourly simulation / dispatch", tok:"--cE"},
+  F:{name:"Economic & environmental", tok:"--cF"},
+  G:{name:"Final KPIs & outputs", tok:"--cG"}
+};
+const TYPES = {
+  raw_input:{name:"Raw dataset input", how:"Read directly from a dataset (see Dataset / References)."},
+  assumption:{name:"Assumed parameter", how:"Assumed by the team. Needs a cited source or a sensitivity range before it goes on a slide."},
+  design:{name:"Design variable (user-controlled)", how:"A design decision you choose (slider or scenario input). Arrows into it show the rule that constrains it."},
+  derived:{name:"Calculated / derived", how:"Calculated from the input dependencies listed below."},
+  state:{name:"Simulation state", how:"State carried from hour h to h+1. Its update uses time-lagged inputs."},
+  kpi:{name:"Final output / KPI", how:"Model output reported in results, slides or conditions of approval."}
+};
+
+const DATASETS = [
+ {id:"org_packet",name:"Grundfos & HDR heat-reuse presentations",publisher:"Hackathon organizers (Grundfos, HDR)",description:"Sponsor slides on data-center heat reuse, district energy and pumping. Use their vocabulary and figures first.",dataType:"Slides (local files)",sourceType:"project_document"},
+ {id:"org_regen",name:"HDR Regenerative Design Framework",publisher:"HDR (organizer packet)",description:"Framework for the Theme score: frame KPIs per stakeholder and per place.",dataType:"Framework document (local file)",sourceType:"project_document"},
+ {id:"org_site",name:"Organizer site information & GIS list",publisher:"Hackathon organizers",description:"Selected site information, local context and the public data-source / GIS list for 111 8th Ave.",dataType:"Documents (local files in sources/)",sourceType:"project_document"},
+ {id:"org_de_refs",name:"District energy & heat-reuse references",publisher:"Hackathon organizers",description:"Reference material on district energy, cooling and temperature terminology.",dataType:"Documents (local files)",sourceType:"project_document"},
+ {id:"ocp_101",name:"OCP: Data Center Heat Reuse 101",publisher:"Open Compute Project",description:"Typical recovery temperatures by cooling type, capture points, heat-reuse basics.",url:"https://www.opencompute.org/documents/20230623-data-centers-heatreuse-101-3-2-docx-pdf",urlNote:"PDF returned 403 to an automated check (likely bot blocking). Open it in a browser.",dataType:"White paper (PDF)",sourceType:"reference_material"},
+ {id:"ocp_ref",name:"OCP: Reference Designs for Heat Reuse",publisher:"Open Compute Project",description:"Reference heat-recovery station and heat-pump configurations; COP and temperature ranges.",url:"https://www.opencompute.org/documents/2025-03-18-ocp-heatreuse-wp-referencedesigns-v0-1-pdf",dataType:"White paper (PDF)",sourceType:"reference_material"},
+ {id:"grundfos_guide",name:"Grundfos District Energy Application Guide",publisher:"Grundfos",description:"Distribution, pumps, substations, ΔT management. Use for pipe and substation design and pumping energy.",url:"https://www.grundfos.com/solutions/learn/research-and-insights/get-the-application-guide-district-energy",urlNote:"Could not verify: the site blocks automated checks. The organizer packet also links the guide.",dataType:"Application guide (gated download)",sourceType:"reference_material"},
+ {id:"nsrdb",name:"NSRDB typical meteorological year (TMY)",publisher:"National Laboratory of the Rockies (formerly NREL)",description:"Hourly typical-year weather for New York City: dry-bulb temperature (and GHI). The preferred weather file for an 8,760-hour run.",url:"https://nsrdb.nlr.gov/",dataType:"Hourly modeled weather",temporalResolution:"Hourly, 8,760 h",sourceType:"measured_data"},
+ {id:"noaa_lcd",name:"NOAA Local Climatological Data",publisher:"NOAA NCEI",description:"Hourly station observations (Central Park or LaGuardia). Use to cross-check TMY temperatures and degree-day conventions.",url:"https://www.ncei.noaa.gov/products/land-based-station/local-climatological-data",dataType:"Station observations",temporalResolution:"Hourly",sourceType:"measured_data"},
+ {id:"comstock",name:"ComStock",publisher:"DOE / National Laboratory of the Rockies",description:"Commercial building stock model: heating intensity and schedules for offices, retail/food halls and schools.",url:"https://comstock.nlr.gov/",dataType:"Modeled building stock",temporalResolution:"Hourly / annual",sourceType:"reference_material"},
+ {id:"resstock",name:"ResStock",publisher:"DOE / National Laboratory of the Rockies",description:"Residential building stock model: space heating and DHW intensity and DHW draw schedules.",url:"https://resstock.nlr.gov/",dataType:"Modeled building stock",temporalResolution:"Hourly / annual",sourceType:"reference_material"},
+ {id:"eia_cons",name:"EIA RECS & CBECS",publisher:"US Energy Information Administration",description:"Survey-based residential and commercial energy use per home or m². Fallback when no metered data exists.",url:"https://www.eia.gov/consumption/residential/",dataType:"Survey microdata / tables",temporalResolution:"Annual",sourceType:"measured_data"},
+ {id:"eia_elec",name:"EIA Electric Power Monthly",publisher:"US Energy Information Administration",description:"Average commercial and residential electricity prices by state.",url:"https://www.eia.gov/electricity/monthly/",dataType:"Price tables",temporalResolution:"Monthly",sourceType:"measured_data"},
+ {id:"eia_fuel",name:"EIA Heating Oil & Propane Update",publisher:"US Energy Information Administration",description:"Residential propane and heating-oil prices (NY series) for the baseline fuel cost.",url:"https://www.eia.gov/petroleum/heatingoilpropane/",dataType:"Price tables",temporalResolution:"Weekly (heating season)",sourceType:"measured_data"},
+ {id:"acs",name:"US Census ACS (table B25040, House Heating Fuel)",publisher:"US Census Bureau",description:"Income, housing and heating fuel by tract for Chelsea (Fulton Houses tract). Equity metrics alongside the site pack.",url:"https://data.census.gov/",urlNote:"Landing page. Direct table links returned 403 to an automated check; search by tract on the site.",dataType:"Survey estimates",temporalResolution:"5-year estimates",sourceType:"measured_data"},
+ {id:"nyserda_dac",name:"NY Disadvantaged Communities map",publisher:"NYSERDA / NYS Climate Justice Working Group",description:"DAC designation for equity flags (CLCPA 35–40% benefit target).",url:"https://www.nyserda.ny.gov/ny/disadvantaged-communities",dataType:"Map / tract list",sourceType:"measured_data"},
+ {id:"cleanheat",name:"NYS Clean Heat program",publisher:"NY utilities / NYSERDA",description:"Heat-pump program context for the all-electric alternative (central ASHP/VRF). Installed costs still need contractor or study data.",url:"https://cleanheat.ny.gov/",dataType:"Program information",sourceType:"reference_material"},
+ {id:"lldata",name:"NYC LL84 Energy & Water Benchmarking",publisher:"NYC Open Data / NYC DOB",description:"Annual energy, fuel and steam use and floor area per large building: actual demand for Fulton, Chelsea Market and 111 8th Ave.",url:"https://data.cityofnewyork.us/Environment/NYC-Building-Energy-and-Water-Data-Disclosure-for-Local-Law-84-2022-/5zyy-y8am",dataType:"Building-level table",temporalResolution:"Annual",sourceType:"measured_data"},
+ {id:"pluto",name:"NYC MapPLUTO",publisher:"NYC Department of City Planning",description:"Every tax lot: floor area, use, year built, owner. Candidate offtakers and distances within ~3 blocks.",url:"https://www.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page",dataType:"GIS lot layer",sourceType:"measured_data"},
+ {id:"coned",name:"Con Edison rates & tariffs",publisher:"Con Edison",description:"Electricity and steam tariffs. Convert steam $/Mlb to $/MWh of heat.",url:"https://www.coned.com/en/rates-tariffs/rates",dataType:"Tariffs",sourceType:"reference_material"},
+ {id:"ll97",name:"NYC Local Law 97 brief",publisher:"NYC Accelerator",description:"Emission limits, the $268/tCO₂e penalty and LL97 emission factors for electricity, gas and steam.",url:"https://www.nyc.gov/assets/nycaccelerator/downloads/pdf/ClimateMobilizationAct_Brief.pdf",dataType:"Policy brief (PDF)",sourceType:"reference_material"},
+ {id:"egrid",name:"EPA eGRID",publisher:"US EPA",description:"Grid CO₂ intensity by subregion (NYCW for New York City). LL97 factors are used for compliance math.",url:"https://www.epa.gov/egrid",dataType:"Emission rates",temporalResolution:"Annual",sourceType:"measured_data"},
+ {id:"epa_hub",name:"EPA GHG Emission Factors Hub",publisher:"US EPA",description:"Combustion emission factors: natural gas 53.1, propane 62.9, heating oil 74.0 kgCO₂/MMBtu.",url:"https://www.epa.gov/climateleadership/ghg-emission-factors-hub",dataType:"Emission factors",temporalResolution:"Annual",sourceType:"reference_material"},
+ {id:"sp111",name:"HDR site pack: 111 8th Ave",publisher:"HDR (organizer packet)",description:"Regenerative Design Site Data: poverty, minority, PM2.5, ozone, social vulnerability, water, flood and climate indicators for the site and the block to the west (Fulton Houses).",dataType:"Slides (local file in sources/)",sourceType:"project_document"},
+ {id:"dataheat",name:"DATA HEAT market development guide",publisher:"Organizer packet",description:"Market segments for data-center heat reuse. Favours sites near high-density new construction or steam district energy (boiler feedwater preheat).",dataType:"Report (local file in sources/)",sourceType:"reference_material"},
+ {id:"dc_tracker",name:"111 Eighth Avenue data center tracker",publisher:"morethanjustparks.com",description:"Tracker estimates of total power and tenants (Digital Realty ~18 MW, Equinix NY9 ~1 MW). Secondary source.",url:"https://morethanjustparks.com/data-center-tracker/111-eighth-avenue-google-chelsea-ny--fc3ac993-b901-4e19-90f4-c7e773e6f9e1",urlNote:"Secondary estimate; URL not re-checked today.",dataType:"Web page",sourceType:"reference_material"},
+ {id:"psc_pilot",name:"PSC Case 22-M-0429 (Con Ed thermal-network pilots)",publisher:"NY Public Service Commission",description:"Filings for the Chelsea pilot (our Phase 0): heat source building, scope and costs. Best source for Manhattan pipe costs.",url:"https://documents.dps.ny.gov/public/MatterManagement/CaseMaster.aspx?MatterCaseNo=22-M-0429",dataType:"Regulatory filings",sourceType:"project_document"},
+ {id:"fec_faq",name:"Fulton & Elliott-Chelsea redevelopment FAQs",publisher:"Redevelopment project team",description:"Rebuild scope and phasing (~2,056 replacement + ~3,454 new units; verify the HUD approval and schedule).",url:"https://www.fultonelliottchelsea.com/faqs",dataType:"Project web page",sourceType:"project_document"},
+ {id:"enefg",name:"German Energy Efficiency Act (EnEfG) summary",publisher:"White & Case",description:"Benchmark for ERF: new German data centers must reuse 10% (2026), 15% (2027), 20% (2028).",url:"https://www.whitecase.com/insight-alert/data-center-requirements-under-new-german-energy-efficiency-act",urlNote:"Returned 403 to an automated check. Open in a browser and verify the exemptions.",dataType:"Legal summary",sourceType:"reference_material"}
+];
+
+const VARS = [];
+/* V(id, cat, type, name, sym, unit, desc, opts)
+   opts: f (LaTeX), how (derivation text), deps[], ds[], val (plan value or status), status, notes[], idx (per offtaker), env, tags[] */
+function V(id,cat,type,name,sym,unit,desc,o={}){VARS.push({id,cat,type,name,sym,unit,desc,f:o.f||"",how:o.how||"",deps:o.deps||[],ds:o.ds||[],val:o.val||"",status:o.status||"",notes:o.notes||[],idx:!!o.idx,tags:o.tags||[],texSym:o.tex||""});}
+
+/* ---------- C. Weather & temporal ---------- */
+V("h","C","assumption","Hour index","h","h","Clock of the simulation: one typical year of 8,760 hourly steps.",{val:"1 … 8,760",status:"assumed",tex:R`h`});
+V("dt","C","assumption","Time step","Δt","h","Length of one simulation step. With Δt = 1 h, a power in MW held for one step is the same number in MWh.",{val:"1 h",status:"assumed",tex:R`\Delta t`,notes:["All hourly flows are in MW; all annual totals are Σ(flow × Δt) in MWh. This is where MW vs MWh mistakes get caught."]});
+V("T_out","C","raw_input","Outdoor dry-bulb temperature","T_out(h)","°C","Hourly outdoor air temperature in New York City. Drives space-heating demand.",{deps:["h"],ds:["nsrdb","noaa_lcd"],val:"NYC typical year (Central Park / LaGuardia)",status:"sourced",tex:R`T_{out}(h)`,notes:["Download the weather file before building; data download on the day is a known time sink."]});
+V("GHI","C","raw_input","Global horizontal irradiance","GHI(h)","W/m²","Hourly solar radiation. Feeds the greenhouse weight only (zero at Site 1); kept so the model also runs Site 2.",{deps:["h"],ds:["nsrdb"],status:"sourced",tex:R`GHI(h)`});
+V("T_base","C","assumption","Heating base temperature","T_base","°C","Outdoor temperature above which a building needs no space heating.",{ds:["noaa_lcd"],val:"18.3 °C (65 °F US degree-day convention)",status:"assumed",tex:R`T_{base}`,notes:["New low-energy homes balance lower (about 12–15 °C). Consider a per-type base temperature."]});
+V("DH","C","derived","Heating degree-hours","DH(h)","K·h","How far below the base temperature the outdoor air is in each hour. Used to spread annual heating over the year.",{deps:["T_out","T_base","dt"],f:R`DH(h)=\max\!\left(0,\;T_{base}-T_{out}(h)\right)\Delta t`,tex:R`DH(h)`});
+V("daily_shape","C","assumption","DHW daily draw profile","s_DHW(h)","weight","Relative hot-water use in each hour (morning and evening peaks).",{deps:["h"],ds:["resstock"],val:"ResStock schedule or standard profile",status:"assumed",tex:R`s_{DHW}(h)`});
+V("occ_i","C","assumption","Occupancy schedule","occ_i(h)","0–1","Whether each offtaker is in use. Offices, schools and food halls are not used around the clock; the degree-hour method alone misses that.",{deps:["h","type_i"],ds:["comstock"],idx:true,status:"assumed",tex:R`occ_i(h)`});
+V("T_GH_set","C","assumption","Greenhouse heating set-point","T_GH,set","°C","Inside temperature a greenhouse holds. Not used at Site 1; kept for Site 2 comparison.",{val:"Not used at Site 1",status:"assumed",tex:R`T_{GH,set}`});
+V("k_sol","C","assumption","Greenhouse solar-gain coefficient","k_sol","K per W/m²","How much sunshine offsets greenhouse heating. Not used at Site 1.",{status:"assumed",val:"Not used at Site 1",tex:R`k_{sol}`});
+V("GH_weight","C","derived","Greenhouse heating weight","w_GH(h)","K·h","Hourly greenhouse heating need on a relative scale. MVP proxy, not a greenhouse energy model.",{deps:["T_out","GHI","T_GH_set","k_sol","dt"],f:R`w_{GH}(h)=\max\!\left(0,\;T_{GH,set}-T_{out}(h)-k_{sol}\,GHI(h)\right)\Delta t`,tex:R`w_{GH}(h)`,notes:["Unvalidated proxy. Real greenhouse demand also includes ventilation and dehumidification (summer)."]});
+V("season","C","derived","Month / season label","season(h)","category","Calendar month and season of each hour, for the monthly seasonality chart.",{deps:["h"],how:"Map hour index to month, then to winter / shoulder / summer.",f:R`season(h)=\mathrm{month}(h)\mapsto\{\text{winter},\text{shoulder},\text{summer}\}`,tex:R`season(h)`});
+
+/* ---------- A. Data center / heat supply ---------- */
+V("P_DC_max","A","raw_input","Facility power, all tenants","P_DC,max","MWe (facility)","Peak electrical draw of all data-center tenants at 111 8th Ave (IT + cooling + losses).",{ds:["dc_tracker","org_site"],val:"~80 MW total (tracker estimate; Digital Realty ~18 MW, Equinix NY9 ~1 MW; verify)",status:"unverified",tex:R`P_{DC,max}`,tags:["supply"],notes:["Facility power. Recoverable heat comes from IT power (facility / PUE) and only from tenants whose plants connect (f_tenant). The ERF denominator is facility energy."]});
+V("LF","A","assumption","Hourly load factor","LF(h)","0–1","Share of maximum power drawn in each hour. A colocation carrier hotel runs nearly flat.",{deps:["h"],val:"~0.85–0.95, flat",status:"assumed",tex:R`LF(h)`,notes:["Tenant churn changes the load over years, not hours: one reason for a standard contract open to all tenants."]});
+V("P_DC","A","derived","Hourly facility power","P_DC(h)","MWe","Electrical power the data center draws in hour h.",{deps:["P_DC_max","LF"],f:R`P_{DC}(h)=P_{DC,max}\times LF(h)`,tex:R`P_{DC}(h)`});
+V("PUE","A","assumption","Power usage effectiveness","PUE","–","Facility energy divided by IT energy. Separates facility power from IT power.",{ds:["ocp_101"],val:"~1.4–1.6 (older colocation; verify)",status:"assumed",tex:R`PUE`});
+V("P_IT","A","derived","Hourly IT power","P_IT(h)","MWe","Power reaching the servers. Nearly all of it becomes heat.",{deps:["P_DC","PUE"],f:R`P_{IT}(h)=\frac{P_{DC}(h)}{PUE}`,tex:R`P_{IT}(h)`});
+V("f_heat","A","assumption","IT electricity-to-heat fraction","f_heat","–","Share of IT electricity that ends up as heat in the cooling loop.",{ds:["ocp_101"],val:"≈ 1.0",status:"assumed",tex:R`f_{heat}`});
+V("Q_DC_raw","A","derived","IT heat generated","Q_DC,raw(h)","MWth","Heat produced by the IT equipment each hour.",{deps:["P_IT","f_heat"],f:R`Q_{DC,raw}(h)=P_{IT}(h)\times f_{heat}`,tex:R`Q_{DC,raw}(h)`,notes:["Changed from P_DC × f_heat: heat from the cooling plant's own losses is not available at the IT loop."]});
+V("f_capture","A","assumption","Capture fraction","f_capture","–","Share of a connected tenant's IT heat that reaches its condenser-water loop where it can be recovered.",{ds:["ocp_101","ocp_ref"],val:"~0.6–0.8 for air-cooled chilled-water plants (verify)",status:"assumed",tex:R`f_{capture}`});
+V("f_tenant","A","design","Share of tenants connected","f_tenant","–","Share of the building's IT heat whose cooling plants join the heat-recovery scheme (Term 1). Added for a multi-tenant building.",{val:"~0.1–0.2 (1–2 tenants' plants → ~5–10 MWth)",tex:R`f_{tenant}`});
+V("T_source","A","assumption","Condenser-water temperature","T_source","°C","Temperature of the tenants' condenser-water loops at the heat-recovery interface.",{ds:["ocp_101","ocp_ref"],val:"~30–35 °C (air-cooled chilled-water plants; verify per tenant)",status:"unverified",tex:R`T_{source}`,notes:["Not the chilled-water return (12–18 °C). Liquid-cooled racks of newer tenants could give 40–60 °C: ask, don't assume."]});
+V("Q_DC_avail","A","derived","Recoverable heat available","Q_DC,avail(h)","MWth","Heat the connected tenants' condenser loops can hand to the network in hour h.",{deps:["Q_DC_raw","f_capture","f_tenant"],f:R`Q_{DC,avail}(h)=Q_{DC,raw}(h)\times f_{capture}\times f_{tenant}`,tex:R`Q_{DC,avail}(h)`});
+V("E_fac","A","derived","Annual facility energy","E_fac","MWh/yr","Total data-center electricity use over the year. Denominator of ERF.",{deps:["P_DC","dt"],f:R`E_{fac}=\sum_{h}P_{DC}(h)\,\Delta t`,tex:R`E_{fac}`,val:"~700 GWh/yr at ~80 MW (upper bound)"});
+V("Q_DC_remaining","A","derived","Heat left for the heat pumps","Q_DC,rem(h)","MWth","Recoverable heat still available after the direct heat exchanger, within the heat recovery station's capacity.",{deps:["Q_DC_avail","HX_cap","Q_direct"],f:R`Q_{DC,rem}(h)=\min\!\left(Q_{DC,avail}(h),\,HX_{cap}\right)-Q_{direct}(h)`,tex:R`Q_{DC,rem}(h)`,notes:["HX_cap limits the station as a whole: it feeds both the direct heat exchanger and the heat-pump evaporators."]});
+
+/* ---------- B. Offtakers / demand ---------- */
+V("type_i","B","raw_input","Offtaker type","type_i","category","What each candidate user is: existing Fulton Houses buildings, rebuild towers (by phase), 111 8th Ave offices, Chelsea Market, schools.",{ds:["lldata","pluto","sp111"],idx:true,val:"Fulton (existing) · rebuild towers · 111 8th offices · Chelsea Market · schools",status:"unverified",tex:R`type_i`});
+V("floor_area_i","B","raw_input","Floor area","A_i","m²","Heated floor area of offtaker i.",{ds:["pluto","lldata"],idx:true,val:"From PLUTO / LL84",status:"unverified",tex:R`A_i`});
+V("n_conn_i","B","raw_input","Building connections","n_conn,i","count","Number of building connections / plant rooms for offtaker i. Drives connection CAPEX.",{ds:["pluto"],idx:true,status:"unverified",tex:R`n_{conn,i}`});
+V("heat_intensity_i","B","assumption","Space-heating intensity","q_SH,i","MWh/m²/yr","Annual space heating per m² for the building type. Rebuilt towers are efficient; existing buildings use LL84 actuals.",{deps:["type_i"],ds:["lldata","comstock","resstock","eia_cons"],idx:true,val:"Rebuild: ~6–9 MWh per unit incl. hot water; existing: LL84",status:"assumed",tex:R`q_{SH,i}`});
+V("dhw_intensity_i","B","assumption","DHW intensity","q_DHW,i","MWh/m²/yr","Annual domestic hot water per m². Added: the spec had no source for annual DHW.",{deps:["type_i"],ds:["resstock","eia_cons"],idx:true,status:"assumed",tex:R`q_{DHW,i}`});
+V("gh_intensity","B","assumption","Greenhouse heat intensity","q_GH","MWh/m²/yr","Annual heating per m² of greenhouse. Not used at Site 1 (no greenhouse); kept so the same model also runs Site 2.",{val:"0 at Site 1",status:"assumed",tex:R`q_{GH}`});
+V("annual_SH_i","B","derived","Annual space heating","SH_ann,i","MWh/yr","Yearly space-heating demand of offtaker i.",{deps:["floor_area_i","heat_intensity_i"],idx:true,f:R`SH_{ann,i}=A_i\times q_{SH,i}`,tex:R`SH_{ann,i}`});
+V("annual_DHW_i","B","derived","Annual domestic hot water","DHW_ann,i","MWh/yr","Yearly hot-water demand of offtaker i.",{deps:["floor_area_i","dhw_intensity_i"],idx:true,f:R`DHW_{ann,i}=A_i\times q_{DHW,i}`,tex:R`DHW_{ann,i}`});
+V("annual_GH_i","B","derived","Annual greenhouse heat","GH_ann,i","MWh/yr","Yearly greenhouse heating demand (greenhouses only, zero otherwise).",{deps:["floor_area_i","gh_intensity","type_i"],idx:true,f:R`GH_{ann,i}=A_i\times q_{GH}\;\;(\text{greenhouses only})`,tex:R`GH_{ann,i}`,val:"~16 GWh/yr for 4 ha"});
+V("T_sink_i","B","assumption","Required supply temperature","T_sink,i","°C","Temperature each demand stream needs at the building.",{deps:["type_i"],idx:true,val:"Hot water ≥ 60 °C (Legionella) · rebuild space heat 45 °C (designed in) · existing radiators 70–80 °C (steam/boiler stays) · preheat 10–25 °C",status:"assumed",tex:R`T_{sink,i}`});
+V("tier_i","B","derived","Temperature tier per demand stream","tier_i,s","low / high","Low tier can use loop heat with no heat pump (cold-water or boiler-feedwater preheat); high tier needs a building heat pump.",{deps:["T_sink_i","T_loop"],idx:true,f:R`tier_{i,s}=\begin{cases}\text{low} & T_{sink,i,s}\le T_{loop}\\ \text{high} & \text{otherwise}\end{cases}`,tex:R`tier_{i,s}`,notes:["Assigned per demand stream, not per building: hot water (≥ 60 °C) is always high tier."]});
+V("SH_i","B","derived","Hourly space heating","SH_i(h)","MWth","Space-heating demand of offtaker i in hour h.",{deps:["annual_SH_i","DH","occ_i"],idx:true,f:R`SH_i(h)=SH_{ann,i}\,\frac{DH(h)\,occ_i(h)}{\sum_{h}DH(h)\,occ_i(h)\,\Delta t}`,tex:R`SH_i(h)`,notes:["Degree-hour scaling ignores thermal mass and solar gains. Adequate for an MVP, not for peak design."]});
+V("DHW_i","B","derived","Hourly domestic hot water","DHW_i(h)","MWth","Hot-water demand of offtaker i in hour h.",{deps:["annual_DHW_i","daily_shape"],idx:true,f:R`DHW_i(h)=DHW_{ann,i}\,\frac{s_{DHW}(h)}{\sum_{h}s_{DHW}(h)\,\Delta t}`,tex:R`DHW_i(h)`});
+V("GH_i","B","derived","Hourly greenhouse heat","GH_i(h)","MWth","Greenhouse heating demand in hour h.",{deps:["annual_GH_i","GH_weight"],idx:true,f:R`GH_i(h)=GH_{ann,i}\,\frac{w_{GH}(h)}{\sum_{h}w_{GH}(h)\,\Delta t}`,tex:R`GH_i(h)`,notes:["Winter-weighted (~2,000 full-load hours). Do not call it a flat year-round sink."]});
+V("peak_i","B","derived","Peak demand per offtaker","peak_i","MWth","Highest hourly demand of offtaker i. Now derived from the hourly profile instead of entered separately, so peaks stay consistent with annual demand.",{deps:["SH_i","DHW_i","GH_i"],idx:true,f:R`peak_i=\max_h\left(SH_i(h)+DHW_i(h)+GH_i(h)\right)`,tex:R`peak_i`});
+V("distance_i","B","raw_input","Route distance","L_i","km","Loop route length from 111 8th Ave to offtaker i.",{ds:["pluto"],idx:true,val:"Fulton: one block west; Elliott-Chelsea: ~10 blocks north (verify route)",status:"unverified",tex:R`L_i`});
+V("baseline_fuel_i","B","raw_input","Existing / counterfactual heating","fuel_i","category","What the offtaker uses today, or would install without the network.",{ds:["lldata","acs"],idx:true,val:"Existing: steam or gas boilers (LL84); rebuild: all-electric (likely central ASHP/VRF)",status:"unverified",tex:R`fuel_i`});
+V("eta_base_i","B","assumption","Baseline heating efficiency","η_base,i","–","Efficiency of the heating the network displaces. Added: needed for baseline cost and carbon.",{deps:["baseline_fuel_i"],idx:true,val:"Boiler 0.85–0.90; resistance 1.0",status:"assumed",tex:R`\eta_{base,i}`});
+V("equity_i","B","raw_input","Equity / community flag","equity_i","category","Environmental-justice indicators for offtaker i.",{ds:["sp111","acs","nyserda_dac"],idx:true,val:"Block west (Fulton): poverty 83rd pct, minority 79th, PM2.5 92nd, ozone 83rd [SP-111]",status:"sourced",tex:R`equity_i`});
+V("D_low","B","derived","Low-temperature demand","D_low(h)","MWth","All connected demand streams that direct heat exchange can serve.",{deps:["SH_i","DHW_i","GH_i","tier_i","Include_i","Phase"],f:R`D_{low}(h)=\sum_{i}\sum_{s:\,tier_{i,s}=\text{low}}Include_i\;Phase_i\;d_{i,s}(h)`,tex:R`D_{low}(h)`});
+V("D_high","B","derived","High-temperature demand","D_high(h)","MWth","All connected demand streams that need the heat pump.",{deps:["SH_i","DHW_i","GH_i","tier_i","Include_i","Phase"],f:R`D_{high}(h)=\sum_{i}\sum_{s:\,tier_{i,s}=\text{high}}Include_i\;Phase_i\;d_{i,s}(h)`,tex:R`D_{high}(h)`});
+V("D_total","B","derived","Total community demand","D_total(h)","MWth","All connected heat demand at the buildings in hour h.",{deps:["D_low","D_high"],f:R`D_{total}(h)=D_{low}(h)+D_{high}(h)`,tex:R`D_{total}(h)`,val:"~35–50 GWh/yr at full rebuild (assumption)"});
+V("D_peak","B","derived","Coincident peak demand","D_peak","MWth","Highest total hourly demand across all connected users.",{deps:["D_total"],f:R`D_{peak}=\max_h D_{total}(h)`,tex:R`D_{peak}`,val:"~15–20 MW for the rebuild (assumption)"});
+
+/* ---------- D. Design & technology parameters ---------- */
+V("Include_i","D","design","Offtaker connected?","Include_i","0 / 1","Whether offtaker i is on the loop.",{idx:true,val:"Phase 1: Fulton hot water + 111 8th offices; Phase 2: rebuild towers; Phase 3: Chelsea Market, schools",tex:R`Include_i`});
+V("Phase","D","design","Build-out phase","Phase","0–3","0 = Con Ed pilot (credited), 1 = existing Fulton hot water + 111 8th offices, 2 = rebuild towers as they open, 3 = Chelsea Market + more tenants.",{ds:["psc_pilot","fec_faq"],val:"Selector 0–3",tex:R`Phase`});
+V("HX_cap","D","design","Heat-recovery interface capacity","HX_cap","MWth","Maximum heat the tenants' heat-recovery interfaces can pass into the loop.",{val:"~5–10 MWth",tex:R`HX_{cap}`});
+V("HP_cap","D","design","Building heat pumps, firm capacity (sum)","HP_cap","MWth","Combined output of the heat pumps in all connected buildings with one unit per building out of service.",{val:"~11 MW for the full rebuild (~55% of peak; assumption)",tex:R`HP_{cap}`});
+V("HP_inst","D","design","Building heat pumps, installed capacity","HP_inst","MWth","Installed heat-pump output including the redundant unit in each building. Used for CAPEX.",{deps:["HP_cap"],val:"N+1 per building",f:R`HP_{inst}=HP_{cap}\,\frac{N}{N-1}`,tex:R`HP_{inst}`});
+V("Tank_cap","D","design","Thermal storage capacity","Tank_cap","MWhth","Hot-water tanks in the new towers' basements. They store hot-water-tier heat and are charged by the building heat pumps.",{status:"missing",val:"Not set yet: size from the peak-day profile",tex:R`Tank_{cap}`});
+V("Backup_cap","D","design","Backup heating capacity","Backup_cap","MWth","Heat available if the loop or a tenant is down. Continuity rule: covers the full coincident peak.",{deps:["D_peak"],val:"≥ full peak: existing steam/boilers in Phase 1; electric boilers in new towers",tex:R`Backup_{cap}\ge D_{peak}`});
+V("Pipe_km","D","design","Loop length","L_pipe","km","Trench length of the ambient loop.",{deps:["distance_i","Include_i"],val:"~0.3–1 km (one block + risers; verify route)",tex:R`L_{pipe}`});
+V("DC_funding","D","design","Tenants fund heat-recovery interfaces?","DC_funding","0 / 1","If on, tenants pay for their heat-recovery interfaces (they gain cooling-tower savings and heat revenue), so that cost leaves the network's CAPEX.",{val:"On (base case)",tex:R`DC_{funding}`});
+V("p_fence","D","design","Standard-contract heat price","p_fence","$/MWhth","Price the loop operator pays any tenant for heat at the fence under the standard contract (Term 2).",{status:"missing",val:"Set by Term 2; not chosen yet",tex:R`p_{fence}`});
+V("afford_pct","D","design","Affordability margin","x_afford","%","How far NYCHA residents' heat cost must sit at or below the all-electric alternative (Term 4).",{val:"≥ 0% (never more than all-electric)",tex:R`x_{afford}`});
+V("tariff","D","design","Heat tariff to users","p_heat","$/MWhth","Price heat users pay. Constrained by the affordability condition.",{deps:["LCOH_ASHP","Cost_baseline","afford_pct"],f:R`p_{heat}\le(1-x_{afford})\,\min\!\left(LCOH_{ASHP},\;\overline{c}_{baseline}\right)`,tex:R`p_{heat}`});
+V("HP_eta","D","assumption","Heat-pump Carnot fraction","η_HP","–","Share of the ideal (Carnot) COP a real heat pump reaches. Technology parameter, not a design choice.",{ds:["ocp_ref"],val:"~0.5",status:"assumed",tex:R`\eta_{HP}`});
+V("COP_assumed","D","assumption","Fixed COP (fixed-COP mode)","COP_fix","–","Constant COP used when the model runs without temperature dependence. HP_eta and COP_fix are alternatives; the model uses one per run.",{val:"5 (45 → 70 °C, conservative)",status:"assumed",tex:R`COP_{fix}`});
+V("dT_app","D","assumption","Heat-exchanger approach temperature","ΔT_app","K","Temperature lost across a heat exchanger. Added: decides whether direct heat exchange can serve a stream.",{val:"3–5 K",status:"assumed",tex:R`\Delta T_{app}`});
+V("T_loop","A","design","Ambient loop temperature","T_loop","°C","Temperature of the shared one-block loop that carries DC heat to the buildings.",{deps:["T_source","dT_app"],val:"~20–25 °C",f:R`T_{loop}\le T_{source}-\Delta T_{app}`,tex:R`T_{loop}`,notes:["A low loop temperature means little heat loss and cheaper uninsulated pipe. Each building lifts the heat with its own heat pump (5th-generation network)."]});
+V("eta_ch","D","assumption","Storage charging efficiency","η_ch","–","Share of charged heat that ends up stored.",{val:"Not in plan; typical hot-water tank 0.95–0.98",status:"assumed",tex:R`\eta_{ch}`});
+V("eta_dis","D","assumption","Storage discharging efficiency","η_dis","–","Share of stored heat recovered on discharge.",{val:"Not in plan; typical 0.95–0.98",status:"assumed",tex:R`\eta_{dis}`});
+V("loss_tank","D","assumption","Tank standing loss","λ","1/h","Fraction of stored heat lost per hour. Added.",{status:"missing",val:"Not in plan",tex:R`\lambda`});
+V("q_loss_km","D","assumption","Network heat loss per km","q_loss","MW/km","Heat lost through pipe walls per km of trench. Added.",{ds:["grundfos_guide"],status:"missing",val:"Not in plan; depends on pipe size, insulation and temperature",tex:R`q_{loss}`});
+V("e_pump","D","assumption","Specific pumping energy","e_pump","MWhe/MWhth","Circulation-pump electricity per unit of heat moved. Added: the plan counts ~0.5 GWh for pumping.",{ds:["grundfos_guide"],val:"~0.01–0.04",status:"unverified",tex:R`e_{pump}`});
+V("eta_backup","D","assumption","Backup boiler efficiency","η_backup","–","Electric boiler efficiency.",{val:"~0.99",status:"assumed",tex:R`\eta_{backup}`});
+V("k_cool","D","assumption","DC cooling electricity per MWh removed","k_cool","MWhe/MWhth","Cooling-tower fan and pump electricity the tenants avoid for each MWh the loop takes.",{val:"~0.02–0.05 (verify)",status:"unverified",tex:R`k_{cool}`});
+
+/* ---------- E. Hourly simulation / dispatch ---------- */
+V("COP","E","derived","Building heat-pump COP","COP(h)","–","Heat delivered per unit of electricity by the building heat pumps, lifting from the loop temperature.",{deps:["HP_eta","T_loop","T_sink_i","COP_assumed"],f:R`COP(h)=\eta_{HP}\,\frac{T_{sink}+273.15}{T_{sink}-T_{loop}}\quad\text{or}\quad COP_{fix}`,tex:R`COP(h)`,notes:["Carnot-fraction estimate. 25 → 45 °C gives ≈ 8 and 25 → 60 °C ≈ 4.8; use ~4–5 and ~3.5–4 to be conservative. Replace with vendor curves for engineering use."]});
+V("Q_direct","E","derived","① Direct preheat from the loop","Q_direct(h)","MWth","Loop heat used with no heat pump, e.g. preheating incoming cold water or steam-boiler feedwater [DH]. Dispatch step 1.",{deps:["D_low","Q_DC_avail","HX_cap","T_loop","T_sink_i"],ds:["dataheat"],f:R`Q_{direct}(h)=\begin{cases}\min\!\left(D_{low}(h),\,Q_{DC,avail}(h),\,HX_{cap}\right) & T_{loop}\ge T_{sink,low}\\ 0 & \text{otherwise}\end{cases}`,tex:R`Q_{direct}(h)`});
+V("Q_loss_net","E","derived","Network heat loss","Q_loss,net(h)","MWth","Heat lost from the pipes. MVP: constant, added to the high-temperature plant load.",{deps:["q_loss_km","Pipe_km"],f:R`Q_{loss,net}(h)=q_{loss}\times L_{pipe}`,tex:R`Q_{loss,net}(h)`,notes:["Simplification: real losses vary with supply temperature and season, and part belongs to the low-temperature loop."]});
+V("D_high_plant","E","derived","High-tier load at the plant","D_high,plant(h)","MWth","High-temperature demand plus network losses: what the heat-pump plant must actually produce.",{deps:["D_high","Q_loss_net"],f:R`D_{high,plant}(h)=D_{high}(h)+Q_{loss,net}(h)`,tex:R`D_{high,plant}(h)`});
+V("Q_HP_max","E","derived","Building heat-pump output limit","Q_HP,max(h)","MWth","Most the heat pump can deliver this hour, limited by its capacity and by the source heat left.",{deps:["HP_cap","Q_DC_remaining","COP"],f:R`Q_{HP,max}(h)=\min\!\left(HP_{cap},\;Q_{DC,rem}(h)\,\frac{COP(h)}{COP(h)-1}\right)`,tex:R`Q_{HP,max}(h)`});
+V("Q_HP_load","E","derived","Building heat pumps to load","Q_HP,load(h)","MWth","Heat-pump output serving the high-tier load directly. Dispatch step 2.",{deps:["D_high_plant","Q_HP_max"],f:R`Q_{HP,load}(h)=\min\!\left(D_{high,plant}(h),\;Q_{HP,max}(h)\right)`,tex:R`Q_{HP,load}(h)`});
+V("Q_ch","E","derived","Storage charging","Q_ch(h)","MWth","Spare heat-pump output sent into the tank. Dispatch step 3; only when the load is fully met, so it never overlaps with discharge.",{deps:["Q_HP_max","Q_HP_load","Tank_cap","SOC","eta_ch","dt"],f:R`Q_{ch}(h)=\min\!\left(Q_{HP,max}(h)-Q_{HP,load}(h),\;\frac{Tank_{cap}-SOC(h)}{\eta_{ch}\,\Delta t}\right)`,tex:R`Q_{ch}(h)`});
+V("Q_HP_out","E","derived","Building heat-pump output","Q_HP,out(h)","MWth","Total heat-pump output: load plus charging.",{deps:["Q_HP_load","Q_ch"],f:R`Q_{HP,out}(h)=Q_{HP,load}(h)+Q_{ch}(h)\le HP_{cap}`,tex:R`Q_{HP,out}(h)`});
+V("E_HP","E","derived","Building heat-pump electricity","E_HP(h)","MWe","Electricity the heat pump uses.",{deps:["Q_HP_out","COP"],f:R`E_{HP}(h)=\frac{Q_{HP,out}(h)}{COP(h)}`,tex:R`E_{HP}(h)`});
+V("Q_HP_src","E","derived","Loop heat drawn by building heat pumps","Q_HP,src(h)","MWth","Data-center heat pulled into the heat pump's evaporator (this also cools the data center).",{deps:["Q_HP_out","E_HP"],f:R`Q_{HP,src}(h)=Q_{HP,out}(h)-E_{HP}(h)=Q_{HP,out}(h)\left(1-\tfrac{1}{COP(h)}\right)`,tex:R`Q_{HP,src}(h)`});
+V("Q_dis","E","derived","Storage discharging","Q_dis(h)","MWth","Heat drawn from the tank when the heat pump cannot meet the high-tier load. Dispatch step 4.",{deps:["D_high_plant","Q_HP_load","SOC","eta_dis","dt"],f:R`Q_{dis}(h)=\min\!\left(D_{high,plant}(h)-Q_{HP,load}(h),\;\frac{\eta_{dis}\,SOC(h)}{\Delta t}\right)`,tex:R`Q_{dis}(h)`});
+V("SOC","E","state","Storage state of charge","SOC(h)","MWhth","Energy in the tank at the start of hour h. Bounded by 0 and Tank_cap.",{deps:["SOC@lag","Q_ch@lag","Q_dis@lag","loss_tank","eta_ch","eta_dis","dt","Tank_cap"],f:R`SOC(h+1)=(1-\lambda)\,SOC(h)+\eta_{ch}\,Q_{ch}(h)\,\Delta t-\frac{Q_{dis}(h)\,\Delta t}{\eta_{dis}},\qquad 0\le SOC\le Tank_{cap}`,tex:R`SOC(h)`,notes:["SOC is energy (MWh); Q_ch and Q_dis are power (MW). The spec's E_ch/E_dis names were renamed to Q_ch/Q_dis × Δt.","The only allowed cycle in the graph: SOC(h) → Q_ch/Q_dis(h) → SOC(h+1), drawn as time-lagged (dotted) edges."]});
+V("Q_tank_loss","E","derived","Tank standing loss","Q_tank,loss(h)","MWth","Heat lost from the tank each hour.",{deps:["loss_tank","SOC","dt"],f:R`Q_{tank,loss}(h)=\frac{\lambda\,SOC(h)}{\Delta t}`,tex:R`Q_{tank,loss}(h)`});
+V("Q_loss","E","derived","Total distribution and storage losses","Q_loss(h)","MWth","Network plus tank losses.",{deps:["Q_loss_net","Q_tank_loss"],f:R`Q_{loss}(h)=Q_{loss,net}(h)+Q_{tank,loss}(h)`,tex:R`Q_{loss}(h)`});
+V("Q_backup_needed","E","derived","Backup heat needed","Q_backup,need(h)","MWth","Demand left after direct heat, the heat pump and storage. Dispatch step 5 input.",{deps:["D_low","Q_direct","D_high_plant","Q_HP_load","Q_dis"],f:R`Q_{backup,need}(h)=\left(D_{low}-Q_{direct}\right)+\left(D_{high,plant}-Q_{HP,load}-Q_{dis}\right)`,tex:R`Q_{backup,need}(h)`});
+V("Q_backup","E","derived","Backup heat supplied","Q_backup(h)","MWth","Heat from the electric boilers, limited by their capacity.",{deps:["Q_backup_needed","Backup_cap"],f:R`Q_{backup}(h)=\min\!\left(Q_{backup,need}(h),\;Backup_{cap}\right)`,tex:R`Q_{backup}(h)`});
+V("Q_unserved","E","derived","Unserved demand","Q_unserved(h)","MWth","Heat that nobody supplied. Should be zero in a compliant design.",{deps:["Q_backup_needed","Q_backup"],f:R`Q_{unserved}(h)=Q_{backup,need}(h)-Q_{backup}(h)`,tex:R`Q_{unserved}(h)`});
+V("E_backup","E","derived","Backup electricity","E_backup(h)","MWe","Electricity used by the backup boilers.",{deps:["Q_backup","eta_backup"],f:R`E_{backup}(h)=\frac{Q_{backup}(h)}{\eta_{backup}}`,tex:R`E_{backup}(h)`});
+V("E_pump","E","derived","Circulation pumping electricity","E_pump(h)","MWe","Electricity to move water through the network.",{deps:["e_pump","Q_direct","Q_HP_out","Q_backup"],f:R`E_{pump}(h)=e_{pump}\left(Q_{direct}+Q_{HP,out}+Q_{backup}\right)`,tex:R`E_{pump}(h)`});
+V("Q_delivered","E","derived","Heat delivered to buildings","Q_delivered(h)","MWth","Heat that actually reaches the connected buildings.",{deps:["D_total","Q_unserved"],f:R`Q_{delivered}(h)=D_{total}(h)-Q_{unserved}(h)`,tex:R`Q_{delivered}(h)`});
+V("Q_DC_used","E","derived","Data-center heat reused","Q_DC,used(h)","MWth","Data-center heat actually taken by the network (direct + heat-pump source). ERF numerator.",{deps:["Q_direct","Q_HP_src"],f:R`Q_{DC,used}(h)=Q_{direct}(h)+Q_{HP,src}(h)`,tex:R`Q_{DC,used}(h)`});
+V("Q_rejected","E","derived","Heat rejected by DC cooling","Q_rejected(h)","MWth","IT heat the network does not take; the tenants' own cooling towers reject it, as today.",{deps:["Q_DC_raw","Q_DC_used"],f:R`Q_{rejected}(h)=Q_{DC,raw}(h)-Q_{DC,used}(h)`,tex:R`Q_{rejected}(h)`,notes:["Defined from Q_DC_raw, not Q_DC_avail: uncaptured heat also goes to the coolers."]});
+V("DC_cooling_saved","E","derived","DC cooling electricity avoided","E_cool,saved(h)","MWe","Cooling-tower electricity the tenants save because the loop removes heat.",{deps:["k_cool","Q_DC_used"],f:R`E_{cool,saved}(h)=k_{cool}\,Q_{DC,used}(h)`,tex:R`E_{cool,saved}(h)`,notes:["Water: if tenants use evaporative cooling towers, every MWh removed is water not evaporated. Confirm the tower type before claiming it."]});
+V("BAL_src","E","derived","Source-side energy balance","ε_src(h)","MWth","Check that every MW of IT heat is either reused or rejected.",{deps:["Q_DC_raw","Q_direct","Q_HP_src","Q_rejected"],f:R`\varepsilon_{src}(h)=Q_{DC,raw}-\left(Q_{direct}+Q_{HP,src}+Q_{rejected}\right)=0`,tex:R`\varepsilon_{src}(h)`});
+V("BAL_hp","E","derived","Heat-pump energy balance","ε_HP(h)","MWth","Check that heat-pump output equals source heat plus electricity.",{deps:["Q_HP_out","Q_HP_src","E_HP"],f:R`\varepsilon_{HP}(h)=Q_{HP,out}-\left(Q_{HP,src}+E_{HP}\right)=0`,tex:R`\varepsilon_{HP}(h)`});
+V("BAL_net","E","derived","Demand-side energy balance","ε_net(h)","MWth","Check that supply to the network equals demand plus losses minus unserved heat.",{deps:["Q_direct","Q_HP_load","Q_dis","Q_backup","D_total","Q_loss_net","Q_unserved"],f:R`\varepsilon_{net}(h)=\left(Q_{direct}+Q_{HP,load}+Q_{dis}+Q_{backup}\right)-\left(D_{total}+Q_{loss,net}-Q_{unserved}\right)=0`,tex:R`\varepsilon_{net}(h)`});
+V("BAL_tank","E","derived","Storage energy balance","ε_tank","MWhth","Check that net charging over the year equals the change in stored energy.",{deps:["SOC","Q_ch","Q_dis","Q_tank_loss","eta_ch","eta_dis","dt"],f:R`\varepsilon_{tank}=\sum_h\!\left(\eta_{ch}Q_{ch}-\tfrac{Q_{dis}}{\eta_{dis}}-Q_{tank,loss}\right)\Delta t-\left(SOC_{end}-SOC_{0}\right)=0`,tex:R`\varepsilon_{tank}`});
+V("Q_comb","E","derived","On-site combustion displaced","Q_comb","MWh/yr","Heat that existing buildings would have made from gas boilers or steam, now supplied by the loop. The environmental-justice metric next to the 92nd-percentile PM2.5 block.",{deps:["Q_delivered","baseline_fuel_i","Include_i","dt"],ds:["sp111"],f:R`Q_{comb}=\sum_h\sum_{i:\,fuel_i\in\{gas,\,steam\}}Q_{delivered,i}(h)\,\Delta t`,tex:R`Q_{comb}`,tags:["env"]});
+V("P_peak_avoided","E","derived","Winter grid peak avoided","ΔP_peak","MWe","Peak electricity the loop avoids compared with air-source heat pumps on the coldest hour, on Manhattan's constrained grid.",{deps:["D_total","SCOP_ASHP","E_HP","E_backup"],f:R`\Delta P_{peak}=\max_h\frac{D_{total}(h)}{COP_{ASHP,cold}}-\max_h\left(E_{HP}+E_{backup}\right)`,tex:R`\Delta P_{peak}`,tags:["env"],notes:["Use a cold-weather ASHP COP (~1.5–2 at −10 °C), not the seasonal value."]});
+
+/* ---------- F. Economic & environmental ---------- */
+V("c_elec","F","raw_input","Electricity price (commercial)","c_elec","$/kWh","Price the loop operator and buildings pay for heat-pump, boiler and pump electricity.",{ds:["coned","eia_elec"],val:"Con Ed commercial ~$0.20–0.25 (verify)",status:"unverified",tex:R`c_{elec}`});
+V("c_elec_res","F","raw_input","Electricity price (residential)","c_elec,res","$/kWh","Price used for the all-electric alternative in residential towers.",{ds:["coned","eia_elec"],val:"~$0.25–0.30 (verify)",status:"unverified",tex:R`c_{elec,res}`});
+V("c_fuel_i","F","raw_input","Baseline fuel / steam price","c_fuel,i","$/MWh","Price of the steam or gas each existing building uses today.",{deps:["baseline_fuel_i"],ds:["coned","eia_fuel"],idx:true,val:"Con Ed steam ($/Mlb → $/MWh; verify) or gas ~$1.2–1.8/therm",status:"unverified",tex:R`c_{fuel,i}`});
+V("EF_grid","F","raw_input","Grid emission factor","EF_grid","tCO₂e/MWh","CO₂ per MWh of grid electricity (LL97 2024–29 factor for NYC).",{ds:["ll97","egrid"],val:"0.289 t/MWh",status:"sourced",tex:R`EF_{grid}`,tags:["env"],notes:["LL97 factor falls after 2030. Hourly marginal factors would raise winter heat-pump emissions."]});
+V("EF_fuel_i","F","raw_input","Baseline fuel / steam emission factor","EF_fuel,i","tCO₂/MWh","CO₂ per MWh of the fuel or steam displaced.",{deps:["baseline_fuel_i"],ds:["ll97","epa_hub"],idx:true,val:"Steam 0.0449 t/MMBtu (≈ 0.15 t/MWh heat) · gas 53.1 kg/MMBtu (≈ 0.20 t/MWh heat)",status:"sourced",tex:R`EF_{fuel,i}`,tags:["env"]});
+V("LL97_penalty","F","raw_input","LL97 penalty rate","p_LL97","$/tCO₂e","Penalty for emissions above a building's LL97 limit. Applies to commercial offtakers (Chelsea Market, 111 8th offices). NYCHA follows Article 321 prescriptive measures (verify).",{ds:["ll97"],val:"$268/tCO₂e",status:"sourced",tex:R`p_{LL97}`});
+V("uc_HX","F","assumption","Unit cost: heat-recovery interface","uc_HX","$/kWth","Installed cost per kW of heat exchangers / heat-recovery chillers on tenant condenser loops.",{ds:["ocp_ref"],val:"~$150–300/kW",status:"assumed",tex:R`uc_{HX}`});
+V("uc_HP","F","assumption","Unit cost: building heat pumps","uc_HP","$/kWth","Installed cost per kW of water-to-water heat pumps in building plant rooms.",{ds:["ocp_ref"],val:"~$1,000–1,500/kW",status:"assumed",tex:R`uc_{HP}`});
+V("uc_pipe","F","assumption","Unit cost: loop pipe (Manhattan)","uc_pipe","$/trench-m","Ambient loop pipe in Manhattan streets. High uncertainty: utility conflicts and street restoration.",{ds:["psc_pilot","grundfos_guide"],val:"~$5–15k per trench-m (slider)",status:"unverified",tex:R`uc_{pipe}`});
+V("uc_tank","F","assumption","Unit cost: storage","uc_tank","$/MWhth","Storage cost per MWh. Convert from $/m³ with 1.16 kWh/(m³·K) × ΔT.",{status:"missing",val:"Plan gives only $/m³ for large tanks; small tanks cost more",tex:R`uc_{tank}`});
+V("uc_backup","F","assumption","Unit cost: backup","uc_backup","$/kWth","Backup heating cost.",{val:"Phase 1: existing steam/boilers ($0); new towers: electric ~$150/kW",status:"assumed",tex:R`uc_{backup}`});
+V("uc_sub","F","assumption","Unit cost: building connection","uc_sub","$/connection","Loop connection + plant-room fit-out per building.",{ds:["grundfos_guide"],val:"Per tower (verify)",status:"assumed",tex:R`uc_{sub}`});
+V("CAPEX_HX","F","derived","CAPEX: heat recovery station","CAPEX_HX","$","Cost of the heat recovery station.",{deps:["uc_HX","HX_cap"],f:R`CAPEX_{HX}=uc_{HX}\times HX_{cap}`,tex:R`CAPEX_{HX}`});
+V("CAPEX_HP","F","derived","CAPEX: heat pumps","CAPEX_HP","$","Cost of installed heat-pump capacity (including the N+1 unit).",{deps:["uc_HP","HP_inst"],f:R`CAPEX_{HP}=uc_{HP}\times HP_{inst}`,tex:R`CAPEX_{HP}`});
+V("CAPEX_pipe","F","derived","CAPEX: distribution pipe","CAPEX_pipe","$","Cost of the pipe network.",{deps:["uc_pipe","Pipe_km"],f:R`CAPEX_{pipe}=uc_{pipe}\times 1000\,L_{pipe}`,tex:R`CAPEX_{pipe}`});
+V("CAPEX_tank","F","derived","CAPEX: thermal storage","CAPEX_tank","$","Cost of the tank.",{deps:["uc_tank","Tank_cap"],f:R`CAPEX_{tank}=uc_{tank}\times Tank_{cap}`,tex:R`CAPEX_{tank}`});
+V("CAPEX_backup","F","derived","CAPEX: backup boilers","CAPEX_backup","$","Cost of the backup boilers.",{deps:["uc_backup","Backup_cap"],f:R`CAPEX_{backup}=uc_{backup}\times Backup_{cap}`,tex:R`CAPEX_{backup}`});
+V("CAPEX_sub","F","derived","CAPEX: substations","CAPEX_sub","$","Cost of building connections. Added: missing from the spec, $1.5M in the plan.",{deps:["uc_sub","n_conn_i","Include_i","peak_i"],f:R`CAPEX_{sub}=\sum_i Include_i\;n_{conn,i}\;uc_{sub}(peak_i)`,tex:R`CAPEX_{sub}`});
+V("contingency","F","assumption","Engineering & contingency","c_cont","%","Mark-up for engineering and unknowns.",{val:"20%",status:"assumed",tex:R`c_{cont}`});
+V("CAPEX_total","F","derived","Total network CAPEX","CAPEX_total","$","Capital cost inside the network boundary. If the data center funds the station, its cost moves to the data center's ledger.",{deps:["CAPEX_HP","CAPEX_HX","CAPEX_pipe","CAPEX_tank","CAPEX_backup","CAPEX_sub","contingency","DC_funding"],f:R`CAPEX_{total}=(1+c_{cont})\left[CAPEX_{HP}+(1-DC_{funding})\,CAPEX_{HX}+CAPEX_{pipe}+CAPEX_{tank}+CAPEX_{backup}+CAPEX_{sub}\right]`,tex:R`CAPEX_{total}`,val:"App computes",notes:["Network boundary: loop + building heat pumps + tanks + backup + connections. If tenants fund their heat-recovery interfaces, that cost moves to the tenants' ledger."]});
+V("ITC","F","assumption","Federal investment credit share","ITC","%","Share of CAPEX covered by federal clean-energy credits (§48 / §48C).",{val:"30% (status after 2025 changes must be verified)",status:"unverified",tex:R`ITC`});
+V("r","F","assumption","Discount rate","r","%/yr","Cost of capital.",{val:"6%",status:"assumed",tex:R`r`});
+V("n","F","assumption","System lifetime","n","yr","Economic life of the network.",{val:"25 years",status:"assumed",tex:R`n`});
+V("CRF","F","derived","Capital recovery factor","CRF","1/yr","Converts an up-front cost into an equal annual payment.",{deps:["r","n"],f:R`CRF(r,n)=\frac{r(1+r)^n}{(1+r)^n-1}`,tex:R`CRF`,val:"0.078 at 6%, 25 yr"});
+V("Annualized_CAPEX","F","derived","Annualized CAPEX","CAPEX_ann","$/yr","Yearly capital charge after credits.",{deps:["CAPEX_total","ITC","CRF"],f:R`CAPEX_{ann}=CAPEX_{total}\,(1-ITC)\,CRF`,tex:R`CAPEX_{ann}`});
+V("om_pct","F","assumption","O&M rate","o_M","%/yr","Yearly operations and maintenance as a share of CAPEX.",{val:"2%",status:"assumed",tex:R`o_{M}`});
+V("OM","F","derived","Annual O&M cost","O&M","$/yr","Yearly operations and maintenance cost.",{deps:["om_pct","CAPEX_total"],f:R`O\&M=o_{M}\times CAPEX_{total}`,tex:R`O\&M`});
+V("E_elec_annual","F","derived","Annual network electricity","E_elec","MWhe/yr","All electricity the network uses: heat pumps, backup boilers and pumps.",{deps:["E_HP","E_backup","E_pump","dt"],f:R`E_{elec}=\sum_h\left(E_{HP}+E_{backup}+E_{pump}\right)\Delta t`,tex:R`E_{elec}`,tags:["env"],val:"~6.1 GWh (2 + 0.5 + ~3.6–4.0)"});
+V("Annual_Electricity_Cost","F","derived","Annual electricity cost","C_elec","$/yr","Cost of the network's electricity.",{deps:["E_elec_annual","c_elec"],f:R`C_{elec}=1000\,E_{elec}\,c_{elec}`,tex:R`C_{elec}`});
+V("Annual_Heat_Purchase","F","derived","Annual heat purchase at the fence","C_heat","$/yr","What the network pays the data center for heat. Added to the LCOH numerator.",{deps:["p_fence","Q_DC_used","dt"],f:R`C_{heat}=p_{fence}\sum_h Q_{DC,used}(h)\,\Delta t`,tex:R`C_{heat}`});
+V("Cost_baseline","F","derived","Baseline heating cost","C_base","$/yr","What connected users would spend on their current fuel (fuel only, no boiler capex).",{deps:["SH_i","DHW_i","GH_i","Include_i","eta_base_i","c_fuel_i"],f:R`C_{base}=\sum_i Include_i\sum_h\frac{SH_i+DHW_i+GH_i}{\eta_{base,i}}\,c_{fuel,i}\,\Delta t`,tex:R`C_{base}`});
+V("heat_per_home","F","assumption","Annual heat per home","q_home","MWh/yr","Heat use of one efficient rebuilt unit, for homes-equivalent and the all-electric comparison.",{val:"~6–9 MWh",status:"assumed",tex:R`q_{home}`});
+V("capex_ASHP","F","assumption","All-electric alternative: cost per home-equivalent","K_ASHP","$/home","The rebuild's likely alternative: central air-to-water heat pumps or VRF in each tower.",{ds:["cleanheat"],val:"~$1,500–2,000/kW of central ASHP (verify)",status:"unverified",tex:R`K_{ASHP}`});
+V("SCOP_ASHP","F","assumption","ASHP seasonal COP","SCOP_ASHP","–","Seasonal efficiency of a central air-source heat pump in NYC.",{ds:["cleanheat"],val:"~2.5–2.8",status:"assumed",tex:R`SCOP_{ASHP}`});
+V("n_ASHP","F","assumption","ASHP lifetime","n_ASHP","yr","Equipment life of a home heat pump.",{val:"~15 yr",status:"assumed",tex:R`n_{ASHP}`});
+V("LCOH_ASHP","F","derived","All-electric alternative: cost of heat (all-in)","LCOH_ASHP","$/MWh","Like-for-like counterfactual for the rebuild: central ASHP equipment plus electricity.",{deps:["capex_ASHP","n_ASHP","r","heat_per_home","c_elec_res","SCOP_ASHP"],f:R`LCOH_{ASHP}=\frac{K_{ASHP}\,CRF(r,n_{ASHP})}{q_{home}}+\frac{1000\,c_{elec,res}}{SCOP_{ASHP}}`,tex:R`LCOH_{ASHP}`,val:"App computes; expect the loop near parity"});
+V("CO2_baseline","F","derived","Baseline emissions","CO2_base","tCO₂/yr","Emissions of the heating the network displaces.",{deps:["SH_i","DHW_i","GH_i","Include_i","eta_base_i","EF_fuel_i"],f:R`CO2_{base}=\sum_i Include_i\sum_h\frac{SH_i+DHW_i+GH_i}{\eta_{base,i}}\,EF_{fuel,i}\,\Delta t`,tex:R`CO2_{base}`,tags:["env"]});
+V("CO2_project","F","derived","Project emissions","CO2_proj","tCO₂/yr","Emissions from the network's electricity (building heat pumps, backup, pumps).",{deps:["E_elec_annual","EF_grid"],f:R`CO2_{proj}=E_{elec}\times EF_{grid}`,tex:R`CO2_{proj}`,tags:["env"],notes:["Where existing steam/boilers act as backup in Phase 1, add their emissions; the MVP treats backup as electric."]});
+V("LL97_avoided","F","derived","LL97 penalties avoided (commercial)","S_LL97","$/yr","Penalty avoided by commercial offtakers whose emissions fall below their LL97 limit.",{deps:["LL97_penalty","CO2_baseline","CO2_project","type_i"],f:R`S_{LL97}=p_{LL97}\times\left(\text{excess}_{base}-\text{excess}_{proj}\right)_{\text{commercial}}`,tex:R`S_{LL97}`,notes:["Needs each commercial building's LL97 limit (from LL84 floor area and occupancy group)."]});
+
+/* ---------- G. Final KPIs & outputs ---------- */
+V("K_util","G","kpi","Heat utilization rate","U_heat","%","Share of recoverable data-center heat the network actually uses.",{deps:["Q_DC_used","Q_DC_avail"],f:R`U_{heat}=\frac{\sum_h Q_{DC,used}(h)}{\sum_h Q_{DC,avail}(h)}`,tex:R`U_{heat}`,tags:["env"]});
+V("K_coverage","G","kpi","Community demand coverage","Cov","%","Share of the plant load met by recovered heat (direct, heat pump, storage) rather than backup.",{deps:["D_total","Q_loss_net","Q_backup","Q_unserved"],f:R`Cov=1-\frac{\sum_h\left(Q_{backup}+Q_{unserved}\right)}{\sum_h\left(D_{total}+Q_{loss,net}\right)}`,tex:R`Cov`,val:"Target ~85% (heat pumps sized to ~55% of peak)"});
+V("K_ERF","G","kpi","ERF: energy reuse factor","ERF","%","Reused data-center energy divided by total facility energy (The Green Grid definition).",{deps:["Q_DC_used","E_fac","dt"],ds:["enefg"],f:R`ERF=\frac{\sum_h Q_{DC,used}(h)\,\Delta t}{E_{fac}}`,tex:R`ERF`,val:"~4–5% (assumption: ~30 GWh of ~700 GWh)",tags:["env"],notes:["Numerator counts data-center heat taken (direct + heat-pump source), not heat-pump output. State this convention on the slide."]});
+V("Annual_Useful_Heat","G","kpi","Annual useful heat delivered","Q_useful","MWh/yr","Heat reaching the buildings over the year. Also the LCOH denominator (the spec's F-list Annual_Useful_Heat is this same node).",{deps:["Q_delivered","dt"],f:R`Q_{useful}=\sum_h Q_{delivered}(h)\,\Delta t`,tex:R`Q_{useful}`,val:"~35–50 GWh/yr at full rebuild (assumption)"});
+V("K_backup","G","kpi","Annual backup heating","Q_backup,ann","MWh/yr","Heat supplied by the backup boilers over the year.",{deps:["Q_backup","dt"],f:R`Q_{backup,ann}=\sum_h Q_{backup}(h)\,\Delta t`,tex:R`Q_{backup,ann}`,val:"App computes"});
+V("K_backup_hours","G","kpi","Backup dependency hours","H_backup","h/yr","Hours per year in which backup heat runs.",{deps:["Q_backup"],f:R`H_{backup}=\#\{h:\;Q_{backup}(h)>0\}`,tex:R`H_{backup}`});
+V("K_CO2","G","kpi","Annual net CO₂ avoided","ΔCO2","tCO₂/yr","Baseline emissions minus project emissions, optionally crediting the data center's avoided cooling electricity.",{deps:["CO2_baseline","CO2_project","DC_cooling_saved","EF_grid"],f:R`\Delta CO2=CO2_{base}-CO2_{proj}\;\left(+\,EF_{grid}\sum_h E_{cool,saved}\,\Delta t\right)`,tex:R`\Delta CO2`,tags:["env"]});
+V("K_LCOH","G","kpi","LCOH: levelized cost of heat","LCOH","$/MWh","Cost per MWh delivered. Boundary: the whole network, backup heat in both numerator and denominator.",{deps:["Annualized_CAPEX","OM","Annual_Electricity_Cost","Annual_Heat_Purchase","Annual_Useful_Heat"],f:R`LCOH=\frac{CAPEX_{ann}+O\&M+C_{elec}+C_{heat}}{Q_{useful}}`,tex:R`LCOH`,val:"App computes; expect near parity with the all-electric alternative",notes:["Show each phase separately. Manhattan electricity and pipe costs dominate."]});
+V("K_savings","G","kpi","Annual savings to heat users","S_users","$/yr","What users save against their current fuel/steam or the all-electric alternative, plus LL97 penalties avoided by commercial users.",{deps:["Cost_baseline","LCOH_ASHP","tariff","Annual_Useful_Heat","LL97_avoided"],f:R`S_{users}=\min\!\left(C_{base},\,LCOH_{ASHP}\,Q_{useful}\right)-p_{heat}\,Q_{useful}+S_{LL97}`,tex:R`S_{users}`});
+V("K_val_DC","G","kpi","Value to the DC tenants and owner","V_DC","$/yr","Avoided cooling-tower electricity (and water, if evaporative) plus heat sales, minus the heat-recovery interfaces if tenants fund them.",{deps:["DC_cooling_saved","c_elec","Annual_Heat_Purchase","CAPEX_HX","DC_funding","CRF"],f:R`V_{DC}=1000\,c_{elec}\sum_h E_{cool,saved}\Delta t+C_{heat}-DC_{funding}\,CAPEX_{HX}\,CRF`,tex:R`V_{DC}`,notes:["Social licence and permitting value are real but not priced here."]});
+V("K_val_users","G","kpi","Value to heat users","V_users","$/yr + reliability","Bill savings plus guaranteed continuity.",{deps:["K_savings","K_reliability"],how:"Report bill savings (S_users) next to the unserved-heat result.",f:R`V_{users}=\left\{S_{users},\;Q_{unserved,ann}\right\}`,tex:R`V_{users}`});
+V("K_val_comm","G","kpi","Value to the community","V_comm","mixed","Carbon avoided, on-site combustion displaced next to the EJ block, winter grid peak avoided, and homes-equivalent heated.",{deps:["K_CO2","Q_comb","P_peak_avoided","Annual_Useful_Heat","heat_per_home","equity_i","Include_i"],f:R`V_{comm}=\left\{\Delta CO2,\;Q_{comb},\;\Delta P_{peak},\;\frac{Q_{useful}}{q_{home}},\;\sum_i Include_i\,equity_i\right\}`,tex:R`V_{comm}`,ds:["org_regen","sp111"]});
+V("K_balance","G","kpi","Energy balance validation","ε_max","MWth","Largest absolute balance error across all checks. Show a green tick in the app when below tolerance.",{deps:["BAL_src","BAL_hp","BAL_net","BAL_tank"],f:R`\varepsilon_{max}=\max\left(|\varepsilon_{src}|,|\varepsilon_{HP}|,|\varepsilon_{net}|,|\varepsilon_{tank}|\right)<10^{-6}`,tex:R`\varepsilon_{max}`});
+V("K_reliability","G","kpi","Reliability: unserved demand","Q_unserved,ann","MWh/yr, h/yr","Unserved heat and the number of hours with any unserved heat.",{deps:["Q_unserved","dt"],f:R`Q_{unserved,ann}=\sum_h Q_{unserved}(h)\,\Delta t,\quad H_{unserved}=\#\{h:Q_{unserved}(h)>0\}`,tex:R`Q_{unserved,ann}`});
+V("K_monthly","G","kpi","Monthly supply–demand profile","M(m)","MWh/month","Monthly bars of demand by tier against direct, heat-pump and backup supply: the seasonality slide.",{deps:["season","D_total","Q_direct","Q_HP_load","Q_dis","Q_backup","Q_DC_used","Q_loss"],f:R`M(m)=\sum_{h\in m}\left[D_{total},\,Q_{direct},\,Q_{HP,load}+Q_{dis},\,Q_{backup},\,Q_{loss}\right]\Delta t`,tex:R`M(m)`});
+V("COND1","G","kpi","Term 1: heat-recovery readiness","T_1","agreement term","Tenants representing ≥ X MW install heat-recovery interfaces on their condenser loops at ≥ Y °C.",{deps:["HX_cap","T_source","f_tenant"],ds:["org_site"],how:"Fill X = HX_cap and Y = T_source from the chosen design.",tex:R`T_1`});
+V("COND2","G","kpi","Term 2: standard heat contract","T_2","agreement term","Any tenant can sell heat at the fence at ≤ $Z/MWh under one standard contract (Stockholm Data Parks model); the building owner hosts the interconnection.",{deps:["DC_funding","CAPEX_HX","p_fence"],ds:[],how:"Z = p_fence; interface CAPEX sits with tenants when DC_funding = 1.",tex:R`T_2`});
+V("COND3","G","kpi","Term 3: design-window offtake","T_3","agreement term","Each rebuild phase is designed for 45 °C space heat with a basement plant room and a loop connection; ERF is reported as phases connect.",{deps:["K_ERF","Phase","Include_i","T_sink_i"],ds:["fec_faq","enefg"],how:"Use the ERF and demand of each phase; benchmark against Germany's 10%.",tex:R`T_3`});
+V("COND4","G","kpi","Term 4: affordability","T_4","agreement term","NYCHA residents' heat cost ≤ the all-electric alternative; free connection; no rent pass-through.",{deps:["tariff","LCOH_ASHP","Cost_baseline","afford_pct"],ds:[],how:"Check p_heat against the affordability rule.",tex:R`T_4`});
+V("COND5","G","kpi","Term 5: continuity + transparency","T_5","agreement term","Backup covers the full peak; public dashboard of heat delivered, CO₂ and on-site combustion displaced.",{deps:["Backup_cap","D_peak","K_reliability","K_balance","Q_comb"],ds:[],how:"Backup_cap ≥ D_peak, zero unserved hours, Q_comb reported.",tex:R`T_5`});
+V("OPT","G","kpi","Grid-search optimizer","opt","design","Loops over HP_cap × Tank_cap × offtaker subsets and picks the lowest LCOH with no unserved heat and backup hours under target.",{deps:["K_LCOH","K_coverage","K_reliability","K_backup_hours","HP_cap","Tank_cap","Include_i"],how:"Arrows show what it reads. It writes recommended design values back, which is not drawn so the graph stays acyclic.",f:R`\min_{HP_{cap},\,Tank_{cap},\,Include}\;LCOH\quad\text{s.t.}\;Q_{unserved,ann}=0,\;H_{backup}\le H^{*}`,tex:R`\mathrm{opt}`});
+
+/* ---------- CONCISE VIEW: blocks of variables. Block arrows are generated from the detailed edges. ---------- */
+const BLOCKS = [
+ {id:"b_weather",cat:"C",name:"Weather & time",desc:"Hourly outdoor temperature and sunshine for a typical New York City year, turned into heating degree-hours and daily use profiles.",members:["h","dt","T_out","GHI","T_base","DH","daily_shape","T_GH_set","k_sol","GH_weight","season"]},
+ {id:"b_dcload",cat:"A",name:"Data center load",desc:"Facility power of all tenants (~80 MW, verify), load factor and PUE give the IT heat produced each hour and the annual facility energy.",members:["P_DC_max","LF","P_DC","PUE","P_IT","f_heat","Q_DC_raw","E_fac"]},
+ {id:"b_recov",cat:"A",name:"Recoverable heat & loop (30–35 → 20–25 °C)",desc:"Connected tenants' condenser-water heat and the ambient loop temperature it supports.",members:["f_capture","f_tenant","T_source","T_loop","Q_DC_avail"]},
+ {id:"b_offtakers",cat:"B",name:"Offtakers, selection & annual demand",desc:"Which users are connected (Phase 1: Fulton hot water + 111 8th offices; Phase 2: rebuild towers; Phase 3: Chelsea Market, schools) and their floor area, heat intensity, required temperature, distance, current fuel, equity flag.",members:["type_i","floor_area_i","n_conn_i","heat_intensity_i","dhw_intensity_i","gh_intensity","annual_SH_i","annual_DHW_i","annual_GH_i","T_sink_i","distance_i","baseline_fuel_i","eta_base_i","equity_i","Include_i","Phase"]},
+ {id:"b_hourly",cat:"B",name:"Hourly demand (low / high tier)",desc:"Annual demand spread over 8,760 hours, split into low-temperature (direct heat) and high-temperature (heat pump) streams.",members:["occ_i","tier_i","SH_i","DHW_i","GH_i","peak_i","D_low","D_high","D_total","D_peak"]},
+ {id:"b_design",cat:"D",name:"Design choices",desc:"What the team sizes: heat-recovery interfaces, building heat pumps, heat-pump, tank, backup and pipe sizes, who funds the station, fence price, affordability margin.",members:["HX_cap","HP_cap","HP_inst","Tank_cap","Backup_cap","Pipe_km","DC_funding","p_fence","afford_pct"]},
+ {id:"b_tech",cat:"D",name:"Technology parameters",desc:"Efficiencies and loss rates: heat-pump Carnot fraction, heat-exchanger approach, storage efficiency, pipe losses, pumping energy.",members:["HP_eta","COP_assumed","dT_app","eta_ch","eta_dis","loss_tank","q_loss_km","e_pump","eta_backup","k_cool"]},
+ {id:"b_direct",cat:"E",name:"① Direct preheat",desc:"Dispatch step 1: loop heat used with no heat pump, e.g. preheating incoming cold water or steam-boiler feedwater.",members:["Q_direct"]},
+ {id:"b_hp",cat:"E",name:"② Building heat pumps + ③④ storage",desc:"Dispatch steps 2–4: heat pumps in each building lift loop heat to 45 °C space heat and 60 °C hot water; spare output charges basement tanks, which discharge when the heat pumps fall short.",members:["Q_DC_remaining","COP","Q_loss_net","D_high_plant","Q_HP_max","Q_HP_load","Q_ch","Q_HP_out","E_HP","Q_HP_src","Q_dis","SOC","Q_tank_loss","Q_loss"]},
+ {id:"b_backup",cat:"E",name:"⑤ Backup",desc:"Dispatch step 5: existing steam/boilers (Phase 1) or electric boilers in new towers cover whatever is left. Anything beyond that is unserved.",members:["Q_backup_needed","Q_backup","Q_unserved","E_backup"]},
+ {id:"b_flows",cat:"E",name:"Heat delivered & electricity used",desc:"Hourly results: heat reaching buildings, data-center heat reused or rejected, cooling saved, pumping and total electricity.",members:["Q_delivered","Q_DC_used","Q_rejected","DC_cooling_saved","E_pump","E_elec_annual"]},
+ {id:"b_checks",cat:"E",name:"Energy balance checks",desc:"Four balances (source, heat pump, network, storage) that must close to zero; a green tick in the app.",members:["BAL_src","BAL_hp","BAL_net","BAL_tank","K_balance"]},
+ {id:"b_prices",cat:"F",name:"Prices, emission factors & LL97",desc:"Con Ed electricity and steam prices, LL97 emission factors and the $268/t penalty.",members:["c_elec","c_elec_res","c_fuel_i","EF_grid","EF_fuel_i","LL97_penalty"]},
+ {id:"b_costs",cat:"F",name:"Costs & finance",desc:"Unit costs × sizes = CAPEX; contingency, tax credit, discount rate and lifetime turn it into an annual charge; plus O&M, electricity and heat purchase.",members:["uc_HX","uc_HP","uc_pipe","uc_tank","uc_backup","uc_sub","CAPEX_HX","CAPEX_HP","CAPEX_pipe","CAPEX_tank","CAPEX_backup","CAPEX_sub","contingency","CAPEX_total","ITC","r","n","CRF","Annualized_CAPEX","om_pct","OM","Annual_Electricity_Cost","Annual_Heat_Purchase"]},
+ {id:"b_counter",cat:"F",name:"Counterfactuals",desc:"What users would pay otherwise: steam or gas today, or the all-electric alternative the rebuild would install.",members:["Cost_baseline","heat_per_home","capex_ASHP","SCOP_ASHP","n_ASHP","LCOH_ASHP"]},
+ {id:"k_perf",cat:"G",name:"Heat delivered & reliability",desc:"Annual useful heat (~35–50 GWh at full rebuild, assumption), demand coverage, backup energy and hours, unserved heat, monthly profile.",members:["Annual_Useful_Heat","K_coverage","K_backup","K_backup_hours","K_reliability","K_monthly"]},
+ {id:"k_lcoh",cat:"G",name:"LCOH: cost of heat",desc:"Cost per MWh by phase, compared with the all-electric alternative, steam and gas.",members:["K_LCOH"]},
+ {id:"k_env",cat:"G",name:"CO₂, combustion, grid peak & ERF",desc:"Net CO₂ avoided, on-site combustion displaced next to the EJ block, winter grid peak avoided, energy reuse factor (~4–5%, assumption) and heat utilization.",members:["CO2_baseline","CO2_project","K_CO2","Q_comb","P_peak_avoided","K_ERF","K_util"]},
+ {id:"k_value",cat:"G",name:"Value per stakeholder",desc:"Tariff and bill savings (incl. LL97 for commercial users); value to DC tenants; value to the community (CO₂, combustion displaced, grid peak, equity).",members:["tariff","LL97_avoided","K_savings","K_val_DC","K_val_users","K_val_comm"]},
+ {id:"k_cond",cat:"G",name:"Heat-export agreement terms",desc:"The five terms (readiness, standard heat contract, design-window offtake, affordability, continuity) and the optimizer that sizes the design.",members:["COND1","COND2","COND3","COND4","COND5","OPT"]}
+];
+const DS_BLOCKS = [
+ {id:"d_weather",name:"Weather data (NYC)",sub:"NSRDB TMY · NOAA LCD",ds:["nsrdb","noaa_lcd"]},
+ {id:"d_build",name:"Building stock data",sub:"ComStock · ResStock · EIA RECS/CBECS",ds:["comstock","resstock","eia_cons"]},
+ {id:"d_site",name:"Site, buildings & community",sub:"HDR site pack · LL84 · PLUTO · ACS · rebuild · PSC pilot",ds:["sp111","lldata","pluto","acs","nyserda_dac","fec_faq","psc_pilot","dc_tracker","org_site","org_packet","org_regen","org_de_refs"]},
+ {id:"d_prices",name:"Price data",sub:"Con Ed tariffs · EIA",ds:["coned","eia_elec","eia_fuel"]},
+ {id:"d_emis",name:"Emission factors & LL97",sub:"LL97 brief · EPA eGRID · EPA Hub",ds:["ll97","egrid","epa_hub"]},
+ {id:"d_tech",name:"Technical references",sub:"OCP · Grundfos guide · DATA HEAT · Clean Heat · EnEfG",ds:["ocp_101","ocp_ref","grundfos_guide","dataheat","cleanheat","enefg"]}
+];
+
+/* ---------- requested-variable map (spec name → node id) for Test 6 ---------- */
+const REQUESTED = ["P_DC_max","P_DC","LF","f_heat","f_capture","T_source","Q_DC_raw","Q_DC_avail","HX_cap","Q_DC_remaining","type_i","tier_i","floor_area_i","heat_intensity_i","annual_SH_i","annual_DHW_i","annual_GH_i","peak_i","T_sink_i","distance_i","baseline_fuel_i","equity_i","Include_i","SH_i","DHW_i","GH_i","D_low","D_high","D_total","h","T_out","T_base","DH","daily_shape","GH_weight","season","HP_cap","Tank_cap","Backup_cap","Pipe_km","COP_assumed","eta_ch","eta_dis","HP_eta","DC_funding","COP","Q_direct","Q_HP_src","Q_HP_out","E_HP","Q_ch","Q_dis","SOC","Q_backup","Q_unserved","Q_rejected","Q_delivered","Q_loss","c_elec","c_fuel_i","EF_grid","EF_fuel_i","CAPEX_HP","CAPEX_HX","CAPEX_pipe","CAPEX_tank","CAPEX_backup","CAPEX_total","OM","r","n","CRF","Annualized_CAPEX","Annual_Electricity_Cost","Annual_Useful_Heat","CO2_baseline","CO2_project","K_util","K_coverage","K_ERF","K_backup","K_backup_hours","K_CO2","K_LCOH","K_savings","K_val_DC","K_val_users","K_val_comm","K_balance","K_reliability"];
+
+const FIXES = [
+ ["fix","Switched to Site 1 (111 8th Ave)","Source: tenant condenser loops (30–35 °C) feeding a 20–25 °C ambient loop; building heat pumps; phases 0–3 tied to the Fulton/Elliott-Chelsea rebuild; heat-export agreement terms replace conditions of approval. Added f_tenant, T_loop, LL97 penalty and avoided-penalty, on-site combustion displaced and winter grid peak avoided. Greenhouse variables stay at zero so the model still runs Site 2."],
+ ["fix","Dependency cycle on COP removed","COP(h) is now computed from temperatures (or fixed). E_HP = Q_HP_out/COP and Q_HP_src = Q_HP_out − E_HP follow from it."],
+ ["fix","Duplicate IDs merged","HX_cap and Include_i are defined once each, in Design."],
+ ["fix","Facility vs IT power separated","Added PUE and P_IT. Q_DC_raw = P_IT × f_heat. ERF uses facility energy E_fac as its denominator."],
+ ["fix","HX_cap applies to the whole recovery station","It limits direct heat exchange and heat-pump sources together (Q_DC_remaining). HP_cap now bounds Q_HP_out."],
+ ["fix","Inequalities replaced by a dispatch order","1) direct HX to low tier, 2) heat pump to high tier, 3) spare heat pump charges tank, 4) tank discharges, 5) backup up to Backup_cap, 6) the rest is unserved. Direct HX only runs if T_source − ΔT_app ≥ T_sink,low."],
+ ["fix","Storage made consistent","Q_ch/Q_dis in MW, SOC in MWh, Δt explicit, standing loss added. The tank holds high-tier heat and is charged only by the heat pump. Charging and discharging cannot overlap."],
+ ["fix","Rejected heat defined from Q_DC_raw","Uncaptured heat also goes to the data center's own coolers."],
+ ["fix","Temperature tier assigned per demand stream","DHW is always high tier (≥ 60 °C), even in a low-temperature home."],
+ ["fix","peak_i derived, Backup_cap tied to D_peak","Peaks now come from the hourly profiles; the continuity rule sizes backup to the full coincident peak."],
+ ["fix","Four energy-balance checks added","Source side, heat pump, demand side and storage, rolled up into the Energy Balance Validation KPI."],
+ ["fix","Missing variables added","E_pump, E_backup, η_backup, q_loss, ΔT_app, k_cool, GHI, occupancy schedules, unit costs, substations, contingency, ITC, O&M rate, baseline efficiency, fence price, tariff, Phase toggle, ASHP counterfactual, conditions of approval, optimizer."],
+ ["fix","LCOH boundary stated","Network boundary; backup heat counted in both numerator and denominator; heat purchase at the fence added; DC_funding moves the station cost to the data center."],
+ ["fix","Stakeholder value split in three","Data center, heat users and community each have their own KPI node."],
+ ["fix","Dataset list corrected","NREL is now the National Laboratory of the Rockies: the nlr.gov URLs work and the old nrel.gov hosts do not resolve. Added NSRDB TMY (the actual hourly weather file), EIA RECS/CBECS, EIA price series, EPA Emission Factors Hub, NYSERDA DAC map and NYS Clean Heat."],
+ ["open","Values still missing","Tank_cap, p_fence and the storage and pipe-loss parameters have no value yet. Set them before the simulation runs."],
+ ["open","Tenants and cooling unconfirmed","Which tenants would connect, their condenser temperatures and whether their towers are evaporative (needed for any water-savings claim)."],
+ ["open","Phase 0 facts","The 372-apartment pilot and its heat-source building: check PSC Case 22-M-0429."],
+ ["open","Rebuild timing","The HUD approval (reported Aug 2026) and phase schedule: verify. Terms bind whatever gets built."],
+ ["open","Manhattan pipe cost and LL97","Pipe $/m is highly uncertain (slider). LL97 penalties apply to commercial offtakers only; NYCHA follows Article 321 (verify)."],
+ ["open","Engineering verification needed","The Carnot-fraction COP, constant network loss and degree-hour demand are MVP approximations, not validated physics."],
+ ["open","URLs to check by hand","OCP Heat Reuse 101, the ACS tables and the EnEfG summary returned 403 to an automated check; the Grundfos guide could not be reached. Organizer files are local only."]
+];
+
+/* =====================================================================
+   GRAPH MODEL (generated)
+   ===================================================================== */
+const byId = new Map(VARS.map(v=>[v.id,v]));
+const DSById = new Map(DATASETS.map(d=>[d.id,d]));
+const EDGES = []; // {s,t,lag}
+VARS.forEach(v=>v.deps.forEach(d=>{const lag=d.endsWith("@lag");const s=lag?d.slice(0,-4):d;EDGES.push({s,t:v.id,lag,id:`${s}->${v.id}${lag?"~lag":""}`});}));
+const parents=new Map(), children=new Map();
+VARS.forEach(v=>{parents.set(v.id,new Set());children.set(v.id,new Set());});
+EDGES.forEach(e=>{ if(byId.has(e.s)&&byId.has(e.t)){parents.get(e.t).add(e.s);children.get(e.s).add(e.t);} });
+VARS.forEach(v=>v.usedBy=[...children.get(v.id)]);
+DATASETS.forEach(d=>d.variableIds=VARS.filter(v=>v.ds.includes(d.id)).map(v=>v.id));
+const KPI_IDS = VARS.filter(v=>v.cat==="G").map(v=>v.id);
+
+function bfs(start, adj){const seen=new Set();const q=[...start];while(q.length){const x=q.shift();for(const y of adj.get(x)||[]){if(!seen.has(y)){seen.add(y);q.push(y);}}}return seen;}
+const ancestors = id=>bfs([id],parents);
+const descendants = id=>bfs([id],children);
+const REACH_KPI = new Set(KPI_IDS); KPI_IDS.forEach(k=>ancestors(k).forEach(a=>REACH_KPI.add(a)));
+function traceToKPIs(id){const d=descendants(id);const set=new Set([id]);d.forEach(x=>{if(REACH_KPI.has(x))set.add(x)});return set;}
+function shortestPath(a,b){const prev=new Map([[a,null]]);const q=[a];while(q.length){const x=q.shift();if(x===b)break;for(const y of children.get(x)){if(!prev.has(y)){prev.set(y,x);q.push(y);}}}if(!prev.has(b))return null;const p=[];for(let x=b;x!==null;x=prev.get(x))p.unshift(x);return p;}
+function upstreamDatasets(id){const s=new Set();[id,...ancestors(id)].forEach(x=>byId.get(x).ds.forEach(d=>s.add(d)));return s;}
+/* concise block graph, generated from the detailed edges */
+const blockOf=new Map();BLOCKS.forEach(b=>b.members.forEach(m=>blockOf.set(m,b.id)));
+const dsBlockOf=new Map();DS_BLOCKS.forEach(b=>b.ds.forEach(d=>dsBlockOf.set(d,b.id)));
+const ALLBLOCKS=[...DS_BLOCKS.map(b=>({...b,kind:"ds",cat:"DS"})),...BLOCKS.map(b=>({...b,kind:"block"}))];
+const blockById=new Map(ALLBLOCKS.map(b=>[b.id,b]));
+const bSet=new Set();
+const CLOCK=new Set(["h","dt"]); // structural clock inputs link every block; left out of block arrows
+EDGES.forEach(e=>{if(e.lag||CLOCK.has(e.s))return;const a=blockOf.get(e.s),b=blockOf.get(e.t);if(a&&b&&a!==b)bSet.add(a+"|"+b);});
+VARS.forEach(v=>v.ds.forEach(d=>{const a=dsBlockOf.get(d),b=blockOf.get(v.id);if(a&&b)bSet.add(a+"|"+b);}));
+const BEDGES_ALL=[...bSet].map(k=>k.split("|"));
+const bAdj=new Map(ALLBLOCKS.map(b=>[b.id,new Set()])),bPar=new Map(ALLBLOCKS.map(b=>[b.id,new Set()]));
+BEDGES_ALL.forEach(([a,b])=>{bAdj.get(a).add(b);bPar.get(b).add(a);});
+function longerPath(a,b){const seen=new Set();const q=[...bAdj.get(a)].filter(x=>x!==b);q.forEach(x=>seen.add(x));while(q.length){const x=q.shift();for(const y of bAdj.get(x)){if(y===b)return true;if(!seen.has(y)){seen.add(y);q.push(y);}}}return false;}
+const BEDGES=BEDGES_ALL.filter(([a,b])=>blockById.get(a).kind==="ds"?blockById.get(b).cat!=="G":!longerPath(a,b)); // main-flow arrows drawn by default; the rest appear on selection
+function coverage(v){ if(v.status==="missing")return"missing"; if(v.type==="design")return"design"; if(["derived","state","kpi"].includes(v.type))return"derived"; if(v.status==="unverified")return"unverified"; if(v.type==="raw_input")return v.ds.length?"sourced":"missing"; return v.ds.length?"assumed_ref":"assumed"; }
+const COV = {sourced:{name:"Supported by an identified dataset",tok:"--ok"},assumed_ref:{name:"Assumption with a reference",tok:"--cC"},assumed:{name:"Engineering assumption (no source yet)",tok:"--warn"},unverified:{name:"Value unverified",tok:"--cB"},missing:{name:"Missing value or source",tok:"--bad"},design:{name:"Design choice",tok:"--cD"},derived:{name:"Derived by calculation",tok:"--faint"}};
+
+/* =====================================================================
+   INTEGRITY CHECKS + USER-JOURNEY TESTS
+   ===================================================================== */
+function runChecks(){
+  const out=[];const add=(s,t,d)=>out.push({s,t,d});
+  const ids=VARS.map(v=>v.id);const dup=ids.filter((x,i)=>ids.indexOf(x)!==i);
+  add(dup.length?"bad":"ok","Duplicate variable IDs",dup.length?dup.join(", "):`${ids.length} unique IDs`);
+  const missing=EDGES.filter(e=>!byId.has(e.s)).map(e=>`${e.t} ← ${e.s}`);
+  add(missing.length?"bad":"ok","Missing dependency IDs",missing.length?missing.join("; "):`${EDGES.length} edges resolve`);
+  const badDs=[];VARS.forEach(v=>v.ds.forEach(d=>{if(!DSById.has(d))badDs.push(`${v.id} → ${d}`)}));
+  add(badDs.length?"bad":"ok","Invalid dataset references",badDs.length?badDs.join("; "):"All dataset references resolve");
+  // cycles excluding lagged edges
+  const adj=new Map(VARS.map(v=>[v.id,[]]));EDGES.filter(e=>!e.lag&&byId.has(e.s)).forEach(e=>adj.get(e.s).push(e.t));
+  const color=new Map();const cyc=[];
+  function dfs(u,stack){color.set(u,1);stack.push(u);for(const w of adj.get(u)){if(color.get(w)===1){cyc.push(stack.slice(stack.indexOf(w)).concat(w).join(" → "));}else if(!color.get(w))dfs(w,stack);}stack.pop();color.set(u,2);}
+  VARS.forEach(v=>{if(!color.get(v.id))dfs(v.id,[])});
+  const lagN=EDGES.filter(e=>e.lag).length;
+  add(cyc.length?"bad":"ok","Unexpected dependency cycles",cyc.length?cyc.join(" | "):`None. ${lagN} time-lagged edges (SOC update) excluded by design.`);
+  const noF=VARS.filter(v=>["derived","state","kpi"].includes(v.type)&&!v.f&&!v.how).map(v=>v.id);
+  add(noF.length?"bad":"ok","Derived variables without formula or derivation",noF.length?noF.join(", "):"All derived, state and KPI nodes have one");
+  const noU=VARS.filter(v=>!v.unit).map(v=>v.id);
+  add(noU.length?"bad":"ok","Undefined units",noU.length?noU.join(", "):"Every node has a unit");
+  const absent=REQUESTED.filter(x=>!byId.has(x));
+  add(absent.length?"bad":"ok","Every variable in the spec exists as a node",absent.length?"Missing: "+absent.join(", "):`${REQUESTED.length} of ${REQUESTED.length} present`);
+  const orphan=VARS.filter(v=>v.cat!=="G"&&!v.usedBy.length).map(v=>v.id);
+  add(orphan.length?"warn":"ok","Inputs or intermediates that feed nothing",orphan.length?orphan.join(", "):"None");
+  const noReach=VARS.filter(v=>v.cat!=="G"&&!REACH_KPI.has(v.id)).map(v=>v.id);
+  add(noReach.length?"warn":"ok","Nodes with no path to any KPI",noReach.length?noReach.join(", "):"Every node reaches at least one KPI");
+  const rawNoDs=VARS.filter(v=>v.type==="raw_input"&&!v.ds.length).map(v=>v.id);
+  add(rawNoDs.length?"warn":"ok","Raw inputs without a dataset",rawNoDs.length?rawNoDs.join(", "):"None");
+  const counts=new Map();BLOCKS.forEach(b=>b.members.forEach(m=>counts.set(m,(counts.get(m)||0)+1)));
+  const unassigned=VARS.filter(v=>!counts.has(v.id)).map(v=>v.id),twice=[...counts].filter(([k,n])=>n>1||!byId.has(k)).map(([k])=>k);
+  add(unassigned.length||twice.length?"bad":"ok","Concise view covers every variable exactly once",unassigned.length||twice.length?`Unassigned: ${unassigned.join(", ")||"none"}; duplicated or unknown: ${twice.join(", ")||"none"}`:`${VARS.length} variables in ${BLOCKS.length} blocks`);
+  const bc=new Map();const bcyc=[];function bd(u,st){bc.set(u,1);st.push(u);for(const w of bAdj.get(u)){if(bc.get(w)===1)bcyc.push(st.slice(st.indexOf(w)).concat(w).join(" → "));else if(!bc.get(w))bd(w,st);}st.pop();bc.set(u,2);}
+  ALLBLOCKS.forEach(b=>{if(!bc.get(b.id))bd(b.id,[])});
+  add(bcyc.length?"bad":"ok","Concise view has no block cycles",bcyc.length?bcyc.join(" | "):`${BEDGES_ALL.length} block links, ${BEDGES.length} drawn after removing shortcuts`);
+  const miss=VARS.filter(v=>v.status==="missing").map(v=>v.id);
+  add(miss.length?"warn":"ok","Values still missing from the plan",miss.join(", ")||"None");
+  return out;
+}
+function runJourneys(){
+  const T=[];const t=(name,ok,detail)=>T.push({s:ok?"ok":"bad",t:name,d:detail});
+  const d1=descendants("P_DC");t("Test 1 · P_DC(h) reaches recoverable heat, heat pump and KPIs",["Q_DC_avail","Q_HP_out","K_ERF","K_LCOH","K_util"].every(x=>d1.has(x)),`${d1.size} downstream nodes incl. Q_DC_avail, Q_HP_out, ERF, LCOH`);
+  const d2=descendants("T_out");t("Test 2 · T_out(h) reaches demand and dispatch",["DH","SH_i","D_total","Q_backup","K_LCOH","K_CO2"].every(x=>d2.has(x)),"Path: "+shortestPath("T_out","K_LCOH").join(" → "));
+  const a3=ancestors("K_LCOH");const ds3=upstreamDatasets("K_LCOH");t("Test 3 · LCOH shows upstream variables and datasets",["CRF","c_elec","HP_cap","T_out","P_DC_max"].every(x=>a3.has(x))&&["eia_elec","nsrdb","dc_tracker"].every(x=>ds3.has(x)),`${a3.size} upstream variables, ${ds3.size} datasets`);
+  const n4=DSById.get("noaa_lcd").variableIds;t("Test 4 · NOAA dataset maps to its variables",n4.includes("T_out")&&descendants("T_out").has("K_LCOH"),`Direct: ${n4.join(", ")}; downstream reaches LCOH`);
+  const direct=parents.get("Q_HP_out").size+children.get("Q_HP_out").size+1;const full=ancestors("Q_HP_out").size+descendants("Q_HP_out").size+1;t("Test 5 · Direct vs full trace differ and dim the rest",full>direct&&full<VARS.length,`Q_HP_out: direct ${direct} nodes, full ${full} of ${VARS.length}`);
+  const bad=runChecks().filter(c=>c.s==="bad");t("Test 6 · No missing references or invalid mappings",bad.length===0,bad.length?bad.map(b=>b.t).join("; "):"All structural checks pass");
+  return T;
+}
+
+/* =====================================================================
+   UI
+   ===================================================================== */
+const $=s=>document.querySelector(s);
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const state={mode:"direct",color:"cat",formula:false,sel:null,selDs:null,trace:null,view:"all",hiddenCats:new Set()};
+const tex=(s,display=true)=>{try{return katex.renderToString(s,{output:"mathml",throwOnError:false,displayMode:display});}catch(e){return `<code>${esc(s)}</code>`;}};
+
+const VIEWS={
+  all:{name:"Full network",core:()=>true},
+  supply:{name:"Supply",core:v=>v.cat==="A"||["HX_cap","Q_DC_used","Q_rejected","Q_direct","Q_HP_src","BAL_src"].includes(v.id)},
+  demand:{name:"Demand",core:v=>v.cat==="B"||v.cat==="C"},
+  dispatch:{name:"Dispatch",core:v=>v.cat==="E"||(v.cat==="D"&&v.type!=="design")||["HP_cap","Tank_cap","Backup_cap","HX_cap"].includes(v.id)},
+  econ:{name:"Economics",core:v=>(v.cat==="F"&&!v.tags.includes("env"))||["K_LCOH","K_savings","K_val_DC","OPT","COND2","COND4","tariff","p_fence","DC_funding"].includes(v.id)},
+  env:{name:"Environmental impact",core:v=>v.tags.includes("env")||["E_HP","E_backup","E_pump","Q_DC_used","DC_cooling_saved","COND3","K_val_comm"].includes(v.id)}
+};
+function nodeLabel(v){return state.formula?v.sym:(v.name+(v.idx?" [i]":""));}
+
+try{ if(typeof cytoscapeDagre!=="undefined") cytoscape.use(cytoscapeDagre); }catch(e){}
+try{ if(typeof cytoscapeSvg!=="undefined") cytoscape.use(cytoscapeSvg); }catch(e){}
+
+const elements=[
+  ...VARS.map(v=>({data:{id:v.id,label:nodeLabel(v),cat:v.cat,type:v.type,cov:coverage(v)}})),
+  ...EDGES.filter(e=>byId.has(e.s)).map(e=>({data:{id:e.id,source:e.s,target:e.t},classes:e.lag?"lag":""}))
+];
+const cy=cytoscape({container:$("#cy"),elements,wheelSensitivity:0.25,minZoom:0.08,maxZoom:3,style:[]});
+
+function buildStyle(){
+  const C={};Object.entries(CATS).forEach(([k,c])=>C[k]=css(c.tok));
+  const V={};Object.entries(COV).forEach(([k,c])=>V[k]=css(c.tok));
+  const bg=css("--bg"),panel=css("--panel"),fg=css("--fg"),muted=css("--muted"),line=css("--line"),faint=css("--faint"),focus=css("--focus");
+  const col=n=>state.color==="cat"?C[n.data("cat")]:V[n.data("cov")];
+  return [
+    {selector:"node",style:{"shape":"round-rectangle","width":170,"height":38,"background-color":panel,"border-width":1.5,"border-color":col,"label":"data(label)","color":fg,"font-size":11,"font-family":"IBM Plex Sans, system-ui, sans-serif","text-valign":"center","text-halign":"center","text-wrap":"wrap","text-max-width":158,"transition-property":"opacity, border-width","transition-duration":"150ms"}},
+    {selector:"node[type='raw_input']",style:{"shape":"rectangle","border-width":2.5}},
+    {selector:"node[type='assumption']",style:{"border-style":"dashed","border-width":2}},
+    {selector:"node[type='design']",style:{"shape":"cut-rectangle","border-width":2.5,"background-color":n=>mix(col(n),panel,0.18)}},
+    {selector:"node[type='state']",style:{"border-style":"double","border-width":5}},
+    {selector:"node[type='kpi']",style:{"background-color":col,"color":bg,"font-weight":600,"border-width":0}},
+    {selector:"node.region",style:{"shape":"round-rectangle","background-color":mix(C.G,bg,0.06),"border-width":1,"border-style":"dashed","border-color":C.G,"label":"data(label)","color":C.G,"text-valign":"top","text-halign":"center","font-size":13,"font-weight":600,"text-margin-y":-8,"events":"no","z-index":0,"z-compound-depth":"bottom"}},
+    {selector:"edge",style:{"width":1.1,"line-color":line,"target-arrow-color":line,"target-arrow-shape":"triangle","arrow-scale":0.8,"curve-style":"bezier","opacity":0.9}},
+    {selector:"edge.lag",style:{"line-style":"dotted","width":1.5,"line-color":C.D,"target-arrow-color":C.D}},
+    {selector:".faded",style:{"opacity":0.1}},
+    {selector:"node.match",style:{"border-width":4,"border-color":focus}},
+    {selector:"node.sel",style:{"border-width":5,"border-color":focus,"z-index":10}},
+    {selector:"node.up",style:{"border-width":3.5}},
+    {selector:"node.down",style:{"border-width":3.5}},
+    {selector:"edge.hl",style:{"width":2.6,"line-color":e=>col(e.source()),"target-arrow-color":e=>col(e.source()),"opacity":1,"line-style":"dashed","line-dash-pattern":[7,4],"z-index":9}},
+    {selector:"edge.hl-ind",style:{"width":1.6,"line-color":e=>col(e.source()),"target-arrow-color":e=>col(e.source()),"opacity":0.55,"line-style":"dashed","line-dash-pattern":[3,5],"z-index":8}},
+    {selector:"node.ds-direct",style:{"border-width":5,"border-color":C.C}},
+    {selector:"node.ds-ind",style:{"opacity":0.75}}
+  ];
+}
+function mix(a,b,t){const p=h=>{h=h.replace("#","");if(h.length===3)h=h.split("").map(x=>x+x).join("");return[0,2,4].map(i=>parseInt(h.slice(i,i+2),16));};try{const A=p(a),B=p(b);return"#"+A.map((x,i)=>Math.round(x*t+B[i]*(1-t)).toString(16).padStart(2,"0")).join("");}catch(e){return b;}}
+
+function layout(fit=true){
+  cy.remove("node.region");
+  const vis=cy.elements().filter(e=>e.visible()&&!e.hasClass("lag"));
+  const l=vis.layout({name:"dagre",rankDir:"LR",nodeSep:12,rankSep:80,edgeSep:6,ranker:"network-simplex",animate:false});
+  l.run();
+  // move KPI / output nodes into one right-hand results column
+  const kpis=cy.nodes().filter(n=>n.data("cat")==="G"&&n.visible());
+  const others=cy.nodes().filter(n=>n.data("cat")!=="G"&&n.visible());
+  if(kpis.length){
+    const maxX=others.length?Math.max(...others.map(n=>n.position("x"))):0;
+    const order=kpis.toArray().map(n=>{const ps=n.incomers("node").filter(p=>p.data("cat")!=="G");const y=ps.length?ps.toArray().reduce((s,p)=>s+p.position("y"),0)/ps.length:n.position("y");return{n,y,cond:n.id().startsWith("COND")||n.id()==="OPT"};}).sort((a,b)=>(a.cond-b.cond)||(a.y-b.y));
+    const ys=others.length?others.map(n=>n.position("y")):[0];const midY=(Math.min(...ys)+Math.max(...ys))/2;
+    const step=50,gapCond=30;const total=order.length*step+gapCond;let y=midY-total/2;
+    let prevCond=false;order.forEach(o=>{if(o.cond&&!prevCond)y+=gapCond;prevCond=o.cond;o.n.position({x:maxX+300,y});y+=step;});
+    const bb=kpis.boundingBox();
+    cy.add({group:"nodes",data:{id:"__region",label:"OUTPUTS / RESULTS"},classes:"region",position:{x:(bb.x1+bb.x2)/2,y:(bb.y1+bb.y2)/2}});
+    cy.$("#__region").style({width:bb.w+40,height:bb.h+40});
+    cy.$("#__region").unselectify().ungrabify();
+  }
+  if(fit)cy.fit(cy.elements(":visible"),30);
+}
+
+function applyVisibility(){
+  const core=new Set(VARS.filter(v=>VIEWS[state.view].core(v)&&!state.hiddenCats.has(v.cat)).map(v=>v.id));
+  const show=new Set(core);
+  if(state.view!=="all") core.forEach(id=>{parents.get(id).forEach(p=>{if(!state.hiddenCats.has(byId.get(p).cat))show.add(p)});children.get(id).forEach(c=>{if(!state.hiddenCats.has(byId.get(c).cat))show.add(c)});});
+  cy.batch(()=>{cy.nodes().not(".region").forEach(n=>{n.style("display",show.has(n.id())?"element":"none");n.toggleClass("ghost",!core.has(n.id()));});});
+  cy.nodes(".ghost").style("opacity",state.view==="all"?1:0.55);
+  cy.nodes().not(".ghost").not(".region").removeStyle("opacity");
+  document.querySelectorAll(".vitem").forEach(el=>el.classList.toggle("hid",!show.has(el.dataset.id)||!el.dataset.match));
+  state.show=show;
+  if(G3&&state.d3){cam3Pending=true;G3.graphData(data3D());}
+  layout();
+  reapplyHighlight();
+}
+
+function clearHL(){cy.elements().removeClass("faded sel up down hl hl-ind ds-direct ds-ind");}
+function highlightSet(nodes, edgesFn, cls){}
+function reapplyHighlight(){
+  if(state.vm==="concise")return;
+  clearHL();
+  if(state.selDs){return highlightDataset(state.selDs,false);}
+  if(state.sel){return selectVar(state.sel,false);}
+}
+function edgesAmong(set,filter){return cy.edges().filter(e=>set.has(e.source().id())&&set.has(e.target().id())&&(!filter||filter(e)));}
+
+function selectVar(id,scroll=true){
+  state.sel=id;state.selDs=null;
+  const v=byId.get(id);if(!v)return;
+  clearHL();
+  let up,down,set,edges;
+  if(state.trace==="kpi"){
+    set=traceToKPIs(id);up=new Set();down=set;
+    edges=edgesAmong(set,e=>!e.hasClass("lag")||set.has(e.source().id()));
+  } else if(state.mode==="direct"){
+    up=parents.get(id);down=children.get(id);set=new Set([id,...up,...down]);
+    edges=cy.edges().filter(e=>(e.target().id()===id&&up.has(e.source().id()))||(e.source().id()===id&&down.has(e.target().id())));
+  } else {
+    up=ancestors(id);down=descendants(id);set=new Set([id,...up,...down]);
+    const U=new Set([id,...up]),D=new Set([id,...down]);
+    edges=cy.edges().filter(e=>(U.has(e.source().id())&&U.has(e.target().id()))||(D.has(e.source().id())&&D.has(e.target().id())));
+  }
+  cy.batch(()=>{
+    cy.elements().not(".region").addClass("faded");
+    set.forEach(x=>cy.getElementById(x).removeClass("faded"));
+    up.forEach(x=>cy.getElementById(x).addClass("up"));
+    down.forEach(x=>cy.getElementById(x).addClass("down"));
+    cy.getElementById(id).addClass("sel");
+    edges.removeClass("faded").addClass("hl");
+  });
+  state.hl={nodes:set,edges:new Set(edges.map(e=>e.id())),sel:id};refresh3D();
+  $("#kpiBtn").disabled=v.cat==="G";
+  $("#kpiBtn").classList.toggle("on",state.trace==="kpi");
+  $("#status").textContent=state.trace==="kpi"?`Trace to KPIs from ${v.sym}: ${set.size-1} nodes on paths to outputs`:`${v.sym} · ${state.mode==="direct"?"direct":"full"} trace · ${up.size} upstream · ${down.size} downstream`;
+  document.querySelectorAll(".vitem").forEach(el=>el.classList.toggle("sel",el.dataset.id===id));
+  if(scroll){const el=document.querySelector(`.vitem[data-id="${CSS.escape(id)}"]`);el&&el.scrollIntoView({block:"nearest"});}
+  // reverse interaction: datasets
+  const direct=new Set(v.ds),upDs=upstreamDatasets(id);
+  document.querySelectorAll(".ds").forEach(el=>{el.classList.remove("sel");el.classList.toggle("linked",direct.has(el.dataset.id));el.classList.toggle("linkedup",!direct.has(el.dataset.id)&&upDs.has(el.dataset.id));});
+  renderInspector(v);
+  showTab("insp");
+}
+
+function highlightDataset(dsId,focus=true){
+  state.selDs=dsId;state.sel=null;state.trace=null;
+  const d=DSById.get(dsId);clearHL();
+  const direct=new Set(d.variableIds);const child=new Set();direct.forEach(x=>children.get(x).forEach(c=>child.add(c)));
+  const down=$("#dsDown").checked;let ind=new Set();if(down)direct.forEach(x=>descendants(x).forEach(y=>ind.add(y)));
+  cy.batch(()=>{
+    cy.elements().not(".region").addClass("faded");
+    direct.forEach(x=>cy.getElementById(x).removeClass("faded").addClass("ds-direct"));
+    child.forEach(x=>cy.getElementById(x).removeClass("faded"));
+    ind.forEach(x=>{const n=cy.getElementById(x);n.removeClass("faded");if(!direct.has(x)&&!child.has(x))n.addClass("ds-ind");});
+    cy.edges().filter(e=>direct.has(e.source().id())).removeClass("faded").addClass("hl");
+    if(down){const all=new Set([...direct,...ind]);cy.edges().filter(e=>!direct.has(e.source().id())&&all.has(e.source().id())&&all.has(e.target().id())).removeClass("faded").addClass("hl-ind");}
+  });
+  state.hl={nodes:new Set([...direct,...child,...ind]),edges:new Set(cy.edges(".hl, .hl-ind").map(e=>e.id())),ds:dsId};refresh3D();
+  document.querySelectorAll(".ds").forEach(el=>{el.classList.toggle("sel",el.dataset.id===dsId);el.classList.remove("linked","linkedup");});
+  document.querySelectorAll(".vitem").forEach(el=>el.classList.remove("sel"));
+  $("#kpiBtn").disabled=true;
+  $("#status").textContent=`${d.name}: ${direct.size} direct variable${direct.size===1?"":"s"}${down?`, ${ind.size} downstream`:""}`;
+  renderDatasetInspector(d,direct,child,ind);
+  if(focus)showTab("insp");
+}
+
+function clearAll(){state.sel=null;state.selDs=null;state.trace=null;clearHL();state.hl=null;refresh3D();$("#kpiBtn").disabled=true;$("#kpiBtn").classList.remove("on");
+  document.querySelectorAll(".ds").forEach(el=>el.classList.remove("sel","linked","linkedup"));document.querySelectorAll(".vitem").forEach(el=>el.classList.remove("sel"));
+  $("#status").textContent="Click any variable. Click empty space to clear.";renderInspectorEmpty();}
+
+/* ---------- inspector ---------- */
+function chip(id){const v=byId.get(id);return `<button class="chip" data-go="${id}" title="${esc(v.name)}"><span class="d" style="background:var(${CATS[v.cat].tok})"></span>${esc(v.sym)}</button>`;}
+function dsChip(id){const d=DSById.get(id);return `<button class="chip" data-gods="${id}">${esc(d.name)}</button>`;}
+function renderInspectorEmpty(){
+  $("#paneInsp").innerHTML=`<p class="lbl">Variable inspector</p><div class="empty">Select a variable in the graph or the explorer to see its definition, formula, inputs, dependents and data sources. Try <button class="chip" data-go="K_LCOH">LCOH</button> <button class="chip" data-go="T_out">T_out(h)</button> <button class="chip" data-go="P_DC">P_DC(h)</button></div>
+  <p class="lbl">How to read the graph</p><ul class="notes"><li>Arrows point from an input to what it is used to compute.</li><li>Inputs sit on the left, the hourly dispatch in the middle, KPIs and heat-export agreement terms in the results column on the right.</li><li>Dotted purple edges are time-lagged: storage at hour h+1 depends on hour h.</li><li>Variables marked [i] exist once per offtaker.</li></ul>`;
+}
+function renderInspector(v){
+  const cat=CATS[v.cat],ty=TYPES[v.type],cov=COV[coverage(v)];
+  const up=[...parents.get(v.id)],down=v.usedBy;
+  const upDs=[...upstreamDatasets(v.id)].filter(d=>!v.ds.includes(d));
+  const reached=v.cat==="G"?[]:KPI_IDS.filter(k=>descendants(v.id).has(k));
+  const paths=reached.slice(0,8).map(k=>shortestPath(v.id,k)).filter(Boolean);
+  const lagDeps=v.deps.filter(d=>d.endsWith("@lag")).map(d=>d.slice(0,-4));
+  $("#paneInsp").innerHTML=`
+    <div style="display:flex;flex-direction:column;gap:4px"><p class="lbl" style="color:var(${cat.tok})">${esc(cat.name)}</p><h2>${esc(v.name)}</h2><div class="formula" style="font-size:16px;padding:4px 10px">${tex(v.texSym||v.sym,false)}</div></div>
+    <dl class="meta"><dt>Type</dt><dd>${esc(ty.name)}</dd><dt>Unit</dt><dd>${esc(v.unit)}</dd><dt>Data status</dt><dd><span class="pill" style="color:var(${cov.tok})">${esc(cov.name)}</span></dd>${v.idx?`<dt>Indexed</dt><dd>One value per offtaker i</dd>`:""}${v.val?`<dt>Plan value</dt><dd>${esc(v.val)}</dd>`:""}<dt>ID</dt><dd><code>${esc(v.id)}</code></dd></dl>
+    <div><p class="lbl">What it is</p><p style="margin:4px 0 0">${esc(v.desc)}</p></div>
+    <div><p class="lbl">How it is obtained</p><p style="margin:4px 0 0">${esc(ty.how)}${v.how?" "+esc(v.how):""}</p></div>
+    ${v.f?`<div><p class="lbl">Formula</p><div class="formula">${tex(v.f)}</div></div>`:""}
+    <div><p class="lbl">Input dependencies (${up.length})</p><div class="links">${up.map(chip).join("")||'<span class="muted">None: entry point of the model.</span>'}${lagDeps.length?`<span class="muted" style="font-size:11px">time-lagged: ${lagDeps.map(esc).join(", ")}</span>`:""}</div></div>
+    <div><p class="lbl">Used by (${down.length})</p><div class="links">${down.map(chip).join("")||'<span class="muted">Not used further: a final output.</span>'}</div></div>
+    <div><p class="lbl">Datasets / references</p><div class="links">${v.ds.map(dsChip).join("")||'<span class="muted">No direct dataset.</span>'}</div>${upDs.length?`<p class="muted" style="margin:6px 0 4px;font-size:11px">Upstream data sources (via inputs)</p><div class="links">${upDs.map(dsChip).join("")}</div>`:""}</div>
+    ${paths.length?`<div><p class="lbl">Influence on final KPIs (${reached.length})</p><div class="path">${paths.map(p=>p.map((x,i)=>i===p.length-1?`<b>${esc(byId.get(x).sym)}</b>`:esc(byId.get(x).sym)).join(" → ")).join("<br>")}${reached.length>paths.length?`<br>… and ${reached.length-paths.length} more`:""}</div></div>`:""}
+    ${v.notes.length?`<div><p class="lbl">Assumptions / limitations</p><ul class="notes">${v.notes.map(n=>`<li>${esc(n)}</li>`).join("")}</ul></div>`:""}`;
+}
+function renderDatasetInspector(d,direct,child,ind){
+  $("#paneInsp").innerHTML=`<p class="lbl">Dataset</p><h2>${esc(d.name)}</h2>
+  <dl class="meta"><dt>Publisher</dt><dd>${esc(d.publisher)}</dd><dt>Type</dt><dd>${esc(d.dataType)}</dd>${d.temporalResolution?`<dt>Resolution</dt><dd>${esc(d.temporalResolution)}</dd>`:""}<dt>Source type</dt><dd>${esc(d.sourceType.replace("_"," "))}</dd></dl>
+  <p style="margin:0">${esc(d.description)}</p>
+  ${d.url?`<a href="${esc(d.url)}" target="_blank" rel="noopener" class="btn" style="align-self:flex-start;text-decoration:none">Open source ↗</a>`:`<p class="muted" style="margin:0">Local organizer file: no public link.</p>`}
+  ${d.urlNote?`<p class="ds warnurl" style="margin:0;border:0;padding:0;cursor:default;background:none">${esc(d.urlNote)}</p>`:""}
+  <div><p class="lbl">Supplies directly (${direct.size})</p><div class="links">${[...direct].map(chip).join("")||'<span class="muted">No variables mapped yet.</span>'}</div></div>
+  <div><p class="lbl">Immediately derived (${[...child].filter(x=>!direct.has(x)).length})</p><div class="links">${[...child].filter(x=>!direct.has(x)).map(chip).join("")}</div></div>
+  ${ind.size?`<div><p class="lbl">Downstream impact (${ind.size})</p><div class="links">${[...ind].filter(x=>!direct.has(x)).map(chip).join("")}</div></div>`:`<p class="muted" style="margin:0">Turn on “Show downstream impact” to follow this dataset to the KPIs.</p>`}`;
+}
+
+/* ---------- left panels ---------- */
+function renderLeft(){
+  $("#views").innerHTML=Object.entries(VIEWS).map(([k,v])=>`<button class="btn ${state.view===k?"on":""}" data-view="${k}">${esc(v.name)}</button>`).join("");
+  $("#cats").innerHTML=Object.entries(CATS).map(([k,c])=>`<label class="cat-row"><input type="checkbox" data-cat="${k}" ${state.hiddenCats.has(k)?"":"checked"}><span class="sw" style="background:var(${c.tok})"></span>${k}. ${esc(c.name)}<span class="muted" style="margin-left:auto;font-variant-numeric:tabular-nums">${VARS.filter(v=>v.cat===k).length}</span></label>`).join("");
+  $("#vgroups").innerHTML=Object.entries(CATS).map(([k,c])=>{const vs=VARS.filter(v=>v.cat===k);return `<details class="grp" ${k==="G"?"open":""}><summary><span class="sw" style="background:var(${c.tok})"></span>${esc(c.name)}<span class="n">${vs.length}</span></summary><div class="vlist">${vs.map(v=>`<div class="vitem" data-id="${v.id}" data-match="1" tabindex="0"><span>${esc(v.name)}</span><span class="sym">${esc(v.sym)}</span></div>`).join("")}</div></details>`;}).join("");
+  $("#dslist").innerHTML=DATASETS.map(d=>`<div class="ds" data-id="${d.id}" tabindex="0"><h3>${esc(d.name)}</h3><span class="pub">${esc(d.publisher)}</span><span style="font-size:12px">${esc(d.description)}</span><div class="row"><span class="pill">${esc(d.sourceType.replace("_"," "))}</span><span>${esc(d.dataType)}${d.temporalResolution?" · "+esc(d.temporalResolution):""}</span><span>${d.variableIds.length} variable${d.variableIds.length===1?"":"s"}</span></div>${d.url?`<a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.url)} ↗</a>`:`<span class="muted" style="font-size:11px">Local organizer file, no public URL</span>`}${d.urlNote?`<span class="warnurl">${esc(d.urlNote)}</span>`:""}</div>`).join("");
+}
+function renderIntegrity(){
+  const checks=runChecks(),tests=runJourneys();
+  const row=c=>`<div class="check"><span class="s ${c.s}">${c.s==="ok"?"PASS":c.s==="warn"?"WARN":"FAIL"}</span><div><b style="font-weight:600">${esc(c.t)}</b><div class="muted" style="font-size:11px;word-break:break-word">${esc(c.d)}</div></div></div>`;
+  const n=c=>c.filter(x=>x.s==="ok").length;
+  $("#paneInt").innerHTML=`<p class="lbl">Model integrity · ${VARS.length} variables · ${EDGES.length} edges · ${DATASETS.length} datasets</p>
+  <div style="display:flex;flex-direction:column;gap:8px">${checks.map(row).join("")}</div>
+  <p class="lbl">User-journey tests · ${n(tests)} of ${tests.length} pass</p>
+  <div style="display:flex;flex-direction:column;gap:8px">${tests.map(row).join("")}</div>`;
+}
+function renderFixes(){
+  $("#paneFix").innerHTML=`<p class="lbl">Changes made to the original spec</p><p class="muted" style="margin:0">Green: fixed in this model. Amber: still open; the team must resolve these before the numbers go on slides.</p>${FIXES.map(([k,t,d])=>`<div class="issue ${k==="fix"?"fix":""}"><b>${esc(t)}</b>${esc(d)}</div>`).join("")}`;
+}
+function renderLegend(){
+  const items=state.color==="cat"?Object.entries(CATS).map(([k,c])=>`<span class="lg"><span class="sw" style="background:var(${c.tok})"></span>${k}. ${esc(c.name)}</span>`):Object.entries(COV).map(([k,c])=>`<span class="lg"><span class="sw" style="background:var(${c.tok})"></span>${esc(c.name)}</span>`);
+  $("#legend").innerHTML=`<div class="row">${items.join("")}</div><div class="row"><span class="lg"><i style="border-width:2.5px;border-radius:0"></i>dataset input</span><span class="lg"><i style="border-style:dashed"></i>assumption</span><span class="lg"><i style="clip-path:polygon(20% 0,80% 0,100% 30%,100% 70%,80% 100%,20% 100%,0 70%,0 30%)"></i>design</span><span class="lg"><i style="border-style:double;border-width:4px"></i>state</span><span class="lg"><i style="background:var(--muted)"></i>KPI</span><span class="lg"><i style="border:0;border-top:2px dotted var(--cD);height:0"></i>time-lagged</span></div>`;
+}
+
+/* ---------- tabs, events ---------- */
+function showTab(t){[["insp","#tInsp","#paneInsp"],["int","#tInt","#paneInt"],["fix","#tFix","#paneFix"]].forEach(([k,b,p])=>{$(b).classList.toggle("on",k===t);$(p).hidden=k!==t;});}
+$("#tInsp").onclick=()=>showTab("insp");$("#tInt").onclick=()=>showTab("int");$("#tFix").onclick=()=>showTab("fix");
+const leftTab=t=>{$("#tVars").classList.toggle("on",t==="vars");$("#tData").classList.toggle("on",t==="data");$("#paneVars").hidden=t!=="vars";$("#paneData").hidden=t!=="data";};
+$("#tVars").onclick=()=>leftTab("vars");$("#tData").onclick=()=>leftTab("data");
+
+document.addEventListener("click",e=>{
+  const gb=e.target.closest("[data-goblock]");if(gb){selectBlock(gb.dataset.goblock);return;}
+  const go=e.target.closest("[data-go]");if(go){if(state.vm==="concise")setMode("2d");state.trace=null;selectVar(go.dataset.go);centerOn(go.dataset.go);return;}
+  const gds=e.target.closest("[data-gods]");if(gds){leftTab("data");highlightDataset(gds.dataset.gods);return;}
+  const vi=e.target.closest(".vitem");if(vi){state.trace=null;selectVar(vi.dataset.id,false);centerOn(vi.dataset.id);return;}
+  const ds=e.target.closest(".ds");if(ds&&!e.target.closest("a")){highlightDataset(ds.dataset.id);return;}
+  const vw=e.target.closest("[data-view]");if(vw){state.view=vw.dataset.view;renderLeftKeep();applyVisibility();return;}
+});
+document.addEventListener("keydown",e=>{if(e.key==="Enter"){const vi=e.target.closest&&e.target.closest(".vitem,.ds");if(vi)vi.click();}if(e.key==="Escape")clearAll();});
+document.addEventListener("change",e=>{
+  if(e.target.dataset.cat){const k=e.target.dataset.cat;e.target.checked?state.hiddenCats.delete(k):state.hiddenCats.add(k);applyVisibility();}
+  if(e.target.id==="dsDown"&&state.selDs)highlightDataset(state.selDs,false);
+});
+function renderLeftKeep(){document.querySelectorAll("[data-view]").forEach(b=>b.classList.toggle("on",b.dataset.view===state.view));}
+function centerOn(id){const n=cy.getElementById(id);if(n.nonempty()&&n.visible())cy.animate({center:{eles:n},zoom:Math.max(cy.zoom(),0.75)},{duration:matchMedia("(prefers-reduced-motion: reduce)").matches?0:300});}
+
+cy.on("tap","node",e=>{if(e.target.hasClass("region"))return;state.trace=null;selectVar(e.target.id());});
+cy.on("tap",e=>{if(e.target===cy)clearAll();});
+const tip=$("#tip");
+cy.on("mouseover","node",e=>{const n=e.target;if(n.hasClass("region"))return;const v=byId.get(n.id());const p=n.renderedPosition();
+  tip.innerHTML=`<b>${esc(v.name)}</b><span class="m">${esc(v.sym)} · ${esc(v.unit)}</span><div style="margin-top:4px">${v.f?tex(v.f,false):esc(TYPES[v.type].name)}</div>`;tip.hidden=false;
+  const W=$("#cy").clientWidth;tip.style.left=Math.min(p.x+16,W-310)+"px";tip.style.top=(p.y+24)+"px";});
+cy.on("mouseout","node",()=>tip.hidden=true);
+cy.on("viewport",()=>tip.hidden=true);
+
+$("#mDirect").onclick=()=>{state.mode="direct";state.trace=null;$("#mDirect").classList.add("on");$("#mFull").classList.remove("on");reapplyHighlight();};
+$("#mFull").onclick=()=>{state.mode="full";state.trace=null;$("#mFull").classList.add("on");$("#mDirect").classList.remove("on");reapplyHighlight();};
+$("#colCat").onclick=()=>{state.color="cat";$("#colCat").classList.add("on");$("#colCov").classList.remove("on");cy.style(buildStyle());renderLegend();};
+$("#colCov").onclick=()=>{state.color="cov";$("#colCov").classList.add("on");$("#colCat").classList.remove("on");cy.style(buildStyle());renderLegend();};
+$("#fmBtn").onclick=()=>{state.formula=!state.formula;$("#fmBtn").classList.toggle("on",state.formula);$("#fmBtn").setAttribute("aria-pressed",state.formula);cy.nodes().not(".region").forEach(n=>n.data("label",nodeLabel(byId.get(n.id()))));};
+$("#kpiBtn").onclick=()=>{if(!state.sel)return;state.trace=state.trace==="kpi"?null:"kpi";selectVar(state.sel,false);};
+$("#fitBtn").onclick=()=>cy.fit(cy.elements(":visible"),30);
+$("#resetBtn").onclick=()=>{state.view="all";state.hiddenCats.clear();$("#q").value="";document.querySelectorAll(".vitem").forEach(el=>el.dataset.match="1");cy.nodes().removeClass("match");renderLeft();clearAll();applyVisibility();};
+$("#themeBtn").onclick=()=>{const r=document.documentElement;const cur=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: light)").matches?"light":"dark");r.setAttribute("data-theme",cur==="dark"?"light":"dark");cy.style(buildStyle());};
+matchMedia("(prefers-color-scheme: light)").addEventListener("change",()=>cy.style(buildStyle()));
+$("#q").addEventListener("input",e=>{const q=e.target.value.trim().toLowerCase();cy.nodes().removeClass("match");
+  document.querySelectorAll(".vitem").forEach(el=>{const v=byId.get(el.dataset.id);const m=!q||v.name.toLowerCase().includes(q)||v.sym.toLowerCase().includes(q)||v.id.toLowerCase().includes(q);el.dataset.match=m?"1":"";el.classList.toggle("hid",!m||cy.getElementById(v.id).style("display")==="none");if(q&&m)cy.getElementById(v.id).addClass("match");});
+  if(q)document.querySelectorAll("details.grp").forEach(d=>d.open=!!d.querySelector('.vitem[data-match="1"]'));});
+$("#q").addEventListener("keydown",e=>{if(e.key==="Enter"){const first=document.querySelector('.vitem[data-match="1"]:not(.hid)');if(first){selectVar(first.dataset.id);centerOn(first.dataset.id);}}});
+
+/* ---------- export ---------- */
+function download(name,mime,data){try{const blob=data instanceof Blob?data:new Blob([data],{type:mime});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1000);}catch(e){}}
+let modalText="";
+function modal(title,note,html,text){$("#mTitle").textContent=title;$("#mNote").textContent=note;$("#mBody").innerHTML=html;modalText=text||"";$("#mCopy").hidden=!text;$("#modal").hidden=false;}
+$("#mClose").onclick=()=>$("#modal").hidden=true;
+$("#modal").addEventListener("click",e=>{if(e.target.id==="modal")$("#modal").hidden=true;});
+$("#mCopy").onclick=async()=>{try{await navigator.clipboard.writeText(modalText);$("#mCopy").textContent="Copied";setTimeout(()=>$("#mCopy").textContent="Copy",1200);}catch(e){const ta=$("#mBody textarea");if(ta){ta.focus();ta.select();}}};
+const NOTE="If no file downloaded (downloads are blocked inside a hosted artifact), copy the text or right-click the image to save it. Opened locally, the file downloads directly.";
+$("#pngBtn").onclick=()=>{const uri=(state.vm==="concise"?cyc:cy).png({full:true,scale:2,bg:css("--bg")});download("heat_reuse_variable_graph.png","image/png",dataURItoBlob(uri));modal("Network PNG",NOTE,`<img src="${uri}" alt="Full variable network">`);};
+$("#svgBtn").onclick=()=>{if(typeof (state.vm==="concise"?cyc:cy).svg!=="function"){modal("SVG export unavailable","The SVG exporter did not load. Use PNG instead.","");return;}const s=(state.vm==="concise"?cyc:cy).svg({full:true,bg:css("--bg")});download("heat_reuse_variable_graph.svg","image/svg+xml",s);modal("Network SVG",NOTE,`<textarea readonly>${esc(s)}</textarea>`,s);};
+$("#jsonBtn").onclick=()=>{const inv=VARS.map(v=>({id:v.id,name:v.name,symbol:v.sym,category:`${v.cat}. ${CATS[v.cat].name}`,type:v.type,unit:v.unit,description:v.desc,formulaLatex:v.f||undefined,derivation:v.how||undefined,dependencies:v.deps,usedBy:v.usedBy,datasetIds:v.ds,planValue:v.val||undefined,dataStatus:coverage(v),indexedOverOfftakers:v.idx,limitations:v.notes}));const s=JSON.stringify({variables:inv,datasets:DATASETS},null,2);download("heat_reuse_variables.json","application/json",s);modal("Variable inventory (JSON)",NOTE+" The Python simulation can read this file as its variable registry.",`<textarea readonly>${esc(s)}</textarea>`,s);};
+$("#csvBtn").onclick=()=>{const q=x=>`"${String(x).replace(/"/g,'""')}"`;const rows=[["dataset_id","dataset_name","publisher","source_type","url","variable_id","variable_name","variable_type"]];DATASETS.forEach(d=>(d.variableIds.length?d.variableIds:[""]).forEach(vid=>{const v=byId.get(vid);rows.push([d.id,d.name,d.publisher,d.sourceType,d.url||"",vid,v?v.name:"",v?v.type:""]);}));const s=rows.map(r=>r.map(q).join(",")).join("\n");download("dataset_variable_map.csv","text/csv",s);modal("Dataset-to-variable map (CSV)",NOTE,`<textarea readonly>${esc(s)}</textarea>`,s);};
+function dataURItoBlob(u){const [h,b]=u.split(",");const bin=atob(b);const a=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)a[i]=bin.charCodeAt(i);return new Blob([a],{type:h.split(":")[1].split(";")[0]});}
+
+/* ---------- 3D view: x = computation depth (DAG), z = category layer ---------- */
+let G3=null;const LANES=["DS","C","A","B","D","E","F","G"];const LANE_NAME={DS:"Datasets",...Object.fromEntries(Object.entries(CATS).map(([k,c])=>[k,`${k}. ${c.name}`]))};
+const laneZ=c=>(LANES.indexOf(c)-(LANES.length-1)/2)*130;
+let cam3Pending=true;
+function obliqueCamera(){
+  const ns=G3.graphData().nodes;if(!ns.length)return;
+  const xs=ns.map(n=>n.x||0),ys=ns.map(n=>n.y||0),zs=ns.map(n=>n.z||0);
+  const c={x:(Math.min(...xs)+Math.max(...xs))/2,y:(Math.min(...ys)+Math.max(...ys))/2,z:(Math.min(...zs)+Math.max(...zs))/2};
+  const D=Math.max(Math.max(...xs)-Math.min(...xs),Math.max(...zs)-Math.min(...zs))*1.8;
+  G3.cameraPosition({x:c.x-D*0.25,y:c.y+D*0.5,z:c.z+D*0.9},c,reduce?0:1200);
+}
+const catCol=c=>c==="DS"?css("--fg"):css(CATS[c].tok);
+function data3D(){
+  const show=state.show||new Set(VARS.map(v=>v.id));
+  const nodes=VARS.filter(v=>show.has(v.id)).map(v=>({id:v.id,cat:v.cat,type:v.type,fz:laneZ(v.cat)}));
+  const dsNodes=DATASETS.filter(d=>d.variableIds.some(x=>show.has(x))).map(d=>({id:"ds:"+d.id,ds:d.id,cat:"DS",type:"dataset",fz:laneZ("DS")}));
+  const links=EDGES.filter(e=>!e.lag&&show.has(e.s)&&show.has(e.t)).map(e=>({source:e.s,target:e.t,id:e.id}));
+  dsNodes.forEach(n=>DSById.get(n.ds).variableIds.filter(x=>show.has(x)).forEach(v=>links.push({source:n.id,target:v,id:`ds:${n.ds}->${v}`,dsl:true})));
+  return{nodes:[...nodes,...dsNodes],links};
+}
+const lid=x=>typeof x==="object"?x.id:x;
+function on3(n){const h=state.hl;if(!h)return true;if(n.type==="dataset")return h.ds===n.ds||(!!h.sel&&byId.get(h.sel).ds.includes(n.ds));return h.nodes.has(n.id);}
+function onLink(l){const h=state.hl;if(!h)return false;if(l.dsl)return(h.ds&&lid(l.source)==="ds:"+h.ds)||(h.sel&&lid(l.target)===h.sel);return h.edges.has(l.id);}
+function col3(n){const base=n.type==="dataset"?css("--fg"):(state.color==="cat"?catCol(n.cat):css(COV[coverage(byId.get(n.id))].tok));return on3(n)?base:mix(base,css("--bg"),0.14);}
+function obj3(n){
+  const v=byId.get(n.id);const txt=n.type==="dataset"?DSById.get(n.ds).name:(state.formula?v.sym:v.name);
+  const s=new SpriteText(txt,n.type==="kpi"?4.2:3.2,on3(n)?css("--fg"):mix(css("--fg"),css("--bg"),0.2));
+  s.fontFace="IBM Plex Sans, system-ui, sans-serif";s.fontWeight=n.type==="kpi"||n.id===state.hl?.sel?"600":"400";s.position.y=n.type==="kpi"?10:8;s.material.depthWrite=false;
+  return s;
+}
+function refresh3D(){
+  if(!G3)return;
+  G3.backgroundColor(css("--bg")).nodeColor(col3).nodeThreeObject(obj3)
+    .linkColor(l=>onLink(l)?(l.dsl?css("--fg"):catCol(byId.get(lid(l.source)).cat)):mix(css("--line"),css("--bg"),state.hl?0.35:1))
+    .linkWidth(l=>onLink(l)?1.6:0).linkDirectionalParticles(l=>onLink(l)?3:0)
+    .linkDirectionalParticleColor(l=>l.dsl?css("--fg"):catCol(byId.get(lid(l.source))?.cat||"DS"));
+}
+function addLaneLabels(){
+  if(!G3)return;const sc=G3.scene();sc.children.filter(o=>o.userData&&o.userData.lane).forEach(o=>sc.remove(o));
+  const ns=G3.graphData().nodes;if(!ns.length)return;
+  const xs=ns.map(n=>n.x||0),ys=ns.map(n=>n.y||0);
+  const minX=Math.min(...xs)-70,maxX=Math.max(...xs)+70,minY=Math.min(...ys)-50,maxY=Math.max(...ys)+50;
+  const W=maxX-minX,H=maxY-minY,cx=(minX+maxX)/2,cyy=(minY+maxY)/2;
+  const tag=o=>{o.userData.lane=1;sc.add(o);return o;};
+  if(typeof THREE!=="undefined"){
+    LANES.forEach(c=>{if(!ns.some(n=>n.cat===c))return;const color=new THREE.Color(catCol(c));
+      const plane=new THREE.Mesh(new THREE.PlaneGeometry(W,H),new THREE.MeshBasicMaterial({color,transparent:true,opacity:0.07,side:THREE.DoubleSide,depthWrite:false}));
+      plane.position.set(cx,cyy,laneZ(c));tag(plane);
+      const edge=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(W,H)),new THREE.LineBasicMaterial({color,transparent:true,opacity:0.45}));
+      edge.position.set(cx,cyy,laneZ(c));tag(edge);
+      const s=new SpriteText(LANE_NAME[c],9,catCol(c));s.fontWeight="600";s.material.depthWrite=false;s.position.set(minX-10-LANE_NAME[c].length*2.4,maxY-8,laneZ(c));tag(s);});
+    const span=Math.max(W,LANES.length*130);
+    sc.fog=new THREE.Fog(new THREE.Color(css("--bg")),span*0.6,span*2.4);
+  }
+  const t=new SpriteText("computation order  →   datasets · inputs · demand · dispatch · economics · KPIs",7,css("--muted"));t.position.set(cx,maxY+30,laneZ("DS"));tag(t);
+}
+function init3D(){
+  const el=$("#g3d");
+  G3=ForceGraph3D({controlType:"orbit"})(el).width(el.clientWidth).height(el.clientHeight)
+    .graphData(data3D()).nodeId("id").dagMode("lr").dagLevelDistance(48).onDagError(()=>{})
+    .nodeVal(n=>n.type==="kpi"?7:n.type==="dataset"?5:n.type==="design"?3.5:2.5).nodeRelSize(4).nodeOpacity(0.95)
+    .nodeThreeObjectExtend(true).linkOpacity(0.55).linkDirectionalArrowLength(3.5).linkDirectionalArrowRelPos(1)
+    .linkDirectionalParticleWidth(2).linkDirectionalParticleSpeed(0.008)
+    .nodeLabel(n=>{if(n.type==="dataset"){const d=DSById.get(n.ds);return `<b>${esc(d.name)}</b><br>${d.variableIds.length} variables`;}const v=byId.get(n.id);return `<b>${esc(v.name)}</b><br>${esc(v.sym)} · ${esc(v.unit)}`;})
+    .onNodeClick(n=>{if(n.type==="dataset"){leftTab("data");highlightDataset(n.ds);}else{state.trace=null;selectVar(n.id);}fly3D(n);})
+    .onBackgroundClick(()=>clearAll()).cooldownTicks(200).onEngineStop(()=>{addLaneLabels();if(cam3Pending){cam3Pending=false;obliqueCamera();}});
+  G3.d3Force("charge").strength(-160);
+  refresh3D();
+  try{const ctr=G3.controls();if(ctr&&!reduce){ctr.autoRotate=true;ctr.autoRotateSpeed=0.9;el.addEventListener("pointerdown",()=>{ctr.autoRotate=false;$("#hint3d").hidden=true;},{once:true});}}catch(e){}
+  new ResizeObserver(()=>{if(state.d3)G3.width(el.clientWidth).height(el.clientHeight);}).observe(el);
+}
+function fly3D(n){if(!G3||n.x===undefined)return;try{G3.controls().autoRotate=false;}catch(e){}G3.cameraPosition({x:n.x,y:n.y,z:n.z+170},{x:n.x,y:n.y,z:n.z},reduce?0:900);}
+function set3D(on){
+  state.d3=on;
+  $("#g3d").hidden=!on;$("#hint3d").hidden=!on;$("#cy").style.visibility=on?"hidden":"visible";
+  ["#pngBtn","#svgBtn"].forEach(s=>$(s).title=on?"Exports the 2D layout":"");
+  if(on){if(typeof ForceGraph3D==="undefined"||typeof SpriteText==="undefined"){modal("3D view unavailable","The 3D libraries did not load. Check the network connection and reload.","");set3D(false);return;}
+    if(!G3)init3D();else{G3.graphData(data3D());refresh3D();}}
+  else{G3&&G3.pauseAnimation&&G3.pauseAnimation();cy.resize();}
+  if(on&&G3&&G3.resumeAnimation)G3.resumeAnimation();
+}
+$("#v3d").onclick=()=>setMode("3d");$("#v2d").onclick=()=>setMode("2d");$("#vC").onclick=()=>setMode("concise");
+const _fit=$("#fitBtn").onclick;$("#fitBtn").onclick=()=>{if(state.d3&&G3)obliqueCamera();else _fit();};
+["#colCat","#colCov","#fmBtn","#themeBtn"].forEach(s=>$(s).addEventListener("click",()=>{refresh3D();if(state.d3)addLaneLabels();}));
+const _center=centerOn;centerOn=id=>{if(state.d3&&G3){const n=G3.graphData().nodes.find(x=>x.id===id);n&&fly3D(n);}else _center(id);};
+
+/* ---------- CONCISE VIEW (blocks) ---------- */
+let cyc=null;
+function blockLabel(b){return b.kind==="ds"?`${b.name}\n${b.sub}`:`${b.name}\n${b.members.length} variable${b.members.length===1?"":"s"}`;}
+function styleC(){
+  const C={};Object.entries(CATS).forEach(([k,c])=>C[k]=css(c.tok));
+  const bg=css("--bg"),panel=css("--panel"),fg=css("--fg"),muted=css("--muted"),focus=css("--focus");
+  const col=n=>n.data("kind")==="ds"?muted:C[n.data("cat")];
+  return [
+   {selector:"node",style:{"shape":"round-rectangle","width":236,"height":64,"background-color":panel,"border-width":2.5,"border-color":col,"label":"data(label)","color":fg,"font-size":13,"font-family":"IBM Plex Sans, system-ui, sans-serif","text-wrap":"wrap","text-max-width":216,"text-valign":"center","text-halign":"center","line-height":1.35}},
+   {selector:"node[kind='ds']",style:{"shape":"rectangle","border-width":1.5,"font-size":12,"color":muted,"width":236}},
+   {selector:"node[cat='D']",style:{"shape":"cut-rectangle","background-color":n=>mix(col(n),panel,0.15)}},
+   {selector:"node[cat='E']",style:{"background-color":n=>mix(col(n),panel,0.12)}},
+   {selector:"node[cat='G']",style:{"background-color":col,"color":bg,"font-weight":600,"border-width":0}},
+   {selector:"node.rowlabel",style:{"shape":"rectangle","width":150,"height":20,"background-opacity":0,"border-width":0,"color":muted,"font-size":11,"font-weight":600,"text-halign":"center","events":"no"}},
+   {selector:"edge",style:{"width":1.8,"line-color":mix(muted,bg,0.55),"target-arrow-color":mix(muted,bg,0.55),"target-arrow-shape":"triangle","curve-style":"unbundled-bezier","control-point-distances":[18],"control-point-weights":[0.5]}},
+   {selector:"edge.extra",style:{"line-style":"dashed","line-dash-pattern":[5,4],"width":1.4}},
+   {selector:".faded",style:{"opacity":0.12}},
+   {selector:"node.sel",style:{"border-width":5,"border-color":focus}},
+   {selector:"edge.hl",style:{"width":3,"line-color":e=>col(e.source()),"target-arrow-color":e=>col(e.source()),"opacity":1,"line-style":"dashed","line-dash-pattern":[8,4],"z-index":9}}
+  ];
+}
+function initConcise(){
+  cyc=cytoscape({container:$("#cyc"),wheelSensitivity:0.25,minZoom:0.15,maxZoom:2.5,
+    elements:[...ALLBLOCKS.map(b=>({data:{id:b.id,label:blockLabel(b),cat:b.cat,kind:b.kind}})),...BEDGES.map(([a,b])=>({data:{id:`${a}=>${b}`,source:a,target:b}}))]});
+  cyc.style(styleC());
+  const ROWS=[["Data sources",["d_weather","d_build","d_site","d_tech","d_prices","d_emis"]],["Inputs",["b_weather","b_offtakers","b_dcload","b_tech","b_prices"]],["Prepared inputs",["b_recov","b_hourly","b_design"]],["Hourly dispatch",["b_direct","b_hp","b_backup"]],["Annual results",["b_checks","b_flows","b_costs","b_counter"]],["KPIs",["k_env","k_perf","k_lcoh"]],["Decision outputs",["k_value","k_cond"]]];
+  const DX=262,DY=104;
+  ROWS.forEach(([lab,ids],r)=>{ids.forEach((id,i)=>cyc.getElementById(id).position({x:(i-(ids.length-1)/2)*DX,y:r*DY}));
+    cyc.add({group:"nodes",data:{id:"row_"+r,label:lab.toUpperCase()},classes:"rowlabel",position:{x:-3.5*DX+40,y:r*DY}});});
+  cyc.nodes(".rowlabel").ungrabify().unselectify();
+  cyc.on("tap","node",e=>selectBlock(e.target.id()));
+  cyc.on("tap",e=>{if(e.target===cyc)clearBlock();});
+}
+function clearBlock(){if(!cyc)return;cyc.remove("edge.extra");cyc.elements().removeClass("faded sel hl");state.selBlock=null;
+  $("#status").textContent=`Concise view: ${BLOCKS.length} model blocks fed by ${DS_BLOCKS.length} groups of datasets. Click a block to see its variables and links.`;renderInspectorEmpty();}
+function selectBlock(id){
+  if(state.vm!=="concise")setMode("concise");
+  const b=blockById.get(id);state.selBlock=id;
+  cyc.remove("edge.extra");cyc.elements().removeClass("faded sel hl");
+  const direct=state.mode==="direct";
+  const up=direct?bPar.get(id):bfs([id],bPar),down=direct?bAdj.get(id):bfs([id],bAdj);
+  cyc.batch(()=>{
+    cyc.elements().addClass("faded");
+    [id,...up,...down].forEach(x=>cyc.getElementById(x).removeClass("faded"));
+    cyc.getElementById(id).addClass("sel");
+    if(direct){[...[...up].map(u=>[u,id]),...[...down].map(d=>[id,d])].forEach(([a,c])=>{const eid=`${a}=>${c}`;let e=cyc.getElementById(eid);if(e.empty())e=cyc.add({group:"edges",data:{id:eid,source:a,target:c},classes:"extra"});e.removeClass("faded").addClass("hl");});}
+    else{const U=new Set([id,...up]),D=new Set([id,...down]);cyc.edges().filter(e=>(U.has(e.source().id())&&U.has(e.target().id()))||(D.has(e.source().id())&&D.has(e.target().id()))).removeClass("faded").addClass("hl");}
+  });
+  $("#status").textContent=`${b.name}: ${up.size} upstream, ${down.size} downstream block${down.size===1?"":"s"}${direct?" · thin dashed arrows are direct links hidden from the main flow":""}`;
+  renderBlockInspector(b,up,down);showTab("insp");
+}
+function blockChip(id){const b=blockById.get(id);const tok=b.kind==="ds"?"--muted":CATS[b.cat].tok;return `<button class="chip" data-goblock="${id}"><span class="d" style="background:var(${tok})"></span>${esc(b.name)}</button>`;}
+function renderBlockInspector(b,up,down){
+  const tok=b.kind==="ds"?"--muted":CATS[b.cat].tok;
+  const used=b.kind==="ds"?[]:[...new Set(b.members.flatMap(m=>byId.get(m).ds))];
+  $("#paneInsp").innerHTML=`<div style="display:flex;flex-direction:column;gap:4px"><p class="lbl" style="color:var(${tok})">${esc(b.kind==="ds"?"Data sources":CATS[b.cat].name)}</p><h2>${esc(b.name)}</h2>${b.sub?`<p class="muted" style="margin:0">${esc(b.sub)}</p>`:""}</div>
+  ${b.desc?`<p style="margin:0">${esc(b.desc)}</p>`:""}
+  <div><p class="lbl">Fed by (${up.size})</p><div class="links">${[...up].map(blockChip).join("")||'<span class="muted">Nothing: a starting point.</span>'}</div></div>
+  <div><p class="lbl">Feeds into (${down.size})</p><div class="links">${[...down].map(blockChip).join("")||'<span class="muted">Nothing: a final output.</span>'}</div></div>
+  ${b.kind==="ds"?`<div><p class="lbl">Datasets (${b.ds.length})</p><div class="links">${b.ds.map(dsChip).join("")}</div></div>`:`<div><p class="lbl">Variables in this block (${b.members.length})</p><p class="muted" style="margin:2px 0 6px;font-size:11px">Click one to open it in the detailed graph.</p><div class="links">${b.members.map(chip).join("")}</div></div>`}
+  ${used.length?`<div><p class="lbl">Datasets used directly</p><div class="links">${used.map(dsChip).join("")}</div></div>`:""}`;
+}
+function setMode(m){
+  state.vm=m;document.querySelector(".app").classList.toggle("concise-mode",m==="concise");[["vC","concise"],["v2d","2d"],["v3d","3d"]].forEach(([k,v])=>$("#"+k).classList.toggle("on",v===m));
+  if(m==="3d"){$("#cyc").hidden=true;set3D(true);}
+  else{set3D(false);
+    if(m==="concise"){$("#cy").style.visibility="hidden";$("#cyc").hidden=false;requestAnimationFrame(()=>{cyc.resize();cyc.fit(undefined,24);});clearBlock();}
+    else{$("#cyc").hidden=true;cy.resize();}}
+  $("#kpiBtn").hidden=m==="concise";
+}
+const _selVar=selectVar;selectVar=(id,scroll)=>{if(state.vm==="concise")setMode("2d");return _selVar(id,scroll);};
+const _selDs=highlightDataset;highlightDataset=(id,focus)=>{if(state.vm==="concise")setMode("2d");return _selDs(id,focus===undefined?true:focus);};
+const _empty=renderInspectorEmpty;renderInspectorEmpty=()=>{if(state.vm!=="concise")return _empty();
+  $("#paneInsp").innerHTML=`<p class="lbl">Concise view</p><div class="empty">The whole model in ${BLOCKS.length} blocks. Each block groups related variables; arrows show the main flow from data (top) to results (bottom). Click a block to see what feeds it, what it feeds and the variables inside. Try ${blockChip("b_hp")} ${blockChip("k_lcoh")} ${blockChip("k_cond")}</div>
+  <p class="lbl">How to read it</p><ul class="notes"><li>Top row: the six groups of datasets.</li><li>Middle: supply, demand and design feed the hourly dispatch, in order ① direct heat → ② heat pump → ③④ storage → ⑤ backup.</li><li>Bottom rows (filled): KPIs, stakeholder value and the heat-export agreement terms.</li><li>An arrow is left out where a longer path already links the same two blocks; select a block to see all its direct links.</li><li>Switch to Detailed 2D or 3D for all ${VARS.length} variables.</li></ul>`;};
+const _fit2=$("#fitBtn").onclick;$("#fitBtn").onclick=()=>{if(state.vm==="concise")cyc.fit(undefined,30);else _fit2();};
+["#mDirect","#mFull"].forEach(s=>$(s).addEventListener("click",()=>{if(state.vm==="concise"&&state.selBlock)selectBlock(state.selBlock);}));
+$("#themeBtn").addEventListener("click",()=>cyc&&cyc.style(styleC()));
+matchMedia("(prefers-color-scheme: light)").addEventListener("change",()=>cyc&&cyc.style(styleC()));
+
+/* ---------- edge flow animation ---------- */
+let off=0;const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+if(!reduce)setInterval(()=>{const h=(state.vm==="concise"&&cyc)?cyc.edges(".hl"):cy.edges(".hl");if(h.length){off=(off-1)%110;h.style("line-dash-offset",off);}},60);
+
+/* ---------- boot ---------- */
+cy.style(buildStyle());
+renderLeft();renderLegend();renderIntegrity();renderFixes();renderInspectorEmpty();
+layout();
+initConcise();setMode("concise");
+window.__model={VARS,DATASETS,EDGES,runChecks,runJourneys,traceToKPIs,ancestors,descendants};
+console.table(runJourneys());
+</script>
