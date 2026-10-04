@@ -1,0 +1,587 @@
+<title>Heat Reusage Network Visualizer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: one column operations board — banner, full-width street map, priority picker, KPI grid, tabbed detail. */
+:root {
+  --bg: #f3f5f7; --surface: #ffffff; --ink: #18202b; --muted: #5d6878; --line: #d9dee5;
+  --heat: #e0612a; --heat-soft: #fbe6da; --dc: #2a78d6; --boiler: #1baf7a; --pilot: #13906a;
+  --street: #c3cad4; --good: #1a7f45; --bad: #c03a3a; --window: #fff3ea;
+  --font-display: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --radius: 12px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0e1217; --surface: #151b23; --ink: #e7ebf0; --muted: #97a2b1; --line: #283140;
+  --heat: #f07b47; --heat-soft: #3a2318; --dc: #3987e5; --boiler: #199e70; --pilot: #2bbf89;
+  --street: #2c3644; --good: #45c27f; --bad: #ef6b6b; --window: #ffe3cf; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0e1217; --surface: #151b23; --ink: #e7ebf0; --muted: #97a2b1; --line: #283140;
+  --heat: #f07b47; --heat-soft: #3a2318; --dc: #3987e5; --boiler: #199e70; --pilot: #2bbf89;
+  --street: #2c3644; --good: #45c27f; --bad: #ef6b6b; --window: #ffe3cf; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--font-body); }
+.wrap { max-width: 1280px; margin: 0 auto; padding-inline: 16px; padding-block: 20px 48px; display: grid; gap: 18px }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; letter-spacing: -0.01em }
+h1 { font-size: clamp(1.6rem, 3.2vw, 2.4rem); font-weight: 700 }
+h2 { font-size: 1.25rem; font-weight: 600 }
+h3 { font-size: 1rem; font-weight: 600 }
+.muted { color: var(--muted) }
+.num { font-family: var(--font-data); font-variant-numeric: tabular-nums }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius) }
+button { font: inherit; color: inherit; cursor: pointer }
+button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--heat); outline-offset: 2px }
+
+/* hero */
+.hero { padding: 18px 20px 4px; display: grid; gap: 6px; overflow: hidden }
+.hero-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 14px }
+.tag { display: inline-block; font-size: .78rem; letter-spacing: .02em; color: var(--heat); border: 1px solid var(--heat);
+  border-radius: 999px; padding: 1px 10px; margin-bottom: 6px }
+.chips { display: flex; flex-wrap: wrap; gap: 10px }
+.chip { border: 1px solid var(--line); border-radius: 10px; padding: 6px 14px; min-width: 116px }
+.chip .k { font-size: .75rem; color: var(--muted) } .chip .v { font: 600 1.15rem var(--font-data) }
+.skyline { width: 100%; height: auto; display: block; color: var(--ink) }
+.sk-label { font: 12px var(--font-body); fill: var(--ink); fill-opacity: .72 }
+.sk-strong { fill-opacity: .92; font-weight: 600 }
+
+/* map */
+.mapbox { position: relative; overflow: hidden; padding: 0 }
+.mapbox svg { display: block; width: 100%; touch-action: none; cursor: grab }
+.mapbox svg:active { cursor: grabbing }
+.map-ctrl { position: absolute; top: 12px; left: 12px; display: grid; gap: 6px }
+.map-ctrl button { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); font-size: 1.1rem }
+.legend { position: absolute; left: 12px; bottom: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 8px 12px; font-size: .8rem; display: grid; gap: 4px; max-width: calc(100% - 24px) }
+.legend span.sw { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; vertical-align: -1px }
+.hint { position: absolute; right: 12px; bottom: 12px; font-size: .75rem; color: var(--muted); background: var(--surface);
+  border: 1px solid var(--line); border-radius: 8px; padding: 3px 8px }
+.tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 8px 10px; font-size: .82rem; min-width: 220px; max-width: 300px; box-shadow: 0 6px 20px rgba(0,0,0,.18); z-index: 5 }
+.tip b { font-family: var(--font-display) }
+.pipe { fill: none; stroke: var(--heat); stroke-linecap: round; stroke-dasharray: 9 7; animation: flow 1.1s linear infinite }
+@keyframes flow { from { stroke-dashoffset: 16 } to { stroke-dashoffset: 0 } }
+.heat { animation: rise 2.4s ease-in-out infinite; opacity: 0 }
+@keyframes rise { 0% { opacity: 0; transform: translateY(6px) } 50% { opacity: 1 } 100% { opacity: 0; transform: translateY(-6px) } }
+@media (prefers-reduced-motion: reduce) { .pipe, .heat { animation: none; opacity: 1 } }
+
+/* picker */
+.picker { padding: 16px 18px; display: grid; gap: 12px }
+.ask { display: flex; gap: 8px; flex-wrap: wrap }
+.ask input { flex: 1 1 260px; min-width: 0; font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line);
+  border-radius: 10px; padding: 9px 12px }
+.ask button, .btn { border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 8px 14px }
+.presets { display: flex; flex-wrap: wrap; gap: 8px }
+.preset { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 13px; font-size: .9rem }
+.preset[aria-pressed="true"] { border-color: var(--heat); background: var(--heat-soft); color: var(--ink); font-weight: 600 }
+.summary { border-left: 3px solid var(--heat); padding: 4px 0 4px 12px; border-radius: 0 }
+details summary { cursor: pointer; color: var(--muted); font-size: .9rem }
+details ul { margin: 8px 0 0; padding-left: 20px; font-size: .9rem }
+
+/* KPIs */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px }
+.kpi { padding: 12px 14px; display: grid; gap: 2px; align-content: start }
+.kpi .k { font-size: .82rem; color: var(--muted) }
+.kpi .v { font: 600 1.6rem/1.2 var(--font-data); font-variant-numeric: tabular-nums }
+.kpi .sub { font-size: .78rem; color: var(--muted) }
+.delta { font: 500 .8rem var(--font-data); display: inline-flex; gap: 4px; align-items: center; width: fit-content;
+  border-radius: 6px; padding: 0 6px }
+.delta.up { color: var(--good) } .delta.down { color: var(--bad) } .delta.neutral { color: var(--muted) }
+
+/* tabs */
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); overflow-x: auto }
+.tab { border: 0; background: none; padding: 10px 14px; border-bottom: 2px solid transparent; color: var(--muted); white-space: nowrap }
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--heat); font-weight: 600 }
+.tabpanel { padding-top: 16px; display: grid; gap: 16px }
+.two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px }
+.two > * { min-width: 0 }
+.card { padding: 14px 16px }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px }
+.big { font: 600 1.5rem var(--font-data) }
+.tablewrap { overflow-x: auto }
+table { border-collapse: collapse; width: 100%; font-size: .86rem }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top }
+th { font-weight: 600; color: var(--muted); font-size: .78rem; letter-spacing: .02em; white-space: nowrap }
+td.r, th.r { text-align: right }
+.bar { height: 6px; border-radius: 3px; background: var(--line); min-width: 60px } .bar > i { display: block; height: 100%; border-radius: 3px; background: var(--dc) }
+.pill { display: inline-block; font-size: .72rem; border-radius: 999px; padding: 0 8px; border: 1px solid var(--line) }
+.pill.steam { color: var(--heat); border-color: var(--heat) } .pill.gas, .pill.oil { color: var(--muted) }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 10px; overflow: hidden }
+.seg button { border: 0; background: none; padding: 6px 12px } .seg button[aria-pressed="true"] { background: var(--heat-soft); font-weight: 600 }
+.chart svg { width: 100%; display: block; overflow: visible }
+.chart text { fill: var(--muted); font: 11px var(--font-body) }
+.chart .grid line { stroke: var(--line) }
+.chart-tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 8px 10px; font-size: .8rem; min-width: 190px; box-shadow: 0 6px 20px rgba(0,0,0,.15) }
+.key { display: flex; flex-wrap: wrap; gap: 14px; font-size: .82rem }
+.key span.sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px }
+footer { font-size: .8rem; color: var(--muted); display: grid; gap: 4px }
+@media (max-width: 560px) { .split { grid-template-columns: 1fr } .hero { padding: 14px 14px 2px } .legend { font-size: .72rem } .hint { display: none } }
+</style>
+
+<div id="root"></div>
+<script id="data" type="application/json">/*__DATA__*/null</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js"></script>
+<script>
+const DATA = JSON.parse(document.getElementById("data").textContent);
+const { useState, useMemo, useRef, useEffect, useLayoutEffect } = React;
+const html = htm.bind(React.createElement);
+const SC = Object.fromEntries(DATA.scenarios.map(s => [s.key, s]));
+const BASE = SC.base;
+const DEFAULT_KEY = "realistic";
+
+const fmt = {
+  int: v => Math.round(v).toLocaleString("en-US"),
+  usdM: v => (v < 0 ? "−$" : "$") + Math.abs(v / 1e6).toFixed(2) + "M",
+  usd: v => (v < 0 ? "−$" : "$") + Math.round(Math.abs(v)).toLocaleString("en-US"),
+  pct: v => Math.round(v * 100) + "%",
+  gwh: v => (v / 1000).toFixed(1),
+};
+
+/* ---------------- skyline (ported from src/banner.py) ---------------- */
+const SLOTS = [[10,38,56],[52,50,38],[110,34,88,"FULTON","Fulton Houses"],[150,34,66,"FULTON"],[190,34,88,"FULTON"],
+  [232,26,60],[264,120,40,"CHELSEA MARKET","Chelsea Market"],[390,26,72],[572,30,50],[608,44,96,"212 WEST 18TH","212 W 18th St"],
+  [658,50,62],[714,28,84],[750,46,44],[802,34,70],[842,70,68,"155 WEST 11TH","155 W 11th St"],[918,30,52],[954,44,80],
+  [1004,56,46],[1066,32,64],[1104,44,36],[1152,40,58]];
+const FAR = [[70,40,80],[300,50,96],[520,30,120],[690,44,104],[880,40,92],[1120,50,86]];
+const GROUND = 150, DCX = 424, DCW = 140, W = 1200;
+
+function Skyline({ names }) {
+  const up = names.map(n => n.toUpperCase());
+  const namedOn = SLOTS.map(s => s[3] ? up.some(n => n.includes(s[3])) : false);
+  const hitKeys = new Set(SLOTS.filter((s, i) => s[3] && namedOn[i]).map(s => s[3]));
+  const others = names.length - up.filter(n => [...hitKeys].some(k => n.includes(k))).length;
+  const centre = DCX + DCW / 2;
+  const generic = SLOTS.map((s, i) => i).filter(i => !SLOTS[i][3])
+    .sort((a, b) => Math.abs(SLOTS[a][0] + SLOTS[a][1] / 2 - centre) - Math.abs(SLOTS[b][0] + SLOTS[b][1] / 2 - centre));
+  const on = new Set([...SLOTS.map((s, i) => namedOn[i] ? i : -1).filter(i => i >= 0), ...generic.slice(0, Math.max(0, others))]);
+  const hotX = [...on].map(i => SLOTS[i][0] + SLOTS[i][1] / 2);
+  const left = Math.min(centre, ...hotX.filter(x => x < centre)), right = Math.max(centre, ...hotX.filter(x => x > centre));
+  return html`<svg className="skyline" viewBox="0 0 ${W} ${GROUND + 30}" role="img"
+      aria-label=${`Skyline: ${names.length} buildings connected to 111 8th Ave, shown in orange`}>
+    ${FAR.map(([x, w, h], i) => html`<rect key=${"f" + i} x=${x} y=${GROUND - h} width=${w} height=${h} fill="currentColor" fillOpacity=".06" />`)}
+    ${[[0, 34, 112], [7, 20, 128], [12, 10, 140]].map(([dx, w, h], i) =>
+      html`<rect key=${"e" + i} x=${1010 + dx} y=${GROUND - h} width=${w} height=${h} fill="currentColor" fillOpacity=".09" />`)}
+    <rect x="1026" y=${GROUND - 158} width="2" height="18" fill="currentColor" fillOpacity=".09" />
+    ${SLOTS.map(([x, w, h, , label], i) => {
+      const hot = on.has(i), wins = [];
+      if (hot) for (let wy = GROUND - h + 8; wy < GROUND - 6; wy += 14) for (let wx = x + 5; wx < x + w - 8; wx += 12)
+        wins.push(html`<rect key=${wx + "-" + wy} x=${wx} y=${wy} width="5" height="5" fill="var(--window)" fillOpacity=".8" />`);
+      return html`<g key=${"s" + i}>
+        <rect x=${x} y=${GROUND - h} width=${w} height=${h} fill=${hot ? "var(--heat)" : "currentColor"} fillOpacity=${hot ? .95 : .16} />
+        ${wins}${label ? html`<text className="sk-label" x=${x} y=${GROUND - h - 6}>${label}</text>` : null}</g>`;
+    })}
+    ${[[0, DCW, 104], [12, DCW - 24, 118], [28, DCW - 56, 130]].map(([dx, w, h], i) =>
+      html`<rect key=${"d" + i} x=${DCX + dx} y=${GROUND - h} width=${w} height=${h} fill="var(--dc)" />`)}
+    ${d3.range(GROUND - 96, GROUND - 4, 12).map(y => html`<rect key=${"b" + y} x=${DCX + 10} y=${y} width=${DCW - 20} height="3" fill="#fff" fillOpacity=".35" />`)}
+    <text className="sk-label sk-strong" x=${DCX + 26} y=${GROUND - 138}>111 8th Ave · data center</text>
+    ${[48, 70, 92].map((dx, k) => html`<path key=${"h" + k} className="heat" style=${{ animationDelay: k * 0.8 + "s" }}
+      d=${`M${DCX + dx} ${GROUND - 150} q-6 -8 0 -16 q6 -8 0 -16`} fill="none" stroke="var(--heat)" strokeWidth="2.5" strokeLinecap="round" />`)}
+    <rect x="0" y=${GROUND} width=${W} height="10" fill="currentColor" fillOpacity=".2" />
+    ${hotX.length ? html`<path className="pipe" strokeWidth="4" style=${{ animationDirection: "reverse" }} d=${`M${centre} ${GROUND + 20} H${left}`} />
+      <path className="pipe" strokeWidth="4" d=${`M${centre} ${GROUND + 20} H${right}` + hotX.map(x => ` M${x} ${GROUND + 20} V${GROUND}`).join("")} />
+      <path className="pipe" strokeWidth="4" d=${`M${centre} ${GROUND} V${GROUND + 20}`} />` : null}
+  </svg>`;
+}
+
+function Hero({ s }) {
+  const names = s.connected.map(c => DATA.buildings[c.i].n);
+  const chips = [["Heat delivered", fmt.gwh(s.kpi.served_mwh) + " GWh/yr"], ["CO₂ cut", fmt.int(s.kpi.co2_net_t) + " t/yr"],
+                 ["Net value", fmt.usdM(s.kpi.net_usd) + "/yr"]];
+  return html`<header className="panel hero">
+    <div className="hero-top">
+      <div><span className="tag">${s.icon} ${s.label}</span><h1>Heat Reusage Network Visualizer</h1></div>
+      <div className="chips">${chips.map(([k, v]) => html`<div className="chip" key=${k}><div className="k">${k}</div><div className="v">${v}</div></div>`)}</div>
+    </div>
+    <${Skyline} names=${names} />
+  </header>`;
+}
+
+/* ---------------- map ---------------- */
+function useWidth(ref) {
+  const [w, setW] = useState(900);
+  useLayoutEffect(() => {
+    if (!ref.current) return;
+    const ro = new ResizeObserver(e => setW(Math.max(280, Math.round(e[0].contentRect.width))));
+    ro.observe(ref.current);
+    return () => ro.disconnect();
+  }, []);
+  return w;
+}
+
+function MapView({ s }) {
+  const box = useRef(null), svgRef = useRef(null);
+  const width = useWidth(box);
+  const height = Math.round(Math.min(720, Math.max(380, width * 0.62)));
+  const [t, setT] = useState(d3.zoomIdentity);
+  const [tip, setTip] = useState(null);
+  const zoom = useRef(null);
+  const site = DATA.site;
+  const proj = useMemo(() => {
+    const circle = d3.geoCircle().center([site.lon, site.lat]).radius(site.radius_m * 1.12 / 111195)();
+    return d3.geoMercator().fitExtent([[10, 10], [width - 10, height - 10]], circle);
+  }, [width, height]);
+  const path = useMemo(() => d3.geoPath(proj), [proj]);
+  const streetsD = useMemo(() => path({ type: "MultiLineString", coordinates: DATA.streets }), [path]);
+  const ring = useMemo(() => path(d3.geoCircle().center([site.lon, site.lat]).radius(site.radius_m / 111195)()), [path]);
+  const connected = useMemo(() => new Map(s.connected.map(c => [c.i, c])), [s]);
+  useEffect(() => {
+    const z = d3.zoom().scaleExtent([0.8, 8])
+      .filter(e => e.type === "wheel" ? (e.ctrlKey || e.metaKey) : !e.button)
+      .on("zoom", e => setT(e.transform));
+    zoom.current = z;
+    d3.select(svgRef.current).call(z);
+  }, []);
+  const zoomBy = k => d3.select(svgRef.current).transition().duration(250).call(zoom.current.scaleBy, k);
+  const reset = () => d3.select(svgRef.current).transition().duration(250).call(zoom.current.transform, d3.zoomIdentity);
+  const P = (lat, lon) => proj([lon, lat]);
+  const k = t.k;
+  const rad = mwh => Math.max(2.6, Math.sqrt(mwh) / 7.5) / Math.sqrt(k);
+  const [dx, dy] = P(site.lat, site.lon);
+  const show = (e, b, c) => {
+    const r = box.current.getBoundingClientRect();
+    const x = e.clientX - r.left, y = e.clientY - r.top;
+    setTip({ x: Math.min(x + 14, r.width - 300), y: y + 14, b, c });
+  };
+  return html`<section className="panel mapbox" ref=${box} aria-label="Network map">
+    <svg ref=${svgRef} width=${width} height=${height} viewBox=${`0 0 ${width} ${height}`} role="img"
+         aria-label=${`Map: ${s.connected.length} connected buildings and ${s.kpi.pipe_km.toFixed(1)} km of pipe around 111 8th Ave`}>
+      <rect width=${width} height=${height} fill="var(--surface)" />
+      <g transform=${t.toString()}>
+        <path d=${streetsD} fill="none" stroke="var(--street)" strokeWidth=${1.4 / k} strokeLinecap="round" />
+        <path d=${ring} fill="none" stroke="var(--muted)" strokeOpacity=".5" strokeWidth=${1 / k} strokeDasharray=${`${4 / k} ${6 / k}`} />
+        ${DATA.buildings.map((b, i) => connected.has(i) ? null : html`<circle key=${i} cx=${P(b.lat, b.lon)[0]} cy=${P(b.lat, b.lon)[1]}
+            r=${rad(b.mwh)} fill="var(--muted)" fillOpacity=".38" stroke="var(--surface)" strokeWidth=${0.8 / k}
+            onMouseMove=${e => show(e, b, null)} onMouseLeave=${() => setTip(null)} />`)}
+        ${s.pipes.map((line, i) => html`<path key=${"p" + i} className="pipe" strokeWidth=${4.5 / k}
+            style=${{ strokeDasharray: `${9 / k} ${7 / k}` }}
+            d=${d3.line()(line.map(([la, lo]) => P(la, lo)))} />`)}
+        ${s.services.map(([la, lo, nla, nlo], i) => html`<line key=${"s" + i} x1=${P(la, lo)[0]} y1=${P(la, lo)[1]}
+            x2=${P(nla, nlo)[0]} y2=${P(nla, nlo)[1]} stroke="var(--heat)" strokeWidth=${2 / k} />`)}
+        ${s.connected.map(c => { const b = DATA.buildings[c.i], [x, y] = P(b.lat, b.lon);
+          return html`<circle key=${"c" + c.i} cx=${x} cy=${y} r=${rad(c.mwh)} fill="var(--dc)" stroke="var(--surface)" strokeWidth=${1.6 / k}
+            onMouseMove=${e => show(e, b, c)} onMouseLeave=${() => setTip(null)} />`; })}
+        ${DATA.pilot.receivers.map((p, i) => { const [x, y] = P(p.lat, p.lon);
+          return html`<circle key=${"r" + i} cx=${x} cy=${y} r=${12 / Math.sqrt(k)} fill="none" stroke="var(--pilot)" strokeWidth=${2.2 / k}
+            strokeDasharray=${`${3 / k} ${3 / k}`} pointerEvents="none" />`; })}
+        ${(() => { const [x, y] = P(DATA.pilot.source.lat, DATA.pilot.source.lon);
+          return html`<g transform=${`translate(${x},${y}) scale(${1 / k})`} pointerEvents="none">
+            <rect x="-5" y="-5" width="10" height="10" transform="rotate(45)" fill="var(--pilot)" />
+            <text x="-9" y="4" textAnchor="end" style=${{ font: "600 11px var(--font-body)", fill: "var(--pilot)" }}>Con Ed pilot source</text></g>`; })()}
+        <g transform=${`translate(${dx},${dy}) scale(${1 / k})`} pointerEvents="none">
+          <circle r="11" fill="var(--dc)" stroke="var(--surface)" strokeWidth="2.5" />
+          <path d="M0 -6 L1.8 -1.9 L6 -1.9 L2.6 0.8 L3.8 5 L0 2.5 L-3.8 5 L-2.6 0.8 L-6 -1.9 L-1.8 -1.9 Z" fill="#fff" />
+          <text x="16" y="4" style=${{ font: "600 12.5px var(--font-display)", fill: "var(--ink)", paintOrder: "stroke",
+                stroke: "var(--surface)", strokeWidth: 4 }}>111 8th Ave data center</text>
+        </g>
+      </g>
+    </svg>
+    <div className="map-ctrl">
+      <button onClick=${() => zoomBy(1.6)} aria-label="Zoom in">+</button>
+      <button onClick=${() => zoomBy(1 / 1.6)} aria-label="Zoom out">−</button>
+      <button onClick=${reset} aria-label="Reset view" style=${{ fontSize: ".8rem" }}>⟲</button>
+    </div>
+    <div className="legend">
+      <div><span className="sw" style=${{ background: "var(--dc)" }}></span>Connected building (area ∝ heat demand)</div>
+      <div><span className="sw" style=${{ background: "var(--muted)", opacity: .5 }}></span>Not connected</div>
+      <div><span className="sw" style=${{ background: "var(--heat)", borderRadius: "2px", height: "4px" }}></span>Heat pipe, flowing outward</div>
+      <div><span className="sw" style=${{ border: "2px dashed var(--pilot)", background: "none" }}></span>Con Ed Chelsea pilot (85 10th Ave → Fulton)</div>
+    </div>
+    <div className="hint">Drag to pan · Ctrl/⌘ + scroll to zoom</div>
+    ${tip ? html`<div className="tip" style=${{ left: tip.x, top: tip.y }}>
+      <b>${tip.b.n}</b><div className="muted">${tip.b.a} · ${tip.b.t}</div>
+      <div>Heated by <b>${tip.b.f}</b> · ${fmt.int(tip.c ? tip.c.mwh : tip.b.mwh)} MWh/yr · ${fmt.int(tip.b.d)} m away</div>
+      ${tip.c ? html`<div>Served <b>${fmt.int(tip.c.served)} MWh/yr</b> · net ${fmt.usd(tip.c.value)}/yr</div>`
+              : html`<div className="muted">Not connected in this scenario</div>`}
+      ${tip.b.pr ? html`<div style=${{ color: "var(--pilot)" }}>Public housing / school</div>` : null}
+    </div>` : null}
+  </section>`;
+}
+
+/* ---------------- picker ---------------- */
+function Picker({ s, setKey }) {
+  const [q, setQ] = useState(""), [msg, setMsg] = useState("");
+  const match = e => {
+    e.preventDefault();
+    const text = q.toLowerCase().trim();
+    if (!text) { setMsg("Type what matters to you, or pick a button below."); return; }
+    let best = null, score = 0;
+    for (const sc of DATA.scenarios) { const n = sc.keywords.filter(kw => text.includes(kw)).length; if (n > score) { score = n; best = sc; } }
+    if (best) { setKey(best.key); setMsg(`Showing “${best.label}”.`); }
+    else setMsg("No match. Try words like community, profit, climate, liquid cooling or worst case, or pick a button.");
+  };
+  return html`<section className="panel picker" aria-label="Choose a priority">
+    <form className="ask" onSubmit=${match}>
+      <label htmlFor="ask" className="muted" style=${{ flexBasis: "100%", fontSize: ".85rem" }}>Describe your priority in your own words</label>
+      <input id="ask" value=${q} onInput=${e => setQ(e.target.value)} placeholder="e.g. help the neighbourhood, make the most money, what if everything goes wrong?" />
+      <button type="submit">Show me</button>
+    </form>
+    ${msg ? html`<div className="muted" role="status" style=${{ fontSize: ".85rem" }}>${msg}</div>` : null}
+    <div className="presets" role="group" aria-label="Scenarios">
+      ${DATA.scenarios.map(sc => html`<button key=${sc.key} className="preset" aria-pressed=${sc.key === s.key}
+          onClick=${() => { setKey(sc.key); setMsg(""); }}>${sc.icon} ${sc.label}</button>`)}
+    </div>
+    <div className="summary"><b>${s.icon} ${s.label}.</b> ${s.summary}</div>
+    ${s.changes.length ? html`<details><summary>What this changes vs the base case (${s.changes.length})</summary>
+      <ul>${s.changes.map((c, i) => html`<li key=${i}>${c}</li>`)}</ul></details>` : null}
+  </section>`;
+}
+
+/* ---------------- KPIs ---------------- */
+function Delta({ d, digits = 0, unit = "", neutral = false, scale = 1 }) {
+  if (BASE === null) return null;
+  const v = d * scale, txt = Math.abs(v).toFixed(digits);
+  if (Number(txt) === 0) return null;
+  const cls = neutral ? "neutral" : v > 0 ? "up" : "down";
+  return html`<span className=${"delta " + cls}>${v > 0 ? "▲" : "▼"} ${v > 0 ? "+" : "−"}${Number(txt).toLocaleString("en-US", { minimumFractionDigits: digits })}${unit} vs base</span>`;
+}
+
+function Kpis({ s }) {
+  const k = s.kpi, b = BASE.kpi, isBase = s.key === "base";
+  const cards = [
+    ["Heat delivered", fmt.gwh(k.served_mwh) + " GWh/yr", [k.served_mwh - b.served_mwh, 1, " GWh", false, 1e-3], `heat pump COP ${k.hp_cop.toFixed(2)} · ${k.hp_delivered_mw.toFixed(1)} MW`],
+    ["Demand covered", fmt.pct(k.coverage), [k.coverage - b.coverage, 0, " pts", false, 100], `data center ${fmt.pct(k.share_dc)} · tank ${fmt.pct(k.share_storage)} · building boilers ${fmt.pct(k.share_backup)}`],
+    ["Net CO₂ cut", fmt.int(k.co2_net_t) + " t/yr", [k.co2_net_t - b.co2_net_t, 0, " t"], `fuel −${fmt.int(k.co2_fuel_avoided_t)} t · grid power +${fmt.int(k.co2_grid_added_t)} t`],
+    ["Net value", fmt.usdM(k.net_usd) + "/yr", [k.net_usd - b.net_usd, 2, "M", false, 1e-6], `after ${fmt.usdM(k.capex_total_usd)}/yr of annualised capital cost`],
+    ["Water saved", fmt.int(k.water_m3) + " m³/yr", [k.water_m3 - b.water_m3, 0, " m³"], "less cooling-tower evaporation"],
+    ["Buildings connected", String(k.buildings), [k.buildings - b.buildings, 0, "", true], `${k.priority_buildings} public housing / school · of ${DATA.buildings.length} candidates`],
+    ["Pipe", k.pipe_km.toFixed(2) + " km", [k.pipe_km - b.pipe_km, 2, " km", true], "under streets + building services"],
+  ];
+  return html`<section aria-label="Results"><h2 style=${{ marginBottom: "10px" }}>Results</h2>
+    <div className="kpis">${cards.map(([label, v, [d, dg, u, n, sc], sub]) => html`<div className="panel kpi" key=${label}>
+      <div className="k">${label}</div><div className="v">${v}</div>
+      ${isBase ? null : html`<${Delta} d=${d} digits=${dg} unit=${u} neutral=${n} scale=${sc || 1} />`}
+      <div className="sub">${sub}</div></div>`)}</div></section>`;
+}
+
+/* ---------------- profit spider chart ---------------- */
+// Each axis is scaled min→max across the 8 scenarios (losses included), so "further out" = better on every axis.
+const PROFIT_AXES = [["net_usd", "Net value"], ["operator_profit_usd", "Data-center owner"], ["building_savings_usd", "Building owners"],
+                     ["avoided_fuel_usd", "Fuel saved"], ["avoided_ll97_usd", "LL97 avoided"], ["water_usd", "Water saved"]];
+const PROFIT_RANGE = Object.fromEntries(PROFIT_AXES.map(([k]) => {
+  const v = DATA.scenarios.map(sc => sc.kpi[k]); return [k, [Math.min(...v), Math.max(...v)]]; }));
+const INNER = 0.12;  // the worst scenario sits on a small inner ring instead of collapsing to the centre
+const profitFrac = (k, v) => { const [lo, hi] = PROFIT_RANGE[k]; return INNER + (1 - INNER) * (hi === lo ? 1 : (v - lo) / (hi - lo)); };
+
+function ProfitRadar({ s }) {
+  const [hov, setHov] = useState(null);
+  const W = 560, H = 380, cx = W / 2, cy = H / 2 + 4, R = 128, n = PROFIT_AXES.length;
+  const ang = i => -Math.PI / 2 + i * 2 * Math.PI / n;
+  const pt = (i, f) => [cx + Math.cos(ang(i)) * R * f, cy + Math.sin(ang(i)) * R * f];
+  const poly = sc => PROFIT_AXES.map(([k], i) => pt(i, profitFrac(k, sc.kpi[k])).map(v => v.toFixed(1)).join(",")).join(" ");
+  const showBase = s.key !== "base";
+  return html`<div className="panel card" style=${{ display: "grid", gap: "10px" }}>
+    <div style=${{ display: "flex", flexWrap: "wrap", gap: "10px", justifyContent: "space-between", alignItems: "baseline" }}>
+      <h3>Profit profile</h3>
+      <div className="key">
+        <span><span className="sw" style=${{ background: "var(--heat)" }}></span>${s.label}</span>
+        ${showBase ? html`<span><span className="sw" style=${{ border: "2px dashed var(--muted)", background: "none" }}></span>Base case</span>` : null}
+      </div>
+    </div>
+    <div className="two" style=${{ alignItems: "center" }}>
+      <div style=${{ position: "relative" }}>
+        <svg viewBox=${`0 0 ${W} ${H}`} style=${{ width: "100%", display: "block" }} role="img"
+             aria-label=${`Spider chart of six profit measures for ${s.label}${showBase ? " compared with the base case" : ""}; values are in the table beside it`}>
+          ${[INNER, 0.34, 0.56, 0.78, 1].map(f => html`<polygon key=${f} points=${PROFIT_AXES.map((_, i) => pt(i, f).join(",")).join(" ")}
+              fill="none" stroke="var(--line)" strokeWidth="1" />`)}
+          ${PROFIT_AXES.map((_, i) => { const [x, y] = pt(i, 1); return html`<line key=${"sp" + i} x1=${cx} y1=${cy} x2=${x} y2=${y} stroke="var(--line)" />`; })}
+          ${showBase ? html`<polygon points=${poly(BASE)} fill="none" stroke="var(--muted)" strokeWidth="1.6" strokeDasharray="5 4" />` : null}
+          <polygon points=${poly(s)} fill="var(--heat)" fillOpacity=".18" stroke="var(--heat)" strokeWidth="2.2" strokeLinejoin="round" />
+          ${PROFIT_AXES.map(([k, label], i) => {
+            const [x, y] = pt(i, profitFrac(k, s.kpi[k])), [lx, ly] = pt(i, 1.17), c = Math.cos(ang(i));
+            const anchor = Math.abs(c) < 0.2 ? "middle" : c > 0 ? "start" : "end";
+            return html`<g key=${k}>
+              <text x=${lx} y=${ly + (Math.sin(ang(i)) > 0.5 ? 12 : Math.sin(ang(i)) < -0.5 ? -4 : 4)} textAnchor=${anchor}
+                style=${{ font: "600 13px var(--font-body)", fill: hov === i ? "var(--ink)" : "var(--muted)" }}>${label}</text>
+              <circle cx=${x} cy=${y} r=${hov === i ? 6 : 4.5} fill="var(--heat)" stroke="var(--surface)" strokeWidth="2" />
+              <circle cx=${x} cy=${y} r="16" fill="transparent" onMouseEnter=${() => setHov(i)} onMouseLeave=${() => setHov(null)} />
+            </g>`; })}
+        </svg>
+        ${hov !== null ? (() => { const [k, label] = PROFIT_AXES[hov], [lo, hi] = PROFIT_RANGE[k];
+          return html`<div className="chart-tip" style=${{ left: "50%", top: 8, transform: "translateX(-50%)" }}>
+            <b>${label}</b>
+            <div style=${{ display: "flex", justifyContent: "space-between", gap: "12px" }}><span>${s.label}</span><span className="num">${fmt.usdM(s.kpi[k])}/yr</span></div>
+            ${showBase ? html`<div style=${{ display: "flex", justifyContent: "space-between", gap: "12px" }}><span>Base case</span><span className="num">${fmt.usdM(BASE.kpi[k])}/yr</span></div>` : null}
+            <div className="muted" style=${{ fontSize: ".75rem", marginTop: "4px" }}>Axis runs ${fmt.usdM(lo)} to ${fmt.usdM(hi)} across the 8 scenarios</div>
+          </div>`; })() : null}
+      </div>
+      <div className="tablewrap"><table>
+        <thead><tr><th>Measure ($/yr)</th><th className="r">${s.label}</th>${showBase ? html`<th className="r">Base case</th>` : null}</tr></thead>
+        <tbody>${PROFIT_AXES.map(([k, label], i) => html`<tr key=${k} onMouseEnter=${() => setHov(i)} onMouseLeave=${() => setHov(null)}
+            style=${{ background: hov === i ? "var(--heat-soft)" : "transparent" }}>
+          <td>${label}</td><td className="r num">${fmt.usdM(s.kpi[k])}</td>${showBase ? html`<td className="r num">${fmt.usdM(BASE.kpi[k])}</td>` : null}</tr>`)}</tbody>
+      </table>
+      <p className="muted" style=${{ fontSize: ".78rem", margin: "8px 0 0" }}>Each axis runs from the lowest to the highest value among the 8 scenarios, so further out is always better. Net value = data-center owner + building owners.</p></div>
+    </div>
+  </div>`;
+}
+
+/* ---------------- money ---------------- */
+function Money({ s }) {
+  const k = s.kpi;
+  const rows = [["Fuel no longer bought", k.avoided_fuel_usd], ["LL97 penalties avoided", k.avoided_ll97_usd], ["Cooling-tower water saved", k.water_usd],
+    ["Electricity (heat pump + pumps)", -k.electricity_usd], ["Pipes (annualised)", -k.capex_pipes_usd], ["Building connections", -k.capex_connections_usd],
+    ["Heat pump", -k.capex_heat_pump_usd], ["Storage tank", -k.capex_storage_usd]];
+  return html`<div className="two">
+    <div className="panel card" style=${{ display: "grid", gap: "12px", alignContent: "start" }}>
+      <h3>Who gets what (per year)</h3>
+      <div className="split">
+        <div><div className="muted" style=${{ fontSize: ".85rem" }}>Data-center owner</div><div className="big">${fmt.usdM(k.operator_profit_usd)}</div>
+          <div className="muted" style=${{ fontSize: ".78rem" }}>sells heat at ${Math.round(s.heat_discount * 100)}% below today's price, pays all costs</div></div>
+        <div><div className="muted" style=${{ fontSize: ".85rem" }}>Building owners</div><div className="big">${fmt.usdM(k.building_savings_usd)}</div>
+          <div className="muted" style=${{ fontSize: ".78rem" }}>cheaper heat + avoided LL97 penalties</div></div>
+      </div>
+      <ul style=${{ margin: 0, paddingLeft: "18px", fontSize: ".88rem" }}>
+        <li>Recovered data-center heat <b className="num">${fmt.int(k.recovered_heat_mwh)} MWh/yr</b>; heat-pump electricity <b className="num">${fmt.int(k.hp_elec_mwh)} MWh/yr</b></li>
+        <li>Storage needed to ride through the outage hours: <b className="num">${fmt.int(k.storage_needed_for_outage_mwh)} MWh</b></li>
+        ${s.carbon_price > 0 ? html`<li>Climate benefit at $${s.carbon_price}/t: <b className="num">${fmt.usdM(k.carbon_value_usd)}/yr</b> (not in the cash total)</li>` : null}
+      </ul>
+    </div>
+    <div className="panel card"><h3 style=${{ marginBottom: "6px" }}>Money breakdown (USD/yr)</h3>
+      <div className="tablewrap"><table><tbody>
+        ${rows.map(([n, v]) => html`<tr key=${n}><td>${n}</td><td className="r num">${fmt.usd(v)}</td></tr>`)}
+        <tr><td><b>Net</b></td><td className="r num"><b>${fmt.usd(k.net_usd)}</b></td></tr>
+      </tbody></table></div></div>
+  </div>`;
+}
+
+/* ---------------- hourly chart ---------------- */
+const SERIES = [["dc", "Data center (heat pump)", "var(--dc)"], ["tank", "Storage tank", "var(--heat)"], ["backup", "Building boilers (backup)", "var(--boiler)"]];
+
+function Chart({ s }) {
+  const [view, setView] = useState("year");
+  const box = useRef(null);
+  const width = useWidth(box);
+  const [hover, setHover] = useState(null);
+  const h = 320, m = { t: 12, r: 12, b: 28, l: 48 };
+  const src = view === "year" ? s.daily : s.week;
+  const n = src.dc.length;
+  const xs = useMemo(() => view === "year" ? src.t.map(d => new Date(d + "T00:00"))
+    : d3.range(n).map(i => new Date(new Date(s.week.start + "T00:00").getTime() + i * 3600e3)), [s, view]);
+  const rows = d3.range(n).map(i => ({ i, dc: src.dc[i], tank: src.tank[i], backup: src.backup[i], demand: src.demand[i] }));
+  const stack = d3.stack().keys(["dc", "tank", "backup"])(rows);
+  const cap = s.hp_mw * (view === "year" ? 24 : 1);
+  const x = d3.scaleTime().domain(d3.extent(xs)).range([m.l, width - m.r]);
+  const y = d3.scaleLinear().domain([0, Math.max(cap, d3.max(rows, r => r.demand)) * 1.08]).nice().range([h - m.b, m.t]);
+  const area = d3.area().x((d, i) => x(xs[i])).y0(d => y(d[0])).y1(d => y(d[1]));
+  const line = d3.line().x((d, i) => x(xs[i])).y(d => y(d.demand));
+  const unit = view === "year" ? "MWh/day" : "MW";
+  const ticks = x.ticks(width < 520 ? 4 : view === "year" ? 12 : 7);
+  const tf = view === "year" ? d3.timeFormat("%b") : d3.timeFormat("%a %d");
+  const move = e => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - r.left) * (width / r.width);
+    const i = Math.max(0, Math.min(n - 1, d3.bisectCenter(xs.map(d => +d), +x.invert(px))));
+    setHover({ i, px: x(xs[i]) });
+  };
+  const hv = hover && rows[hover.i];
+  return html`<div className="panel card chart" style=${{ display: "grid", gap: "10px" }}>
+    <div style=${{ display: "flex", flexWrap: "wrap", gap: "10px", justifyContent: "space-between", alignItems: "center" }}>
+      <h3>Supply vs demand</h3>
+      <div className="seg" role="group" aria-label="Time range">
+        <button aria-pressed=${view === "year"} onClick=${() => { setView("year"); setHover(null); }}>Year (daily)</button>
+        <button aria-pressed=${view === "week"} onClick=${() => { setView("week"); setHover(null); }}>Coldest week (hourly)</button>
+      </div>
+    </div>
+    <div className="key">${SERIES.map(([, l, c]) => html`<span key=${l}><span className="sw" style=${{ background: c }}></span>${l}</span>`)}
+      <span><span className="sw" style=${{ background: "var(--ink)", height: "2px", borderRadius: 0 }}></span>Demand</span>
+      <span><span className="sw" style=${{ borderTop: "2px dotted var(--muted)", background: "none", height: 0, borderRadius: 0 }}></span>Heat-pump capacity</span></div>
+    <div ref=${box} style=${{ position: "relative" }}>
+      <svg viewBox=${`0 0 ${width} ${h}`} height=${h} role="img" aria-label=${`Stacked area chart of heat supply by source versus demand, ${unit}`}>
+        <g className="grid">${y.ticks(5).map(v => html`<line key=${v} x1=${m.l} x2=${width - m.r} y1=${y(v)} y2=${y(v)} />`)}</g>
+        ${y.ticks(5).map(v => html`<text key=${"y" + v} x=${m.l - 8} y=${y(v) + 4} textAnchor="end">${fmt.int(v)}</text>`)}
+        <text x=${m.l - 8} y=${m.t - 2} textAnchor="end">${unit}</text>
+        ${ticks.map(d => html`<text key=${+d} x=${x(d)} y=${h - 8} textAnchor="middle">${tf(d)}</text>`)}
+        ${stack.map((layer, li) => html`<path key=${layer.key} d=${area(layer)} fill=${SERIES[li][2]} fillOpacity=".9"
+            stroke="var(--surface)" strokeWidth="0.6" />`)}
+        <path d=${line(rows)} fill="none" stroke="var(--ink)" strokeWidth="1.6" />
+        <line x1=${m.l} x2=${width - m.r} y1=${y(cap)} y2=${y(cap)} stroke="var(--muted)" strokeWidth="1.5" strokeDasharray="3 4" />
+        ${hover ? html`<line x1=${hover.px} x2=${hover.px} y1=${m.t} y2=${h - m.b} stroke="var(--ink)" strokeOpacity=".5" />` : null}
+        <rect x=${m.l} y=${m.t} width=${width - m.l - m.r} height=${h - m.t - m.b} fill="transparent"
+          onMouseMove=${move} onMouseLeave=${() => setHover(null)} />
+      </svg>
+      ${hv ? html`<div className="chart-tip" style=${{ left: Math.min(hover.px + 12, width - 210), top: 10 }}>
+        <b>${view === "year" ? d3.timeFormat("%a %d %b")(xs[hover.i]) : d3.timeFormat("%a %d %b, %H:00")(xs[hover.i])}</b>
+        ${SERIES.map(([key, l, c]) => html`<div key=${key} style=${{ display: "flex", justifyContent: "space-between", gap: "12px" }}>
+          <span><span style=${{ display: "inline-block", width: "8px", height: "8px", borderRadius: "2px", background: c, marginRight: "6px" }}></span>${l}</span>
+          <span className="num">${hv[key].toFixed(1)}</span></div>`)}
+        <div style=${{ display: "flex", justifyContent: "space-between", borderTop: "1px solid var(--line)", marginTop: "4px", paddingTop: "4px" }}>
+          <span>Demand</span><span className="num">${hv.demand.toFixed(1)} ${unit}</span></div></div>` : null}
+    </div>
+    <div className="muted" style=${{ fontSize: ".82rem" }}>The blue area cannot rise above the dotted line: once the heat pump is at full output,
+      each building's own boilers cover the rest.</div>
+  </div>`;
+}
+
+/* ---------------- buildings + assumptions ---------------- */
+function Buildings({ s }) {
+  return html`<div className="panel card"><div className="tablewrap"><table>
+    <thead><tr><th>Building</th><th>Address</th><th>Type</th><th>Heated by</th><th className="r">Distance m</th>
+      <th className="r">Heat need MWh/yr</th><th className="r">Served MWh/yr</th><th>Covered</th><th className="r">Net cash value $/yr</th></tr></thead>
+    <tbody>${s.connected.map(c => { const b = DATA.buildings[c.i], cov = c.mwh ? c.served / c.mwh : 0;
+      return html`<tr key=${c.i}><td><b>${b.n}</b>${b.pr ? html` <span className="pill" style=${{ color: "var(--pilot)", borderColor: "var(--pilot)" }}>public</span>` : null}</td>
+        <td>${b.a}</td><td>${b.t}</td><td><span className=${"pill " + b.f}>${b.f}</span></td><td className="r num">${fmt.int(b.d)}</td>
+        <td className="r num">${fmt.int(c.mwh)}</td><td className="r num">${fmt.int(c.served)}</td>
+        <td><div className="bar" title=${fmt.pct(cov)}><i style=${{ width: Math.round(cov * 100) + "%" }}></i></div><span className="num" style=${{ fontSize: ".75rem" }}>${fmt.pct(cov)}</span></td>
+        <td className="r num">${fmt.usd(c.value)}</td></tr>`; })}</tbody></table></div>
+    <p className="muted" style=${{ fontSize: ".8rem", margin: "10px 0 0" }}>Net cash value = fuel + LL97 + water saved − electricity − the building's own connection. Shared street pipes are not allocated to buildings.</p></div>`;
+}
+
+function Assumptions() {
+  const [q, setQ] = useState("");
+  const rows = DATA.assumptions.filter(r => !q || (r.p + r.s).toLowerCase().includes(q.toLowerCase()));
+  const prov = Object.entries(DATA.provenance), qual = Object.entries(DATA.quality);
+  return html`<div className="two">
+    <div className="panel card" style=${{ display: "grid", gap: "10px", gridColumn: "1 / -1" }}>
+      <div style=${{ display: "flex", flexWrap: "wrap", gap: "10px", justifyContent: "space-between", alignItems: "center" }}>
+        <h3>Every assumption, with its source and plausible range</h3>
+        <input aria-label="Filter assumptions" placeholder="Filter, e.g. price, cop, steam" value=${q} onInput=${e => setQ(e.target.value)}
+          style=${{ font: "inherit", padding: "6px 10px", border: "1px solid var(--line)", borderRadius: "8px", background: "var(--bg)", color: "var(--ink)", minWidth: 0 }} />
+      </div>
+      <div className="tablewrap"><table><thead><tr><th>Parameter</th><th className="r">Value</th><th>Unit</th><th>Range</th><th>Source</th></tr></thead>
+        <tbody>${rows.map(r => html`<tr key=${r.p}><td className="num" style=${{ fontSize: ".78rem" }}>${r.p}</td><td className="r num">${r.v}</td>
+          <td>${r.u}</td><td className="num" style=${{ whiteSpace: "nowrap" }}>${r.r}</td><td style=${{ minWidth: "280px" }}>${r.s}</td></tr>`)}</tbody></table></div>
+    </div>
+    <div className="panel card"><h3 style=${{ marginBottom: "6px" }}>Data sources</h3>
+      <ul style=${{ margin: 0, paddingLeft: "18px" }}>${prov.map(([k, v]) => html`<li key=${k}>${k}: <b>${v === "sample" ? "sample fallback" : "real data"}</b></li>`)}</ul>
+      <p className="muted" style=${{ fontSize: ".8rem" }}>NYC LL84 energy disclosure 2023 (5zyy-y8am), MapPLUTO, Open-Meteo 2023 hourly weather, OpenStreetMap streets.</p></div>
+    <div className="panel card"><h3 style=${{ marginBottom: "6px" }}>Data-quality findings in the LL84 records</h3>
+      <table><tbody>${qual.map(([k, v]) => html`<tr key=${k}><td>${k}</td><td className="r num">${v}</td></tr>`)}</tbody></table></div>
+  </div>`;
+}
+
+/* ---------------- app ---------------- */
+const TABS = [["money", "Money"], ["hours", "Hour by hour"], ["buildings", "Buildings"], ["data", "Assumptions & data"]];
+
+function App() {
+  const initial = (location.hash || "").slice(1);
+  const [key, setKeyState] = useState(SC[initial] ? initial : DEFAULT_KEY);
+  const [tab, setTab] = useState("money");
+  const setKey = k => { setKeyState(k); try { history.replaceState(null, "", "#" + k); } catch (e) {} };
+  const s = SC[key];
+  return html`<main className="wrap">
+    <${Hero} s=${s} />
+    <${MapView} s=${s} />
+    <${Picker} s=${s} setKey=${setKey} />
+    <${Kpis} s=${s} />
+    <section>
+      <div className="tabs" role="tablist">${TABS.map(([id, label]) => html`<button key=${id} role="tab" className="tab" id=${"tab-" + id}
+        aria-selected=${tab === id} aria-controls=${"panel-" + id} onClick=${() => setTab(id)}>${label}</button>`)}</div>
+      <div className="tabpanel" role="tabpanel" id=${"panel-" + tab} aria-labelledby=${"tab-" + tab}>
+        ${tab === "money" ? html`<${ProfitRadar} s=${s} /><${Money} s=${s} />` : tab === "hours" ? html`<${Chart} s=${s} />`
+          : tab === "buildings" ? html`<${Buildings} s=${s} />` : html`<${Assumptions} />`}
+      </div>
+    </section>
+    <footer>
+      <div>Results are precomputed from the team's Python model (real NYC data, hourly year) for each scenario. Custom settings run in the full Streamlit app.</div>
+      <div>Site: 111 8th Avenue, Manhattan · search radius ${DATA.site.radius_m} m · model run ${DATA.generated}. Share a scenario by adding its name to the link, e.g. #worst or #community.</div>
+    </footer>
+  </main>`;
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(html`<${App} />`);
+</script>

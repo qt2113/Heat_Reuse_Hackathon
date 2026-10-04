@@ -1,0 +1,254 @@
+# =============================================================================
+# Data-center waste-heat network — ALL model assumptions live here.
+# Every numeric assumption is {value, unit, range, source}. Code reads `value`;
+# the app renders the whole table. "VERIFY" in a source = team should re-confirm
+# before judging. Ranges are plausible bounds used for sliders / sensitivity.
+# =============================================================================
+
+site:
+  name: "111 Eighth Avenue (Google carrier hotel)"
+  lat: {value: 40.741366, unit: deg, source: "NYC GeoSearch (PAD 26c) for '111 8 Avenue', BBL 1007390001 / BIN 1013043. Verified 2026-10-03."}
+  lon: {value: -74.003211, unit: deg, source: "NYC GeoSearch (PAD 26c)."}
+  bbl: "1007390001"
+  # The source building itself reports 39.5 GBtu steam (2022) for its office floors.
+  # Excluded from candidates by default: the brief is about *nearby* buildings.
+  exclude_source_building: true
+
+# Con Edison Chelsea Utility Thermal Energy Network (UTEN) pilot — marked on the map.
+# Source: https://www.coned.com/en/our-energy-future/our-energy-vision/where-we-are-going/thermal-energy-networks/chelsea
+# Status per Con Ed page: design awaiting NY PSC approval; no capacity published.
+con_ed_pilot:
+  source: {name: "85 10th Ave (Con Ed pilot heat source)", lat: 40.743400, lon: -74.007928, bbl: "1006870029"}
+  receivers:
+    - {name: "401 W 16th St (Fulton Houses)", lat: 40.742590, lon: -74.004715, bbl: "1007140031"}
+    - {name: "410 W 17th St (Fulton Houses)", lat: 40.742914, lon: -74.004475, bbl: "1007140031"}
+    - {name: "420 W 17th St (Fulton Houses)", lat: 40.742964, lon: -74.005096, bbl: "1007140031"}
+  # If true, remove the pilot buildings' share of their tax lot from our candidate demand
+  # (avoid double-claiming heat Con Ed will serve). 3 of the 4 buildings on lot 1007140031.
+  exclude_pilot_demand: false
+  pilot_share_of_lot: {value: 0.75, unit: "-", range: [0.5, 1.0], source: "Assumption: 3 of 4 buildings on BBL 1007140031 (PLUTO numbldgs=4), equal size."}
+
+data:
+  cache_dir: data
+  radius_m: {value: 800, unit: m, range: [200, 1500], source: "Brief default. ~10 min walk; typical first-phase district-heat cluster."}
+  street_graph_dist_m: {value: 1000, unit: m, range: [500, 2000], source: "Brief. Must exceed radius so routes can leave the circle."}
+  street_network_type: "drive"   # pipes run under roadways; 'all' would route along the High Line / paths
+  weather_year: {value: 2023, unit: yr, source: "Brief default. 2023 NYC HDD18 = 2,441 K·d (warm winter, but Feb-4 cold snap to -16.5 °C)."}
+  # Match LL84 consumption year to weather year so the hourly shape distributes the
+  # consumption that this weather actually produced. Fallback to other years per property.
+  ll84_report_year: {value: 2023, unit: yr, range: [2022, 2024], source: "NYC Open Data 5zyy-y8am (LL84 2023-present). Matched to weather_year."}
+  ll84_dataset_id: "5zyy-y8am"
+  pluto_dataset_id: "64uk-42ks"
+  socrata_domain: "data.cityofnewyork.us"
+
+# ---------------------------------------------------------------------------
+# Demand
+# ---------------------------------------------------------------------------
+demand:
+  boiler_efficiency: {value: 0.80, unit: "-", range: [0.70, 0.90], source: "Brief. Typical seasonal efficiency of older NYC gas/oil steam & HW boilers (ASHRAE/NYSERDA audits 0.70-0.85)."}
+  oil_boiler_efficiency: {value: 0.80, unit: "-", range: [0.70, 0.88], source: "Assumed equal to gas boilers."}
+  # DEVIATION FROM BRIEF: district steam is not burned on site, so a combustion efficiency
+  # is the wrong factor. Useful fraction = metered steam enthalpy minus HX/distribution loss
+  # and condensate heat dumped to sewer (Con Ed does not take condensate back).
+  steam_utilization_efficiency: {value: 0.85, unit: "-", range: [0.75, 0.95], source: "Assumption. Steam-to-water HX ~0.95 × condensate/flash & distribution losses ~0.9."}
+  t_base_c: {value: 18.0, unit: degC, range: [15.0, 18.5], source: "Brief. EN ISO 15927-6 / Eurostat HDD base; ASHRAE 65°F = 18.3 °C."}
+  # Share of on-site heating fuel that is DHW (rest = space heat), by LL84 primary_property_type.
+  dhw_share:
+    source: "Brief values for multifamily/office/hotel/other; others: US DOE CBECS 2018 / RECS 2020 end-use splits (rounded). Range ±50%."
+    range_multiplier: [0.5, 1.5]
+    default: 0.15
+    by_type:
+      "Multifamily Housing": 0.28
+      "Residence Hall/Dormitory": 0.28
+      "Senior Living Community": 0.30
+      "Senior Care Community": 0.30
+      "Hotel": 0.30
+      "Office": 0.08
+      "Medical Office": 0.10
+      "Retail Store": 0.08
+      "K-12 School": 0.10
+      "College/University": 0.12
+      "Hospital (General Medical & Surgical)": 0.25
+      "Fitness Center/Health Club/Gym": 0.40
+      "Restaurant": 0.30
+      "Supermarket/Grocery Store": 0.15
+  # Share of reported heating fuel that is NOT space heat or DHW (cooking, process,
+  # steam-driven absorption chillers). Removed before the split. Without monthly steam data
+  # we cannot separate summer steam cooling — this is the main known bias for steam offices.
+  non_heating_share:
+    source: "Assumption. Gas cooking ~3-7% of NYC multifamily gas (RECS 2020 Mid-Atlantic); restaurants/food halls mostly cooking; offices allow for steam absorption cooling."
+    range: [0.0, 0.6]
+    default: 0.05
+    by_type:
+      "Multifamily Housing": 0.05
+      "Office": 0.15
+      "Hotel": 0.10
+      "Restaurant": 0.50
+      "Food Service": 0.50
+      "Other - Restaurant/Bar": 0.50
+      "Supermarket/Grocery Store": 0.25
+      "Hospital (General Medical & Surgical)": 0.20
+      "Laboratory": 0.20
+  # 0 = brief's method (space heat follows each hour's HDH). 24 = trailing 24 h mean of HDH,
+  # a proxy for building thermal mass; lowers the peak (2023 coldest hour -16.5 °C vs NYC
+  # 99.6 % design ≈ -10 °C) without changing annual energy.
+  space_smoothing_h: {value: 0, unit: h, range: [0, 48], source: "Option. Thermal time constants of heavy masonry NYC buildings are tens of hours (ASHRAE Fundamentals Ch.18); 24 h is a common daily-mean design simplification."}
+  dhw_multiplier: {value: 1.0, unit: "-", range: [0.5, 1.5], source: "Slider; scales every DHW share."}
+  # Typical daily DHW draw shape (hour 0..23, local time), normalised in code.
+  dhw_daily_profile:
+    source: "Shape after ASHRAE Handbook HVAC Applications Ch.51 apartment hourly flow profile (morning 6-9h and evening 18-22h peaks). Same every day."
+    weights: [1.0, 0.6, 0.4, 0.4, 0.6, 1.8, 4.0, 6.5, 6.0, 4.8, 4.0, 3.6, 3.4, 3.0, 2.8, 2.8, 3.2, 4.2, 5.4, 6.0, 5.6, 4.8, 3.4, 2.0]
+  peak_intensity_check_w_m2: {value: [20, 120], unit: "W/m2 of gross floor area", source: "Brief. Typical design heat loss of NYC buildings ~30-90 W/m2."}
+  exclude_peak_w_m2_above: {value: 300, unit: "W/m2", range: [150, 1000], source: "Assumption. >2.5x the upper sanity bound is not a single building: e.g. Penn South Bldg 4 (1,089 W/m2) houses the co-op's central plant."}
+  heat_intensity_outlier_kbtu_ft2: {value: [5, 150], unit: "kBtu/ft2/yr of heating fuel", source: "Flag only. NYC multifamily median ~60-70 kBtu/ft2 site EUI (LL84)."}
+
+# ---------------------------------------------------------------------------
+# Supply
+# ---------------------------------------------------------------------------
+supply:
+  q_src_mw: {value: 5.0, unit: MW_th, range: [1.0, 20.0], source: "Brief. Cross-check: 111 8th Ave bought 144.7 GWh electricity in 2022 (avg 16.5 MW, LL84) — essentially all ends as low-grade heat; 5 MW is a conservative recoverable share."}
+  t_source_c: {value: 30.0, unit: degC, range: [20.0, 45.0], source: "Brief. Air-cooled DC return air/condenser water 25-35 °C; liquid cooling 40-50 °C."}
+  t_supply_c: {value: 65.0, unit: degC, range: [45.0, 80.0], source: "Brief. Network supply temperature."}
+  hx_penalty_k: {value: 10.0, unit: K, range: [5.0, 15.0], source: "Brief. Building HX approach + legacy radiator/DHW (legionella 60 °C) requirement."}
+  cop_eta: {value: 0.40, unit: "-", range: [0.30, 0.60], source: "Brief. Calibrated to Grundfos case (16-25 °C source → 60-75 °C, COP 2.95)."}
+  outage_hours: {value: 0, unit: h/yr, range: [0, 500], source: "Slider. DC maintenance / HP trip."}
+  # Where outage hours fall. "peak" = one contiguous block centred on the coldest-demand hour
+  # (worst case, conservative); "summer" = block centred on 1 Aug (planned maintenance).
+  outage_placement: "peak"
+  pumping_kwh_per_mwh: {value: 10.0, unit: kWh_e/MWh_th, range: [5.0, 25.0], source: "Assumption. Distribution pumping ~0.5-2 % of delivered heat for well-designed variable-speed networks (Grundfos / Euroheat & Power guidance)."}
+  storage_mwh: {value: 20.0, unit: MWh_th, range: [0.0, 200.0], source: "Assumption. Steel hot-water tank ~ 1 MWh per 20-25 m3 at ΔT 35-40 K."}
+  storage_loss_per_h: {value: 0.001, unit: "1/h", range: [0.0, 0.005], source: "Assumption. Well-insulated tank ~1-2 %/day."}
+  storage_max_power_mw: {value: 5.0, unit: MW_th, range: [1.0, 20.0], source: "Assumption. Charge/discharge limit."}
+
+# ---------------------------------------------------------------------------
+# Economics & emissions
+# ---------------------------------------------------------------------------
+economics:
+  gas_price_usd_mmbtu: {value: 14.0, unit: USD/MMBtu, range: [10.0, 18.0], source: "Brief, VERIFY. EIA NY commercial avg 2025 = $11.47/Mcf ≈ $11.06/MMBtu (state avg; Con Ed NYC delivery charges are higher). https://www.eia.gov/dnav/ng/hist/n3020ny3a.htm"}
+  steam_price_usd_mmbtu: {value: 35.0, unit: USD/MMBtu, range: [30.0, 60.0], source: "Con Ed bill examples Nov-2025: SC-3 apartment 900 Mlb/mo → $35,840 = $39.8/Mlb ≈ $33/MMBtu; SC-2 commercial 750 Mlb → $54.7/Mlb ≈ $46/MMBtu (1 Mlb = 1.194 MMBtu). https://coned.com/en/accounts-billing/your-bill/about-con-edisons-rates"}
+  oil_price_usd_mmbtu: {value: 25.0, unit: USD/MMBtu, range: [18.0, 35.0], source: "Assumption, VERIFY. #2 heating oil ~$3.5/gal / 0.1387 MMBtu/gal."}
+  electricity_price_usd_kwh: {value: 0.22, unit: USD/kWh, range: [0.15, 0.30], source: "Brief, VERIFY. EIA Electric Power Monthly Table 5.6.A, NY commercial ~20-23 ¢/kWh 2024-25; Con Ed NYC at upper end."}
+  pipe_cost_usd_m: {value: 3000.0, unit: USD/m (trench, supply+return pair), range: [1000.0, 8000.0], source: "Brief, VERIFY. EU urban pre-insulated DN100-200 €860-1,270/m (npro.energy, DEA); Manhattan utility congestion and street-opening rules multiply this 2-5x."}
+  hp_capex_usd_kw: {value: 1200.0, unit: USD/kW_th, range: [600.0, 2000.0], source: "Brief, VERIFY. DEA technology data large HP ~€0.6-1.0 M/MW_th incl. installation; US urban premium."}
+  storage_capex_usd_mwh: {value: 3000.0, unit: USD/MWh_th, range: [1000.0, 10000.0], source: "Assumption. DEA: large steel tanks ~€2-5k/MWh; small urban tanks dearer."}
+  discount_rate: {value: 0.06, unit: "1/yr", range: [0.03, 0.10], source: "Brief."}
+  pipe_life_yr: {value: 30, unit: yr, range: [25, 50], source: "Brief. Pre-insulated steel pipe design life 30-50 yr."}
+  hp_life_yr: {value: 20, unit: yr, range: [15, 25], source: "Brief."}
+  diversity_factor: {value: 0.65, unit: "-", range: [0.5, 0.9], source: "Brief. Network simultaneity for sizing (Winter et al. / DH design guides)."}
+
+# ---------------------------------------------------------------------------
+# Network
+# ---------------------------------------------------------------------------
+network:
+  max_segment_m: {value: 40.0, unit: m, range: [20.0, 100.0], source: "Modelling choice: street edges are split so buildings attach near their frontage, not at the nearest intersection (Manhattan cross-town blocks ~260 m)."}
+  heat_loss_w_per_m: {value: 20.0, unit: W/m trench, range: [10.0, 40.0], source: "Assumption. Pre-insulated twin/pair DN80-150 at 65/40 °C ~15-25 W/m (Logstor/Isoplus catalogue loss tables, series 2)."}
+  building_connection_usd_per_kw: {value: 150.0, unit: USD/kW_peak, range: [80.0, 300.0], source: "Assumption, VERIFY. Building substation (HX, controls, metering, tie-in) ~£50-100/kW in UK/DK; US labor premium."}
+  connection_life_yr: {value: 25, unit: yr, range: [20, 30], source: "Assumption. Substation design life."}
+  selection_method: "greedy"   # greedy | pcst | milp
+
+emissions:
+  gas_tco2_per_mmbtu: {value: 0.05306, unit: tCO2/MMBtu, range: [0.05306, 0.05311], source: "Brief / EPA GHG EF hub (53.06 kg CO2/MMBtu). LL97 uses 0.05311 tCO2e/MMBtu."}
+  steam_tco2_per_mmbtu: {value: 0.04493, unit: tCO2e/MMBtu, range: [0.040, 0.050], source: "LL97 (RCNY §103-14) district steam factor 0.00004493 tCO2e/kBtu."}
+  oil_tco2_per_mmbtu: {value: 0.07421, unit: tCO2e/MMBtu, range: [0.0732, 0.0742], source: "LL97 #2 oil factor 0.00007421 tCO2e/kBtu."}
+  grid_tco2_per_kwh: {value: 0.000288962, unit: tCO2e/kWh, range: [0.00015, 0.00035], source: "Brief / LL97 2024-2029 electricity factor."}
+  ll97_penalty_usd_t: {value: 268.0, unit: USD/tCO2e, source: "LL97 §28-320.6: $268 per tCO2e over the limit."}
+  ll97_enabled: true
+  # LL97 2024-2029 limits (tCO2e per ft2) by property type — subset; buildings without a
+  # limit get no penalty credit. Penalty avoided = min(excess, emissions displaced) × $268.
+  ll97_limits_2024_tco2e_ft2:
+    source: "1 RCNY §103-14 Table, 2024-2029 limits (rounded). VERIFY per building class."
+    default: null
+    by_type:
+      "Multifamily Housing": 0.00675
+      "Office": 0.00758
+      "Hotel": 0.00987
+      "Retail Store": 0.01181
+      "K-12 School": 0.00758
+      "Residence Hall/Dormitory": 0.00675
+      "Medical Office": 0.01194
+      "Supermarket/Grocery Store": 0.02381
+      "Restaurant": 0.02381
+  # NYCHA buildings comply under LL97 §28-320.7 (Article 321 prescriptive) — no penalty applies.
+  ll97_exempt_name_patterns: ["NYCHA", "FULTON", "ELLIOTT", "CHELSEA HOUSES"]
+  water_m3_per_mwh: {value: 1.6, unit: m3/MWh_th, range: [1.2, 2.0], source: "Brief. Cooling-tower evaporation ≈ latent heat 0.68 m3/MWh + drift/blowdown."}
+
+# ---------------------------------------------------------------------------
+# Objective: what the connection optimiser maximises (money KPIs are always reported in cash)
+# ---------------------------------------------------------------------------
+objective:
+  # project  = everyone combined (fuel saved - electricity + LL97 + water, - all capex)
+  # operator = data-center owner builds the network and sells heat at a discount to each
+  #            building's current heat cost; keeps the water saving, not the LL97 credit.
+  perspective: "project"
+  heat_discount: {value: 0.10, unit: "-", range: [0.0, 0.5], source: "Assumption. 'Avoided-cost minus discount' pricing, common in district heating: each building pays its current heat cost per MWh x (1 - discount)."}
+  carbon_price_usd_t: {value: 0.0, unit: USD/tCO2e, range: [0.0, 400.0], source: "Off by default (cash only). NYS DEC Value of Carbon 2025: $212/t (2020$, 2 % discount rate). https://dec.ny.gov/sites/default/files/2025-04/vocguide2025.pdf"}
+  water_price_usd_m3: {value: 4.62, unit: USD/m3, range: [3.0, 6.0], source: "NYC Water Board FY2026: water $5.05 + sewer $8.02 = $13.07 per 100 ft3 (2.832 m3). Saved by the data center (less cooling-tower make-up). https://www.nyc.gov/site/dep/pay-my-bills/how-we-bill-you.page"}
+  priority_weight: {value: 1.0, unit: "x", range: [1.0, 3.0], source: "Value multiplier for priority buildings in the optimiser only (equity weighting). 1 = no preference."}
+  # Priority buildings: NYCHA public housing, Mitchell-Lama co-ops, public schools.
+  priority_name_patterns: ["FULTON", "ELLIOTT", "CHELSEA HOUSES", "NYCHA", "PENN SOUTH", "MUTUAL REDEVELOPMENT"]
+  priority_property_types: ["K-12 School"]
+
+# ---------------------------------------------------------------------------
+# Presets for non-technical users. Overrides use dotted config paths; anything not listed
+# keeps its default. lock_base_network = keep the network chosen under "base" and test it
+# under these conditions (stress test), instead of re-optimising.
+# ---------------------------------------------------------------------------
+presets:
+  base:
+    label: "Base case"
+    icon: "⚖️"
+    summary: "Our documented default assumptions. Cash only: fuel savings minus electricity and the cost of pipes and equipment."
+    keywords: ["base", "default", "standard", "normal", "balanced"]
+    overrides: {}
+  realistic:
+    label: "Most realistic (our pick)"
+    icon: "⭐"
+    summary: "Base case plus two realism fixes: building thermal mass smooths the coldest-hour peaks, and the Fulton buildings Con Ed's pilot will serve are not claimed twice."
+    keywords: ["realistic", "recommend", "best guess", "likely", "honest", "optimal"]
+    overrides: {demand.space_smoothing_h: 24, con_ed_pilot.exclude_pilot_demand: true}
+  community:
+    label: "Benefit the community"
+    icon: "🏘️"
+    summary: "Counts the climate benefit at New York State's value of carbon ($212/t) and gives public housing and schools twice the weight when choosing who to connect."
+    keywords: ["community", "neighbo", "public", "nycha", "housing", "equity", "fair", "people", "resident", "social", "school"]
+    overrides: {objective.carbon_price_usd_t: 212.0, objective.priority_weight: 2.0}
+  profit:
+    label: "Most profit for the data-center owner"
+    icon: "💰"
+    summary: "The data-center owner pays for everything and sells heat 10 % cheaper than each building pays today. Only connections that make the owner money are built."
+    keywords: ["profit", "money", "revenue", "earn", "business", "investor", "return", "owner", "google", "rich", "personal"]
+    overrides: {objective.perspective: "operator", objective.heat_discount: 0.10}
+  climate:
+    label: "Biggest CO₂ cut"
+    icon: "🌍"
+    summary: "Puts a high price on carbon ($400/t) so the network reaches gas-heated buildings too, as long as the cut is real."
+    keywords: ["climate", "carbon", "co2", "emission", "green", "planet", "environment", "sustainab", "net zero"]
+    overrides: {objective.carbon_price_usd_t: 400.0}
+  liquid_cooling:
+    label: "If the data center switches to liquid cooling"
+    icon: "💧"
+    summary: "Liquid-cooled servers return water at about 45 °C instead of 30 °C, so the heat pump works far less hard (COP about 4.6 instead of 3.1), and more of the servers' heat can be captured (10 MW of the building's ~16.5 MW average electricity use, vs 5 MW today). Gas-heated buildings start to pay off."
+    keywords: ["liquid", "future", "upgrade", "cooling", "hotter", "innovation", "what if"]
+    overrides: {supply.t_source_c: 45.0, supply.q_src_mw: 10.0}
+  best:
+    label: "Best case"
+    icon: "📈"
+    summary: "The base-case network, tested with every uncertain input at the favourable end of its documented range."
+    keywords: ["best", "optimistic", "upside", "everything goes right"]
+    lock_base_network: true
+    overrides: {supply.q_src_mw: 8.0, supply.t_source_c: 35.0, supply.cop_eta: 0.50, supply.hx_penalty_k: 5.0,
+                economics.steam_price_usd_mmbtu: 50.0, economics.gas_price_usd_mmbtu: 16.0,
+                economics.electricity_price_usd_kwh: 0.16, economics.pipe_cost_usd_m: 1500.0,
+                economics.hp_capex_usd_kw: 800.0, economics.discount_rate: 0.04,
+                network.building_connection_usd_per_kw: 80.0}
+  worst:
+    label: "Worst case"
+    icon: "⚠️"
+    summary: "The base-case network, tested with every uncertain input at the unfavourable end of its range at once: costly pipes and power, cheap steam, a weaker heat pump, 500 h of outages in the coldest weeks, no LL97 credit. A bound, not a forecast."
+    keywords: ["worst", "pessimis", "downside", "risk", "fail", "wrong", "bad", "stress"]
+    lock_base_network: true
+    overrides: {supply.q_src_mw: 3.0, supply.t_source_c: 25.0, supply.cop_eta: 0.30, supply.hx_penalty_k: 15.0,
+                supply.outage_hours: 500, economics.steam_price_usd_mmbtu: 30.0, economics.gas_price_usd_mmbtu: 10.0,
+                economics.electricity_price_usd_kwh: 0.30, economics.pipe_cost_usd_m: 8000.0,
+                economics.hp_capex_usd_kw: 2000.0, economics.discount_rate: 0.10, emissions.ll97_enabled: false,
+                network.building_connection_usd_per_kw: 300.0}

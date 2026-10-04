@@ -1,0 +1,15 @@
+# Python 3.11+
+pandas>=2.2
+numpy>=1.26
+geopandas>=1.0
+shapely>=2.0
+osmnx>=2.0
+networkx>=3.2
+requests>=2.31
+pulp>=2.8
+pyyaml>=6.0
+streamlit>=1.40
+folium>=0.17
+streamlit-folium>=0.22
+plotly>=5.20
+pytest>=8.0

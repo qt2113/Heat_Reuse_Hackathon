@@ -1,0 +1,14 @@
+# Look & feel. Fonts/accent are set for BOTH light and dark themes so the app keeps following
+# the viewer's system setting (a bare [theme] section would pin it to light).
+[theme.light]
+font = "'IBM Plex Sans':https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap, sans-serif"
+headingFont = "'Space Grotesk':https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap, sans-serif"
+primaryColor = "#eb6834"   # heat orange (selected preset, sliders, tabs)
+
+[theme.dark]
+font = "'IBM Plex Sans':https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap, sans-serif"
+headingFont = "'Space Grotesk':https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap, sans-serif"
+primaryColor = "#eb6834"
+
+[client]
+toolbarMode = "minimal"    # hide the Deploy button / developer menu during the demo
