@@ -1,0 +1,19 @@
+source,horizon,preset,config_id,E_val,N_co2,Q_DC_used_MWh,S_li,feasibility
+model_c recommendation,today,equal (demonstration baseline),today|1633052+1634606+19906892+4040951+4769672+7536925+8899918,-9461190.571588028,2510.674847367576,26128.9653450985,0.0,conditionally_feasible
+model_c recommendation,today,technical-first,today|1633052+1634606+19906892+4040951+4769672+8899918,-9440402.962578496,2312.6941157549563,23729.769696333333,0.0,conditionally_feasible
+model_c recommendation,today,economic-first,today|1633052+1634606+19906892+4040951+7536925+8899918,-6001578.823560883,1860.1064509810503,19540.393945073483,0.0,conditionally_feasible
+model_c recommendation,today,environmental-first,today|1633052+1634606+19906892+2830989+2831044+4040951+4473909+4769672+7536925+8899918,-25404348.515373982,3583.2775045017243,37585.38922682671,2072.0,conditionally_feasible
+model_c recommendation,today,social-first,today|1633052+1634606+19906892+2831044+4040951+7536925+8899918,-12311078.68547213,2290.8200428507043,24759.92297227012,944.0,conditionally_feasible
+model_c recommendation,post_rebuild,equal (demonstration baseline),post_rebuild|1633052+1634606+19906892+4040951+7536925+8899918+R2831044,-7146307.940996089,1289.498900691151,33301.85230088525,1334.7774000000002,conditionally_feasible
+model_c recommendation,post_rebuild,technical-first,post_rebuild|1633052+1634606+19906892+4040951+8899918+R2831044,-7125520.33198656,1091.5181690785312,30902.65665212008,1334.7774000000002,conditionally_feasible
+model_c recommendation,post_rebuild,economic-first,post_rebuild|7536925,-20787.609009530745,197.98073161261976,2399.195648765168,0.0,conditionally_feasible
+model_c recommendation,post_rebuild,environmental-first,post_rebuild|1633052+1634606+19906892+4040951+4769672+7536925+8899918+R2831044,-10584065.06436734,1922.830070540058,39706.8774092074,1334.7774000000002,conditionally_feasible
+model_c recommendation,post_rebuild,social-first,post_rebuild|1633052+1634606+19906892+4040951+7536925+R2831044+R4473909,-10894404.047835547,212.15722214011112,45633.25388867451,2931.0,conditionally_feasible
+final proposal comparison,,minimum_cost,111 Eighth Avenue (source building),-20787.609009530745,197.98073161261976,2399.195648765168,0.0,conditionally_feasible
+final proposal comparison,,minimum_cost_network,M070 school; 111 Eighth Avenue (source building),-1163650.1016271303,336.44501128762136,3827.152419548156,0.0,conditionally_feasible
+final proposal comparison,,proposal_phase1,363 West 16th Street (hotel); 111 Eighth Avenue (source building),-1304003.017006388,520.2068523692787,5722.254649524039,0.0,conditionally_feasible
+final proposal comparison,,proposal_phase2,363 West 16th Street (hotel); 111 Eighth Avenue (source building); Rebuilt Fulton,-2780328.768028772,-50.40069792062013,19483.713005335805,1334.7774000000002,conditionally_feasible
+final proposal comparison,,proposal_phase2_school,M070 school; 363 West 16th Street (hotel); 111 Eighth Avenue (source building); Rebuilt Fulton,-3462919.129877777,88.06358175438254,20911.669776118797,1334.7774000000002,conditionally_feasible
+final proposal comparison,,balanced,M440 school; M070 school; 363 West 16th Street (hotel); Chelsea Market; 111 Eighth Avenue (source building); 61 9th Ave; Rebuilt Fulton,-7146307.940996089,1289.498900691151,33301.85230088525,1334.7774000000002,conditionally_feasible
+final proposal comparison,,balanced_today,M440 school; M070 school; 363 West 16th Street (hotel); Chelsea Market; London Terrace Towers; 111 Eighth Avenue (source building); 61 9th Ave,-9461190.571588028,2510.674847367576,26128.96534509849,0.0,conditionally_feasible
+final proposal comparison,,community,M440 school; M070 school; 363 West 16th Street (hotel); Chelsea Market; 111 Eighth Avenue (source building); Rebuilt Fulton; Rebuilt Elliott-Chelsea,-10895844.13613235,213.26555764673503,45645.16036338607,2931.0,conditionally_feasible

@@ -41,11 +41,18 @@ class RunSpec:
     level: str = "base"
 
 
-def simulate(spec: RunSpec, cfg: dict, bundle: dict, A: dict, stress: dict | None = None) -> dict:
+def simulate(spec: RunSpec, cfg: dict, bundle: dict, A: dict, stress: dict | None = None,
+             scen_override: dict | None = None, policy: str = "class_priority",
+             dispatch_value: dict | None = None, return_streams: bool = False) -> dict:
     """Run one configuration. `bundle` holds data loaded once (weather, offtakers, ...).
     `stress` (operating-mode tests) may hold hourly arrays: source_off (1 = data-center heat unavailable),
-    hp_scale (0-1 heat-pump capacity factor), offtake_off (1 = network cannot deliver heat)."""
-    phys, scen = cfg["physics"], cfg["scenarios"][spec.scenario]
+    hp_scale (0-1 heat-pump capacity factor), offtake_off (1 = network cannot deliver heat).
+    `scen_override` = {"members": [...], "rebuild": {...}} runs any building combination (Model C).
+    `policy`: "class_priority" (validated default: classes DHW -> sh45 -> sh_exist, pro-rata within a class)
+    or "merit" (building-level streams in order of net value per MWh of source heat, `dispatch_value`
+    = $ of displaced heat per useful MWh by property_id)."""
+    phys = cfg["physics"]
+    scen = scen_override if scen_override is not None else cfg["scenarios"][spec.scenario]
     weather = bundle["weather"]
     shape_sh, shape_dhw = bundle["shape_sh"], bundle["shape_dhw"]
     T_out = weather.dry_bulb_C.to_numpy(float)
@@ -111,7 +118,15 @@ def simulate(spec: RunSpec, cfg: dict, bundle: dict, A: dict, stress: dict | Non
     # ---------------- hourly dispatch
     out = {f"{k}_{c}": np.zeros(H) for c in CLASSES for k in ("load", "ch", "dis", "soc", "backup", "unserved", "E", "src")}
     soc = {c: 0.0 for c in CLASSES}
-    for h in range(H):
+    streams = None
+    if policy == "merit" and len(bdf):
+        streams = _merit_dispatch(bdf, Dc, shape_sh, shape_dhw, hp_cap, tank, backup_cap, COP, Q_avail, hx_cap,
+                                  offtake_off, hp_scale, dispatch_value or {}, A)
+        for c in CLASSES:
+            m = streams["cls"] == c
+            for kk in ("load", "ch", "dis", "soc", "backup", "unserved", "E", "src"):
+                out[f"{kk}_{c}"] = streams[kk][m].sum(axis=0) if m.any() else np.zeros(H)
+    for h in (range(H) if streams is None else ()):
         src_left = 0.0 if offtake_off[h] else min(Q_avail[h], hx_cap)
         for c in CLASSES:
             d = Dc[c][h]
@@ -160,6 +175,9 @@ def simulate(spec: RunSpec, cfg: dict, bundle: dict, A: dict, stress: dict | Non
     bdf["Q_backup_MWh"] = 0.0
     bdf["Q_unserved_MWh"] = 0.0
     bdf["E_HP_MWh"] = 0.0
+    bdf["Q_loop_MWh"] = 0.0          # loop (data-center) heat withdrawn by the building's heat pumps (billing basis)
+    bdf["HP_cap_MW"] = 0.0           # building heat-pump capacity (share of its class capacity)
+    bdf["peak_served_MW"] = 0.0      # design peak of the demand the network serves at this building
     for c in CLASSES:
         if c == "dhw":
             sh_ = share("D_dhw_MWh", bdf.D_dhw_MWh > 0)
@@ -169,7 +187,16 @@ def simulate(spec: RunSpec, cfg: dict, bundle: dict, A: dict, stress: dict | Non
         bdf["Q_backup_MWh"] += sh_ * float(out[f"backup_{c}"].sum())
         bdf["Q_unserved_MWh"] += sh_ * float(out[f"unserved_{c}"].sum())
         bdf["E_HP_MWh"] += sh_ * float(out[f"E_{c}"].sum())
+        bdf["Q_loop_MWh"] += sh_ * float(out[f"src_{c}"].sum())
+        bdf["HP_cap_MW"] += sh_ * hp_cap[c]
+        bdf["peak_served_MW"] += sh_ * peak[c]
+    if streams is not None:                                      # merit policy: exact building totals from streams
+        for col, kk in (("Q_network_MWh", None), ("Q_backup_MWh", "backup"), ("Q_unserved_MWh", "unserved"),
+                        ("E_HP_MWh", "E"), ("Q_loop_MWh", "src")):
+            arr = (streams["load"] + streams["dis"]) if kk is None else streams[kk]
+            bdf[col] = [float(arr[streams["bidx"] == i].sum()) for i in range(len(bdf))]
     bdf["E_pump_MWh"] = A["A11"] * bdf.Q_network_MWh
+    bdf["E_src_MWh"] = A["A17"] * bdf.Q_loop_MWh
     # fuel use with the network: backup heat / backup efficiency; heat not served stays on today's system
     bdf["backup_fuel_MWh"] = np.where(bdf.backup_type == "electric_boiler", bdf.Q_backup_MWh / 0.99,
                                       bdf.Q_backup_MWh / bdf.eta_base)
@@ -211,7 +238,10 @@ def simulate(spec: RunSpec, cfg: dict, bundle: dict, A: dict, stress: dict | Non
         backup_elec_MWh=float(bdf.loc[bdf.backup_type == "electric_boiler", "backup_fuel_MWh"].sum()) if len(bdf) else 0.0,
         fuel_displaced_steam_MWh=float(bdf.loc[bdf.main_fuel == "steam", "fuel_displaced_MWh"].sum()) if len(bdf) else 0.0,
         fuel_displaced_gas_MWh=float(bdf.loc[bdf.main_fuel == "gas_or_oil", "fuel_displaced_MWh"].sum()) if len(bdf) else 0.0,
-        HP_cap_MW=float(sum(hp_cap.values())), HX_cap_MW=float(hx_cap), tank_MWh=float(sum(tank.values())),
+        HP_cap_MW=float(sum(hp_cap.values())), HX_cap_MW=float(hx_cap),
+        HP_cap_dhw_MW=hp_cap["dhw"], HP_cap_sh45_MW=hp_cap["sh45"], HP_cap_sh_exist_MW=hp_cap["sh_exist"],
+        peak_dhw_MW=peak["dhw"], peak_sh45_MW=peak["sh45"], peak_sh_exist_MW=peak["sh_exist"],
+        E_src_at_design_hour_MW=float(E_src[int(np.argmin(T_out))]), tank_MWh=float(sum(tank.values())),
         backup_cap_MW=float(sum(backup_cap.values())),
         COP_dhw=COP["dhw"], COP_sh45=COP["sh45"], COP_sh_exist=COP["sh_exist"], T_loop_C=t_loop,
         route_m=route, balance_max_abs=max(bal.values()),
@@ -250,4 +280,58 @@ def simulate(spec: RunSpec, cfg: dict, bundle: dict, A: dict, stress: dict | Non
         "Q_DC_avail_MW": Q_avail, "Q_DC_used_MW": Q_used, "Q_rejected_MW": Q_rej,
     })
     bdf.insert(0, "run_id", spec.run_id)
-    return dict(summary=summ, buildings=bdf, constraints=cdf, hourly=hourly)
+    res = dict(summary=summ, buildings=bdf, constraints=cdf, hourly=hourly)
+    if return_streams:
+        if streams is None:                                      # class policy: pro-rata building series
+            streams = _prorata_streams(bdf, out)
+        res["streams"] = streams
+    return res
+
+
+def _stream_table(bdf, Dc, shape_sh, shape_dhw):
+    """One stream per building x class with positive demand; shares of the class totals."""
+    rows = []
+    for i, r in bdf.reset_index(drop=True).iterrows():
+        if r.D_dhw_MWh > 0:
+            rows.append((i, "dhw", r.D_dhw_MWh, shape_dhw))
+        if r.sh_class != "none" and r.D_sh_served_MWh > 0:
+            rows.append((i, r.sh_class, r.D_sh_served_MWh, shape_sh))
+    return rows
+
+
+def _merit_dispatch(bdf, Dc, shape_sh, shape_dhw, hp_cap, tank, backup_cap, COP, Q_avail, hx_cap,
+                    offtake_off, hp_scale, value, A):
+    from .dispatch_kernel import dispatch
+    rows = _stream_table(bdf, Dc, shape_sh, shape_dhw)
+    tot = {c: sum(r[2] for r in rows if r[1] == c) for c in CLASSES}
+    S = len(rows)
+    D = np.zeros((S, F.HOURS)); cap = np.zeros(S); tk = np.zeros(S); cop = np.zeros(S); bc = np.zeros(S); val = np.zeros(S)
+    p_el = A.get("A07") or 222.0
+    for k, (i, c, ann, shape) in enumerate(rows):
+        sh_ = ann / tot[c]
+        D[k] = ann * shape
+        cap[k], tk[k], bc[k], cop[k] = hp_cap[c] * sh_, tank[c] * sh_, backup_cap[c] * sh_, COP[c]
+        pid = bdf.iloc[i].property_id
+        val[k] = (value.get(pid, 0.0) - p_el / COP[c]) / (1 - 1 / COP[c])     # $ per MWh of source heat
+    order = np.argsort(-val, kind="stable").astype(np.int64)
+    src_avail = np.where(offtake_off > 0, 0.0, np.minimum(Q_avail, hx_cap))
+    load, ch, dis, soc, bk, uns, E, src = dispatch(D, cap, tk, cop, bc, order, src_avail.astype(np.float64),
+                                                   np.asarray(hp_scale, dtype=np.float64))
+    return dict(bidx=np.array([r[0] for r in rows]), cls=np.array([r[1] for r in rows]), value=val, order=order,
+                demand=D, load=load, ch=ch, dis=dis, soc=soc, backup=bk, unserved=uns, E=E, src=src)
+
+
+def _prorata_streams(bdf, out):
+    """Building-level hourly series under the class policy (pro-rata within each class)."""
+    rows, data = [], {k: [] for k in ("load", "ch", "dis", "soc", "backup", "unserved", "E", "src")}
+    for i, r in bdf.reset_index(drop=True).iterrows():
+        for c, ann in (("dhw", r.D_dhw_MWh), (r.sh_class, r.D_sh_served_MWh)):
+            if c == "none" or ann <= 0:
+                continue
+            tot = bdf.D_dhw_MWh.sum() if c == "dhw" else bdf.loc[bdf.sh_class == c, "D_sh_served_MWh"].sum()
+            rows.append((i, c))
+            for k in data:
+                data[k].append(out[f"{k}_{c}"] * ann / tot)
+    st = {k: np.array(v) for k, v in data.items()}
+    st["bidx"] = np.array([r[0] for r in rows]); st["cls"] = np.array([r[1] for r in rows])
+    return st

@@ -1,0 +1,42 @@
+category,feature,source_file,evidence_class,question_it_answers,used_in_model_S,note
+A essential input,111 8th Ave metered electricity (3-yr mean),data/processed/source_111_8th_annual.csv,measured (LL84),How much heat can the source supply?,yes,Hard ceiling on recoverable heat
+A essential input,Data-center share of building electricity (A01),data/reference/assumptions_scenarios.csv,assumption,How much of that electricity becomes recoverable heat?,yes,Does not bind for any network <= ~45 GWh delivered (sensitivity shows zero effect on C1-R2)
+A essential input,Heat fraction + capture fraction (E01/E02),data/reference/engineering_parameters.csv,engineering estimate,Recoverable share,yes,
+A essential input,Tenant condenser-loop temperature (A02),assumptions_scenarios.csv,assumption (literature-bounded),Temperature compatibility / heat-pump lift,yes,Drives COP; DLC 45 C changes the rebuild carbon sign
+A essential input,Source-side electricity per MWh extracted (A17),assumptions_scenarios.csv,assumption anchored to pilot,Is the heat really 'free'?,yes,Single most decisive unknown; pilot evidence implies 0.37 per MWh extracted (model uses 0.25)
+A essential input,LL84 heating fuel by building (steam/gas/oil),data/processed/ll84_buildings_1km_by_year.csv (via outputs/features/offtakers_features.csv),measured,Useful heat demand of each candidate,yes,Same de-duplicated table as Models A/B/C
+A essential input,Main fuel + heating system class (steam radiators vs hydronic),offtakers_features.csv,measured fuel; system class inferred,Temperature compatibility (what can be served),yes,Hydronic is ASSUMED for every gas building - survey needed
+A essential input,Residential units,LL84 / NYCHA data book,measured,Hot-water demand and households served,yes,
+A essential input,Building coordinates + lot area,LL84 + PLUTO,measured,Route length and pipe cost,yes,Lot area only for the facade-route sensitivity
+A essential input,Hourly dry-bulb temperature (TMYx) + design temperature,weather_tmyx_hourly.csv; weather_design_conditions.csv,measured,Seasonal demand shape and design peak (backup sizing),yes (as 1 C bins),
+A essential input,Steam marginal price; gas commercial price; electricity price (A07),chelsea_uten_benchmarks.csv; energy_prices_ny_summary.csv,measured / derived,Gross savings and new operating cost,yes,The gas/electricity price ratio (5.7) decides every gas-building connection
+A essential input,Pipe cost per route-m (A05),pilot filing,measured (pilot) + scaled range,Network capex,yes,
+A essential input,Heat-pump capex/O&M/life (DEA),equipment_dea_heat.csv,engineering reference,Building-side capex,yes,
+A essential input,Source interface + energy-centre cost; NYCHA retrofit $/apt,chelsea_uten_pilot_stage2.csv,measured (pilot),Fixed network costs,yes,Energy centre ($3.9M with markups) dominates small networks
+A essential input,LL97 emission factors,ll97_emission_coefficients.csv,regulatory,CO2 avoided,yes,
+A essential input,NYCHA units + FEC rebuild facts,nycha_chelsea_developments.csv; fec_rebuild_facts.csv,measured,Low-income households served; rebuild timing,yes,
+A essential input,Con Ed pilot loads/COP/electricity,chelsea_uten_pilot_stage2.csv,measured,Calibration (COP) and A17 anchor; pilot overlap at Fulton,yes,291 Fulton apartments already served by the pilot
+B supporting,DAC tract designation,dac_tracts_1km.csv,measured,Equity context of the location,context only,Tract flag does not make a market-rate building low-income
+B supporting,Air quality (PM2.5) / HVI,air_quality_latest.csv; hvi_zcta.csv,measured,Environmental-justice narrative,no,Same value for every nearby option - cannot discriminate configurations
+B supporting,AP-42 NOx factor,ap42_natural_gas_boilers.csv,regulatory,Local combustion avoided,context only,Proportional to gas displaced
+B supporting,Delivery & governance register,model/config/delivery_governance.csv,evidence register,Ownership/risk allocation,qualitative table,
+B supporting,Grid Zone J hourly data,grid_zoneJ_hourly_2025.csv,measured,Grid peak context,no,Only matters for a winter-peak claim
+C sensitivity,A05 pipe cost; facade vs centroid route,,assumption,Pipe cost uncertainty,sensitivity,
+C sensitivity,A17 source-side electricity (0 / 0.25 / 0.367),,assumption,Free-heat question,sensitivity + break-even,
+C sensitivity,A07 electricity price; gas/steam price +-30%,,measured range / assumption,Energy-price risk,sensitivity,
+C sensitivity,A02 source temperature (27/35/45 C DLC),,assumption,Heat-source temperature,sensitivity,
+C sensitivity,A18 hydronic temperature; building capex x0.5/x1.5,,assumption,Building retrofit requirements,sensitivity,
+C sensitivity,A20 commercial base-load share,,assumption,Year-round demand of offices/hotels,sensitivity,Applied to an office it implies 39% of heat is year-round hot water - questionable
+C sensitivity,A08 discount; A21 soft costs; grid EF scale,,assumption,Finance and carbon future,sensitivity,
+D redundant,ERF (N_erf),,derived,,dropped (reported as context),Spearman +1.00 with CO2 avoided across all configurations
+D redundant,External funding need (E_fund),,derived,,dropped,-0.99 with net value: same quantity with a tariff transfer added
+D redundant,Backup dependency (T_bk) vs load factor (T_lf),,derived,,T_bk -> hard constraint,-1.00 with T_lf
+D redundant,Coverage share (T_cov),,derived,,dropped,Denominator artefact: penalises large steam buildings whose space heat is out of scope
+D redundant,Gas displaced (N_gas),,derived,,context only,+0.92 with CO2 avoided
+D redundant,Share of heat to low-income buildings (S_eq),,derived,,dropped,Ratio form of households served
+D redundant,NYCHA bill change (S_aff),,derived,,hard constraint via tariff design,Constant by construction under the Term-4 cap
+D redundant,Levelised cost of heat (E_lcoh),,derived,,context only,Intensity form of net value
+D redundant,Data-center net value (S7),,derived,,stakeholder table,A transfer (fence price) - not a social indicator
+D not needed,Hourly storage dispatch (A13 tank),,design variable,,dropped,Changes heat delivered by < 0.3% in every tested configuration
+D not needed,CPI/FX series beyond the 2020 conversion,macro_cpi_fx.csv,measured,,only the conversion factor,
+D not needed,Monthly EIA price series,energy_prices_ny_monthly.csv,measured,,no,12-month mean suffices for annual accounting

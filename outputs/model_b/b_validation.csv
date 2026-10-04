@@ -1,0 +1,14 @@
+test_id,test,status,value,expected,detail
+B1,Transfers cancel: data center + users + operator = system savings,pass,7.450580596923828e-09,< 0.001 $/yr,
+B2,Each building has the same baseline cost in every scenario,pass,0.0,0,1 buildings appear in more than one scenario
+B3,S0 (today) has zero project cost and savings,pass,0.0,0,
+B4,Carbon: system = sum of buildings; avoided = baseline - project,pass,1.8189894035458565e-12,< 1e-6,
+B5,System LCOH positive and finite in every run with network heat,pass,107-1367,"> 0, finite",
+B5b,Con Ed pilot priced with the same method (reference for S3),info,1459.0,S3 = 1064 $/MWh,"pilot: 34.99 M$ construction, 2,680 MWh/yr, 1,514 MWh/yr added electricity"
+B6,Sensitivity directions are physical (and transfers do not change system savings),pass,0,0,
+B7,All quantitative KPIs computed for S1-S3R,pass,0,0,
+B7b,KPIs cover all four dimensions,pass,4,4,
+B8,"S1 (single owner) books no heat sales, tariffs or operator",pass,0,0,
+B9,S3 NYCHA building-side cost per apartment equals the pilot (incl. markups),info,91893.0,"63,814 $/apt x (1 + 15% contingency + A21)",
+B10,H6 and F1-F4 evaluated for every run,pass,155,5 checks per run,
+B11,Model B produces no MCDA scores (scoring belongs to Model C),pass,0,0,

@@ -1,0 +1,15 @@
+item,value,heat_delivered_MWh,description,shapley_contribution
+"our model, teammate's buildings, our assumptions",-11972824.296713747,14407.689824889936,,
+steam_compatibility,,,"steam-radiator buildings take all their heat (space heat included) at the hydronic temperature, instead of hot water only (H7)",-731546.4158076416
+pipe_cost,,,"pipe $3,000/m (teammate) instead of $29,318/m (Con Ed pilot)",4008123.8597423164
+A17_source_electricity,,,no extra electricity at the data center (A17 = 0 instead of 0.25),1064299.8947755992
+capex_building_retrofit_basis,,,"building side at heat-pump cost $1,200/kW for every building (NYCHA included) instead of the pilot's $63.8k per NYCHA apartment and DEA heat-pump cost elsewhere",5376645.211609608
+capex_markups,,,no 15 % contingency and no 29 % soft costs (pilot ratios),2332700.124340836
+capex_energy_centre_interface,,,"no energy centre ($2.69M pilot) and no source heat-recovery interface ($1.75M/MW pilot), replaced by the teammate's $150/kW building connection",869008.9420152822
+omitted_opex,,,no heat-pump or network O&M,544985.9630340681
+teammate_prices_finance_efficiency,,,"gas $14/MMBtu, steam $35/MMBtu, electricity $0.22/kWh, 6 % discount, lives 20/30/25 yr, steam utilisation 0.85, heat-pump eta 0.40",-1036233.1414565496
+our model with all six teammate choices,455160.1415397731,47453.426276630285,,
+teammate resource value (their net minus LL97 and water items),1194102.0,41458.0,,
+"residual (demand data, dispatch, 200 W 18th St, central vs building heat pumps)",738941.8584602269,,,
+teammate non-resource items: LL97 penalties avoided (a transfer to the city) + cooling water (tower type unknown),385613.0,,,
+teammate reported net,1579715.0,41458.0,,

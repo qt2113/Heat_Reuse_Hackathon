@@ -1,0 +1,69 @@
+# Simplified heat-reuse model ("Model S") - Site 1, 111 8th Avenue.
+# Independent experiment: reads the shared data layer read-only, never writes outside this folder.
+#
+# Evidence classes used below:
+#   M = measured / reported (LL84, TMYx, PLUTO, DAC, tariffs, pilot filing)
+#   E = engineering estimate (literature / calibrated physics)
+#   A = assumption (team or this review; varied in sensitivity)
+# Values tagged "register:Axx" are read from data/reference/assumptions_scenarios.csv so that the
+# controlled comparison with Models A/B/C uses exactly the same numbers.
+
+site:
+  property_id: "7536925"          # M  LL84 111 8th Avenue
+  lat: 40.7413598
+  lon: -74.0032081
+  lot_half_extent_m: [122, 30]    # E  full block 8th-9th Ave x 15th-16th St (PLUTO lot 165,200 ft2); crosstown x uptown
+
+supply:
+  dc_share: register:A01          # A  data-center share of metered electricity (0.5/0.7/0.9)
+  f_heat: 0.95                    # E  E01 (Grundfos / OCP)
+  f_capture: 0.85                 # E  E02 vendor upper bound
+  availability: register:A16      # E  OCP 99.8% -> outage hours placed in the coldest hours
+  loop_temp_C: register:A02       # A  tenant condenser-loop temperature (27/30/35)
+  hx_approach_K: 2                # E  pilot design
+  source_elec_per_MWh_src: register:A17   # A  extra source-side electricity per MWh extracted (pilot-anchored)
+
+physics:
+  dhw_C: 60                       # hard constraint H4 (Legionella)
+  sh_new_C: 45                    # rebuilt towers (low-temperature design)
+  sh_exist_C: register:A18        # A  existing hydronic supply temperature (60/70/80)
+  approach_cond_K: 5
+  approach_evap_K: 5
+  loop_dT_K: 5
+  carnot_eff: register:A10        # E  0.45, calibrated to the Con Ed pilot DHW COP 3.0
+  aux_elec_frac: register:A11     # E  pumping/aux electricity per MWh delivered (DEA 1%)
+  dist_loss_per_km: 0.01          # E  E13 midpoint (0.5-1.5 %/km for 70-80 C pipe; conservative for an ambient loop)
+  t_balance_C: 18                 # E  degree-hour base used for the space-heat shape
+  eta_steam: register:A04         # E  steam -> useful heat (pilot-derived 0.77)
+  eta_gas: 0.85                   # E  existing gas/oil boiler seasonal efficiency
+  eta_elec_boiler: 0.99           # E  DEA electric boiler (backup in rebuilt towers)
+
+design:
+  hp_frac_sh: 0.75                # design choice: space-heat HP capacity / design peak (backup covers the rest + 100% peak)
+  hp_frac_dhw: 1.0                # DHW HP sized to the (flat) DHW load
+  bin_width_C: 1.0                # temperature-bin width of the reduced temporal model
+
+demand:
+  dhw_per_apartment_MWh: pilot    # M  Con Ed pilot DHW load / 291 apartments (8.0 MWh/apt)
+  dhw_share_cap_residential: 0.6  # A  same cap as Model A
+  nonres_summer_winter_ratio: register:A20  # A  base-load share of non-residential demand (see review: high for offices)
+  rebuild_units: 5510             # M  FEC: 2,056 replacement + up to 3,454 new
+  rebuild_affordable_share: fec   # M  (2,056 + 875) / 5,510
+  rebuild_MWh_per_apt: register:A03         # A
+  rebuild_dhw_share: register:A19           # A
+  pilot_apartments_already_served: 291      # M  Fulton apartments already on the Con Ed pilot loop (85 10th Ave)
+
+economics:
+  pipe_cost_per_route_m: register:A05       # M/A pilot $29,318/route-m (0.6x-1.3x)
+  soft_cost_frac: register:A21              # M  pilot design/admin ratio
+  contingency_frac: 0.15                    # M  pilot
+  network_om_frac: register:A22             # A
+  discount_rate: register:A08               # A
+  elec_price: register:A07                  # M  $/MWh
+  fence_price_per_MMBtu: register:A06       # M  pilot $26/MMBtu (stakeholder view only)
+  carbon_benchmark_per_t: 268               # M  LL97 penalty rate ($/tCO2e over limit) - decision benchmark only
+  min_route_edge_m: 30                      # E  one street crossing (facade-adjusted route option)
+
+screening:
+  radius_m: 1000                  # LL84 feature table limit
+  min_years: 1                    # keep single-year filers but flag them (data-quality flag, not a filter)

@@ -1,0 +1,89 @@
+{
+  "seconds": 842.0,
+  "register_levels": {
+    "A02": [
+      "low",
+      "base",
+      "high"
+    ],
+    "A10": [
+      "low",
+      "base",
+      "high"
+    ],
+    "A18": [
+      "low",
+      "base",
+      "high"
+    ],
+    "A17": [
+      "low",
+      "base"
+    ],
+    "A05": [
+      "low",
+      "base",
+      "high"
+    ],
+    "A07": [
+      "low",
+      "base",
+      "high"
+    ],
+    "A21": [
+      "low",
+      "base",
+      "high"
+    ],
+    "A08": [
+      "low",
+      "base",
+      "high"
+    ]
+  },
+  "extra_factors": {
+    "gas_price": {
+      "levels": {
+        "base": null,
+        "high": 73.27
+      },
+      "source": "EIA NY residential gas 12-month mean ($/MWh fuel), upper bound for small-volume firm service; Base = EIA commercial mean 38.85"
+    },
+    "steam_price": {
+      "levels": {
+        "low": 89.2,
+        "base": null
+      },
+      "source": "Con Ed SC2 Rate II winter tail block 26.97 + fuel adjustment 4.25 $/Mlb (S07), lower than the pilot-implied marginal 107.6 $/MWh"
+    },
+    "hx_scale_exp": {
+      "levels": {
+        "base": null,
+        "low": 0.7
+      },
+      "source": "engineering cost-capacity rule (exponent 0.6-0.7) scaling the pilot's 1.47 MW interface; Base = linear"
+    },
+    "network_life": {
+      "levels": {
+        "base": null,
+        "low": 40
+      },
+      "source": "pipe / interface life 40 yr instead of the heat-pump life 25 yr used for all assets at Base"
+    }
+  },
+  "favourable_level": {
+    "A02": "high",
+    "A10": "high",
+    "A18": "low",
+    "A17": "low",
+    "A05": "low",
+    "A07": "low",
+    "A21": "low",
+    "A08": "low",
+    "gas_price": "high",
+    "steam_price": "base",
+    "hx_scale_exp": "low",
+    "network_life": "low"
+  },
+  "note": "Full factorial; shares are shares of combinations, not probabilities. Merit order of hourly allocation kept at Base prices."
+}

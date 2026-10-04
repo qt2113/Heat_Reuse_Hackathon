@@ -1,0 +1,60 @@
+{
+  "seconds": 38.6,
+  "configurations": {
+    "C0 Today (no network)": [],
+    "C1 Internal reuse": [
+      "7536925"
+    ],
+    "C2 Internal + 1 community offtaker": [
+      "7536925",
+      "2440154"
+    ],
+    "C3 Small network (2-4 offtakers)": [
+      "7536925",
+      "4978579",
+      "2440154",
+      "4043768"
+    ],
+    "C4 Large network (ABC equal-weights, today)": [
+      "1633052",
+      "1634606",
+      "19906892",
+      "4040951",
+      "4769672",
+      "7536925",
+      "8899918"
+    ],
+    "R2 Internal + rebuilt Fulton (2029+)": [
+      "7536925",
+      "rebuild:2831044"
+    ],
+    "R3 Internal + full rebuild campus (2029+)": [
+      "7536925",
+      "rebuild:2831044",
+      "rebuild:4473909"
+    ],
+    "R4 Large network (ABC equal-weights, post-rebuild)": [
+      "1633052",
+      "1634606",
+      "19906892",
+      "4040951",
+      "7536925",
+      "8899918",
+      "rebuild:2831044"
+    ],
+    "ref ABC phase 1 (111 8th + 363 W 16th hotel)": [
+      "7536925",
+      "19906892"
+    ]
+  },
+  "best_community_offtaker": "2440154",
+  "greedy_today": [
+    "4978579",
+    "2440154",
+    "4043768",
+    "7534445"
+  ],
+  "greedy_post": [],
+  "tests_passed": 12,
+  "tests_total": 12
+}

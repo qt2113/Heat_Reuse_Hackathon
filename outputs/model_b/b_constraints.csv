@@ -1,0 +1,1126 @@
+run_id,b_set,scenario,constraint_id,description,status,metric,threshold,detail
+S0_hp0.5_tk0_base,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.5_tk0_base,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.5_tk0_base,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.5_tk0_base,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.5_tk0_base,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.5_tk2_base,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.5_tk2_base,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.5_tk2_base,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.5_tk2_base,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.5_tk2_base,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.5_tk6_base,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.5_tk6_base,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.5_tk6_base,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.5_tk6_base,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.5_tk6_base,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk0_base,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk0_base,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk0_base,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk0_base,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk0_base,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_base,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_base,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_base,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_base,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_base,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk6_base,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk6_base,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk6_base,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk6_base,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk6_base,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp1_tk0_base,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp1_tk0_base,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp1_tk0_base,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp1_tk0_base,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp1_tk0_base,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp1_tk2_base,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp1_tk2_base,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp1_tk2_base,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp1_tk2_base,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp1_tk2_base,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp1_tk6_base,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp1_tk6_base,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp1_tk6_base,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp1_tk6_base,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp1_tk6_base,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A01_low,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A01_low,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A01_low,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A01_low,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A01_low,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A01_high,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A01_high,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A01_high,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A01_high,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A01_high,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A02_low,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A02_low,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A02_low,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A02_low,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A02_low,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A02_high,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A02_high,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A02_high,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A02_high,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A02_high,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A03_low,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A03_low,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A03_low,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A03_low,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A03_low,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A03_high,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A03_high,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A03_high,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A03_high,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A03_high,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A04_low,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A04_low,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A04_low,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A04_low,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A04_low,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A04_high,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A04_high,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A04_high,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A04_high,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A04_high,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A10_low,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A10_low,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A10_low,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A10_low,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A10_low,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A10_high,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A10_high,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A10_high,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A10_high,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A10_high,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A11_low,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A11_low,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A11_low,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A11_low,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A11_low,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A11_high,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A11_high,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A11_high,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A11_high,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A11_high,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A16_low,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A16_low,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A16_low,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A16_low,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A16_low,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A16_high,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A16_high,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A16_high,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A16_high,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A16_high,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A17_low,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A17_low,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A17_low,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A17_low,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A17_low,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A17_high,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A17_high,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A17_high,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A17_high,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A17_high,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A18_low,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A18_low,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A18_low,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A18_low,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A18_low,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A18_high,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A18_high,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A18_high,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A18_high,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A18_high,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A19_low,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A19_low,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A19_low,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A19_low,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A19_low,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A19_high,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A19_high,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A19_high,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A19_high,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A19_high,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A20_low,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A20_low,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A20_low,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A20_low,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A20_low,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_A20_high,base,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_A20_high,base,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_A20_high,base,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_A20_high,base,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_A20_high,base,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S1_hp0.5_tk0_base,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.5_tk0_base,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.5_tk0_base,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.5_tk0_base,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.5_tk0_base,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.5_tk2_base,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.5_tk2_base,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.5_tk2_base,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.5_tk2_base,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.5_tk2_base,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.5_tk6_base,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.5_tk6_base,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.5_tk6_base,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.5_tk6_base,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.5_tk6_base,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk0_base,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk0_base,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk0_base,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk0_base,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk0_base,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_base,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_base,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk2_base,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_base,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_base,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk6_base,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk6_base,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk6_base,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk6_base,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk6_base,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp1_tk0_base,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp1_tk0_base,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp1_tk0_base,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp1_tk0_base,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp1_tk0_base,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp1_tk2_base,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp1_tk2_base,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp1_tk2_base,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp1_tk2_base,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp1_tk2_base,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp1_tk6_base,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp1_tk6_base,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp1_tk6_base,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp1_tk6_base,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp1_tk6_base,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_A01_low,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A01_low,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk2_A01_low,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A01_low,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_A01_low,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_A01_high,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A01_high,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk2_A01_high,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A01_high,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_A01_high,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_A02_low,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A02_low,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-30588.395705327857,> 0 $/yr,
+S1_hp0.75_tk2_A02_low,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A02_low,base,S1,F3,Data center participates willingly (net value >= 0),fail,-129356.9790116666,>= 0 $/yr,
+S1_hp0.75_tk2_A02_low,base,S1,F4,Simple payback within asset life (25 yr),pass,20.106087420474825,<= 25 yr,
+S1_hp0.75_tk2_A02_high,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A02_high,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-4452.964516535809,> 0 $/yr,
+S1_hp0.75_tk2_A02_high,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A02_high,base,S1,F3,Data center participates willingly (net value >= 0),fail,-139485.99099780052,>= 0 $/yr,
+S1_hp0.75_tk2_A02_high,base,S1,F4,Simple payback within asset life (25 yr),pass,14.711850588653558,<= 25 yr,
+S1_hp0.75_tk2_A03_low,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A03_low,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk2_A03_low,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A03_low,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_A03_low,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_A03_high,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A03_high,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk2_A03_high,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A03_high,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_A03_high,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_A04_low,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A04_low,base,S1,F1,Society gains: annual savings > 0 (resource view),pass,25195.585744140204,> 0 $/yr,
+S1_hp0.75_tk2_A04_low,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A04_low,base,S1,F3,Data center participates willingly (net value >= 0),fail,-121050.32591496989,>= 0 $/yr,
+S1_hp0.75_tk2_A04_low,base,S1,F4,Simple payback within asset life (25 yr),pass,11.121396041992172,<= 25 yr,
+S1_hp0.75_tk2_A04_high,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A04_high,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-73339.83158515475,> 0 $/yr,
+S1_hp0.75_tk2_A04_high,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A04_high,base,S1,F3,Data center participates willingly (net value >= 0),fail,-146989.68146817767,>= 0 $/yr,
+S1_hp0.75_tk2_A04_high,base,S1,F4,Simple payback within asset life (25 yr),fail,39.22764685410207,<= 25 yr,
+S1_hp0.75_tk2_A10_low,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A10_low,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-39980.816288800095,> 0 $/yr,
+S1_hp0.75_tk2_A10_low,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A10_low,base,S1,F3,Data center participates willingly (net value >= 0),fail,-125716.86532914983,>= 0 $/yr,
+S1_hp0.75_tk2_A10_low,base,S1,F4,Simple payback within asset life (25 yr),pass,23.33520925234639,<= 25 yr,
+S1_hp0.75_tk2_A10_high,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A10_high,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-5433.043186115567,> 0 $/yr,
+S1_hp0.75_tk2_A10_high,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A10_high,base,S1,F3,Data center participates willingly (net value >= 0),fail,-139106.15304832056,>= 0 $/yr,
+S1_hp0.75_tk2_A10_high,base,S1,F4,Simple payback within asset life (25 yr),pass,14.856253741780462,<= 25 yr,
+S1_hp0.75_tk2_A11_low,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A11_low,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-16934.342931030667,> 0 $/yr,
+S1_hp0.75_tk2_A11_low,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A11_low,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_A11_low,base,S1,F4,Simple payback within asset life (25 yr),pass,16.844943413701543,<= 25 yr,
+S1_hp0.75_tk2_A11_high,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A11_high,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-36200.67332353105,> 0 $/yr,
+S1_hp0.75_tk2_A11_high,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A11_high,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_A11_high,base,S1,F4,Simple payback within asset life (25 yr),pass,21.6535267003115,<= 25 yr,
+S1_hp0.75_tk2_A16_low,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A16_low,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk2_A16_low,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A16_low,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_A16_low,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_A16_high,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A16_high,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20600.221650463645,> 0 $/yr,
+S1_hp0.75_tk2_A16_high,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A16_high,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133429.5287710649,>= 0 $/yr,
+S1_hp0.75_tk2_A16_high,base,S1,F4,Simple payback within asset life (25 yr),pass,17.58811105444357,<= 25 yr,
+S1_hp0.75_tk2_A17_low,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A17_low,base,S1,F1,Society gains: annual savings > 0 (resource view),pass,112367.74949693604,> 0 $/yr,
+S1_hp0.75_tk2_A17_low,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A17_low,base,S1,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S1_hp0.75_tk2_A17_low,base,S1,F4,Simple payback within asset life (25 yr),pass,6.76402354369969,<= 25 yr,
+S1_hp0.75_tk2_A17_high,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A17_high,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk2_A17_high,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A17_high,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_A17_high,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_A18_low,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A18_low,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk2_A18_low,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A18_low,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_A18_low,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_A18_high,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A18_high,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk2_A18_high,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A18_high,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_A18_high,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_A19_low,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A19_low,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk2_A19_low,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A19_low,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_A19_low,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_A19_high,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A19_high,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk2_A19_high,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A19_high,base,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_A19_high,base,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_A20_low,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A20_low,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-6342.072496282752,> 0 $/yr,
+S1_hp0.75_tk2_A20_low,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A20_low,base,S1,F3,Data center participates willingly (net value >= 0),fail,-40624.245748000816,>= 0 $/yr,
+S1_hp0.75_tk2_A20_low,base,S1,F4,Simple payback within asset life (25 yr),pass,17.627864899977777,<= 25 yr,
+S1_hp0.75_tk2_A20_high,base,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_A20_high,base,S1,F1,Society gains: annual savings > 0 (resource view),fail,-27828.650485730264,> 0 $/yr,
+S1_hp0.75_tk2_A20_high,base,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_A20_high,base,S1,F3,Data center participates willingly (net value >= 0),fail,-178256.86111758312,>= 0 $/yr,
+S1_hp0.75_tk2_A20_high,base,S1,F4,Simple payback within asset life (25 yr),pass,17.627864899977812,<= 25 yr,
+S2_hp0.5_tk0_base,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.5_tk0_base,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5057215.232536872,> 0 $/yr,
+S2_hp0.5_tk0_base,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3445713.7431468437,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.5_tk0_base,base,S2,F3,Data center participates willingly (net value >= 0),pass,585096.6824560452,>= 0 $/yr,
+S2_hp0.5_tk0_base,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.5_tk2_base,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.5_tk2_base,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5081612.978560404,> 0 $/yr,
+S2_hp0.5_tk2_base,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3445286.849599502,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.5_tk2_base,base,S2,F3,Data center participates willingly (net value >= 0),pass,591692.9042350514,>= 0 $/yr,
+S2_hp0.5_tk2_base,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.5_tk6_base,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.5_tk6_base,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5101882.075193357,> 0 $/yr,
+S2_hp0.5_tk6_base,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3444945.6733720964,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.5_tk6_base,base,S2,F3,Data center participates willingly (net value >= 0),pass,596964.6495582273,>= 0 $/yr,
+S2_hp0.5_tk6_base,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk0_base,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk0_base,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5657433.200954972,> 0 $/yr,
+S2_hp0.75_tk0_base,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3929974.231992174,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk0_base,base,S2,F3,Data center participates willingly (net value >= 0),pass,614903.875413296,>= 0 $/yr,
+S2_hp0.75_tk0_base,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_base,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_base,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5664824.436312084,> 0 $/yr,
+S2_hp0.75_tk2_base,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3929852.9867543536,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_base,base,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_base,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk6_base,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk6_base,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5673947.309469979,> 0 $/yr,
+S2_hp0.75_tk6_base,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3929711.0845325906,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk6_base,base,S2,F3,Data center participates willingly (net value >= 0),pass,618969.945314808,>= 0 $/yr,
+S2_hp0.75_tk6_base,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp1_tk0_base,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp1_tk0_base,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-6156883.228082502,> 0 $/yr,
+S2_hp1_tk0_base,base,S2,F2,Operator self-financing at the pilot tariff,fail,-4416025.673490999,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp1_tk0_base,base,S2,F3,Data center participates willingly (net value >= 0),pass,617037.8440463154,>= 0 $/yr,
+S2_hp1_tk0_base,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp1_tk2_base,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp1_tk2_base,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-6164169.874312469,> 0 $/yr,
+S2_hp1_tk2_base,base,S2,F2,Operator self-financing at the pilot tariff,fail,-4415906.287119922,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp1_tk2_base,base,S2,F3,Data center participates willingly (net value >= 0),pass,618882.5638504042,>= 0 $/yr,
+S2_hp1_tk2_base,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp1_tk6_base,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp1_tk6_base,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-6171338.4529818855,> 0 $/yr,
+S2_hp1_tk6_base,base,S2,F2,Operator self-financing at the pilot tariff,fail,-4415799.118652318,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp1_tk6_base,base,S2,F3,Data center participates willingly (net value >= 0),pass,620538.4965400394,>= 0 $/yr,
+S2_hp1_tk6_base,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A01_low,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A01_low,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5664824.436312084,> 0 $/yr,
+S2_hp0.75_tk2_A01_low,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3929852.9867543536,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A01_low,base,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_A01_low,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A01_high,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A01_high,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5664824.436312084,> 0 $/yr,
+S2_hp0.75_tk2_A01_high,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3929852.9867543536,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A01_high,base,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_A01_high,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A02_low,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A02_low,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5727926.781933048,> 0 $/yr,
+S2_hp0.75_tk2_A02_low,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3903519.6350195757,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A02_low,base,S2,F3,Data center participates willingly (net value >= 0),pass,598702.0988378843,>= 0 $/yr,
+S2_hp0.75_tk2_A02_low,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A02_high,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A02_high,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5559653.860277147,> 0 $/yr,
+S2_hp0.75_tk2_A02_high,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3973741.90631232,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A02_high,base,S2,F3,Data center participates willingly (net value >= 0),pass,646902.6828125119,>= 0 $/yr,
+S2_hp0.75_tk2_A02_high,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A03_low,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A03_low,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5664824.436312084,> 0 $/yr,
+S2_hp0.75_tk2_A03_low,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3929852.9867543536,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A03_low,base,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_A03_low,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A03_high,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A03_high,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5664824.436312084,> 0 $/yr,
+S2_hp0.75_tk2_A03_high,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3929852.9867543536,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A03_high,base,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_A03_high,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A04_low,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A04_low,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5610093.526603018,> 0 $/yr,
+S2_hp0.75_tk2_A04_low,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3918444.095216097,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A04_low,base,S2,F3,Data center participates willingly (net value >= 0),pass,608154.4881015593,>= 0 $/yr,
+S2_hp0.75_tk2_A04_low,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A04_high,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A04_high,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5727374.047408159,> 0 $/yr,
+S2_hp0.75_tk2_A04_high,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3942891.7199409334,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A04_high,base,S2,F3,Data center participates willingly (net value >= 0),pass,626631.9803732956,>= 0 $/yr,
+S2_hp0.75_tk2_A04_high,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A10_low,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A10_low,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5798747.060733632,> 0 $/yr,
+S2_hp0.75_tk2_A10_low,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3869665.8577716323,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A10_low,base,S2,F3,Data center participates willingly (net value >= 0),pass,577547.1624798238,>= 0 $/yr,
+S2_hp0.75_tk2_A10_low,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A10_high,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A10_high,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5557686.336774846,> 0 $/yr,
+S2_hp0.75_tk2_A10_high,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3978002.6899405317,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A10_high,base,S2,F3,Data center participates willingly (net value >= 0),pass,648161.4421072062,>= 0 $/yr,
+S2_hp0.75_tk2_A10_high,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A11_low,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A11_low,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5633741.231588793,> 0 $/yr,
+S2_hp0.75_tk2_A11_low,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3929852.9867543536,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A11_low,base,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_A11_low,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A11_high,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A11_high,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5789157.255205243,> 0 $/yr,
+S2_hp0.75_tk2_A11_high,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3929852.9867543536,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A11_high,base,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_A11_high,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A16_low,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A16_low,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5664824.436312084,> 0 $/yr,
+S2_hp0.75_tk2_A16_low,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3929852.9867543536,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A16_low,base,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_A16_low,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A16_high,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A16_high,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5673473.696464669,> 0 $/yr,
+S2_hp0.75_tk2_A16_high,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3929677.212055243,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A16_high,base,S2,F3,Data center participates willingly (net value >= 0),pass,619493.3319393717,>= 0 $/yr,
+S2_hp0.75_tk2_A16_high,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A17_low,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A17_low,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-4634253.068433476,> 0 $/yr,
+S2_hp0.75_tk2_A17_low,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3929852.9867543536,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A17_low,base,S2,F3,Data center participates willingly (net value >= 0),pass,1647348.6857069773,>= 0 $/yr,
+S2_hp0.75_tk2_A17_low,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A17_high,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A17_high,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5664824.436312084,> 0 $/yr,
+S2_hp0.75_tk2_A17_high,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3929852.9867543536,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A17_high,base,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_A17_high,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A18_low,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A18_low,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5593552.241710605,> 0 $/yr,
+S2_hp0.75_tk2_A18_low,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3989211.9306878787,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A18_low,base,S2,F3,Data center participates willingly (net value >= 0),pass,643178.2573391863,>= 0 $/yr,
+S2_hp0.75_tk2_A18_low,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A18_high,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A18_high,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5732116.611670146,> 0 $/yr,
+S2_hp0.75_tk2_A18_high,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3873808.796076925,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A18_high,base,S2,F3,Data center participates willingly (net value >= 0),pass,591850.673417976,>= 0 $/yr,
+S2_hp0.75_tk2_A18_high,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A19_low,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A19_low,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5664824.436312084,> 0 $/yr,
+S2_hp0.75_tk2_A19_low,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3929852.9867543536,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A19_low,base,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_A19_low,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A19_high,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A19_high,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5664824.436312084,> 0 $/yr,
+S2_hp0.75_tk2_A19_high,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3929852.9867543536,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A19_high,base,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_A19_high,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A20_low,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A20_low,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-6156373.71565323,> 0 $/yr,
+S2_hp0.75_tk2_A20_low,base,S2,F2,Operator self-financing at the pilot tariff,fail,-4290516.219970896,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A20_low,base,S2,F3,Data center participates willingly (net value >= 0),pass,537919.6777656989,>= 0 $/yr,
+S2_hp0.75_tk2_A20_low,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_A20_high,base,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_A20_high,base,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5425233.55228623,> 0 $/yr,
+S2_hp0.75_tk2_A20_high,base,S2,F2,Operator self-financing at the pilot tariff,fail,-3754058.5618336275,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_A20_high,base,S2,F3,Data center participates willingly (net value >= 0),pass,655214.0982059794,>= 0 $/yr,
+S2_hp0.75_tk2_A20_high,base,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.5_tk0_base,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.5_tk0_base,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.5_tk0_base,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.5_tk0_base,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.5_tk0_base,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.5_tk2_base,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.5_tk2_base,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.5_tk2_base,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.5_tk2_base,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.5_tk2_base,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.5_tk6_base,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.5_tk6_base,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.5_tk6_base,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.5_tk6_base,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.5_tk6_base,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk0_base,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk0_base,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.75_tk0_base,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk0_base,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk0_base,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_base,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_base,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.75_tk2_base,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_base,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_base,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk6_base,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk6_base,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.75_tk6_base,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk6_base,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk6_base,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp1_tk0_base,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp1_tk0_base,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp1_tk0_base,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp1_tk0_base,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp1_tk0_base,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp1_tk2_base,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp1_tk2_base,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp1_tk2_base,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp1_tk2_base,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp1_tk2_base,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp1_tk6_base,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp1_tk6_base,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp1_tk6_base,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp1_tk6_base,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp1_tk6_base,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A01_low,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A01_low,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.75_tk2_A01_low,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A01_low,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_A01_low,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A01_high,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A01_high,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.75_tk2_A01_high,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A01_high,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_A01_high,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A02_low,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-425.9367509542043,>= 0 $/apt/yr,break-even tariff 11.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A02_low,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19424904.564160008,> 0 $/yr,
+S3_hp0.75_tk2_A02_low,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18980445.303378224,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A02_low,base,S3,F3,Data center participates willingly (net value >= 0),pass,447095.67670098995,>= 0 $/yr,
+S3_hp0.75_tk2_A02_low,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A02_high,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-370.7817051720278,>= 0 $/apt/yr,break-even tariff 26.8 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A02_high,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19273969.566006076,> 0 $/yr,
+S3_hp0.75_tk2_A02_high,base,S3,F2,Operator self-financing at the pilot tariff,fail,-19002733.091867346,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A02_high,base,S3,F3,Data center participates willingly (net value >= 0),pass,482104.51428249024,>= 0 $/yr,
+S3_hp0.75_tk2_A02_high,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A03_low,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A03_low,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.75_tk2_A03_low,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A03_low,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_A03_low,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A03_high,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A03_high,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.75_tk2_A03_high,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A03_high,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_A03_high,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A04_low,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-354.3272889053098,>= 0 $/apt/yr,break-even tariff 26.8 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A04_low,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19216801.410306048,> 0 $/yr,
+S3_hp0.75_tk2_A04_low,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18979217.831011977,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A04_low,base,S3,F3,Data center participates willingly (net value >= 0),pass,452979.359547041,>= 0 $/yr,
+S3_hp0.75_tk2_A04_low,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A04_high,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-453.18426279113754,>= 0 $/apt/yr,break-even tariff 8.9 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A04_high,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19520168.47752678,> 0 $/yr,
+S3_hp0.75_tk2_A04_high,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18999757.95897555,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A04_high,base,S3,F3,Data center participates willingly (net value >= 0),pass,468503.5693620652,>= 0 $/yr,
+S3_hp0.75_tk2_A04_high,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A10_low,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-445.7580955321735,>= 0 $/apt/yr,break-even tariff 5.5 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A10_low,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19479146.829121575,> 0 $/yr,
+S3_hp0.75_tk2_A10_low,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18972435.62938994,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A10_low,base,S3,F3,Data center participates willingly (net value >= 0),pass,434514.37569513835,>= 0 $/yr,
+S3_hp0.75_tk2_A10_low,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A10_high,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-372.8500193888591,>= 0 $/apt/yr,break-even tariff 26.3 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A10_high,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19279629.628436845,> 0 $/yr,
+S3_hp0.75_tk2_A10_high,base,S3,F2,Operator self-financing at the pilot tariff,fail,-19001897.299799003,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A10_high,base,S3,F3,Data center participates willingly (net value >= 0),pass,480791.68287318386,>= 0 $/yr,
+S3_hp0.75_tk2_A10_high,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A11_low,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-396.3734106273913,>= 0 $/apt/yr,break-even tariff 19.2 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A11_low,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19346050.903189372,> 0 $/yr,
+S3_hp0.75_tk2_A11_low,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A11_low,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_A11_low,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A11_high,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-440.774401419874,>= 0 $/apt/yr,break-even tariff 11.1 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A11_high,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19457316.086503897,> 0 $/yr,
+S3_hp0.75_tk2_A11_high,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A11_high,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_A11_high,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A16_low,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A16_low,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.75_tk2_A16_low,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A16_low,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_A16_low,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A16_high,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-406.0674423413507,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A16_high,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368968.580186043,> 0 $/yr,
+S3_hp0.75_tk2_A16_high,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988741.896556407,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A16_high,base,S3,F3,Data center participates willingly (net value >= 0),pass,461171.60367832286,>= 0 $/yr,
+S3_hp0.75_tk2_A16_high,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A17_low,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A17_low,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-18599317.055909894,> 0 $/yr,
+S3_hp0.75_tk2_A17_low,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A17_low,base,S3,F3,Data center participates willingly (net value >= 0),pass,1229210.8747364348,>= 0 $/yr,
+S3_hp0.75_tk2_A17_low,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A17_high,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A17_high,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.75_tk2_A17_high,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A17_high,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_A17_high,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A18_low,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A18_low,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.75_tk2_A18_low,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A18_low,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_A18_low,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A18_high,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A18_high,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.75_tk2_A18_high,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A18_high,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_A18_high,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A19_low,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A19_low,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.75_tk2_A19_low,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A19_low,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_A19_low,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A19_high,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A19_high,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.75_tk2_A19_high,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A19_high,base,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_A19_high,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A20_low,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588845,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A20_low,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19353858.403339032,> 0 $/yr,
+S3_hp0.75_tk2_A20_low,base,S3,F2,Operator self-financing at the pilot tariff,fail,-18915532.286671862,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A20_low,base,S3,F3,Data center participates willingly (net value >= 0),pass,404845.8837345486,>= 0 $/yr,
+S3_hp0.75_tk2_A20_low,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_A20_high,base,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_A20_high,base,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19375344.981328484,> 0 $/yr,
+S3_hp0.75_tk2_A20_high,base,S3,F2,Operator self-financing at the pilot tariff,fail,-19024516.93456927,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_A20_high,base,S3,F3,Data center participates willingly (net value >= 0),pass,487216.380334017,>= 0 $/yr,
+S3_hp0.75_tk2_A20_high,base,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3R_hp0.5_tk0_base,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-249.18495717120413,>= 0 $/apt/yr,break-even tariff 42.8 $/MWh vs pilot 90.9
+S3R_hp0.5_tk0_base,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-6675118.357924168,> 0 $/yr,
+S3R_hp0.5_tk0_base,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6330506.25596475,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.5_tk0_base,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1028436.2412342443,>= 0 $/yr,
+S3R_hp0.5_tk0_base,base,S3R,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3R_hp0.5_tk2_base,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-241.87145140685442,>= 0 $/apt/yr,break-even tariff 44.8 $/MWh vs pilot 90.9
+S3R_hp0.5_tk2_base,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-6622632.778150852,> 0 $/yr,
+S3R_hp0.5_tk2_base,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6329765.409787251,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.5_tk2_base,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1039883.5580684969,>= 0 $/yr,
+S3R_hp0.5_tk2_base,base,S3R,F4,Simple payback within asset life (25 yr),fail,2444.6509207700533,<= 25 yr,
+S3R_hp0.5_tk6_base,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-237.12711069694637,>= 0 $/apt/yr,break-even tariff 46.1 $/MWh vs pilot 90.9
+S3R_hp0.5_tk6_base,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-6586750.598038101,> 0 $/yr,
+S3R_hp0.5_tk6_base,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6329173.320481846,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.5_tk6_base,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1049032.3315642497,>= 0 $/yr,
+S3R_hp0.5_tk6_base,base,S3R,F4,Simple payback within asset life (25 yr),fail,1263.7934313455926,<= 25 yr,
+S3R_hp0.75_tk0_base,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-279.4709220468583,>= 0 $/apt/yr,break-even tariff 39.7 $/MWh vs pilot 90.9
+S3R_hp0.75_tk0_base,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7195843.040974972,> 0 $/yr,
+S3R_hp0.75_tk0_base,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6736083.730621546,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk0_base,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1080164.6993050925,>= 0 $/yr,
+S3R_hp0.75_tk0_base,base,S3R,F4,Simple payback within asset life (25 yr),fail,582.9800519352668,<= 25 yr,
+S3R_hp0.75_tk2_base,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342707,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_base,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7184572.62613625,> 0 $/yr,
+S3R_hp0.75_tk2_base,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6735873.317342782,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_base,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_base,base,S3R,F4,Simple payback within asset life (25 yr),fail,548.3158062206984,<= 25 yr,
+S3R_hp0.75_tk6_base,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-277.0700672794288,>= 0 $/apt/yr,break-even tariff 40.5 $/MWh vs pilot 90.9
+S3R_hp0.75_tk6_base,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7175101.254109097,> 0 $/yr,
+S3R_hp0.75_tk6_base,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6735627.055202661,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk6_base,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1087221.100983546,>= 0 $/yr,
+S3R_hp0.75_tk6_base,base,S3R,F4,Simple payback within asset life (25 yr),fail,522.2209250490072,<= 25 yr,
+S3R_hp1_tk0_base,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-342.7433573021873,>= 0 $/apt/yr,break-even tariff 28.4 $/MWh vs pilot 90.9
+S3R_hp1_tk0_base,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7949509.772887179,> 0 $/yr,
+S3R_hp1_tk0_base,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-7144772.535077713,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp1_tk0_base,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1083817.8901059162,>= 0 $/yr,
+S3R_hp1_tk0_base,base,S3R,F4,Simple payback within asset life (25 yr),fail,827.8058043121033,<= 25 yr,
+S3R_hp1_tk2_base,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-341.7965928676185,>= 0 $/apt/yr,break-even tariff 28.7 $/MWh vs pilot 90.9
+S3R_hp1_tk2_base,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7941561.442940502,> 0 $/yr,
+S3R_hp1_tk2_base,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-7144606.493786623,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp1_tk2_base,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1086383.5067270268,>= 0 $/yr,
+S3R_hp1_tk2_base,base,S3R,F4,Simple payback within asset life (25 yr),fail,782.6276176343129,<= 25 yr,
+S3R_hp1_tk6_base,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-341.22720949817585,>= 0 $/apt/yr,break-even tariff 29.0 $/MWh vs pilot 90.9
+S3R_hp1_tk6_base,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7935015.5611734325,> 0 $/yr,
+S3R_hp1_tk6_base,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-7144399.306451024,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp1_tk6_base,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1089584.8987928655,>= 0 $/yr,
+S3R_hp1_tk6_base,base,S3R,F4,Simple payback within asset life (25 yr),fail,748.964537343335,<= 25 yr,
+S3R_hp0.75_tk2_A01_low,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-290.15865021950015,>= 0 $/apt/yr,break-even tariff 37.0 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A01_low,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7270054.533349159,> 0 $/yr,
+S3R_hp0.75_tk2_A01_low,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6737015.0708669685,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A01_low,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1065773.9294075835,>= 0 $/yr,
+S3R_hp0.75_tk2_A01_low,base,S3R,F4,Simple payback within asset life (25 yr),fail,998.7269568492206,<= 25 yr,
+S3R_hp0.75_tk2_A01_high,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342707,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A01_high,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7184572.62613625,> 0 $/yr,
+S3R_hp0.75_tk2_A01_high,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6735873.317342782,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A01_high,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_A01_high,base,S3R,F4,Simple payback within asset life (25 yr),fail,548.3158062206984,<= 25 yr,
+S3R_hp0.75_tk2_A02_low,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-297.78046844569735,>= 0 $/apt/yr,break-even tariff 35.0 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A02_low,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7290461.495407001,> 0 $/yr,
+S3R_hp0.75_tk2_A02_low,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6694288.116584712,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A02_low,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1053610.9918191647,>= 0 $/yr,
+S3R_hp0.75_tk2_A02_low,base,S3R,F4,Simple payback within asset life (25 yr),fail,2271.5186702497017,<= 25 yr,
+S3R_hp0.75_tk2_A02_high,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-245.17581561297683,>= 0 $/apt/yr,break-even tariff 48.1 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A02_high,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7008091.177351664,> 0 $/yr,
+S3R_hp0.75_tk2_A02_high,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6805181.985272898,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A02_high,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1133090.847253511,>= 0 $/yr,
+S3R_hp0.75_tk2_A02_high,base,S3R,F4,Simple payback within asset life (25 yr),fail,244.01415614664342,<= 25 yr,
+S3R_hp0.75_tk2_A03_low,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-222.8059553132751,>= 0 $/apt/yr,break-even tariff 40.1 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A03_low,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-6782140.618314324,> 0 $/yr,
+S3R_hp0.75_tk2_A03_low,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6437111.51418691,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A03_low,base,S3R,F3,Data center participates willingly (net value >= 0),pass,882670.9388290602,>= 0 $/yr,
+S3R_hp0.75_tk2_A03_low,base,S3R,F4,Simple payback within asset life (25 yr),fail,2348.818589373938,<= 25 yr,
+S3R_hp0.75_tk2_A03_high,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-334.4602422044619,>= 0 $/apt/yr,break-even tariff 40.0 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A03_high,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7595187.43298009,> 0 $/yr,
+S3R_hp0.75_tk2_A03_high,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-7034744.415435157,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A03_high,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1282472.1461819778,>= 0 $/yr,
+S3R_hp0.75_tk2_A03_high,base,S3R,F4,Simple payback within asset life (25 yr),fail,338.5103527734637,<= 25 yr,
+S3R_hp0.75_tk2_A04_low,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.0537236334272,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A04_low,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7138589.431382577,> 0 $/yr,
+S3R_hp0.75_tk2_A04_low,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6726287.924293116,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A04_low,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1076171.3063600333,>= 0 $/yr,
+S3R_hp0.75_tk2_A04_low,base,S3R,F4,Simple payback within asset life (25 yr),fail,459.0752220875796,<= 25 yr,
+S3R_hp0.75_tk2_A04_high,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342707,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A04_high,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7237124.848711872,> 0 $/yr,
+S3R_hp0.75_tk2_A04_high,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6746828.052256687,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A04_high,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1091695.5161750577,>= 0 $/yr,
+S3R_hp0.75_tk2_A04_high,base,S3R,F4,Simple payback within asset life (25 yr),fail,704.3729329906578,<= 25 yr,
+S3R_hp0.75_tk2_A10_low,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-310.4029783620273,>= 0 $/apt/yr,break-even tariff 31.6 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A10_low,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7368268.45425186,> 0 $/yr,
+S3R_hp0.75_tk2_A10_low,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6674149.052937726,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A10_low,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1033815.8109447409,>= 0 $/yr,
+S3R_hp0.75_tk2_A10_low,base,S3R,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3R_hp0.75_tk2_A10_high,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-252.17431985054668,>= 0 $/apt/yr,break-even tariff 46.5 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A10_high,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7037615.963643759,> 0 $/yr,
+S3R_hp0.75_tk2_A10_high,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6785252.728866828,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A10_high,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1123096.0389368879,>= 0 $/yr,
+S3R_hp0.75_tk2_A10_high,base,S3R,F4,Simple payback within asset life (25 yr),fail,273.7261478861756,<= 25 yr,
+S3R_hp0.75_tk2_A11_low,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-269.77973568162884,>= 0 $/apt/yr,break-even tariff 41.7 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A11_low,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7135129.686443341,> 0 $/yr,
+S3R_hp0.75_tk2_A11_low,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6735873.317342782,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A11_low,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_A11_low,base,S3R,F4,Simple payback within asset life (25 yr),fail,434.87757299514,<= 25 yr,
+S3R_hp0.75_tk2_A11_high,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-311.14967544062034,>= 0 $/apt/yr,break-even tariff 34.1 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A11_high,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7382344.384907884,> 0 $/yr,
+S3R_hp0.75_tk2_A11_high,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6735873.317342782,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A11_high,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_A11_high,base,S3R,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3R_hp0.75_tk2_A16_low,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342707,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A16_low,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7184572.62613625,> 0 $/yr,
+S3R_hp0.75_tk2_A16_low,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6735873.317342782,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A16_low,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_A16_low,base,S3R,F4,Simple payback within asset life (25 yr),fail,548.3158062206984,<= 25 yr,
+S3R_hp0.75_tk2_A16_high,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-274.9175837102133,>= 0 $/apt/yr,break-even tariff 41.0 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A16_high,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7162232.715474918,> 0 $/yr,
+S3R_hp0.75_tk2_A16_high,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6735566.534218507,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A16_high,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1088156.2517635426,>= 0 $/yr,
+S3R_hp0.75_tk2_A16_high,base,S3R,F4,Simple payback within asset life (25 yr),fail,490.50452333333317,<= 25 yr,
+S3R_hp0.75_tk2_A17_low,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342707,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A17_low,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-5374296.190011089,> 0 $/yr,
+S3R_hp0.75_tk2_A17_low,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6735873.317342782,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A17_low,base,S3R,F3,Data center participates willingly (net value >= 0),pass,2893692.373732205,>= 0 $/yr,
+S3R_hp0.75_tk2_A17_low,base,S3R,F4,Simple payback within asset life (25 yr),fail,51.96984654870464,<= 25 yr,
+S3R_hp0.75_tk2_A17_high,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342707,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A17_high,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7184572.62613625,> 0 $/yr,
+S3R_hp0.75_tk2_A17_high,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6735873.317342782,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A17_high,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_A17_high,base,S3R,F4,Simple payback within asset life (25 yr),fail,548.3158062206984,<= 25 yr,
+S3R_hp0.75_tk2_A18_low,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342707,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A18_low,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7184572.62613625,> 0 $/yr,
+S3R_hp0.75_tk2_A18_low,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6735873.317342782,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A18_low,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_A18_low,base,S3R,F4,Simple payback within asset life (25 yr),fail,548.3158062206984,<= 25 yr,
+S3R_hp0.75_tk2_A18_high,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342707,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A18_high,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7184572.62613625,> 0 $/yr,
+S3R_hp0.75_tk2_A18_high,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6735873.317342782,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A18_high,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_A18_high,base,S3R,F4,Simple payback within asset life (25 yr),fail,548.3158062206984,<= 25 yr,
+S3R_hp0.75_tk2_A19_low,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-250.6003241804484,>= 0 $/apt/yr,break-even tariff 45.7 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A19_low,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7200122.673272911,> 0 $/yr,
+S3R_hp0.75_tk2_A19_low,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6914092.177583623,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A19_low,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1094816.5197253122,>= 0 $/yr,
+S3R_hp0.75_tk2_A19_low,base,S3R,F4,Simple payback within asset life (25 yr),fail,226.09935018344615,<= 25 yr,
+S3R_hp0.75_tk2_A19_high,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-305.5071230864056,>= 0 $/apt/yr,break-even tariff 34.5 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A19_high,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7169022.578999588,> 0 $/yr,
+S3R_hp0.75_tk2_A19_high,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6557654.457101942,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A19_high,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1072015.3554887776,>= 0 $/yr,
+S3R_hp0.75_tk2_A19_high,base,S3R,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3R_hp0.75_tk2_A20_low,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342707,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A20_low,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7170127.0896230005,> 0 $/yr,
+S3R_hp0.75_tk2_A20_low,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6662602.379952998,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A20_low,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1028037.8305475404,>= 0 $/yr,
+S3R_hp0.75_tk2_A20_low,base,S3R,F4,Simple payback within asset life (25 yr),fail,780.0523104234645,<= 25 yr,
+S3R_hp0.75_tk2_A20_high,base,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342724,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_A20_high,base,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7191613.667612448,> 0 $/yr,
+S3R_hp0.75_tk2_A20_high,base,S3R,F2,Operator self-financing at the pilot tariff,fail,-6771587.027850407,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_A20_high,base,S3R,F3,Data center participates willingly (net value >= 0),pass,1110408.3271470093,>= 0 $/yr,
+S3R_hp0.75_tk2_A20_high,base,S3R,F4,Simple payback within asset life (25 yr),fail,479.8393059371129,<= 25 yr,
+S0_hp0.75_tk2_base,A05_low,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_base,A05_low,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_base,A05_low,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_base,A05_low,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_base,A05_low,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_base,A05_high,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_base,A05_high,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_base,A05_high,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_base,A05_high,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_base,A05_high,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_base,A06_low,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_base,A06_low,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_base,A06_low,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_base,A06_low,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_base,A06_low,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_base,A06_high,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_base,A06_high,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_base,A06_high,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_base,A06_high,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_base,A06_high,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_base,A07_low,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_base,A07_low,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_base,A07_low,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_base,A07_low,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_base,A07_low,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_base,A07_high,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_base,A07_high,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_base,A07_high,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_base,A07_high,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_base,A07_high,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_base,A08_low,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_base,A08_low,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_base,A08_low,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_base,A08_low,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_base,A08_low,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_base,A08_high,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_base,A08_high,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_base,A08_high,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_base,A08_high,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_base,A08_high,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_base,A12_low,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_base,A12_low,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_base,A12_low,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_base,A12_low,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_base,A12_low,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_base,A12_high,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_base,A12_high,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_base,A12_high,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_base,A12_high,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_base,A12_high,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_base,A21_low,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_base,A21_low,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_base,A21_low,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_base,A21_low,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_base,A21_low,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_base,A21_high,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_base,A21_high,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_base,A21_high,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_base,A21_high,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_base,A21_high,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_base,A22_low,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_base,A22_low,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_base,A22_low,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_base,A22_low,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_base,A22_low,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S0_hp0.75_tk2_base,A22_high,S0,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S0_hp0.75_tk2_base,A22_high,S0,F1,Society gains: annual savings > 0 (resource view),fail,0.0,> 0 $/yr,
+S0_hp0.75_tk2_base,A22_high,S0,F2,Operator self-financing at the pilot tariff,pass,0.0,>= 0 $/yr,negative = ratepayer/public funding needed
+S0_hp0.75_tk2_base,A22_high,S0,F3,Data center participates willingly (net value >= 0),pass,0.0,>= 0 $/yr,
+S0_hp0.75_tk2_base,A22_high,S0,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S1_hp0.75_tk2_base,A05_low,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_base,A05_low,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk2_base,A05_low,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_base,A05_low,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_base,A05_low,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_base,A05_high,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_base,A05_high,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk2_base,A05_high,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_base,A05_high,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_base,A05_high,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_base,A06_low,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_base,A06_low,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk2_base,A06_low,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_base,A06_low,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_base,A06_low,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_base,A06_high,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_base,A06_high,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk2_base,A06_high,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_base,A06_high,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_base,A06_high,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_base,A07_low,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_base,A07_low,S1,F1,Society gains: annual savings > 0 (resource view),pass,47481.52114139055,> 0 $/yr,
+S1_hp0.75_tk2_base,A07_low,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_base,A07_low,S1,F3,Data center participates willingly (net value >= 0),fail,-109163.40201881515,>= 0 $/yr,
+S1_hp0.75_tk2_base,A07_low,S1,F4,Simple payback within asset life (25 yr),pass,9.66724637906622,<= 25 yr,
+S1_hp0.75_tk2_base,A07_high,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_base,A07_high,S1,F1,Society gains: annual savings > 0 (resource view),fail,-123191.30423591274,> 0 $/yr,
+S1_hp0.75_tk2_base,A07_high,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_base,A07_high,S1,F3,Data center participates willingly (net value >= 0),fail,-169143.29323794437,>= 0 $/yr,
+S1_hp0.75_tk2_base,A07_high,S1,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S1_hp0.75_tk2_base,A08_low,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_base,A08_low,S1,F1,Society gains: annual savings > 0 (resource view),fail,-1022.2801146442071,> 0 $/yr,
+S1_hp0.75_tk2_base,A08_low,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_base,A08_low,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_base,A08_low,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_base,A08_high,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_base,A08_high,S1,F1,Society gains: annual savings > 0 (resource view),fail,-42501.72546671727,> 0 $/yr,
+S1_hp0.75_tk2_base,A08_high,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_base,A08_high,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_base,A08_high,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_base,A12_low,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_base,A12_low,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk2_base,A12_low,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_base,A12_low,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_base,A12_low,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_base,A12_high,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_base,A12_high,S1,F1,Society gains: annual savings > 0 (resource view),fail,-20787.609009530745,> 0 $/yr,
+S1_hp0.75_tk2_base,A12_high,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_base,A12_high,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_base,A12_high,S1,F4,Simple payback within asset life (25 yr),pass,17.62786489997779,<= 25 yr,
+S1_hp0.75_tk2_base,A21_low,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_base,A21_low,S1,F1,Society gains: annual savings > 0 (resource view),fail,-10035.146895087673,> 0 $/yr,
+S1_hp0.75_tk2_base,A21_low,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_base,A21_low,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_base,A21_low,S1,F4,Simple payback within asset life (25 yr),pass,15.786230809053682,<= 25 yr,
+S1_hp0.75_tk2_base,A21_high,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_base,A21_high,S1,F1,Society gains: annual savings > 0 (resource view),fail,-56117.127385558095,> 0 $/yr,
+S1_hp0.75_tk2_base,A21_high,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_base,A21_high,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_base,A21_high,S1,F4,Simple payback within asset life (25 yr),pass,23.894656182733684,<= 25 yr,
+S1_hp0.75_tk2_base,A22_low,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_base,A22_low,S1,F1,Society gains: annual savings > 0 (resource view),fail,-17335.500670842885,> 0 $/yr,
+S1_hp0.75_tk2_base,A22_low,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_base,A22_low,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_base,A22_low,S1,F4,Simple payback within asset life (25 yr),pass,16.923193892799645,<= 25 yr,
+S1_hp0.75_tk2_base,A22_high,S1,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S1_hp0.75_tk2_base,A22_high,S1,F1,Society gains: annual savings > 0 (resource view),fail,-27691.82568690658,> 0 $/yr,
+S1_hp0.75_tk2_base,A22_high,S1,F2,Operator self-financing at the pilot tariff,n/a,0.0,>= 0 $/yr,S1 has no operator
+S1_hp0.75_tk2_base,A22_high,S1,F3,Data center participates willingly (net value >= 0),fail,-133155.35850646684,>= 0 $/yr,
+S1_hp0.75_tk2_base,A22_high,S1,F4,Simple payback within asset life (25 yr),pass,19.229252538688932,<= 25 yr,
+S2_hp0.75_tk2_base,A05_low,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_base,A05_low,S2,F1,Society gains: annual savings > 0 (resource view),fail,-4946464.646586566,> 0 $/yr,
+S2_hp0.75_tk2_base,A05_low,S2,F2,Operator self-financing at the pilot tariff,fail,-3211493.1970288367,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_base,A05_low,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_base,A05_low,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_base,A05_high,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_base,A05_high,S2,F1,Society gains: annual savings > 0 (resource view),fail,-6203533.02691883,> 0 $/yr,
+S2_hp0.75_tk2_base,A05_high,S2,F2,Operator self-financing at the pilot tariff,fail,-4468561.5773611,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_base,A05_high,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_base,A05_high,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_base,A06_low,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_base,A06_low,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5664824.436312084,> 0 $/yr,
+S2_hp0.75_tk2_base,A06_low,S2,F2,Operator self-financing at the pilot tariff,fail,-3518015.8153276094,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_base,A06_low,S2,F3,Data center participates willingly (net value >= 0),pass,204940.14640162524,>= 0 $/yr,
+S2_hp0.75_tk2_base,A06_low,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_base,A06_high,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_base,A06_high,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5664824.436312084,> 0 $/yr,
+S2_hp0.75_tk2_base,A06_high,S2,F2,Operator self-financing at the pilot tariff,fail,-4278330.593346214,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_base,A06_high,S2,F3,Data center participates willingly (net value >= 0),pass,965254.9244202304,>= 0 $/yr,
+S2_hp0.75_tk2_base,A06_high,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_base,A07_low,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_base,A07_low,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5089991.402590121,> 0 $/yr,
+S2_hp0.75_tk2_base,A07_low,S2,F2,Operator self-financing at the pilot tariff,fail,-3929852.9867543536,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_base,A07_low,S2,F3,Data center participates willingly (net value >= 0),pass,802465.8525812719,>= 0 $/yr,
+S2_hp0.75_tk2_base,A07_low,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_base,A07_high,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_base,A07_high,S2,F1,Society gains: annual savings > 0 (resource view),fail,-6527073.986895026,> 0 $/yr,
+S2_hp0.75_tk2_base,A07_high,S2,F2,Operator self-financing at the pilot tariff,fail,-3929852.9867543536,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_base,A07_high,S2,F3,Data center participates willingly (net value >= 0),pass,338244.51569901616,>= 0 $/yr,
+S2_hp0.75_tk2_base,A07_high,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_base,A08_low,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_base,A08_low,S2,F1,Society gains: annual savings > 0 (resource view),fail,-4973860.958339306,> 0 $/yr,
+S2_hp0.75_tk2_base,A08_low,S2,F2,Operator self-financing at the pilot tariff,fail,-3238889.508781576,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_base,A08_low,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_base,A08_low,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_base,A08_high,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_base,A08_high,S2,F1,Society gains: annual savings > 0 (resource view),fail,-6423914.33095305,> 0 $/yr,
+S2_hp0.75_tk2_base,A08_high,S2,F2,Operator self-financing at the pilot tariff,fail,-4688942.8813953195,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_base,A08_high,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_base,A08_high,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_base,A12_low,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_base,A12_low,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5664824.436312084,> 0 $/yr,
+S2_hp0.75_tk2_base,A12_low,S2,F2,Operator self-financing at the pilot tariff,fail,-3929852.9867543536,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_base,A12_low,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_base,A12_low,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_base,A12_high,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_base,A12_high,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5664824.436312084,> 0 $/yr,
+S2_hp0.75_tk2_base,A12_high,S2,F2,Operator self-financing at the pilot tariff,fail,-3929852.9867543536,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_base,A12_high,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_base,A12_high,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_base,A21_low,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_base,A21_low,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5275957.955920384,> 0 $/yr,
+S2_hp0.75_tk2_base,A21_low,S2,F2,Operator self-financing at the pilot tariff,fail,-3540986.5063626543,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_base,A21_low,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_base,A21_low,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_base,A21_high,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_base,A21_high,S2,F1,Society gains: annual savings > 0 (resource view),fail,-6942528.586170523,> 0 $/yr,
+S2_hp0.75_tk2_base,A21_high,S2,F2,Operator self-financing at the pilot tariff,fail,-5207557.1366127925,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_base,A21_high,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_base,A21_high,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_base,A22_low,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_base,A22_low,S2,F1,Society gains: annual savings > 0 (resource view),fail,-5477400.176893011,> 0 $/yr,
+S2_hp0.75_tk2_base,A22_low,S2,F2,Operator self-financing at the pilot tariff,fail,-3742428.7273352807,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_base,A22_low,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_base,A22_low,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S2_hp0.75_tk2_base,A22_high,S2,H6,NYCHA heat cost not above today (at pilot tariff),n/a,,>= 0 $/apt/yr,no NYCHA buildings connected
+S2_hp0.75_tk2_base,A22_high,S2,F1,Society gains: annual savings > 0 (resource view),fail,-6039672.95515023,> 0 $/yr,
+S2_hp0.75_tk2_base,A22_high,S2,F2,Operator self-financing at the pilot tariff,fail,-4304701.5055925,>= 0 $/yr,negative = ratepayer/public funding needed
+S2_hp0.75_tk2_base,A22_high,S2,F3,Data center participates willingly (net value >= 0),pass,616777.3178283697,>= 0 $/yr,
+S2_hp0.75_tk2_base,A22_high,S2,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_base,A05_low,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_base,A05_low,S3,F1,Society gains: annual savings > 0 (resource view),fail,-17432952.908323847,> 0 $/yr,
+S3_hp0.75_tk2_base,A05_low,S3,F2,Operator self-financing at the pilot tariff,fail,-17053452.19253321,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_base,A05_low,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_base,A05_low,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_base,A05_high,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_base,A05_high,S3,F1,Society gains: annual savings > 0 (resource view),fail,-20819652.193799462,> 0 $/yr,
+S3_hp0.75_tk2_base,A05_high,S3,F2,Operator self-financing at the pilot tariff,fail,-20440151.478008825,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_base,A05_high,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_base,A05_high,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_base,A06_low,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_base,A06_low,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.75_tk2_base,A06_low,S3,F2,Operator self-financing at the pilot tariff,fail,-18681500.505377535,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_base,A06_low,S3,F3,Data center participates willingly (net value >= 0),pass,152921.2721099438,>= 0 $/yr,
+S3_hp0.75_tk2_base,A06_low,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_base,A06_high,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_base,A06_high,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.75_tk2_base,A06_high,S3,F2,Operator self-financing at the pilot tariff,fail,-19248828.601409733,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_base,A06_high,S3,F3,Data center participates willingly (net value >= 0),pass,720249.3681421446,>= 0 $/yr,
+S3_hp0.75_tk2_base,A06_high,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_base,A07_low,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-303.2128807339459,>= 0 $/apt/yr,break-even tariff 36.0 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_base,A07_low,S3,F1,Society gains: annual savings > 0 (resource view),fail,-18974042.18236045,> 0 $/yr,
+S3_hp0.75_tk2_base,A07_low,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_base,A07_low,S3,F3,Data center participates willingly (net value >= 0),pass,598780.1860989862,>= 0 $/yr,
+S3_hp0.75_tk2_base,A07_low,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_base,A07_high,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-558.3147008638006,>= 0 $/apt/yr,break-even tariff -10.1 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_base,A07_high,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19959696.57609002,> 0 $/yr,
+S3_hp0.75_tk2_base,A07_high,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_base,A07_high,S3,F3,Data center participates willingly (net value >= 0),pass,252389.69783665182,>= 0 $/yr,
+S3_hp0.75_tk2_base,A07_high,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_base,A08_low,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_base,A08_low,S3,F1,Society gains: annual savings > 0 (resource view),fail,-15868170.983402483,> 0 $/yr,
+S3_hp0.75_tk2_base,A08_low,S3,F2,Operator self-financing at the pilot tariff,fail,-15488670.267611846,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_base,A08_low,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_base,A08_low,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_base,A08_high,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_base,A08_high,S3,F1,Society gains: annual savings > 0 (resource view),fail,-23213536.92515563,> 0 $/yr,
+S3_hp0.75_tk2_base,A08_high,S3,F2,Operator self-financing at the pilot tariff,fail,-22834036.20936499,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_base,A08_high,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_base,A08_high,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_base,A12_low,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_base,A12_low,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.75_tk2_base,A12_low,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_base,A12_low,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_base,A12_low,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_base,A12_high,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_base,A12_high,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19368303.93985228,> 0 $/yr,
+S3_hp0.75_tk2_base,A12_high,S3,F2,Operator self-financing at the pilot tariff,fail,-18988803.22406164,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_base,A12_high,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_base,A12_high,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_base,A21_low,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_base,A21_low,S3,F1,Society gains: annual savings > 0 (resource view),fail,-17517330.111467235,> 0 $/yr,
+S3_hp0.75_tk2_base,A21_low,S3,F2,Operator self-financing at the pilot tariff,fail,-17137829.395676598,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_base,A21_low,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_base,A21_low,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_base,A21_high,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_base,A21_high,S3,F1,Society gains: annual savings > 0 (resource view),fail,-25450075.090260293,> 0 $/yr,
+S3_hp0.75_tk2_base,A21_high,S3,F2,Operator self-financing at the pilot tariff,fail,-25070574.374469653,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_base,A21_high,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_base,A21_high,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_base,A22_low,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_base,A22_low,S3,F1,Society gains: annual savings > 0 (resource view),fail,-19030179.331891667,> 0 $/yr,
+S3_hp0.75_tk2_base,A22_low,S3,F2,Operator self-financing at the pilot tariff,fail,-18650678.61610103,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_base,A22_low,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_base,A22_low,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3_hp0.75_tk2_base,A22_high,S3,H6,NYCHA heat cost not above today (at pilot tariff),fail,-405.25360878588776,>= 0 $/apt/yr,break-even tariff 17.6 $/MWh vs pilot 90.9
+S3_hp0.75_tk2_base,A22_high,S3,F1,Society gains: annual savings > 0 (resource view),fail,-20044553.155773506,> 0 $/yr,
+S3_hp0.75_tk2_base,A22_high,S3,F2,Operator self-financing at the pilot tariff,fail,-19665052.439982865,>= 0 $/yr,negative = ratepayer/public funding needed
+S3_hp0.75_tk2_base,A22_high,S3,F3,Data center participates willingly (net value >= 0),pass,460223.9907940525,>= 0 $/yr,
+S3_hp0.75_tk2_base,A22_high,S3,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3R_hp0.75_tk2_base,A05_low,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342707,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_base,A05_low,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-5249221.594607816,> 0 $/yr,
+S3R_hp0.75_tk2_base,A05_low,S3R,F2,Operator self-financing at the pilot tariff,fail,-4800522.285814348,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_base,A05_low,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_base,A05_low,S3R,F4,Simple payback within asset life (25 yr),fail,186.70067827681558,<= 25 yr,
+S3R_hp0.75_tk2_base,A05_high,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342707,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_base,A05_high,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-8635920.880083434,> 0 $/yr,
+S3R_hp0.75_tk2_base,A05_high,S3R,F2,Operator self-financing at the pilot tariff,fail,-8187221.571289966,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_base,A05_high,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_base,A05_high,S3R,F4,Simple payback within asset life (25 yr),fail,11876.198174255152,<= 25 yr,
+S3R_hp0.75_tk2_base,A06_low,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342707,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_base,A06_low,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7184572.62613625,> 0 $/yr,
+S3R_hp0.75_tk2_base,A06_low,S3R,F2,Operator self-financing at the pilot tariff,fail,-6012450.223909731,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_base,A06_low,S3R,F3,Data center participates willingly (net value >= 0),pass,359992.8441739932,>= 0 $/yr,
+S3R_hp0.75_tk2_base,A06_low,S3R,F4,Simple payback within asset life (25 yr),fail,548.3158062206984,<= 25 yr,
+S3R_hp0.75_tk2_base,A06_high,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342707,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_base,A06_high,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7184572.62613625,> 0 $/yr,
+S3R_hp0.75_tk2_base,A06_high,S3R,F2,Operator self-financing at the pilot tariff,fail,-7348000.550247673,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_base,A06_high,S3R,F3,Data center participates willingly (net value >= 0),pass,1695543.1705119347,>= 0 $/yr,
+S3R_hp0.75_tk2_base,A06_high,S3R,F4,Simple payback within asset life (25 yr),fail,548.3158062206984,<= 25 yr,
+S3R_hp0.75_tk2_base,A07_low,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-301.4181873852569,>= 0 $/apt/yr,break-even tariff 35.9 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_base,A07_low,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-6942857.713308597,> 0 $/yr,
+S3R_hp0.75_tk2_base,A07_low,S3R,F2,Operator self-financing at the pilot tariff,fail,-6735873.317342782,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_base,A07_low,S3R,F3,Data center participates willingly (net value >= 0),pass,1409591.8720440106,>= 0 $/yr,
+S3R_hp0.75_tk2_base,A07_low,S3R,F4,Simple payback within asset life (25 yr),fail,240.99261387930122,<= 25 yr,
+S3R_hp0.75_tk2_base,A07_high,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-243.00702800568237,>= 0 $/apt/yr,break-even tariff 46.6 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_base,A07_high,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7547144.99537773,> 0 $/yr,
+S3R_hp0.75_tk2_base,A07_high,S3R,F2,Operator self-financing at the pilot tariff,fail,-6735873.317342782,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_base,A07_high,S3R,F3,Data center participates willingly (net value >= 0),pass,594152.0359515958,>= 0 $/yr,
+S3R_hp0.75_tk2_base,A07_high,S3R,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3R_hp0.75_tk2_base,A08_low,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-299.84752529720504,>= 0 $/apt/yr,break-even tariff 36.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_base,A08_low,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-6163797.462951121,> 0 $/yr,
+S3R_hp0.75_tk2_base,A08_low,S3R,F2,Operator self-financing at the pilot tariff,fail,-5595014.306990235,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_base,A08_low,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_base,A08_low,S3R,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,
+S3R_hp0.75_tk2_base,A08_high,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-254.1111345731192,>= 0 $/apt/yr,break-even tariff 44.5 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_base,A08_high,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-8305992.405583469,> 0 $/yr,
+S3R_hp0.75_tk2_base,A08_high,S3R,F2,Operator self-financing at the pilot tariff,fail,-7989216.762512297,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_base,A08_high,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_base,A08_high,S3R,F4,Simple payback within asset life (25 yr),fail,169.7296339471952,<= 25 yr,
+S3R_hp0.75_tk2_base,A12_low,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342707,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_base,A12_low,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7184572.62613625,> 0 $/yr,
+S3R_hp0.75_tk2_base,A12_low,S3R,F2,Operator self-financing at the pilot tariff,fail,-6735873.317342782,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_base,A12_low,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_base,A12_low,S3R,F4,Simple payback within asset life (25 yr),fail,548.3158062206984,<= 25 yr,
+S3R_hp0.75_tk2_base,A12_high,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342707,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_base,A12_high,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-7184572.62613625,> 0 $/yr,
+S3R_hp0.75_tk2_base,A12_high,S3R,F2,Operator self-financing at the pilot tariff,fail,-6735873.317342782,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_base,A12_high,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_base,A12_high,S3R,F4,Simple payback within asset life (25 yr),fail,548.3158062206984,<= 25 yr,
+S3R_hp0.75_tk2_base,A21_low,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-289.16955604883304,>= 0 $/apt/yr,break-even tariff 38.1 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_base,A21_low,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-6582669.085435014,> 0 $/yr,
+S3R_hp0.75_tk2_base,A21_low,S3R,F2,Operator self-financing at the pilot tariff,fail,-6072721.540032661,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_base,A21_low,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_base,A21_low,S3R,F4,Simple payback within asset life (25 yr),fail,1259.0680248658925,<= 25 yr,
+S3R_hp0.75_tk2_base,A21_high,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-241.53027426852177,>= 0 $/apt/yr,break-even tariff 46.8 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_base,A21_high,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-9162255.688440302,> 0 $/yr,
+S3R_hp0.75_tk2_base,A21_high,S3R,F2,Operator self-financing at the pilot tariff,fail,-8914800.585647464,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_base,A21_high,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_base,A21_high,S3R,F4,Simple payback within asset life (25 yr),fail,241.64688117464866,<= 25 yr,
+S3R_hp0.75_tk2_base,A22_low,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342707,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_base,A22_low,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-6766655.461382144,> 0 $/yr,
+S3R_hp0.75_tk2_base,A22_low,S3R,F2,Operator self-financing at the pilot tariff,fail,-6317956.152588676,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_base,A22_low,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_base,A22_low,S3R,F4,Simple payback within asset life (25 yr),fail,171.08956690457205,<= 25 yr,
+S3R_hp0.75_tk2_base,A22_high,S3R,H6,NYCHA heat cost not above today (at pilot tariff),fail,-278.05372363342707,>= 0 $/apt/yr,break-even tariff 40.2 $/MWh vs pilot 90.9
+S3R_hp0.75_tk2_base,A22_high,S3R,F1,Society gains: annual savings > 0 (resource view),fail,-8020406.955644465,> 0 $/yr,
+S3R_hp0.75_tk2_base,A22_high,S3R,F2,Operator self-financing at the pilot tariff,fail,-7571707.646850996,>= 0 $/yr,negative = ratepayer/public funding needed
+S3R_hp0.75_tk2_base,A22_high,S3R,F3,Data center participates willingly (net value >= 0),pass,1083415.9376070446,>= 0 $/yr,
+S3R_hp0.75_tk2_base,A22_high,S3R,F4,Simple payback within asset life (25 yr),fail,inf,<= 25 yr,

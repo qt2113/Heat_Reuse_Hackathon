@@ -1,0 +1,36 @@
+{
+  "any_fully_feasible": false,
+  "any_pass_F1_society": false,
+  "message_in_every_experiment": true,
+  "lowest_additional_cost": {
+    "post_rebuild": {
+      "experiment_id": "R1000_N10_cap2_G0.5",
+      "mincost_config_id": "post_rebuild|7536925",
+      "mincost_names": "111 Eighth Avenue",
+      "mincost_net_value_usd_yr": -20787.609009530745
+    },
+    "today": {
+      "experiment_id": "R1000_N10_cap2_G0.5",
+      "mincost_config_id": "today|7536925",
+      "mincost_names": "111 Eighth Avenue",
+      "mincost_net_value_usd_yr": -20787.609009530745
+    }
+  },
+  "lowest_additional_cost_multi_building": {
+    "post_rebuild": {
+      "experiment_id": "R1000_N10_cap2_G0.5",
+      "mincost_multi_config_id": "post_rebuild|1634606+7536925",
+      "mincost_multi_names": "111 Eighth Avenue; M070 (OECID: 0100079; BBL: 1007410010)",
+      "mincost_multi_net_value_usd_yr": -1163650.1016271305
+    },
+    "today": {
+      "experiment_id": "R1000_N10_cap2_G0.5",
+      "mincost_multi_config_id": "today|1634606+7536925",
+      "mincost_multi_names": "111 Eighth Avenue; M070 (OECID: 0100079; BBL: 1007410010)",
+      "mincost_multi_net_value_usd_yr": -1163650.1016271305
+    }
+  },
+  "wall_seconds": 222.0,
+  "workers": 4,
+  "note": "MCDA scores are normalised within each experiment and are not comparable across experiments; KPIs are."
+}

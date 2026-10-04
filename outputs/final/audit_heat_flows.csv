@@ -1,0 +1,65 @@
+portfolio,quantity,column,MWh,definition
+minimum_cost,Recoverable heat,T1_recoverable_heat_GWh,79647.3,"data-center heat available at the capture interface (A01 share x 0.95 x 0.85 capture, outage hours removed)"
+minimum_cost,Heat reused (= heat extracted),Q_DC_used_MWh,2399.2,data-center heat actually taken into the ambient loop by the heat pumps; this is the numerator of the ERF
+minimum_cost,Heat-pump electricity,E_HP_MWh,1072.2,electricity added by the building heat pumps (becomes part of the delivered heat)
+minimum_cost,Heat delivered,Q_network_MWh,3471.4,heat delivered by the network heat pumps to buildings = heat reused + heat-pump electricity (incl. storage discharge)
+minimum_cost,Backup heat,Q_backup_MWh,7.1,served-class demand met by existing boilers/steam (or new electric boilers in rebuilt towers)
+minimum_cost,Useful demand of connected buildings,D_useful_connected_MWh,8856.1,LL84 fuel x efficiency; includes space heat that steam radiators cannot take (H7)
+minimum_cost,Demand outside the network scope,D_sh_not_served_MWh,5377.5,space heat of steam-radiator buildings; stays on existing steam/boilers
+minimum_cost,Source-side electricity (A17),E_src_MWh,599.8,extra electricity at the data center per MWh of heat reused (0.25 x heat reused at Base)
+minimum_cost_network,Recoverable heat,T1_recoverable_heat_GWh,79647.3,"data-center heat available at the capture interface (A01 share x 0.95 x 0.85 capture, outage hours removed)"
+minimum_cost_network,Heat reused (= heat extracted),Q_DC_used_MWh,3827.2,data-center heat actually taken into the ambient loop by the heat pumps; this is the numerator of the ERF
+minimum_cost_network,Heat-pump electricity,E_HP_MWh,1814.9,electricity added by the building heat pumps (becomes part of the delivered heat)
+minimum_cost_network,Heat delivered,Q_network_MWh,5640.7,heat delivered by the network heat pumps to buildings = heat reused + heat-pump electricity (incl. storage discharge)
+minimum_cost_network,Backup heat,Q_backup_MWh,22.4,served-class demand met by existing boilers/steam (or new electric boilers in rebuilt towers)
+minimum_cost_network,Useful demand of connected buildings,D_useful_connected_MWh,11040.7,LL84 fuel x efficiency; includes space heat that steam radiators cannot take (H7)
+minimum_cost_network,Demand outside the network scope,D_sh_not_served_MWh,5377.5,space heat of steam-radiator buildings; stays on existing steam/boilers
+minimum_cost_network,Source-side electricity (A17),E_src_MWh,956.8,extra electricity at the data center per MWh of heat reused (0.25 x heat reused at Base)
+proposal_phase1,Recoverable heat,T1_recoverable_heat_GWh,79647.3,"data-center heat available at the capture interface (A01 share x 0.95 x 0.85 capture, outage hours removed)"
+proposal_phase1,Heat reused (= heat extracted),Q_DC_used_MWh,5722.3,data-center heat actually taken into the ambient loop by the heat pumps; this is the numerator of the ERF
+proposal_phase1,Heat-pump electricity,E_HP_MWh,2800.5,electricity added by the building heat pumps (becomes part of the delivered heat)
+proposal_phase1,Heat delivered,Q_network_MWh,8519.7,heat delivered by the network heat pumps to buildings = heat reused + heat-pump electricity (incl. storage discharge)
+proposal_phase1,Backup heat,Q_backup_MWh,42.7,served-class demand met by existing boilers/steam (or new electric boilers in rebuilt towers)
+proposal_phase1,Useful demand of connected buildings,D_useful_connected_MWh,13939.9,LL84 fuel x efficiency; includes space heat that steam radiators cannot take (H7)
+proposal_phase1,Demand outside the network scope,D_sh_not_served_MWh,5377.5,space heat of steam-radiator buildings; stays on existing steam/boilers
+proposal_phase1,Source-side electricity (A17),E_src_MWh,1430.6,extra electricity at the data center per MWh of heat reused (0.25 x heat reused at Base)
+proposal_phase2,Recoverable heat,T1_recoverable_heat_GWh,79647.3,"data-center heat available at the capture interface (A01 share x 0.95 x 0.85 capture, outage hours removed)"
+proposal_phase2,Heat reused (= heat extracted),Q_DC_used_MWh,19483.7,data-center heat actually taken into the ambient loop by the heat pumps; this is the numerator of the ERF
+proposal_phase2,Heat-pump electricity,E_HP_MWh,7752.5,electricity added by the building heat pumps (becomes part of the delivered heat)
+proposal_phase2,Heat delivered,Q_network_MWh,27223.8,heat delivered by the network heat pumps to buildings = heat reused + heat-pump electricity (incl. storage discharge)
+proposal_phase2,Backup heat,Q_backup_MWh,158.1,served-class demand met by existing boilers/steam (or new electric boilers in rebuilt towers)
+proposal_phase2,Useful demand of connected buildings,D_useful_connected_MWh,32759.3,LL84 fuel x efficiency; includes space heat that steam radiators cannot take (H7)
+proposal_phase2,Demand outside the network scope,D_sh_not_served_MWh,5377.5,space heat of steam-radiator buildings; stays on existing steam/boilers
+proposal_phase2,Source-side electricity (A17),E_src_MWh,4870.9,extra electricity at the data center per MWh of heat reused (0.25 x heat reused at Base)
+proposal_phase2_school,Recoverable heat,T1_recoverable_heat_GWh,79647.3,"data-center heat available at the capture interface (A01 share x 0.95 x 0.85 capture, outage hours removed)"
+proposal_phase2_school,Heat reused (= heat extracted),Q_DC_used_MWh,20911.7,data-center heat actually taken into the ambient loop by the heat pumps; this is the numerator of the ERF
+proposal_phase2_school,Heat-pump electricity,E_HP_MWh,8495.2,electricity added by the building heat pumps (becomes part of the delivered heat)
+proposal_phase2_school,Heat delivered,Q_network_MWh,29393.1,heat delivered by the network heat pumps to buildings = heat reused + heat-pump electricity (incl. storage discharge)
+proposal_phase2_school,Backup heat,Q_backup_MWh,173.4,served-class demand met by existing boilers/steam (or new electric boilers in rebuilt towers)
+proposal_phase2_school,Useful demand of connected buildings,D_useful_connected_MWh,34943.9,LL84 fuel x efficiency; includes space heat that steam radiators cannot take (H7)
+proposal_phase2_school,Demand outside the network scope,D_sh_not_served_MWh,5377.5,space heat of steam-radiator buildings; stays on existing steam/boilers
+proposal_phase2_school,Source-side electricity (A17),E_src_MWh,5227.9,extra electricity at the data center per MWh of heat reused (0.25 x heat reused at Base)
+balanced,Recoverable heat,T1_recoverable_heat_GWh,79647.3,"data-center heat available at the capture interface (A01 share x 0.95 x 0.85 capture, outage hours removed)"
+balanced,Heat reused (= heat extracted),Q_DC_used_MWh,33301.9,data-center heat actually taken into the ambient loop by the heat pumps; this is the numerator of the ERF
+balanced,Heat-pump electricity,E_HP_MWh,14939.3,electricity added by the building heat pumps (becomes part of the delivered heat)
+balanced,Heat delivered,Q_network_MWh,48215.9,heat delivered by the network heat pumps to buildings = heat reused + heat-pump electricity (incl. storage discharge)
+balanced,Backup heat,Q_backup_MWh,306.1,served-class demand met by existing boilers/steam (or new electric boilers in rebuilt towers)
+balanced,Useful demand of connected buildings,D_useful_connected_MWh,53899.4,LL84 fuel x efficiency; includes space heat that steam radiators cannot take (H7)
+balanced,Demand outside the network scope,D_sh_not_served_MWh,5377.5,space heat of steam-radiator buildings; stays on existing steam/boilers
+balanced,Source-side electricity (A17),E_src_MWh,8325.5,extra electricity at the data center per MWh of heat reused (0.25 x heat reused at Base)
+balanced_today,Recoverable heat,T1_recoverable_heat_GWh,79647.3,"data-center heat available at the capture interface (A01 share x 0.95 x 0.85 capture, outage hours removed)"
+balanced_today,Heat reused (= heat extracted),Q_DC_used_MWh,26129.0,data-center heat actually taken into the ambient loop by the heat pumps; this is the numerator of the ERF
+balanced_today,Heat-pump electricity,E_HP_MWh,13270.1,electricity added by the building heat pumps (becomes part of the delivered heat)
+balanced_today,Heat delivered,Q_network_MWh,39378.9,heat delivered by the network heat pumps to buildings = heat reused + heat-pump electricity (incl. storage discharge)
+balanced_today,Backup heat,Q_backup_MWh,246.1,served-class demand met by existing boilers/steam (or new electric boilers in rebuilt towers)
+balanced_today,Useful demand of connected buildings,D_useful_connected_MWh,45002.6,LL84 fuel x efficiency; includes space heat that steam radiators cannot take (H7)
+balanced_today,Demand outside the network scope,D_sh_not_served_MWh,5377.5,space heat of steam-radiator buildings; stays on existing steam/boilers
+balanced_today,Source-side electricity (A17),E_src_MWh,6532.2,extra electricity at the data center per MWh of heat reused (0.25 x heat reused at Base)
+community,Recoverable heat,T1_recoverable_heat_GWh,79647.3,"data-center heat available at the capture interface (A01 share x 0.95 x 0.85 capture, outage hours removed)"
+community,Heat reused (= heat extracted),Q_DC_used_MWh,45645.2,data-center heat actually taken into the ambient loop by the heat pumps; this is the numerator of the ERF
+community,Heat-pump electricity,E_HP_MWh,18636.9,electricity added by the building heat pumps (becomes part of the delivered heat)
+community,Heat delivered,Q_network_MWh,64247.8,heat delivered by the network heat pumps to buildings = heat reused + heat-pump electricity (incl. storage discharge)
+community,Backup heat,Q_backup_MWh,3103.6,served-class demand met by existing boilers/steam (or new electric boilers in rebuilt towers)
+community,Useful demand of connected buildings,D_useful_connected_MWh,72728.9,LL84 fuel x efficiency; includes space heat that steam radiators cannot take (H7)
+community,Demand outside the network scope,D_sh_not_served_MWh,5377.5,space heat of steam-radiator buildings; stays on existing steam/boilers
+community,Source-side electricity (A17),E_src_MWh,11411.3,extra electricity at the data center per MWh of heat reused (0.25 x heat reused at Base)

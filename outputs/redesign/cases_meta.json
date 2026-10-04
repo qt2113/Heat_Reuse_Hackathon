@@ -1,0 +1,74 @@
+{
+  "seconds": null,
+  "cases": {
+    "reference": "NYC-calibrated reference (validated Models A/B, reference design)",
+    "optimised_urban": "optimised urban retrofit: corrections (pre-war gas = steam, pilot overlap removed, rebuilt-tower boiler cost) + pipe cost at 0.6 x pilot (A05 Low), soft costs 15 % (A21 Low), 40-yr network life, best sizing and service scope",
+    "advanced_recovery": "optimised urban + advanced heat recovery: capture at 35 C (A02 High, pilot loop up to 36 C), heat-pump eta 0.50 (A10 High), no extra data-center electricity (A17 Low)",
+    "liquid_cooling_speculative": "speculative: direct liquid cooling at 45 C capture (outside the register range), eta 0.50, A17 = 0"
+  },
+  "design_grid": [
+    {
+      "scope": "full",
+      "hp_frac": 0.5,
+      "tank_hours": 2
+    },
+    {
+      "scope": "full",
+      "hp_frac": 0.5,
+      "tank_hours": 6
+    },
+    {
+      "scope": "full",
+      "hp_frac": 0.75,
+      "tank_hours": 2
+    },
+    {
+      "scope": "full",
+      "hp_frac": 0.75,
+      "tank_hours": 6
+    },
+    {
+      "scope": "dhw_only",
+      "hp_frac": 0.5,
+      "tank_hours": 2
+    },
+    {
+      "scope": "dhw_only",
+      "hp_frac": 0.5,
+      "tank_hours": 6
+    },
+    {
+      "scope": "dhw_only",
+      "hp_frac": 0.75,
+      "tank_hours": 2
+    },
+    {
+      "scope": "dhw_only",
+      "hp_frac": 0.75,
+      "tank_hours": 6
+    }
+  ],
+  "pools": {
+    "today": [
+      "4040951",
+      "4769672",
+      "19906892",
+      "1633052",
+      "8899918",
+      "1634606",
+      "2831044",
+      "4473909",
+      "2830989"
+    ],
+    "post_rebuild": [
+      "4040951",
+      "4769672",
+      "19906892",
+      "1633052",
+      "8899918",
+      "1634606",
+      "rebuild:2831044",
+      "rebuild:4473909"
+    ]
+  }
+}

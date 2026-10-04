@@ -19,5 +19,5 @@ V10,Duplicate LL84 filings removed (Maritime = 363 W 16th St; 61 9th Ave single 
 V11,Composite refused with Technical KPIs only,pass,refused,ValueError,"Composite refused: no KPI yet for ['Economic + Delivery', 'Environmental', 'Social + Regenerative']. Run Model B first."
 V12,"Operating modes M1-M5: no unserved heat, DC heat always rejectable",pass,0,0 failures,
 V12b,"Network outage: towers take 100% of DC heat; buildings on backup + local tanks, no unserved heat",pass,100.0,100% and 0 MWh unserved,network_heat during M4 is discharge from building tanks only
-V13,Every official requirement (39) maps to a registered output,pass,0,0,
+V13,Every official requirement (40) maps to a registered output,pass,0,0,
 V14,"Governance register covers all aspects and the three stakeholders, every item sourced",pass,37,"7 aspects, 3 stakeholders",missing aspects []; missing stakeholders []; unsourced []

@@ -1,0 +1,6 @@
+test_id,test,status,value
+FE1,Every configuration member has a map feature,pass,0
+FE2,Overall score = sum of weight x dimension score (frontend recomputation),pass,1.1102230246251565e-16
+FE3,Contract recommendation rule reproduces Model C recommendations,pass,True
+FE4,Monthly allocation sums to the annual heat reused of the configuration,pass,0.16534509849952883
+FE5,Weights that do not sum to 100% are rejected by the rule,pass,True

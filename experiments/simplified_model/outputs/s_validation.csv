@@ -1,0 +1,13 @@
+test,name,passed,detail
+V1,Energy balance closes (HP: out = source + electricity; demand = delivered + backup),True,max bin HP imbalance 8.1e-16 MW; max demand imbalance 5.8e-11 MWh
+V2,Extracted heat never exceeds available DC heat (stress case binds),True,stress network uses 100% of available DC heat over the year; 75 buildings
+V3,"Temperature-bin model reproduces an hourly loop (no storage), incl. supply-binding case",True,max |error| in heat delivered 0.002%
+V4,Model S (ABC settings) = Model A+B without storage,True,"max heat error 0.002%, max net-value error 0.010%"
+V5,Dropping the 2 h storage tank changes heat delivered by < 1%,True,max difference vs Model A with tank: 0.26%
+V6,Rerun of Model A/B reproduces the stored Model C outputs (read-only rerun is faithful),True,max diff 2.2e-16
+V7,Heat-pump COP reproduces the Con Ed pilot DHW COP,True,model 2.99 vs pilot 3.01
+V8,Stakeholder transfers cancel (DC + users + operator = system net value),True,max gap $1.86e-09
+V9,"Monotonic: net value falls with pipe cost and A17, rises with source temperature; CO2 falls with A17",True,
+V10,No low-temperature space heat into steam-radiator buildings,True,
+V11,No unserved heat in any configuration (backup = 100% of served design peak),True,
+V12,Isolation: no file outside experiments/ changed during the run,True,264 files hashed; changed: []

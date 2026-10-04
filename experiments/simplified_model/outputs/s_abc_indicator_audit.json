@@ -1,0 +1,45 @@
+{
+  "post_rebuild": {
+    "high_corr_pairs": [
+      "E_val~E_fund (-0.95)",
+      "E_val~N_erf (-0.90)",
+      "E_fund~N_erf (+0.93)"
+    ],
+    "constant_indicators": [
+      "S_aff"
+    ],
+    "spearman_overall_vs_heat": 0.4104873841659952,
+    "spearman_overall_vs_net_value": -0.2962491546276045,
+    "spearman_overall_vs_n_buildings": 0.6693415716264042,
+    "top_config_by_score": {
+      "config_id": "post_rebuild|1633052+1634606+19906892+4040951+7536925+8899918+R2831044",
+      "E_val": -7146307.940996089,
+      "N_co2": 1289.498900691151,
+      "Q_network_MWh": 48215.89236139799
+    },
+    "share_with_negative_net_value": 1.0
+  },
+  "today": {
+    "high_corr_pairs": [
+      "T_cov~T_lf (-0.94)",
+      "T_cov~T_bk (+0.94)",
+      "T_lf~T_bk (-1.00)",
+      "E_val~E_fund (-0.99)",
+      "E_val~S_li (-0.94)",
+      "E_fund~S_li (+0.96)",
+      "N_co2~N_erf (+1.00)",
+      "N_co2~N_gas (+0.92)"
+    ],
+    "constant_indicators": [],
+    "spearman_overall_vs_heat": 0.6047844484213863,
+    "spearman_overall_vs_net_value": -0.06952691672142484,
+    "spearman_overall_vs_n_buildings": 0.5457017587343697,
+    "top_config_by_score": {
+      "config_id": "today|1633052+1634606+19906892+4040951+4769672+7536925+8899918",
+      "E_val": -9461190.571588028,
+      "N_co2": 2510.674847367576,
+      "Q_network_MWh": 39378.94311026306
+    },
+    "share_with_negative_net_value": 1.0
+  }
+}

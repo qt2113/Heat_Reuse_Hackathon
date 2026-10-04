@@ -1,0 +1,696 @@
+property_id,property_name,use_type,dist_m,heat_fuel_MWh,servable_share,screen_index,screen_rank,category,status,exclusion_reason
+3616164,Penn South,Multifamily Housing,609,64850.22241161125,1.0,83.64596213940752,,,excluded,outside the 500 m search radius
+2831044,FULTON,Multifamily Housing,234,29396.35615008598,0.3343341590975691,26.646896587176652,4.0,NYCHA,shortlisted,
+4473909,ELLIOTT/CHELSEA ADDITION CAMPUS,Multifamily Housing,852,16153.615480637482,0.41044941478667274,6.248010773402553,,,excluded,outside the 500 m search radius
+33910479,FIT_10242_FIT: Nagler Hall,Residence Hall/Dormitory,926,15424.894831457776,0.3927886633360209,4.779935802939742,,,excluded,outside the 500 m search radius
+33987261,600 - 435 West 23rd Street,Multifamily Housing,679,14229.928062782852,1.0,16.591822844122667,,,excluded,outside the 500 m search radius
+4040951,Manhattan Chelsea Market,Office,274,12376.927962943317,1.0,32.47033570525252,2.0,Office,shortlisted,
+60087394,The Greenwich Lane - Parent,Multifamily Housing,599,12047.60212206878,0.1711066273274166,2.4457579602421546,,,excluded,outside the 500 m search radius
+4769672,London Terrace Towers,Multifamily Housing,727,11673.542240231114,1.0,12.77028430398513,,,excluded,outside the 500 m search radius
+7536925,111 Eighth Avenue,Office,0,11501.37210975784,0.3927886633360209,69.57117209383837,1.0,Office,shortlisted,
+21354471,Benchmarking Group - 3,College/University,923,10652.086362955195,0.3927886633360209,3.311093986093187,,,excluded,outside the 500 m search radius
+2830989,CHELSEA,Multifamily Housing,816,9979.367017355471,0.4016613016618588,3.934268722932514,,,excluded,outside the 500 m search radius
+52943893,Century - 10 West 15th Street / 7 West 14th Street (Parent Property),Multifamily Housing,922,9364.523750770044,1.0,8.189141140076684,,,excluded,outside the 500 m search radius
+4039173,Century - 10 West 15th Street,Multifamily Housing,922,8472.567876717909,1.0,7.409138575319158,,,excluded,outside the 500 m search radius
+3114461,The Caledonia,Multifamily Housing,357,8220.15751396044,1.0,17.167405127435806,,,excluded,insufficient data: only 1 year of LL84 records
+6666490,DEPM 1174 - 212 West 18th Street,Multifamily Housing,377,8166.27139198779,0.05992062107338492,0.8823948508654039,17.0,Residential,eligible_not_shortlisted,"eligible but below the shortlist cut (rank 17 by servable heat per metre, max 2 per building type)"
+4410272,Standard Hotel,Hotel,414,6665.667372577109,1.0,12.210813074764099,,,excluded,insufficient data: only 1 year of LL84 records
+20634224,Campus- 200 & 220 W 26th Street,Multifamily Housing,859,6443.8092259935265,1.0,6.025564182722219,,,excluded,outside the 500 m search radius
+4951912,AKAM - 16 West 16th Street,Multifamily Housing,900,6420.155916723279,1.0,5.744350030752407,,,excluded,outside the 500 m search radius
+20800809,Pier 57,Office,669,6331.603706215431,1.0,7.4852060504633045,,,excluded,outside the 500 m search radius
+19906892,363 West 16th Street,Hotel,132,5981.038889940689,1.0,27.933423387085636,3.0,Hotel,shortlisted,
+6311955,The Greenwich Lane,Multifamily Housing,599,5937.529812651408,0.3463088209706966,2.439581803776897,,,excluded,outside the 500 m search radius
+1633052,M440 (OECID: 0100175; BBL: 1007420007),K-12 School,230,5598.780668174615,1.0,16.99629845695865,5.0,Community,shortlisted,
+4136687,555W23 Condominium (555 W 23 St),Multifamily Housing,865,5569.799088080156,1.0,5.1741303004023305,,,excluded,outside the 500 m search radius
+3522266,"NH Lenox Health, Greenwich Village 1011094",Hospital (General Medical & Surgical),451,5437.505912708206,0.3927886633360209,3.2825525410927394,,,excluded,insufficient data: only 1 year of LL84 records
+2654491,Milstein - 55 West 14th Street,Multifamily Housing,751,5385.160787563941,1.0,5.714590099162734,,,excluded,outside the 500 m search radius
+26497677,The Cortland,Multifamily Housing,836,5209.819462378764,1.0,4.998133795735835,,,excluded,outside the 500 m search radius
+53500792,"ROYAL EQUITIES OPERATING, LLC:151 WEST 25 STREET",Office,906,5093.369003986352,1.0,4.528623068397907,,,excluded,outside the 500 m search radius
+2652722,96 Fifth Avenue,Multifamily Housing,961,4943.611227199806,1.0,4.156349696458789,,,excluded,outside the 500 m search radius
+14947903,Rudd: 250 W 24th St,Multifamily Housing,664,4789.568321990508,1.0,5.701867049988699,,,excluded,outside the 500 m search radius
+4038849,Orsid - 61 7th Avenue,Multifamily Housing,453,4724.586755181936,0.6,4.339481274143249,13.0,Residential,eligible_not_shortlisted,"eligible but below the shortlist cut (rank 13 by servable heat per metre, max 2 per building type)"
+3114446,Tate,Multifamily Housing,825,4632.819589571595,1.0,4.500453315583835,,,excluded,outside the 500 m search radius
+6434657,518 W. 26th Street,Office,964,4618.707603610869,1.0,3.871697695334555,,,excluded,outside the 500 m search radius
+8899918,61 9th Ave,Other - Technology/Science,183,4324.877520728426,1.0,15.777450182914858,6.0,Other - Technology/Science,shortlisted,
+2632792,The Chelsea Mercantile,Multifamily Housing,785,4320.980164365962,1.0,4.398602562528225,,,excluded,outside the 500 m search radius
+3114488,Westminster,Multifamily Housing,538,4243.902832883274,1.0,6.134893550936705,,,excluded,outside the 500 m search radius
+35500619,The Standard Hotel,Hotel,414,4000.5566005166256,1.0,7.328605841463646,,,excluded,insufficient data: only 1 year of LL84 records
+24317571,15 Charles at Waverly Place Condominium (15 Charles Street),Multifamily Housing,685,3974.865465739703,1.0,4.596783191671765,,,excluded,outside the 500 m search radius
+5777220,Whitney Museum of American Art,Museum,518,3973.536144353508,1.0,5.946312892078313,,,excluded,outside the 500 m search radius
+2704587,Orsid - 37 West 12th St (parent),Multifamily Housing,906,3863.1274919586194,1.0,3.4347890880385212,,,excluded,outside the 500 m search radius
+22839039,Lantern House,Multifamily Housing,518,3775.2867846648815,1.0,5.649636913671037,,,excluded,outside the 500 m search radius
+32887548,The Salvation Army DHQ,Office,593,3679.4993584674967,0.3927886633360209,1.7307224553091907,,,excluded,outside the 500 m search radius
+5876479,DEPM 2548 - 61 Jane Street,Multifamily Housing,395,3486.874242045026,1.0,6.660321585928702,10.0,Residential,shortlisted,
+2665791,Stonehenge - 555 Sixth Avenue,Multifamily Housing,647,3410.126410331106,1.0,4.158690744306226,,,excluded,outside the 500 m search radius
+20586441,Orsid - 101 West 12 Street,Multifamily Housing,699,3377.352964794549,1.0,3.8327770628509565,,,excluded,outside the 500 m search radius
+4390390,275 Seventh Avenue,Office,893,3312.835646933803,1.0,2.9861190879042767,,,excluded,outside the 500 m search radius
+2665742,DEPM 2344 - 300 West 23rd St,Multifamily Housing,555,3060.284888495262,1.0,4.299573810282599,,,excluded,outside the 500 m search radius
+31428966,The Sierra Chelsea (sr09),Multifamily Housing,587,3049.0264180095674,1.0,4.068559584471165,,,excluded,outside the 500 m search radius
+27204965,GTS - 440 West 21 Street/175 9th Ave,Multifamily Housing,463,3040.4362714095723,1.0,5.037759903895003,,,excluded,insufficient data: only 1 year of LL84 records
+4042763,33 Ninth Avenue Condominium,Hotel,254,3038.230823922334,1.0,8.495053290572315,8.0,Hotel,shortlisted,
+4938442,URA Group - 18 Ninth Avenue,Hotel,269,2989.304352905985,1.0,7.965231034388988,9.0,Hotel,eligible_not_shortlisted,"eligible but below the shortlist cut (rank 9 by servable heat per metre, max 2 per building type)"
+60316392,Copy of DEPM 2344 - 300 West 23rd St,Multifamily Housing,555,2961.013932011036,1.0,4.160102218527902,,,excluded,outside the 500 m search radius
+2688331,99 Tenth Avenue (501 WEST 16 STREET),Office,482,2938.2680439442443,1.0,4.694601198031217,,,excluded,insufficient data: only 1 year of LL84 records
+2708793,95 Horatio Street (also 521 West Street),Multifamily Housing,539,2869.814650152309,1.0,4.14149822178177,,,excluded,outside the 500 m search radius
+34002988,74 Fifth Avenue,Multifamily Housing,978,2856.5158190954544,1.0,2.3619051033376812,,,excluded,outside the 500 m search radius
+54875692,DalanRE - 102-116 8th Ave,Multifamily Housing,166,2802.299904282999,1.0,11.027569067780318,,,excluded,insufficient data: only 1 year of LL84 records
+2682646,2 Horatio Owners Corp (2 Horatio Street),Multifamily Housing,316,2751.225007634501,1.0,6.389456984943512,,,excluded,insufficient data: only 1 year of LL84 records
+2609900,IAC 555 West 18th Street (80 11 AVENUE),Office,602,2750.0197676415573,1.0,3.585148470084852,,,excluded,outside the 500 m search radius
+33935158,GTS - 440 West 21 Street/175 9th Ave,Multifamily Housing,463,2710.371417719427,1.0,4.490868820782676,12.0,Residential,eligible_not_shortlisted,"eligible but below the shortlist cut (rank 12 by servable heat per metre, max 2 per building type)"
+2670610,Brodsky - 208 W 23rd Street,Multifamily Housing,644,2658.0110382276,1.0,3.2554890237657923,,,excluded,outside the 500 m search radius
+2798136,130 West 12th Street Condominium,Multifamily Housing,671,2600.671709051577,1.0,3.065979129949848,,,excluded,outside the 500 m search radius
+22883381,Hotel Chelsea : 222 WEST 23 STREET,Hotel,625,2597.7610154169047,1.0,3.2712546120064725,,,excluded,outside the 500 m search radius
+2384020,175 West 13th Street - Cambridge,Multifamily Housing,482,2597.0106460985503,0.5412056173088495,2.034300559036003,,,excluded,insufficient data: only 1 year of LL84 records
+1634606,M070 (OECID: 0100079; BBL: 1007410010),K-12 School,153,2570.1213783013723,1.0,10.761591978109193,7.0,Community,shortlisted,
+4389657,"299 West 12th Street, New York",Multifamily Housing,438,2564.443419998347,1.0,4.466755956964334,,,excluded,insufficient data: only 1 year of LL84 records
+15314590,45 Christopher Street,Multifamily Housing,831,2539.107194249243,1.0,2.449762900240473,,,excluded,outside the 500 m search radius
+4128950,620 Avenue of the Americas,Office,804,2538.0610478696376,1.0,2.526173174109124,,,excluded,outside the 500 m search radius
+15620940,Left Bank Apartment Corporation (99 Bank Street),Multifamily Housing,576,2443.9861236724614,1.0,3.3185115097789017,,,excluded,outside the 500 m search radius
+3114292,85 10th Ave,Office,461,2412.8902900289613,1.0,4.01361398537107,,,excluded,insufficient data: only 1 year of LL84 records
+2679689,DEPM 7512 - 101 West 24th St,Multifamily Housing,957,2393.7500696043717,1.0,2.0205437528934618,,,excluded,outside the 500 m search radius
+25745721,135 West 23rd Street,Residential Care Facility,809,2315.426028576771,1.0,2.2911666173344067,,,excluded,outside the 500 m search radius
+4052447,Sheila C Johnson Center,College/University,972,2314.0771593522973,1.0,1.9246238605180555,,,excluded,outside the 500 m search radius
+4405691,The Lawrence House,Multifamily Housing,765,2306.8465497625834,1.0,2.4059135795069886,,,excluded,outside the 500 m search radius
+4949691,DEPM 2448 - 25 West 13th Street,Multifamily Housing,873,2267.5113022846062,1.0,2.0881740053541877,,,excluded,outside the 500 m search radius
+9848961,201-215 West 15th Street,Multifamily Housing,365,2208.6577727421663,1.0,4.523756883929738,11.0,Residential,shortlisted,
+4978579,Dream Hotel: 355 West 16th St,Hotel,105,2187.9890110083343,0.3927886633360209,4.269363257106173,,,excluded,insufficient data: only 1 year of LL84 records
+7088347,Hilton New York Fashion District,Hotel,923,2165.8311113664085,1.0,1.892041566969627,,,excluded,outside the 500 m search radius
+5802561,101 7th Ave - 30014,Multifamily Housing,446,2160.367681063684,1.0,3.7022430018228456,,,excluded,insufficient data: only 1 year of LL84 records
+20659086,100 Eleventh Avenue Condominium (100 Eleventh Avenue),Multifamily Housing,652,2153.1062599387715,1.0,2.607037494227857,,,excluded,outside the 500 m search radius
+4038850,Orsid - 170 West 23rd Street,Multifamily Housing,699,2141.5052333695376,0.5882588740244037,1.295079815915201,,,excluded,outside the 500 m search radius
+5853055,551 West 21st Street,Multifamily Housing,773,2130.9205380862427,1.0,2.2008292313162894,,,excluded,outside the 500 m search radius
+4052575,Johnson/Kaplan - 66 W12th St,College/University,829,2103.233394155343,1.0,2.033843441447146,,,excluded,outside the 500 m search radius
+2805207,200 West 16th Street - 35457,Multifamily Housing,382,2102.1953951506125,1.0,4.136264087680603,,,excluded,insufficient data: only 1 year of LL84 records
+4040952,21 Chelsea,Multifamily Housing,703,2096.2372120894543,1.0,2.3662704253333815,,,excluded,outside the 500 m search radius
+5764091,DEPM 1564 - 150 Charles Street,Multifamily Housing,999,2074.6216306355363,1.0,1.6810566120497672,,,excluded,outside the 500 m search radius
+7857355,Halstead: 105 W 13th St.,Multifamily Housing,681,2058.43571770069,1.0,2.393529904303128,,,excluded,outside the 500 m search radius
+2790102,176 Perry St,Multifamily Housing,947,2028.6520754411745,1.0,1.7295428928034084,,,excluded,outside the 500 m search radius
+1633695,M011 (OECID: 0100034; BBL: 1007440024),K-12 School,377,2020.7288950264476,1.0,4.0225282453688065,14.0,Community,eligible_not_shortlisted,"eligible but below the shortlist cut (rank 14 by servable heat per metre, max 2 per building type)"
+4407514,SW - 200 West 15th Street,Multifamily Housing,386,2015.8874103129353,1.0,3.9300557311146673,15.0,Residential,eligible_not_shortlisted,"eligible but below the shortlist cut (rank 15 by servable heat per metre, max 2 per building type)"
+20659095,100-104 5th Avenue,Office,962,2014.825584632761,1.0,1.692294216341746,,,excluded,outside the 500 m search radius
+15503670,GPG - 1 Christopher Street,Multifamily Housing,841,2001.6253280197602,1.0,1.9095191120278296,,,excluded,outside the 500 m search radius
+26680747,22 Little West 12th Street Partners LLC,Office,392,2000.6348358303965,1.0,3.847374684289224,16.0,Office,shortlisted,
+21205312,Halstead - 140 Charles Street,Multifamily Housing,923,1997.9410440714369,1.0,1.7453750128064967,,,excluded,outside the 500 m search radius
+2388664,54 West 16th St. Apt. Corp. (54 West 16th Street),Multifamily Housing,730,1997.8325833645456,1.0,2.1771252511023893,,,excluded,outside the 500 m search radius
+54086897,BRC - Reception Center,Office,944,1990.7182350558685,1.0,1.7023244464763463,,,excluded,outside the 500 m search radius
+36311824,Wallack - 3 Sheridan Square,Multifamily Housing,947,1982.373154458402,1.0,1.6900874436205031,,,excluded,outside the 500 m search radius
+33963881,131 West 25 Street,Multifamily Housing,944,1974.767697241205,1.0,1.6886846505583746,,,excluded,outside the 500 m search radius
+33915520,460 WEST 20 STREET,Multifamily Housing,494,1969.9544157306468,1.0,3.0780537745791356,,,excluded,insufficient data: only 1 year of LL84 records
+15356872,Century - 69 West 9th Street,Multifamily Housing,879,1936.0308861706226,1.0,1.7713953210387827,,,excluded,outside the 500 m search radius
+1836628,M033 (OECID: 0100052; BBL: 1007240023),K-12 School,887,1933.0184578093952,1.0,1.7535386223457694,,,excluded,outside the 500 m search radius
+47603092,100 Fifth Ave,Office,962,1927.2722237233968,1.0,1.618756314392181,,,excluded,outside the 500 m search radius
+3994570,260 West 26th Street - 41589,Multifamily Housing,811,1926.6658011301995,1.0,1.9020510231831238,,,excluded,outside the 500 m search radius
+6779565,334 West 23 Street,Hotel,546,1907.665028790322,0.3927886633360209,0.9680672508365692,,,excluded,outside the 500 m search radius
+44143093,Rockrose - 100 Jane Street,Multifamily Housing,591,1906.0991893068929,1.0,2.5275886285660825,,,excluded,outside the 500 m search radius
+6294568,220 West 24th St and 225 West 23rd Street,Multifamily Housing,682,1899.366058036272,1.0,2.205548018211518,,,excluded,outside the 500 m search radius
+33922007,AKAM - 270 West 17th Street,Multifamily Housing,187,1893.8809258231342,1.0,6.792399944935291,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+4039172,Century - 25 Greenwich Avenue,Multifamily Housing,758,1890.2840503120915,1.0,1.9885413895609874,,,excluded,outside the 500 m search radius
+26679016,The Chadwin House Condominium (140 7th Avenue),Multifamily Housing,442,1861.7106204841416,1.0,3.2163699744136593,,,excluded,insufficient data: only 1 year of LL84 records
+24896805,163 West 17th Street AKA 119 7th Avenue,Multifamily Housing,462,1786.9008528953368,1.0,2.966534619064524,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+2982034,Maxwell: 22 West 15th St,Multifamily Housing,868,1754.6908461996402,1.0,1.6247137464811483,,,excluded,outside the 500 m search radius
+3114445,Superior Ink Condominium,Multifamily Housing,687,1739.109392282033,1.0,2.0057571010037014,,,excluded,outside the 500 m search radius
+3994572,401 West 25th Street - 41674,Multifamily Housing,781,1735.4308232189635,1.0,1.7751097469748724,,,excluded,outside the 500 m search radius
+2825201,74 5th Avenue,Multifamily Housing,978,1732.1931062658,1.0,1.4322608368929282,,,excluded,outside the 500 m search radius
+19081856,"226 West 26th St, New York, NY 10001",Office,843,1728.1367832874482,1.0,1.6449230300048499,,,excluded,outside the 500 m search radius
+4043731,Halstead - 360 West 22nd Street,Multifamily Housing,477,1715.959110142544,1.0,2.7676759841008773,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+2807291,The Christopher,Multifamily Housing,729,1696.1472002044463,1.0,1.8507382800690362,,,excluded,outside the 500 m search radius
+6641272,MGRE - 140 Seventh Avenue,Multifamily Housing,442,1681.7653251242182,1.0,2.9054888747064744,,,excluded,insufficient data: only 1 year of LL84 records
+7566203,99 Jane Street Condominium (99 Jane Street),Multifamily Housing,558,1662.910570544837,1.0,2.32479273842617,,,excluded,outside the 500 m search radius
+2810288,"38-50 West 9th Street Corporation (38, 42, 50 West 9th Street) (Campus)",Multifamily Housing,968,1642.9497365584434,1.0,1.3718146130399576,,,excluded,outside the 500 m search radius
+2650027,80 Eighth Ave LLC,Office,193,1638.3486091727718,1.0,5.730849044431507,,,excluded,insufficient data: only 1 year of LL84 records
+33869334,161 WEST 15 STREET,Multifamily Housing,447,1630.8526139885153,1.0,2.789184551086998,,,excluded,insufficient data: only 1 year of LL84 records
+2672673,DEPM 2102 - 720 Greenwich St,Multifamily Housing,826,1576.42960052659,1.0,1.5296405941182667,,,excluded,outside the 500 m search radius
+2715813,The Broadmoor,Multifamily Housing,603,1566.5472011422737,1.0,2.0391502618237864,,,excluded,outside the 500 m search radius
+44312692,Rockrose - 108-110 Horatio Street,Multifamily Housing,577,1547.7020592929605,1.0,2.0981606864418123,,,excluded,outside the 500 m search radius
+2637925,201 West 16 Owners Corp. (201 W 16 Street),Multifamily Housing,387,1526.5867598710722,1.0,2.9693335146233673,,,excluded,insufficient data: only 1 year of LL84 records
+2637231,133 W21,College/University,696,1524.912288722646,1.0,1.7375005970700392,,,excluded,outside the 500 m search radius
+33912723,30 WEST 18 STREET,Multifamily Housing,852,1503.4172083107917,1.0,1.416745706279571,,,excluded,outside the 500 m search radius
+26618023,40 10th Avenue,Office,417,1490.6649693945915,1.0,2.713201764422704,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6282519,Buchbinder: 222 W 15th St,Multifamily Housing,305,1487.729437989392,1.0,3.562169076876009,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+2665696,Stonehenge - 108 West 15th Street,Multifamily Housing,637,1469.9863311667568,1.0,1.8187603806284471,,,excluded,outside the 500 m search radius
+2670565,Brodsky - 433 West 21 Street,Multifamily Housing,515,1468.4675784302062,1.0,2.2091990117976557,,,excluded,outside the 500 m search radius
+2679733,DEPM 7548 - 151 West 17th St,Multifamily Housing,489,1463.3508511662176,1.0,2.307696147479193,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+26664055,35 XV Condominium (35 West 15th St),Multifamily Housing,839,1459.2203079473247,1.0,1.395205018847273,,,excluded,outside the 500 m search radius
+6441058,101 West 23rd Street,Multifamily Housing,893,1433.4836885452014,1.0,1.2921114902051125,,,excluded,outside the 500 m search radius
+3526759,165 Charles Street,Multifamily Housing,975,1432.4908517875283,1.0,1.187919242945755,,,excluded,outside the 500 m search radius
+21355269,DPR_3545_Chelsea Recreation Center,Fitness Center/Health Club/Gym,776,1418.0559406183368,1.0,1.4592585345346079,,,excluded,outside the 500 m search radius
+2670519,Brodsky - 177 9th Ave,Multifamily Housing,411,1416.580200941227,1.0,2.6119157718005273,,,excluded,insufficient data: only 1 year of LL84 records
+2648547,322 Partners Pro,Office,855,1416.4434246874837,1.0,1.330361227607029,,,excluded,outside the 500 m search radius
+5864822,AKAM - 31 Jane Street,Multifamily Housing,344,1399.9669122797354,1.0,3.020233186390292,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+3539832,114 Fifth Avenue,Office,958,1390.594353927826,1.0,1.1726242071812023,,,excluded,outside the 500 m search radius
+30687963,151 West 26th Street,Office,973,1372.2041902124824,1.0,1.1401501091697068,,,excluded,outside the 500 m search radius
+2560572,110-114 HORATIO II LLC,Multifamily Housing,577,1337.1983541911993,1.0,1.8127888374202863,,,excluded,outside the 500 m search radius
+25112004,177 Eighth Avenue,Multifamily Housing,302,1328.9775161760558,1.0,3.2091786612205895,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+53897392,222 W 14th Street,Multifamily Housing,319,1322.6750821038515,1.0,3.0468125197514198,,,excluded,insufficient data: only 1 year of LL84 records
+2587287,534 WEST 23 STREET - [524 West 23rd],Self-Storage Facility,765,1319.282696910035,1.0,1.3759390090472758,,,excluded,outside the 500 m search radius
+6338140,Alfa -15 West 18th Street,Office,910,1307.5942032893122,1.0,1.1577657008290785,,,excluded,outside the 500 m search radius
+2665536,Stellar - 119-21 West 23rd Street,Office,868,1303.1304676065652,1.0,1.2066022848208935,,,excluded,outside the 500 m search radius
+2682647,59 West 12th St Condominium (59 West 12 Street),Multifamily Housing,821,1292.0818945987596,1.0,1.26092951826515,,,excluded,outside the 500 m search radius
+2689469,20 West 20th Street,Office,916,1282.104369239811,1.0,1.1281456665153615,,,excluded,outside the 500 m search radius
+5876476,DEPM 1650 - 45 West 10th Street,Multifamily Housing,888,1280.0147238889824,1.0,1.1599280546968391,,,excluded,outside the 500 m search radius
+6382110,304 West 14th Street,Multifamily Housing,174,1270.5480506575243,1.0,4.821276085084356,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+14365277,350 Bleecker Street,Multifamily Housing,799,1269.0940666205179,1.0,1.2705888770641225,,,excluded,outside the 500 m search radius
+4948339,Orsid - 136 Waverly Place,Multifamily Housing,965,1262.7209145066843,1.0,1.0574510121484548,,,excluded,outside the 500 m search radius
+25727216,77 West 15th Street,Multifamily Housing,717,1253.5860172290602,1.0,1.3892413489500668,,,excluded,outside the 500 m search radius
+4405892,590 6th Avenue,K-12 School,729,1253.350739799223,1.0,1.3675842475344537,,,excluded,outside the 500 m search radius
+52484292,416 WEST 13 STREET,Office,352,1241.2934748905527,1.0,2.624625506609377,,,excluded,insufficient data: only 1 year of LL84 records
+10719073,201 West 21st Street Tenants Corp. (201 W 21 St),Multifamily Housing,575,1228.930654116974,1.0,1.6713456895990846,,,excluded,outside the 500 m search radius
+3112854,521 West 26th Street,Office,985,1225.4499275430703,1.0,1.0064081530546953,,,excluded,outside the 500 m search radius
+10517316,425 W 18th Street,Multifamily Housing,344,1222.1204744702889,1.0,2.6365543230958006,,,excluded,insufficient data: only 1 year of LL84 records
+5026632,80 Fifth Avenue,Office,977,1216.0016200967018,1.0,1.0064278257859751,,,excluded,outside the 500 m search radius
+6667538,AKAM - 9 Barrow Street,Multifamily Housing,977,1215.2176257611789,1.0,1.0057789502405083,,,excluded,outside the 500 m search radius
+2671721,Greenway Mews Realty LLC,Office,352,1211.1344721292376,1.0,2.5608564709200294,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+20462032,Abington Court Owners Corp,Multifamily Housing,522,1209.0713497074078,1.0,1.7966969357540152,,,excluded,outside the 500 m search radius
+4038846,Orsid - 15 West 12th Street,Multifamily Housing,962,1206.5960619458392,1.0,1.013445308946604,,,excluded,outside the 500 m search radius
+2798374,Chelsea 19 Condominium,Multifamily Housing,368,1204.7115565530391,1.0,2.449772303995414,,,excluded,insufficient data: only 1 year of LL84 records
+50495092,365 W 20 APTS CORP,Multifamily Housing,376,1199.422239754383,1.0,2.393213389181281,,,excluded,insufficient data: only 1 year of LL84 records
+2800685,126 Fifth Avenue,Office,978,1197.4372403024258,1.0,0.990098885464068,,,excluded,outside the 500 m search radius
+2639187,18 West 18th Street,Office,872,1196.173009993918,1.0,1.1027625363284492,,,excluded,outside the 500 m search radius
+28482620,NPMG - 232 7th Ave,Multifamily Housing,734,1193.252376366517,1.0,1.2937047447851269,,,excluded,outside the 500 m search radius
+21294034,AKAM - 148 West 23rd Street,Multifamily Housing,740,1186.991836799289,1.0,1.2771431155435389,,,excluded,outside the 500 m search radius
+15087890,100 West 12th Street (The Mark Twain),Multifamily Housing,721,1183.9299771228748,1.0,1.3052405714065416,,,excluded,outside the 500 m search radius
+2616221,5 West 19th Street,Multifamily Housing,988,1173.169331757002,1.0,0.9606877957547705,,,excluded,outside the 500 m search radius
+18652222,NEW BEDFORD : 140 5,Multifamily Housing,988,1170.8831578521647,1.0,0.9588156880292292,,,excluded,outside the 500 m search radius
+21968031,615 AVENUE OF THE AMER,Retail Store,685,1155.756608800767,1.0,1.3365892754838802,,,excluded,outside the 500 m search radius
+6282899,Sandra Greer: 181 7th Avenue,Multifamily Housing,587,1143.813973744352,1.0,1.5262823825474086,,,excluded,outside the 500 m search radius
+4014030,Stonehenge - 364 West 18th Street,Multifamily Housing,194,1143.4252296651193,1.0,3.983243627931768,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+55530192,200 REALTY EQUITIES LLC,Multifamily Housing,416,1137.9060425972891,1.0,2.0755796914328237,,,excluded,insufficient data: only 1 year of LL84 records
+30687969,236 West 27th Street,Office,902,1133.8316078287482,1.0,1.0123496498470965,,,excluded,outside the 500 m search radius
+20405636,421 West 21st Street,Multifamily Housing,498,1128.22177388866,1.0,1.7499790288418997,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6232581,The Getty Condominium (501 West 24th Street),Multifamily Housing,810,1116.4165500732386,1.0,1.1034349622816892,,,excluded,outside the 500 m search radius
+3447970,Salon: 366 West 11 Street,Multifamily Housing,859,1113.9209915648294,1.0,1.0416202891420296,,,excluded,outside the 500 m search radius
+28621235,MIDWOOD MANAGEMENT CORP : 56 7 Avenue,Multifamily Housing,417,1113.5234113937815,1.0,2.026755673843071,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+2666655,SW - 196-204 7th Ave,Multifamily Housing,597,1103.8801433234607,1.0,1.4502289363600334,,,excluded,outside the 500 m search radius
+22739867,WEST 23RD STREET OWNERS CORP,Multifamily Housing,576,1094.546035891824,1.0,1.4862046813227643,,,excluded,outside the 500 m search radius
+26105630,245 West 25th Street,Multifamily Housing,797,1085.5656358967476,1.0,1.0894106145362874,,,excluded,outside the 500 m search radius
+6313110,860 Washington St,Office,377,1084.2838750556102,1.0,2.158410524115383,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+33030551,MMS #1982,Self-Storage Facility,765,1080.4610710808636,1.0,1.1268612397775877,,,excluded,outside the 500 m search radius
+15498159,True North Flatiron- 27 West 16th,Multifamily Housing,814,1072.8451805346906,1.0,1.05546111510936,,,excluded,outside the 500 m search radius
+14947867,Mosbacher: 257 W 17th St,Multifamily Housing,244,1063.0467753100545,1.0,3.0734345544678447,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6773464,35 West 9th Street,Multifamily Housing,976,1060.6533374050668,1.0,0.8787089052576089,,,excluded,outside the 500 m search radius
+54162698,NB:5 West 19th Street,Multifamily Housing,988,1058.4597006806869,1.0,0.8667540901527783,,,excluded,outside the 500 m search radius
+6802712,Vanderbilt - 253 West 16th St,Multifamily Housing,212,1055.0036702263076,1.0,3.422721830886876,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6654365,234 West 13th Street,Multifamily Housing,339,1054.5953929623486,1.0,2.304385820097677,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+4951007,AKAM - 263 9th Avenue,Multifamily Housing,811,1045.1857073943584,1.0,1.0318325798899008,,,excluded,outside the 500 m search radius
+6309310,650 Sixth Avenue,Multifamily Housing,788,1044.7614137981363,0.6,0.5759901827860847,,,excluded,outside the 500 m search radius
+3518964,Ten23 - 19178,Multifamily Housing,699,1040.56194027095,1.0,1.1808780363555507,,,excluded,outside the 500 m search radius
+15557119,Superior - 335+337 Campus,Multifamily Housing,99,1038.6375283717189,1.0,5.925113416885645,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+2649514,305 W 13,Multifamily Housing,203,1022.0113641225952,1.0,3.4336350178031854,,,excluded,insufficient data: only 1 year of LL84 records
+53948493,47 West 13th Street AKA 48 West 14th Street,Residence Hall/Dormitory,796,1018.7504212896182,1.0,1.0235672081515077,,,excluded,outside the 500 m search radius
+26533123,AKAM - 121 West 19th Street,Multifamily Housing,640,1018.4337580323446,1.0,1.254592310619555,,,excluded,outside the 500 m search radius
+2653174,235 West 22nd Street,Multifamily Housing,588,1008.015214489901,1.0,1.342966978552376,,,excluded,outside the 500 m search radius
+20413921,108 Fifth Avenue Condominium (108 Fifth Avenue),Multifamily Housing,969,1005.8974685109824,1.0,0.8390705085714769,,,excluded,outside the 500 m search radius
+24896820,415 West 24th Street,Multifamily Housing,717,1003.3660967216488,1.0,1.111944174984878,,,excluded,outside the 500 m search radius
+14947872,Rudd: 236 West 26th St,Multifamily Housing,833,994.0648718605498,1.0,0.9569140895599857,,,excluded,outside the 500 m search radius
+2636842,210 11 AVENUE,Office,971,983.5419364141353,1.0,0.8188155200313565,,,excluded,outside the 500 m search radius
+2805211,207 W 25 street  - 39875,Office,836,979.7817031061428,1.0,0.9399711598648097,,,excluded,outside the 500 m search radius
+24231244,NYC-Chelsea NY MOT,Hotel,916,974.735625500541,1.0,0.8576866269932296,,,excluded,outside the 500 m search radius
+2563179,Forty Four Eighteen Associates / 44 W 18th St,Office,781,974.6209345918194,1.0,0.9969046864055915,,,excluded,outside the 500 m search radius
+52721894,312 West 23rd Street,Multifamily Housing,551,972.7906986286034,1.0,1.3758271112051794,,,excluded,outside the 500 m search radius
+4802833,218 West 18th Street,Office,349,970.3953704154164,1.0,2.067258307902516,,,excluded,insufficient data: only 1 year of LL84 records
+4367548,500 W 21st Street Condominium,Multifamily Housing,579,969.0256736091288,1.0,1.3094941535258497,,,excluded,outside the 500 m search radius
+30687951,39 West 19th Street,Office,839,968.0610449389269,1.0,0.9255926751384566,,,excluded,outside the 500 m search radius
+6299719,Ace: 216 7th Ave,Multifamily Housing,645,965.9273119348493,1.0,1.1813499498483768,,,excluded,outside the 500 m search radius
+6382117,317 Bleecker Street,Multifamily Housing,914,964.5515534425786,1.0,0.8504863282429375,,,excluded,outside the 500 m search radius
+2440154,335 W 16,College/University,65,962.4153879488798,1.0,7.113505041361286,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+30687967,154 West 14th Street,Office,470,954.2515229436525,1.0,1.559834220196355,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+45047792,110 5th Avenue,Office,958,952.6289937523115,1.0,0.8033081792554214,,,excluded,outside the 500 m search radius
+3540230,Orsid - 61 West 9th St,Multifamily Housing,905,951.4437558577574,1.0,0.8468347565226113,,,excluded,outside the 500 m search radius
+20662111,DEPM 1824 - 13 West 13th Street,Multifamily Housing,905,941.4033765300505,1.0,0.8378982932466419,,,excluded,outside the 500 m search radius
+4950979,AKAM - 520 West 23rd Street,Multifamily Housing,736,937.8192789162936,1.0,1.014181154044338,,,excluded,outside the 500 m search radius
+22009016,209 8th Ave,Multifamily Housing,410,936.1018386690823,1.0,1.7297533975406956,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+1634600,M041 (OECID: 0100057; BBL: 1006060049),K-12 School,740,932.8810661064712,1.0,1.0037327926462032,,,excluded,outside the 500 m search radius
+44408792,JM - 112 W 18 ST / 117 W 17 ST,Multifamily Housing,628,931.8956245080072,1.0,1.1683057239407169,,,excluded,outside the 500 m search radius
+6684983,CFA - 58 West 15th Street,Multifamily Housing,742,922.5423648839937,1.0,0.9901022855446902,,,excluded,outside the 500 m search radius
+10063205,Andrews: 511 W 22nd St.,Multifamily Housing,721,921.25120623155,1.0,1.0156465957157166,,,excluded,outside the 500 m search radius
+33978983,641 Avenue of the Americas,Office,715,920.9402920511515,0.3927886633360209,0.3640991867605667,,,excluded,outside the 500 m search radius
+58716192,Arnhold Hall,College/University,766,912.3524167517062,1.0,0.9503671007830273,,,excluded,outside the 500 m search radius
+5876802,60 West 13th Street,Multifamily Housing,782,910.5029919622338,1.0,0.9302013739998782,,,excluded,outside the 500 m search radius
+3448547,8 West 14th Street,Office,938,910.1404630874096,0.3927886633360209,0.278612853316782,,,excluded,outside the 500 m search radius
+33560626,"Halstead - 63 West 17th Street NY, NY 10011",Multifamily Housing,724,909.897389967944,1.0,0.9992413197322382,,,excluded,outside the 500 m search radius
+2544329,122 Greenwich Avenue,Multifamily Housing,246,909.6857438328574,1.0,2.612273250871381,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6382107,247 West 21st Street,Multifamily Housing,495,897.9696331512581,1.0,1.4005030975753567,,,excluded,insufficient data: only 1 year of LL84 records
+6791778,JC Dwight - 225 WEST 12th STREET,Multifamily Housing,420,895.0037933161437,1.0,1.618623881529196,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+4491815,Direct Property Management - 87 Greenwich Ave,Multifamily Housing,466,890.2223783965225,1.0,1.466451592319853,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6293352,345 West 13th Street,Multifamily Housing,190,890.1449294900389,1.0,3.1525966252772206,,,excluded,insufficient data: only 1 year of LL84 records
+34002978,295 West 11th Street,Multifamily Housing,620,888.554139892185,1.0,1.1272701774751601,,,excluded,outside the 500 m search radius
+6684973,CFA - 163 West 18th Street,Multifamily Housing,512,888.5430178462678,1.0,1.3438817885575225,,,excluded,outside the 500 m search radius
+6800658,THE KOREAN ASSOCIATION,Multifamily Housing,835,886.7612680441397,1.0,0.8516916133757274,,,excluded,outside the 500 m search radius
+2685991,DEPM 2772/2774 - 200 Eleventh Ave,Multifamily Housing,917,884.787459021342,1.0,0.7777345813527825,,,excluded,outside the 500 m search radius
+2651619,138 W 25th St - Tamkat Building Corp.,Office,888,884.0447144345108,1.0,0.8011066175579254,,,excluded,outside the 500 m search radius
+6707586,Left Bank Co.: 77 West 15th Street,Multifamily Housing,717,882.2754445741122,1.0,0.9777498407926927,,,excluded,outside the 500 m search radius
+2710389,118 West 22nd Street,Office,751,880.5888207466162,1.0,0.9344575501056477,,,excluded,outside the 500 m search radius
+6405424,Rapoport: 55 Perry St,Multifamily Housing,629,877.7952773751307,1.0,1.0988600674062754,,,excluded,outside the 500 m search radius
+58910793,"16-20 WEST 19 STREET, Manhattan",Multifamily Housing,923,876.8685769818491,1.0,0.766020853478491,,,excluded,outside the 500 m search radius
+20466157,Century - 456 West 19th Street,Multifamily Housing,453,875.8326734350446,1.0,1.4800353328425209,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+4832241,430 West 15th Street (422 WEST 15 STREET),Office,278,866.4512692222852,1.0,2.2453767647528733,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+5864824,AKAM - 245 Seventh Avenue,Multifamily Housing,809,865.5224929091462,1.0,0.8564541547995044,,,excluded,outside the 500 m search radius
+5849964,Lawrence - 380 West 12th Street,Multifamily Housing,652,863.7112259689076,1.0,1.0458041909879934,,,excluded,outside the 500 m search radius
+2702103,756 Washington Street,Multifamily Housing,638,862.9378847656399,1.0,1.0661296541435956,,,excluded,outside the 500 m search radius
+11990638,101 - C3 The Grove,Multifamily Housing,358,851.3427928849386,1.0,1.7736308185102887,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6815789,512 W 22nd,Office,663,849.4396774811835,1.0,1.0126559969972033,,,excluded,outside the 500 m search radius
+2543889,GC 40 West 20th Street,Office,835,847.6865997956709,1.0,0.8141622709901923,,,excluded,outside the 500 m search radius
+4950993,AKAM - 420 West 25th Street,Multifamily Housing,759,847.5116803462457,1.0,0.8904634465937068,,,excluded,outside the 500 m search radius
+2606281,90 Fifth Avenue,Office,971,846.7410793571898,1.0,0.7049264617567202,,,excluded,outside the 500 m search radius
+6114096,71 West 12th Street,Multifamily Housing,793,846.2288937564733,1.0,0.8532557054484012,,,excluded,outside the 500 m search radius
+16754520,Andrews: 1 Sheridan Square,Multifamily Housing,963,843.2276118637501,1.0,0.7075453801423373,,,excluded,outside the 500 m search radius
+2801945,50 West 15th Street,Multifamily Housing,785,839.5708033253012,1.0,0.8546529135646779,,,excluded,outside the 500 m search radius
+26632680,860 Washington Street,Office,377,834.2920663911409,1.0,1.6607687504273296,,,excluded,insufficient data: only 1 year of LL84 records
+5722199,Sage Realty - 2 Gansevoort,Office,266,829.3012424453614,1.0,2.2307153673372064,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+10814132,True North Flatiron 43,Multifamily Housing,759,827.868183680515,1.0,0.8698244204307017,,,excluded,outside the 500 m search radius
+4739512,206-218 West 19th Street,Multifamily Housing,423,825.647833530961,1.0,1.483722322412932,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6354513,300 West 17th Street,Multifamily Housing,146,823.6182726275754,1.0,3.571813937415506,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+20652469,119 West 24th Street,Office,900,820.8329840903457,1.0,0.7344295120808356,,,excluded,outside the 500 m search radius
+52614292,15 West 11th Street,Multifamily Housing,988,820.6516903458297,1.0,0.6720172801483191,,,excluded,outside the 500 m search radius
+6447087,275 West 10th Street Condominium (275 West 10th),Multifamily Housing,954,818.9559520090313,1.0,0.6933392023980842,,,excluded,outside the 500 m search radius
+6262477,24-30 Christopher Street,Multifamily Housing,872,817.4715667362808,1.0,0.7536343077286753,,,excluded,outside the 500 m search radius
+23758471,Stonehenge - 780 Greenwich Street,Multifamily Housing,602,810.2063063807622,1.0,1.0562505527970059,,,excluded,outside the 500 m search radius
+6626322,92 Horatio Street,Multifamily Housing,503,809.1228325198659,1.0,1.243678856495273,,,excluded,outside the 500 m search radius
+10063210,Andrews: 125 W 21st St.,Multifamily Housing,725,809.0244681102564,1.0,0.8873171585725392,,,excluded,outside the 500 m search radius
+6801340,412 West 15th Street,Financial Office,245,807.4933868520127,1.0,2.3266758604210533,,,excluded,insufficient data: only 1 year of LL84 records
+33214016,30-34 West 13th Street (Parent Property),Multifamily Housing,868,806.6915444902352,1.0,0.7469366152687362,,,excluded,outside the 500 m search radius
+33638934,DEPM 2294 - 500 West 18th Street,Multifamily Housing,514,805.1259003874985,1.0,1.2133989633499533,,,excluded,outside the 500 m search radius
+4947936,CB - 47 West 13th Street,Residence Hall/Dormitory,796,801.8479887413831,1.0,0.8056392321869689,,,excluded,outside the 500 m search radius
+11711675,Century - 325 West 11th Street,Multifamily Housing,712,794.9183240322355,1.0,0.8867199152590554,,,excluded,outside the 500 m search radius
+6288366,224 West 18th Street,Multifamily Housing,322,792.9851688470176,1.0,1.8119284772042068,,,excluded,insufficient data: only 1 year of LL84 records
+6409994,635 Avenue of the Americas,Office,703,786.6644178348967,0.3927886633360209,0.31596879971453007,,,excluded,outside the 500 m search radius
+6299929,250 West 15th Street,Multifamily Housing,228,785.4989622354522,1.0,2.4017054600724257,,,excluded,insufficient data: only 1 year of LL84 records
+1712194,220 W 19th St (Red Circle NYC Corp),Office,399,783.2471509098976,1.0,1.4827618669786482,,,excluded,insufficient data: only 1 year of LL84 records
+4376878,Halstead - 236-246 West 17th Street,Multifamily Housing,263,777.9040262685434,1.0,2.112518921176555,,,excluded,insufficient data: only 1 year of LL84 records
+17707039,77 Christopher Street,Multifamily Housing,829,776.1124830092066,1.0,0.7505069517153875,,,excluded,outside the 500 m search radius
+2799302,50 West Realty Company LP,Office,770,774.1784779179765,1.0,0.802502080768634,,,excluded,outside the 500 m search radius
+12797241,BRG - 111 w 16th st,Multifamily Housing,627,774.1018886865396,1.0,0.9719152221322875,,,excluded,outside the 500 m search radius
+20652468,111 West 19th Street,Office,676,773.1359949263542,1.0,0.9051867709192851,,,excluded,outside the 500 m search radius
+4040793,245 West 17th Street,Office,300,769.2272478695202,1.0,1.8681233162545487,,,excluded,insufficient data: only 1 year of LL84 records
+26619467,675 Hudson Street,Office,221,768.747607807647,1.0,2.4112009838985236,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+31978308,445 West 19th Street,Multifamily Housing,430,767.059445357198,1.0,1.3583344344867048,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+2689487,27 West 20th Street,Office,889,766.7026069450412,1.0,0.6940332437734665,,,excluded,outside the 500 m search radius
+2636732,132 West 21st Street,College/University,668,766.001639634771,1.0,0.906826453606623,,,excluded,outside the 500 m search radius
+23945840,St. Luke's School at 657 Greenwich St,K-12 School,995,765.3971122342896,1.0,0.6225718137790872,,,excluded,outside the 500 m search radius
+6261052,177 West 26th Street,Multifamily Housing,941,760.0912955361568,1.0,0.6519451071702658,,,excluded,outside the 500 m search radius
+6687943,Wallack - 42 West 13th Street,Multifamily Housing,825,758.7011912165439,1.0,0.7370240143246426,,,excluded,outside the 500 m search radius
+33807463,Lovett - 305 West 18th Street,Multifamily Housing,228,757.6344126358165,1.0,2.3165080961886475,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+34146013,West Perry Condominium,Multifamily Housing,947,754.0806039139052,1.0,0.6428972049416443,,,excluded,outside the 500 m search radius
+2731500,JC Dwight - 55 West 11th St,Multifamily Housing,857,751.6498922573172,1.0,0.704412798697596,,,excluded,outside the 500 m search radius
+21308112,108 West 25th Street Condominium,Multifamily Housing,955,750.6527571244104,1.0,0.6348804413490038,,,excluded,outside the 500 m search radius
+4862664,708 Greenwich Street,Multifamily Housing,908,746.8452661114338,1.0,0.6626497663827962,,,excluded,outside the 500 m search radius
+33580916,"Halstead - 250 West 27th Street NY, NY 10001",Multifamily Housing,894,746.6374201308151,1.0,0.6722900499059247,,,excluded,outside the 500 m search radius
+6687351,Halstead - 166 Perry Street,Multifamily Housing,925,743.7633017617673,1.0,0.6484090323051304,,,excluded,outside the 500 m search radius
+6266279,258 West 22nd Street - 39832,Multifamily Housing,514,741.4284341038563,1.0,1.1174010088444641,,,excluded,outside the 500 m search radius
+2689489,146 West 25th Street,Office,873,740.727027187028,1.0,0.6821429827832869,,,excluded,outside the 500 m search radius
+11934123,URA Group - 40 10th Avenue,Office,417,735.7255061483373,1.0,1.3391149469509351,,,excluded,insufficient data: only 1 year of LL84 records
+6773368,151 West 16th Street,Multifamily Housing,478,733.2429013798371,1.0,1.1804099738122378,,,excluded,insufficient data: only 1 year of LL84 records
+5043145,Kinsey: 148 West 24th St,Office,800,731.6323001797698,1.0,0.7316323001797699,,,excluded,outside the 500 m search radius
+6571032,450 W. 14th Street,Office,391,725.1951706581965,1.0,1.3977684695226011,,,excluded,insufficient data: only 1 year of LL84 records
+2782326,30 West 15th Street,Multifamily Housing,845,721.6924735254279,1.0,0.6854062597727527,,,excluded,outside the 500 m search radius
+10063220,Andrews: 126 W 22nd St,Multifamily Housing,736,709.3223064378134,1.0,0.7670788301172282,,,excluded,outside the 500 m search radius
+21355407,NYPD_4451_6th Precinct,Police Station,815,701.5505314061764,1.0,0.6893849152546242,,,excluded,outside the 500 m search radius
+6382098,129 West Washington Place,Multifamily Housing,922,699.6051453896116,1.0,0.6117946230258948,,,excluded,outside the 500 m search radius
+6457924,201 West 11th Street,Multifamily Housing,538,698.831994682519,1.0,1.0102163188437774,,,excluded,outside the 500 m search radius
+6282524,Buchbinder: 319 W 18th St,Multifamily Housing,215,697.0876358604069,1.0,2.2359414735145124,,,excluded,insufficient data: only 1 year of LL84 records
+6168917,521 West 23rd Street,Multifamily Housing,784,695.8606646499472,1.0,0.709210509535318,,,excluded,outside the 500 m search radius
+26680772,154 West 18th Street,Multifamily Housing,505,695.6627244704354,1.0,1.0654293978376037,,,excluded,outside the 500 m search radius
+2669826,545 West 25th St,Office,965,695.6309360317751,1.0,0.5825480745093683,,,excluded,outside the 500 m search radius
+3530197,250 West 27th Street,Multifamily Housing,894,693.5176056565056,1.0,0.6244597084830824,,,excluded,outside the 500 m search radius
+2645024,5421 Equities Company (BBL): 1-00822-0070 (BIN) 1015512,Office,840,691.9667469876694,1.0,0.6608671179095719,,,excluded,outside the 500 m search radius
+6333465,Eagle Point - 529-535 West 20th Street,Office,663,684.6853286488858,1.0,0.8162447816992326,,,excluded,outside the 500 m search radius
+14840064,150 West 26th Street,Multifamily Housing,937,683.9378607338147,1.0,0.5890042367008536,,,excluded,outside the 500 m search radius
+4410723,144 West 18 Street - 42252,Multifamily Housing,529,683.204831451915,1.0,1.0029777318378719,,,excluded,outside the 500 m search radius
+12771985,Rudd:  420 West 23 Street,Multifamily Housing,591,680.6540485907875,1.0,0.9025833717662548,,,excluded,outside the 500 m search radius
+5829624,532 West 22nd Street,Multifamily Housing,735,679.1783431052987,1.0,0.7354160403051005,,,excluded,outside the 500 m search radius
+50675093,55 West 17th Street Condominium (55 West 17th Street),Multifamily Housing,752,676.0779299337484,1.0,0.7165414469372644,,,excluded,outside the 500 m search radius
+6309298,100 Bank Street,Multifamily Housing,655,674.8018986314169,1.0,0.8135909416123465,,,excluded,outside the 500 m search radius
+52612292,300 West 20th,Office,333,674.6240338180534,1.0,1.4972073857580819,,,excluded,insufficient data: only 1 year of LL84 records
+4413921,520 West 19th Street,Multifamily Housing,564,672.6012575092127,1.0,0.9311255193531446,,,excluded,outside the 500 m search radius
+4038982,DEPM  2512 - TRANSFER - 32 West 18th Street,Multifamily Housing,829,668.8115412547309,1.0,0.6467460865375667,,,excluded,outside the 500 m search radius
+6692943,80 GROVE STREET,Multifamily Housing,898,667.1028638315757,1.0,0.5981407534354846,,,excluded,outside the 500 m search radius
+2690725,Pratt Manhattan Ctr,College/University,524,666.3585513146874,1.0,0.9867678895774987,,,excluded,outside the 500 m search radius
+50162294,261 West 21st Street,Multifamily Housing,463,662.8316172070214,1.0,1.098259014865435,,,excluded,insufficient data: only 1 year of LL84 records
+6682135,104 West 17th Street (585 6 AVENUE),Multifamily Housing,645,662.5837963367293,1.0,0.810354283289525,,,excluded,outside the 500 m search radius
+53891992,GC 40 West 20th Street-RDA,Office,835,662.1611585918757,1.0,0.6359739941277902,,,excluded,outside the 500 m search radius
+33191245,14 West 17th Street,Multifamily Housing,901,662.069368742567,1.0,0.5917549562893607,,,excluded,outside the 500 m search radius
+2954516,85 8th Avenue,Multifamily Housing,124,659.2505528785144,1.0,3.2204768387743523,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+19833666,300 West 12th Street,Multifamily Housing,466,652.1683300401918,1.0,1.0743082956088432,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+4038980,Halstead - 133 West 22nd Street,Multifamily Housing,744,651.1851792803466,1.0,0.697112597466366,,,excluded,outside the 500 m search radius
+14933113,360 West 11th Street,Multifamily Housing,841,649.8497424784784,1.0,0.6199464434418706,,,excluded,outside the 500 m search radius
+3531301,Vesta 24 Condominium,Multifamily Housing,775,644.0652235457962,1.0,0.6635823515320325,,,excluded,outside the 500 m search radius
+4377727,Century - 100 West 18th Street,Multifamily Housing,667,643.8687682595469,1.0,0.7633032817581797,,,excluded,outside the 500 m search radius
+2805261,344 W 23rd Street - 34185,Multifamily Housing,547,641.3247455703779,1.0,0.9131089342291813,,,excluded,outside the 500 m search radius
+6382099,141 West 16th Street,Multifamily Housing,507,638.0306270958243,1.0,0.9736553555322275,,,excluded,outside the 500 m search radius
+12444746,Nelco: 164 W 25th St,Manufacturing/Industrial Plant,847,637.5830783126845,1.0,0.6041757152349854,,,excluded,outside the 500 m search radius
+8471298,120 11th Avenue,Multifamily Housing,715,637.2814495996943,1.0,0.7080904995552157,,,excluded,outside the 500 m search radius
+16880240,Center for Jewish History Campus,Museum,868,634.6819387938721,1.0,0.5876684618461777,,,excluded,outside the 500 m search radius
+4936981,Union Land House Condo,Multifamily Housing,615,633.2482059656369,1.0,0.8094150001064532,,,excluded,outside the 500 m search radius
+30687964,152 West 25th Street,Office,864,631.0208660718107,1.0,0.586835597550371,,,excluded,outside the 500 m search radius
+50231292,291 7 AVENUE,Multifamily Housing,965,628.0488912829537,1.0,0.5259522734881878,,,excluded,outside the 500 m search radius
+10063093,Andrews: 139 West 19 St,Multifamily Housing,590,626.8029388382234,1.0,0.8324726531445155,,,excluded,outside the 500 m search radius
+26616431,540 West 25 Street,Museum,916,625.7365314808118,1.0,0.5505963268723498,,,excluded,outside the 500 m search radius
+2637247,136 W21,College/University,654,625.6749963317276,1.0,0.7554314586391597,,,excluded,outside the 500 m search radius
+26640250,143 WEST 20 STREET,Multifamily Housing,624,623.9189048990341,1.0,0.7868413489082774,,,excluded,outside the 500 m search radius
+20965431,Lalezarian Properties LLC : 155 WEST 21 STREET,Multifamily Housing,646,623.4500010062105,1.0,0.7613972713437915,,,excluded,outside the 500 m search radius
+2689501,122 West 26th Street,Office,982,622.9723147512618,1.0,0.5131070421885393,,,excluded,outside the 500 m search radius
+57872692,National Energy Cost Services Inc:235 WEST 23 STREET,Office,669,620.431388846068,1.0,0.7334724346580775,,,excluded,outside the 500 m search radius
+6213192,134 W 26th St,Manufacturing/Industrial Plant,956,618.0039693541476,1.0,0.5221703518399855,,,excluded,outside the 500 m search radius
+6262487,35 Grove Street,Multifamily Housing,950,617.0290294679022,1.0,0.5244746750477169,,,excluded,outside the 500 m search radius
+6694545,DEPM 1228 - 125 West 12th Street,Multifamily Housing,662,616.9168809504412,1.0,0.7364878494492626,,,excluded,outside the 500 m search radius
+2681134,11 W 19th Street,Office,940,615.5612808611131,1.0,0.5285122108403496,,,excluded,outside the 500 m search radius
+4936244,Elijah Equities - 520 W 20th St,Office,610,613.3267021126319,1.0,0.7898904496905107,,,excluded,outside the 500 m search radius
+6779339,166 W 22nd Street - 44844,Multifamily Housing,651,612.9156406738055,1.0,0.7431930022435587,,,excluded,outside the 500 m search radius
+50716792,120 11th Avenue NCG,Multifamily Housing,715,612.212563252057,1.0,0.6802361813911744,,,excluded,outside the 500 m search radius
+6225115,114 WEST 16th   STREET - 35453,Multifamily Housing,612,606.122810832609,1.0,0.7782543643621113,,,excluded,outside the 500 m search radius
+31978303,377 West 11th Street,Multifamily Housing,835,604.7633715126744,1.0,0.5808461760291224,,,excluded,outside the 500 m search radius
+4043768,305 West 16th St Owners Corp,Multifamily Housing,128,604.5654020260588,1.0,2.8869696164165726,,,excluded,insufficient data: only 1 year of LL84 records
+4947962,CB - 40 Gansevoort Street,Office,350,602.6454936517882,1.0,1.2806216740100498,,,excluded,insufficient data: only 1 year of LL84 records
+16641747,115 W Washington Place,Multifamily Housing,957,601.3231278182444,1.0,0.5075716570461845,,,excluded,outside the 500 m search radius
+6139025,226 West 20th Street,Multifamily Housing,421,598.2807866730049,1.0,1.0796999334863144,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+20596955,413-421 West 14th Street,Office,253,597.8478328275904,1.0,1.677130884169808,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6011298,12th Americas Company LLC,Multifamily Housing,780,597.2569136923377,1.0,0.611648646552394,,,excluded,outside the 500 m search radius
+5850905,122-124 5th Avenue,Office,956,596.9778221422204,1.0,0.5044047204978999,,,excluded,outside the 500 m search radius
+6790068,150 West 21st Street,Multifamily Housing,613,596.0030532140809,1.0,0.7641064784795909,,,excluded,outside the 500 m search radius
+2669471,Century - 130 West 19th Street,Multifamily Housing,592,595.3279494229726,1.0,0.7882067866192004,,,excluded,outside the 500 m search radius
+52535692,133 West 17th Street,Multifamily Housing,574,595.3239343497428,1.0,0.8109380515982073,,,excluded,outside the 500 m search radius
+6814882,350 West 14th Street,Multifamily Housing,176,594.5860107814974,1.0,2.2362748193109416,,,excluded,insufficient data: only 1 year of LL84 records
+10436939,4 West 16th Street,Multifamily Housing,939,592.3335400461059,1.0,0.5090834267332558,,,excluded,outside the 500 m search radius
+16754526,Buchbinder: 137 W 12th St,Multifamily Housing,609,590.9350587793044,1.0,0.7622075871963714,,,excluded,outside the 500 m search radius
+19081268,278 West 10 Street,K-12 School,979,590.596757110343,1.0,0.487859323171809,,,excluded,outside the 500 m search radius
+4630104,143-145 Owners Corporation (143 West 20th Street),Multifamily Housing,624,587.4374806206777,1.0,0.7408336179934362,,,excluded,outside the 500 m search radius
+2940676,Teamsters Union Local 237,Office,352,587.056458963314,1.0,1.2412885326338727,,,excluded,insufficient data: only 1 year of LL84 records
+6382108,248 West 17th Street,Multifamily Housing,239,586.5798082260352,1.0,1.725234730076574,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+33545328,"Halstead - 341 West 11th St, NY, NY 10014",Multifamily Housing,749,585.9849912459681,1.0,0.6233882885595405,,,excluded,outside the 500 m search radius
+16096595,420 W 20th St Condo,Multifamily Housing,401,585.7059876171625,1.0,1.1038804644669358,,,excluded,insufficient data: only 1 year of LL84 records
+9849254,231 West 25th Street,Multifamily Housing,809,585.4804254922568,1.0,0.5793461719073554,,,excluded,outside the 500 m search radius
+2643762,"37 West 20, LLC (BBL): 1-00822-0009 (BIN) 1015489",Office,854,583.0114924877101,1.0,0.5481855847506124,,,excluded,outside the 500 m search radius
+6294578,129 West 22nd Street,Multifamily Housing,765,582.5831203195335,1.0,0.6076020273271208,,,excluded,outside the 500 m search radius
+6690206,290 West 12th Street,Multifamily Housing,458,582.063476060883,1.0,0.9739251075821861,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+15548593,The Chelsea (ch205),Multifamily Housing,767,579.9625279369968,1.0,0.6033881869601558,,,excluded,outside the 500 m search radius
+3538284,M Rapaport: 150 West 22nd Street,Office,680,576.9814093317336,1.0,0.6718276683999638,,,excluded,outside the 500 m search radius
+53933293,8 West 13th Street,Multifamily Housing,945,574.258046704973,1.0,0.49057220070274077,,,excluded,outside the 500 m search radius
+53949393,40 Gansevoort Street AKA 831 Greenwich Street,Office,350,568.1226045105977,1.0,1.2072605345850203,,,excluded,insufficient data: only 1 year of LL84 records
+6701561,JC Dwight - 15 ABINGDON SQUARE,Multifamily Housing,492,564.2822016199794,1.0,0.8849444121346541,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+28444237,204 West 23rd Street,Hotel,666,558.6407453148199,1.0,0.6631908289351912,,,excluded,outside the 500 m search radius
+11986512,The Jane Hotel - 113 Jane Street,Hotel,618,555.8789757284427,1.0,0.7073310319897849,,,excluded,outside the 500 m search radius
+10063228,Andrews: 166 Bank St,Multifamily Housing,823,555.7988794135766,1.0,0.5411558390624744,,,excluded,outside the 500 m search radius
+26533119,AKAM - 270 West 11th Street,Multifamily Housing,615,552.6749619447257,1.0,0.7064266430872435,,,excluded,outside the 500 m search radius
+6457870,117 West 13th Street,Multifamily Housing,631,550.3261587589262,1.0,0.6868975549854439,,,excluded,outside the 500 m search radius
+4043732,AKAM - 125 West 22nd Street,Multifamily Housing,777,548.6209249204752,1.0,0.563878822469654,,,excluded,outside the 500 m search radius
+45838192,220 West 21st Street,Multifamily Housing,500,547.5485779900134,1.0,0.8462114387118389,,,excluded,insufficient data: only 1 year of LL84 records
+6844497,ABC: 241 West 19th St.,Multifamily Housing,383,546.8855926863536,1.0,1.0735629417630497,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+4375882,Gansevoort Cooperative,Multifamily Housing,239,544.1496866191384,1.0,1.6004402547621717,,,excluded,insufficient data: only 1 year of LL84 records
+6835716,Andrews: 205 West 19th St.,Multifamily Housing,460,542.5722317535437,1.0,0.9042870529225728,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+11985530,DEPM 1042 - 130 Jane Street,Multifamily Housing,608,541.7164643206526,1.0,0.6997857061892928,,,excluded,outside the 500 m search radius
+6549794,Owners Corp. - 36 West 15th St,Multifamily Housing,826,541.2812635972751,1.0,0.5252158379653925,,,excluded,outside the 500 m search radius
+6225116,115 WEST 16th   STREET - 35454,Multifamily Housing,597,539.1932692132978,1.0,0.7083682825831578,,,excluded,outside the 500 m search radius
+6188324,160 West 22nd Street,Multifamily Housing,663,534.9328955242777,1.0,0.637718038142547,,,excluded,outside the 500 m search radius
+6382101,204 West 14 Street,Multifamily Housing,381,534.5347096730833,1.0,1.0541867824179136,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6579377,Crane Realty LLC - 29 Charles st,Multifamily Housing,689,530.437786586842,1.0,0.610111121243323,,,excluded,outside the 500 m search radius
+15497673,68 Jane Street,Multifamily Housing,476,528.0774364021192,1.0,0.8533570740338429,,,excluded,insufficient data: only 1 year of LL84 records
+6283105,151 W 19th Street,Office,568,526.1930677758038,1.0,0.7237283294651022,,,excluded,outside the 500 m search radius
+6777152,JC Dwight - 130 West 16th st,Multifamily Housing,544,526.1625981568177,1.0,0.752926276823729,,,excluded,outside the 500 m search radius
+6610148,CB - 60 West 14th Street,Multifamily Housing,755,525.616724040207,1.0,0.5549990253840695,,,excluded,outside the 500 m search radius
+6333435,Eagle Point - 259 West 10th Street,Multifamily Housing,900,524.3917945579834,1.0,0.469192658288722,,,excluded,outside the 500 m search radius
+7069148,Stone: 123 Waverly Pl.,Multifamily Housing,991,521.9796342981427,1.0,0.42620815480636054,,,excluded,outside the 500 m search radius
+56798796,130 W 16 OWNERS INC,Multifamily Housing,544,517.3424787127851,1.0,0.7403048937809215,,,excluded,outside the 500 m search radius
+6722391,135-139 West 20th Street,Office,644,517.3385222537632,1.0,0.6336278730773757,,,excluded,outside the 500 m search radius
+6622206,Timothy Mitchell,Residential Care Facility,750,516.7069248583441,1.0,0.5490011076619906,,,excluded,outside the 500 m search radius
+6695981,AKAM - 56 West 11th Street,Multifamily Housing,885,511.5679681560732,1.0,0.46506178923279384,,,excluded,outside the 500 m search radius
+53950093,58-60 West 14th Street,Multifamily Housing,755,510.6373357263561,1.0,0.5391822799595064,,,excluded,outside the 500 m search radius
+33375891,278 West 10 Street,K-12 School,979,509.1354785351841,1.0,0.42056866545666327,,,excluded,outside the 500 m search radius
+20268005,210 West 16th Street,Multifamily Housing,352,508.0220870057577,1.0,1.0741760546141643,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+55101792,MILTAN MANAGEMENT CORP:130 WEST 25 STREET,Office,911,507.4747182268499,1.0,0.4488590119592325,,,excluded,outside the 500 m search radius
+6812013,397 West 12th Street,Multifamily Housing,644,506.28081519858597,1.0,0.6200845719291038,,,excluded,outside the 500 m search radius
+25750647,450 Sixth,Multifamily Housing,826,502.48217981549425,1.0,0.4875683251634362,,,excluded,outside the 500 m search radius
+48587198,32 West 20th Street,Multifamily Housing,872,502.4667496253087,1.0,0.46322856527279,,,excluded,outside the 500 m search radius
+35163166,29 Charles Street,Multifamily Housing,689,500.7821772950833,1.0,0.5760011511513136,,,excluded,outside the 500 m search radius
+6227870,THE SEYMOUR CONDOMINIUM,Multifamily Housing,787,496.4995595142289,1.0,0.5042110222068035,,,excluded,outside the 500 m search radius
+19398467,135 West 16th Street,Multifamily Housing,536,493.91391096853533,1.0,0.7164280278553841,,,excluded,outside the 500 m search radius
+26697879,147 West 22nd Street,Multifamily Housing,724,491.3186496927737,1.0,0.5395618245980073,,,excluded,outside the 500 m search radius
+6303546,Altair 20,Multifamily Housing,949,490.7492126646546,1.0,0.41755438515010646,,,excluded,outside the 500 m search radius
+6314233,147 West 25th Street,Office,914,489.5063570038996,1.0,0.43161867578144675,,,excluded,outside the 500 m search radius
+6629441,Andrews: 42 W 17th St,Multifamily Housing,802,486.64288688258966,1.0,0.4855005326880296,,,excluded,outside the 500 m search radius
+6654229,U-Haul Of Chelsea 803062,Retail Store,797,485.1338836425916,1.0,0.48685218547367515,,,excluded,outside the 500 m search radius
+6682121,359 West 11th Street,Multifamily Housing,808,484.6055644811969,1.0,0.48008709767950736,,,excluded,outside the 500 m search radius
+7534445,312 West 15 Street,Multifamily Housing,94,483.6414682233819,1.0,2.8548281110407956,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+4341957,636 Sixth Avenue Owner LLC.,Office,775,483.0337072724407,1.0,0.4976710923413026,,,excluded,outside the 500 m search radius
+6811996,385 West 12th Street,Multifamily Housing,624,482.5239785839315,1.0,0.6085243053358187,,,excluded,outside the 500 m search radius
+6265967,510 WEST 21 STREET - [510-520 W. 21st],Self-Storage Facility,630,477.4026989498093,1.0,0.5967533736872617,,,excluded,outside the 500 m search radius
+10317687,210 West 21st Street,Multifamily Housing,518,477.33608390272155,1.0,0.7143233649952698,,,excluded,outside the 500 m search radius
+54514492,GREENWICH GREEN COOPERATIVE IN,Multifamily Housing,812,473.8794575372303,1.0,0.46728252773392775,,,excluded,outside the 500 m search radius
+10868316,132 Perry Street,Multifamily Housing,830,473.2900916784824,1.0,0.4571552021894432,,,excluded,outside the 500 m search radius
+5850801,118-120 5th Avenue,Office,972,472.7542698984978,1.0,0.39319092897624575,,,excluded,outside the 500 m search radius
+21355240,DOHMH_3433_Chelsea Health Center,Urgent Care/Clinic/Other Outpatient,956,471.62864265320724,1.0,0.3984933859395886,,,excluded,outside the 500 m search radius
+6650159,Andrews: 124 W 24th St,Multifamily Housing,850,467.1888411052842,1.0,0.441233905488324,,,excluded,outside the 500 m search radius
+3235263,The Dance Building Condominium,Multifamily Housing,432,466.7622273633396,1.0,0.8231284092507026,,,excluded,insufficient data: only 1 year of LL84 records
+44406002,JM - 138 W 17th street,Multifamily Housing,519,466.4207702961952,1.0,0.6967621348888681,,,excluded,outside the 500 m search radius
+20806186,125 West 25th St,Office,960,465.3315620119756,1.0,0.39161567100017747,,,excluded,outside the 500 m search radius
+15368934,126 West 11th Street,Multifamily Housing,703,464.5466103110597,1.0,0.5243886039367872,,,excluded,outside the 500 m search radius
+6894297,255 WEST 14TH STREET,Multifamily Housing,216,463.5785673632575,1.0,1.4813600836795822,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+3762097,341 Chelsea Manhattan NY HAMP,Hotel,890,455.65495222649,1.0,0.412028414247358,,,excluded,outside the 500 m search radius
+1836849,M883 (OECID: 0101359; BBL: 1005770019),K-12 School,836,452.286794238536,1.0,0.4339094527119137,,,excluded,outside the 500 m search radius
+6627932,127 West 24th Street,Office,886,450.2527444637416,1.0,0.4088833683698508,,,excluded,outside the 500 m search radius
+48631292,107 West 25th Street,Multifamily Housing,985,449.6375004322798,1.0,0.3692675124323071,,,excluded,outside the 500 m search radius
+26533122,AKAM - 206 West 17th Street,Multifamily Housing,388,449.26456753558324,1.0,0.8718604621124332,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6801393,413-421 West 14th Street (One Building),Financial Office,253,447.741301505037,1.0,1.2560399547171004,,,excluded,insufficient data: only 1 year of LL84 records
+2900365,19 West 21st Street,Office,965,444.42892470477483,1.0,0.3721818581271513,,,excluded,outside the 500 m search radius
+49621196,7 W 18th St,Office,939,441.40689338251457,1.0,0.37936891746727747,,,excluded,outside the 500 m search radius
+31977680,165 Perry Street,Multifamily Housing,877,440.4542659713459,1.0,0.4038685286684401,,,excluded,outside the 500 m search radius
+53053995,MQ Property Management:114 WEST 17 STREET,Retail Store,596,438.4401352581458,1.0,0.5768949148133496,,,excluded,outside the 500 m search radius
+33922209,233-235 West 26th Street,Multifamily Housing,877,438.24963908301595,1.0,0.4018470261279003,,,excluded,outside the 500 m search radius
+6600357,Andrews: 9 W 20th St,Multifamily Housing,969,437.33633203620093,1.0,0.36480459492715483,,,excluded,outside the 500 m search radius
+6707599,450 Village Company: 450 6th Avenue,Multifamily Housing,826,436.3830696377818,1.0,0.4234310607215919,,,excluded,outside the 500 m search radius
+6640510,575 6th Avenue,Multifamily Housing,661,434.5743963762353,1.0,0.5195333852599157,,,excluded,outside the 500 m search radius
+14910017,Andrews: 147 W 15th St,Multifamily Housing,505,433.33436885100326,1.0,0.6636652495916266,,,excluded,outside the 500 m search radius
+2799290,17 West 17th Street,Office,897,427.6011959642946,1.0,0.38380255181589273,,,excluded,outside the 500 m search radius
+3513340,AKAM - 137-139 West 25th Street,Office,923,426.4778839802095,1.0,0.3725654690474595,,,excluded,outside the 500 m search radius
+33881135,146 West 22nd Street,Multifamily Housing,691,424.65568549022873,1.0,0.48712190643278597,,,excluded,outside the 500 m search radius
+4335590,401 West 22nd Street,Multifamily Housing,542,420.19431391386024,1.0,0.6033195385587521,,,excluded,outside the 500 m search radius
+3542194,140 West 22nd Street,Multifamily Housing,703,416.0430603415684,1.0,0.46963692070429364,,,excluded,outside the 500 m search radius
+6598605,"WEST END ESTATES, LLC",Multifamily Housing,999,414.44070420672216,1.0,0.3358194457347129,,,excluded,outside the 500 m search radius
+6294571,126 West 11th Street,Multifamily Housing,703,410.027191130967,1.0,0.4628460988862177,,,excluded,outside the 500 m search radius
+4408617,114 West 26th Street,Office,996,405.0312091349071,1.0,0.329136259813261,,,excluded,outside the 500 m search radius
+31978251,234 West 21st Street,Multifamily Housing,468,403.81084667636924,1.0,0.6626239762063973,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+2637906,167 Housing Corporation (167 Perry Street),Multifamily Housing,895,403.53944824101694,1.0,0.362971990481338,,,excluded,outside the 500 m search radius
+10063226,Andrews: 130 West 17 St,Multifamily Housing,540,403.38667030856277,1.0,0.5811502877326751,,,excluded,outside the 500 m search radius
+23380325,OLD WARREN ROAD HOUSE INC,Multifamily Housing,532,401.84274276979096,1.0,0.5868837308493511,,,excluded,outside the 500 m search radius
+6295276,Sam Sasson & Joseph Sasson,Multifamily Housing,641,401.20428751206725,1.0,0.49352191662121153,,,excluded,outside the 500 m search radius
+2814189,410 West 13th Street,Office,323,400.2353946582528,1.0,0.9120645722775198,,,excluded,insufficient data: only 1 year of LL84 records
+54460592,540 6th Avenue,Multifamily Housing,717,396.1928020580621,1.0,0.43906633865626177,,,excluded,outside the 500 m search radius
+6303085,250 West 16th Street,Multifamily Housing,196,392.5067889906106,1.0,1.3562226448862562,,,excluded,insufficient data: only 1 year of LL84 records
+34705250,EK 17 Street LLC,Medical Office,289,392.3048923520768,1.0,0.9836553348060924,,,excluded,insufficient data: only 1 year of LL84 records
+6826591,EK 17 Street LLC,Medical Office,289,392.3048923520768,1.0,0.9836553348060924,,,excluded,insufficient data: only 1 year of LL84 records
+24241109,135 West 18 Street,Office,582,391.5136005476912,1.0,0.5265610133948379,,,excluded,outside the 500 m search radius
+16756678,54 WEST 13 STREET,Hotel,801,390.9745354482122,1.0,0.3905151059118453,,,excluded,outside the 500 m search radius
+30930844,54 - Notre Dame School,K-12 School,194,390.40957263795,1.0,1.360033347304334,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+4372134,Brodsky - 445-455 West 20th Street,Multifamily Housing,488,387.8824503786771,1.0,0.6128254327544155,,,excluded,insufficient data: only 1 year of LL84 records
+6301459,Andrews: 12 W 17th St,Multifamily Housing,912,387.786381692204,1.0,0.34263869484238396,,,excluded,outside the 500 m search radius
+36304624,11 West 17th Street,Multifamily Housing,925,386.5070386871356,1.0,0.33695485424006694,,,excluded,outside the 500 m search radius
+6898232,65 Bank Street,Multifamily Housing,503,385.6006969620061,1.0,0.5926954654931378,,,excluded,outside the 500 m search radius
+35868829,2 Gansevoort,Office,266,385.4364208758018,1.0,1.0367751827355427,,,excluded,insufficient data: only 1 year of LL84 records
+4408958,135 West 18th Street,Office,582,384.1302618706959,1.0,0.5166308901741954,,,excluded,outside the 500 m search radius
+6456870,245 10th Avenue,Multifamily Housing,835,383.6247143290051,1.0,0.3684531154572365,,,excluded,outside the 500 m search radius
+6787440,Marbrose: 50 Bank St.,Multifamily Housing,508,381.0271280230034,1.0,0.5804176681353995,,,excluded,outside the 500 m search radius
+4414278,Century - 607 Hudson Street / 320 West 12th Street,Multifamily Housing,505,378.3910517205908,1.0,0.5795178269594633,,,excluded,outside the 500 m search radius
+5218337,Merchants: 213 West 23rd St,Multifamily Housing,700,378.04991703158896,1.0,0.42845657263580084,,,excluded,outside the 500 m search radius
+6582036,Orsid - 155 West 15th Street,Multifamily Housing,484,375.58094006638646,1.0,0.5978348296936863,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6600340,AAG: 229 9th Ave,Multifamily Housing,697,374.17913244329617,1.0,0.42577277453387113,,,excluded,outside the 500 m search radius
+6352413,205 West 13th Street,Multifamily Housing,406,372.75177879466924,1.0,0.6948223946830457,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+55272692,121 West 20th Street,Multifamily Housing,703,366.6063721849794,1.0,0.4138318942327125,,,excluded,outside the 500 m search radius
+6773430,78 Fifth Avenue,Office,980,364.34298455339786,1.0,0.30067139501979434,,,excluded,outside the 500 m search radius
+14255509,209 West 14 Street,Multifamily Housing,370,364.31308153841974,1.0,0.7373002840658494,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6600362,M. MEILMAN: 421 W 13TH ST,Manufacturing/Industrial Plant,319,363.910714540407,1.0,0.8382767137109646,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+9640050,524 West 19th Street,Multifamily Housing,586,363.8026592484525,1.0,0.4862142458509192,,,excluded,outside the 500 m search radius
+5868058,The Kimberly Condominium,Multifamily Housing,823,363.5766037872984,1.0,0.3539978387390648,,,excluded,outside the 500 m search radius
+7523696,Loria: 15 West 17th Street,Multifamily Housing,909,362.0485313917182,1.0,0.32089807266210685,,,excluded,outside the 500 m search radius
+21815773,249-257 West 24th Street,Residential Care Facility,712,360.3520310702193,1.0,0.4019674887266226,,,excluded,outside the 500 m search radius
+24312274,The Board of Managers of 128 West 23rd Street Condo (128 W 23rd St),Multifamily Housing,794,359.5670989073725,1.0,0.3621232631176145,,,excluded,outside the 500 m search radius
+44408395,JM - 135 W 17th street,Multifamily Housing,551,357.07277129732586,1.0,0.5050114069928902,,,excluded,outside the 500 m search radius
+6168896,141 West 13th Street,Multifamily Housing,553,356.4820866189039,1.0,0.5025037705241597,,,excluded,outside the 500 m search radius
+6382103,209 West 13th Street,Multifamily Housing,392,355.72298378359795,1.0,0.6840826611223038,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+24896821,434 6th Avenue,Fitness Center/Health Club/Gym,856,351.9471200202102,1.0,0.3301932141469963,,,excluded,outside the 500 m search radius
+6262541,400 West 25th Street,Multifamily Housing,742,350.3592171720872,1.0,0.37601683661145724,,,excluded,outside the 500 m search radius
+6382100,190 Waverly Place,Multifamily Housing,755,349.6497703397651,1.0,0.3691954096755284,,,excluded,outside the 500 m search radius
+20579817,131 PERRY ST : 131 Perry Street,Multifamily Housing,788,348.19682182042834,1.0,0.3531829338274034,,,excluded,outside the 500 m search radius
+11656102,Andrews: 221 W 17th St.,Multifamily Housing,348,347.8651630950099,1.0,0.742928112137584,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+26565549,505 West 19th Street,Multifamily Housing,540,345.1037500783965,1.0,0.4971833687570119,,,excluded,outside the 500 m search radius
+6250162,6 West 20th Street,Multifamily Housing,965,344.8664504583925,0.3018917952283705,0.07898178415669793,,,excluded,outside the 500 m search radius
+30731787,523 West 24 Street,Office,855,336.9944744386371,1.0,0.3165141472628083,,,excluded,outside the 500 m search radius
+5990066,Halstead - 124 West 23rd Street,Multifamily Housing,805,336.0799609160463,1.0,0.3341145810276483,,,excluded,outside the 500 m search radius
+3962142,25 West 14th Street,Retail Store,876,335.71434014176435,1.0,0.30816111136123076,,,excluded,outside the 500 m search radius
+12077431,ROBERTO LOPEZ,Office,353,332.046263021879,1.0,0.7003457160511095,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+2659137,247 West 12th St,Multifamily Housing,389,331.58789991741264,1.0,0.6420266854892954,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6682172,495 West Street,Multifamily Housing,659,331.05480369808765,1.0,0.3968922188199922,,,excluded,outside the 500 m search radius
+44408194,JM - 131 Perry Street,Multifamily Housing,788,330.37605117254793,1.0,0.33510697314637916,,,excluded,outside the 500 m search radius
+9469621,23rd Street: 241 W 23,Multifamily Housing,663,329.124637837464,1.0,0.3923645752620538,,,excluded,outside the 500 m search radius
+20662119,AKAM - 514 West 24th Street,Multifamily Housing,815,327.3089162174376,1.0,0.32163303905759766,,,excluded,outside the 500 m search radius
+2646584,3620 Company (BBL) 1008210064 (BIN) 1015484,Office,858,321.39617870534113,1.0,0.30086646684971363,,,excluded,outside the 500 m search radius
+6811135,Century - 147 Waverly Place,Multifamily Housing,894,321.1034300448223,1.0,0.28912914781578275,,,excluded,outside the 500 m search radius
+55096192,MILTAN MANAGEMENT CORP:133 WEST 19 STREET,Office,618,320.2623161638642,1.0,0.40751941428036614,,,excluded,outside the 500 m search radius
+20652431,22 West 19th Street,Office,896,319.4245628308161,1.0,0.2870093852073929,,,excluded,outside the 500 m search radius
+6078748,14 West 14th Street Condominium (14 West 14th Street),Multifamily Housing,918,318.4340217962793,1.0,0.2796166513706998,,,excluded,outside the 500 m search radius
+33541056,"Halstead - 247 West 12th Street NY, NY 10014",Multifamily Housing,389,317.7265190018469,1.0,0.6151880208464006,,,excluded,insufficient data: only 1 year of LL84 records
+10773088,Hope for Families and Children Foundation,Office,521,313.89940199831466,1.0,0.46727581733549467,,,excluded,outside the 500 m search radius
+2829947,Majestic Rayon: 116 West 23rd Street,Retail Store,828,312.31554841504254,1.0,0.3023555992628544,,,excluded,outside the 500 m search radius
+4410715,33 West 19th Street - 41708,Office,881,312.11626010875284,1.0,0.28496113973409226,,,excluded,outside the 500 m search radius
+21355487,NYPL_4611_Jefferson Market Branch Library,Library,828,310.37815346879864,1.0,0.3004799891212743,,,excluded,outside the 500 m search radius
+6333453,Eagle Point - 513-519 West 20th Street,Office,613,309.47599289048736,1.0,0.3967640934493427,,,excluded,outside the 500 m search radius
+24896802,125 Christopher Street,Multifamily Housing,928,308.1086601905783,1.0,0.2677836003701345,,,excluded,outside the 500 m search radius
+43061592,JM - 12 W 18th Street,Multifamily Housing,901,303.7399967527729,1.0,0.2714815954152019,,,excluded,outside the 500 m search radius
+4952798,AKAM - 151 West 21st Street,Multifamily Housing,666,297.88517007791586,1.0,0.353634629282442,,,excluded,outside the 500 m search radius
+6667546,AKAM - 515 West 23rd Street,Multifamily Housing,770,292.18539263606266,1.0,0.3028751021227479,,,excluded,outside the 500 m search radius
+6225126,321 WEST 13th   STREET - 40440,Multifamily Housing,193,289.6271608860358,1.0,1.013099122440866,,,excluded,insufficient data: only 1 year of LL84 records
+6811976,AKAM - 447 West 18th Street,Multifamily Housing,401,289.14388674328325,1.0,0.5449496756802455,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+2539063,Winter Management - 26 WEST 17 STREET,Office,848,289.0958230929428,1.0,0.27364303967594805,,,excluded,outside the 500 m search radius
+20313612,CFA - 40 West 15th Street,Multifamily Housing,815,288.92578327631145,1.0,0.28391550957787826,,,excluded,outside the 500 m search radius
+22009022,237 8th Ave,Multifamily Housing,524,288.69906352080307,1.0,0.4275160348304575,,,excluded,outside the 500 m search radius
+11922380,MacArthur - 411-417 West 13th Street,Office,283,286.02238711050126,1.0,0.7300871743060843,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+21715481,Claret Commons Condo - 136-140 West 23rd St,Multifamily Housing,773,284.70751412651254,1.0,0.29404785784633736,,,excluded,outside the 500 m search radius
+20805153,URA Group - 2 9th Ave,Office,296,283.3410801777886,1.0,0.696069127604394,,,excluded,insufficient data: only 1 year of LL84 records
+6687349,Halstead - 130 West 20th Street,Multifamily Housing,630,283.3298115963521,1.0,0.35416226449544014,,,excluded,outside the 500 m search radius
+2679751,DEPM 7628 - 444 West 19th St,Multifamily Housing,395,282.7043833462969,1.0,0.5399971367288816,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+19398456,124 West 16th Street,Multifamily Housing,567,281.9832820556706,1.0,0.3884696754413614,,,excluded,outside the 500 m search radius
+4407826,Olnick - ROC Fifth Avenue Associates LLC,Office,982,280.2080042389795,1.0,0.2307914763596246,,,excluded,outside the 500 m search radius
+6282457,Andrews: 140 Perry Street,Multifamily Housing,844,279.7664927192362,1.0,0.26599722462119774,,,excluded,outside the 500 m search radius
+10063239,Andrews: 120 W 18 St,Multifamily Housing,614,278.7205221822539,1.0,0.3567958491790901,,,excluded,outside the 500 m search radius
+36340942,159 West 24th Street,Multifamily Housing,821,277.1549366937249,1.0,0.2704726707114422,,,excluded,outside the 500 m search radius
+31999717,110 West 14th Street,Multifamily Housing,641,276.8527071851054,1.0,0.3405568756980312,,,excluded,outside the 500 m search radius
+6772501,130 West 24th Street,Multifamily Housing,836,275.0279736306402,1.0,0.26385302210614464,,,excluded,outside the 500 m search radius
+7968700,"The Ruth Associates, LLC - 344 W 14",Office,167,274.9237771073615,1.0,1.0768903711578677,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+52667993,MQ Property Management:134 WEST 10 STREET,Multifamily Housing,819,274.6802448432685,1.0,0.26867457780987136,,,excluded,outside the 500 m search radius
+7463970,The Jefferson Court Condominium,Multifamily Housing,819,274.3854153783752,1.0,0.268386194558825,,,excluded,outside the 500 m search radius
+33193046,45 West 11th Street,Multifamily Housing,896,266.0208748639418,1.0,0.23902509897922888,,,excluded,outside the 500 m search radius
+30833286,117 West 21 Street,Multifamily Housing,742,264.85034913552835,1.0,0.284245955511615,,,excluded,outside the 500 m search radius
+19501617,556 West 22 Street,K-12 School,805,263.33820026638205,1.0,0.26179821079114,,,excluded,outside the 500 m search radius
+4123405,249 West 17th Street,Office,280,259.2211871604406,1.0,0.6676909366253773,,,excluded,insufficient data: only 1 year of LL84 records
+6664912,Cahn: 510 West 27th St,Manufacturing/Industrial Plant,998,258.77479112338625,1.0,0.20988413402183043,,,excluded,outside the 500 m search radius
+21355392,NYPD_4434_10th Precinct,Police Station,411,257.82136265137854,1.0,0.4753756144331274,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6309410,114 W 17th Condominium Association,Multifamily Housing,596,257.0743099202788,1.0,0.33825567094773523,,,excluded,outside the 500 m search radius
+6317581,Warehouse Eyes LLC (John Peden),Office,556,256.70282772522364,1.0,0.36006172205683185,,,excluded,outside the 500 m search radius
+28620949,Andrews Building Corp : 500 WEST 22 STREET,Multifamily Housing,647,246.96510285914246,1.0,0.30117695470627126,,,excluded,outside the 500 m search radius
+10439457,508 West 24th Street,Multifamily Housing,800,238.58664147037257,1.0,0.23858664147037256,,,excluded,outside the 500 m search radius
+6318071,Loria: 6-8 West 18th Street,Office,926,233.4155495287125,1.0,0.20328198473299758,,,excluded,outside the 500 m search radius
+4040788,DEPM 1688 - 166 West 18th Street,Multifamily Housing,468,231.9648478873388,1.0,0.38063729865683005,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6778499,Chelsea Operating Inc - 521 West 21 st,Retail Store,695,229.49894816804226,1.0,0.2618444375071623,,,excluded,outside the 500 m search radius
+15745500,Cornerstone: 300 W 14,Multifamily Housing,189,225.87004487699127,1.0,0.803303506884697,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+33987403,31 WEST 17 STREET,Multifamily Housing,846,225.29660254467723,1.0,0.21373003589617817,,,excluded,outside the 500 m search radius
+7463419,The Alchemy Condominium,Multifamily Housing,846,217.35906653357335,1.0,0.20620000731421578,,,excluded,outside the 500 m search radius
+6810455,459 West 18th Street Condo (459 West 18th Street),Multifamily Housing,421,216.94026801932628,1.0,0.3915057915423085,,,excluded,insufficient data: only 1 year of LL84 records
+31977411,155 Perry Street,Multifamily Housing,862,216.75035798627374,1.0,0.20201513628106654,,,excluded,outside the 500 m search radius
+14887282,37 West 14th Street,Office,811,216.3601925125039,1.0,0.21359600886832555,,,excluded,outside the 500 m search radius
+6790170,CECO STUDIOS,Manufacturing/Industrial Plant,318,211.75280806015695,1.0,0.489102953399819,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+7059087,Leor Management - 10 Christopher st,Multifamily Housing,881,210.78284549705143,1.0,0.19244405872448303,,,excluded,outside the 500 m search radius
+15144817,Division: 345 W 14th St,Multifamily Housing,118,209.08703877701066,1.0,1.0578808509551134,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+3111362,414 West 14th Street   (418 West 14th St),Office,281,206.74755036572336,1.0,0.5309227124195313,,,excluded,insufficient data: only 1 year of LL84 records
+15297421,200 West 24th Street,Multifamily Housing,749,205.95565776570845,1.0,0.21910176358054093,,,excluded,outside the 500 m search radius
+6784491,Loria: 3 West 18th Street,Office,954,202.19029571453945,1.0,0.17117704318462004,,,excluded,outside the 500 m search radius
+58754793,124 West 16th Street,Multifamily Housing,567,198.4741256372097,1.0,0.27342464633975405,,,excluded,outside the 500 m search radius
+6178163,136 Wooster Corp (980 Madison Ave),Museum,936,197.1700767435822,1.0,0.16997420408929498,,,excluded,outside the 500 m search radius
+6294587,350 West 23rd Street,Multifamily Housing,549,196.29302258424966,1.0,0.27854602536997025,,,excluded,outside the 500 m search radius
+5989957,837 Washington Street,Office,359,195.62140145398405,1.0,0.40654814483101814,,,excluded,insufficient data: only 1 year of LL84 records
+12771968,Rudd: 21 West 20th Street,Multifamily Housing,917,194.14569108397794,1.0,0.17065546786078722,,,excluded,outside the 500 m search radius
+21294038,AKAM - 159 West 25th Street,Office,895,191.70452167582712,1.0,0.17243263854439478,,,excluded,outside the 500 m search radius
+33946658,115 7th Ave South,Multifamily Housing,811,191.51327816954864,1.0,0.18906653477830004,,,excluded,outside the 500 m search radius
+21292506,500 West 25th Street,Multifamily Housing,847,190.71656455094777,1.0,0.1807236118933173,,,excluded,outside the 500 m search radius
+21355567,DPR_9495_High Line Maintenance and Operations Building,Office,474,190.1425360765564,1.0,0.30843731997151325,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6664908,Adorama Camera: 42 West 18th St,Retail Store,797,187.9558353667579,1.0,0.18862155851445597,,,excluded,outside the 500 m search radius
+19461628,Sandberg: 229 West 16 St,Multifamily Housing,294,185.99828201757137,1.0,0.45958877824109207,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6693942,TKR - 35 Bethune Street,Multifamily Housing,632,183.59860169946035,1.0,0.2288252367222013,,,excluded,outside the 500 m search radius
+33572213,155 W 18th Street - 44182,Multifamily Housing,548,182.6052374139177,1.0,0.25955593946794325,,,excluded,outside the 500 m search radius
+47971592,440 West 15th Street,Performing Arts,318,182.48595750118253,1.0,0.42150289096740534,,,excluded,insufficient data: only 1 year of LL84 records
+25518956,TMG - 37 West 17th Street,Office,820,181.84747293635496,1.0,0.17766707125965714,,,excluded,outside the 500 m search radius
+57797892,FDNY_3626_Marine Co. 1,Fire Station,693,181.82273774069196,1.0,0.20800716968988983,,,excluded,outside the 500 m search radius
+6262562,123 Bank Street,Multifamily Housing,665,180.82190014366344,1.0,0.2149630980728866,,,excluded,outside the 500 m search radius
+53974695,Impact Real Estate Management Inc. : 281 WEST 11 STREET,Multifamily Housing,587,180.5317598153887,1.0,0.240897952657897,,,excluded,outside the 500 m search radius
+6152632,Winter Management - 404-408 West 14th Street (402 WEST 14 STREET),Office,242,174.58608111854664,1.0,0.5082129073656323,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6272136,33 West 17th Street,Office,835,172.99353309446093,1.0,0.16615198093818281,,,excluded,outside the 500 m search radius
+54875492,DalanRE - 134 West 25th Street,Office,901,164.57796891219652,1.0,0.14709913099407682,,,excluded,outside the 500 m search radius
+21739389,11-17 Jane Street,Multifamily Housing,339,159.31019283488203,1.0,0.3481071051661947,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+28242206,455 West 19th Street,Multifamily Housing,453,158.34979904118882,1.0,0.2675891236282515,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+20420240,532 West 20th Street,Multifamily Housing,639,158.20868533607336,1.0,0.19517762341895842,,,excluded,outside the 500 m search radius
+6821238,7 - St Gabriel Guardian Angel - Parent Property,K-12 School,617,156.78948883135578,1.0,0.19980669491252234,,,excluded,outside the 500 m search radius
+17978911,Clinton - 533 West 24th Street,Museum,893,151.18641017870885,1.0,0.1362761915714767,,,excluded,outside the 500 m search radius
+23955121,Gansevoort Meat Market,Manufacturing/Industrial Plant,472,150.61010551925057,1.0,0.24524634040490995,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6188320,142-146 West 23rd Street,Multifamily Housing,758,148.10295116674513,1.0,0.1558013718957096,,,excluded,outside the 500 m search radius
+52523993,420 West 14th Street,Office,297,137.34393234513686,1.0,0.3364332636696436,,,excluded,insufficient data: only 1 year of LL84 records
+6701357,715 Washington Street AKA 340 West 11th Street,Multifamily Housing,787,132.30926497197362,1.0,0.13436424758205207,,,excluded,outside the 500 m search radius
+6699671,115 West 23rd Street,Multifamily Housing,868,129.70708721969953,1.0,0.12009915483305512,,,excluded,outside the 500 m search radius
+6274256,Dia Art Foundation,Office,767,127.65666454287854,1.0,0.13281293128696053,,,excluded,outside the 500 m search radius
+2808712,401 Associate LLC,Office,197,123.941989127846,1.0,0.4265210152172838,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+25561389,Feil - 530 West 25th Street,Office,884,114.2505206407002,1.0,0.10397531321691132,,,excluded,outside the 500 m search radius
+6457845,1 Jane Street AKA 115 Greenwich Avenue,Multifamily Housing,347,109.2902933113569,1.0,0.23399684965907647,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6694544,DEPM 1872 - 560 West 24th Street,Multifamily Housing,903,91.80377018306976,1.0,0.08188164182120598,,,excluded,outside the 500 m search radius
+20583447,34 West 17th Street,Multifamily Housing,829,91.58792336309568,1.0,0.08856625126124155,,,excluded,outside the 500 m search radius
+51811392,34 West 17th Street,Multifamily Housing,829,91.26290758122023,1.0,0.08825195841187394,,,excluded,outside the 500 m search radius
+6699313,William Gottlieb Management,Retail Store,318,90.8743833052669,1.0,0.209900070134448,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+9562380,570 RH Contemporary,Office,303,83.20286787595593,1.0,0.20034684899309502,,,excluded,insufficient data: only 1 year of LL84 records
+4405687,142 West 26th Street,Multifamily Housing,946,82.06135618036998,1.0,0.07003228188083784,,,excluded,outside the 500 m search radius
+6682167,55 West 16th Street,Multifamily Housing,727,81.62608707375016,1.0,0.08929494724927622,,,excluded,outside the 500 m search radius
+21355488,NYPL_4617_Muhlenberg Branch Library,Library,706,80.57519294331831,1.0,0.09059380158970974,,,excluded,outside the 500 m search radius
+6309302,452 West 19th Street,Multifamily Housing,432,76.01090458720651,1.0,0.1340441263467335,,,excluded,insufficient data: only 1 year of LL84 records
+36500729,Wallack - 43 West 13th Street,Multifamily Housing,814,74.23049802733884,1.0,0.07302768903152547,,,excluded,outside the 500 m search radius
+6134883,215 West 20th Street,Multifamily Housing,491,74.06007721835726,1.0,0.11636056494566299,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+33999155,111 Charles Street,Multifamily Housing,774,73.81287179724643,1.0,0.0761419187228877,,,excluded,outside the 500 m search radius
+52698695,225 8 AVENUE,Multifamily Housing,438,69.59470033779368,1.0,0.1212202772277144,,,excluded,insufficient data: only 1 year of LL84 records
+6574521,132 West 22nd Street,Multifamily Housing,724,69.55572188965172,1.0,0.07638548269535396,,,excluded,outside the 500 m search radius
+6750819,Cornerstone: 121 W 17th St,Multifamily Housing,599,66.16586687580217,1.0,0.08665791501453288,,,excluded,outside the 500 m search radius
+21294053,AKAM - 101 West 14th Street,Multifamily Housing,665,62.59660354111874,1.0,0.07441554267126005,,,excluded,outside the 500 m search radius
+24231233,NYC-Chelsea NY HYP,Hotel,812,62.48355627247244,1.0,0.06161371558190438,,,excluded,outside the 500 m search radius
+1836464,M451 (OECID: 0101197; BBL: 1007670068),K-12 School,255,60.15771520255214,1.0,0.1676526489251453,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+10656758,330 Bleecker Street AKA 95 Christopher Street,Multifamily Housing,882,54.42138691766052,1.0,0.04963323914164318,,,excluded,outside the 500 m search radius
+21309636,The Church of the Village,Worship Facility,429,45.6604678234376,1.0,0.08102588235891849,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+2587898,531 WEST 21 STREET - [531-539 West 21st St],Self-Storage Facility,716,41.313638178012525,1.0,0.04584411547168492,,,excluded,outside the 500 m search radius
+6791658,144 West 15th Street - LDS,Worship Facility,508,39.70760888614835,1.0,0.06048650099144462,,,excluded,outside the 500 m search radius
+54407092,Chelsea Warren (Campus),Multifamily Housing,572,34.64158291184834,1.0,0.04733978372197924,,,excluded,outside the 500 m search radius
+52544497,160 West 16th Street,Multifamily Housing,450,32.10886299573699,1.0,0.05458506709275289,,,excluded,insufficient data: only 1 year of LL84 records
+20507440,132 WEST 14 STREET,Office,552,31.544115104236578,1.0,0.04453903295448686,,,excluded,outside the 500 m search radius
+15568360,AKAM - 223-231 West 21st Street,Multifamily Housing,520,30.700949726007888,1.0,0.0457821180124679,,,excluded,outside the 500 m search radius
+33641387,"Mactaggart: 555 W 25th St,",Office,989,30.33285250144924,1.0,0.024815134385208715,,,excluded,outside the 500 m search radius
+5531218,7 West 18th Street,Office,939,28.027262640300435,1.0,0.02408814281522282,,,excluded,outside the 500 m search radius
+11911004,70 - St Francis Xavier,K-12 School,567,27.593419812735423,1.0,0.03801362534979758,,,excluded,outside the 500 m search radius
+9948014,Gershon: 110 Bank St,Multifamily Housing,676,26.29658046665897,1.0,0.03078800743341615,,,excluded,outside the 500 m search radius
+46874796,Monarch - 251 West 14th Street,Multifamily Housing,232,21.354621232058925,1.0,0.06436676612500031,,,excluded,insufficient data: only 1 year of LL84 records
+61947292,Monarch - 251 West 14th Street lot 7506,Multifamily Housing,232,21.354621232058925,1.0,0.06436676612500031,,,excluded,insufficient data: only 1 year of LL84 records
+6434656,508 W. 26th Street,Office,934,21.175554827436844,1.0,0.01829189187329402,,,excluded,outside the 500 m search radius
+6883119,245 West 14th Street,Multifamily Housing,246,20.35949852028433,1.0,0.05846477615622189,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+33869332,302 WEST 12 STREET,Multifamily Housing,467,20.317442826236423,1.0,0.033403919540233966,,,excluded,insufficient data: only 1 year of LL84 records
+55272895,129 West 20th Street - CEC,Multifamily Housing,661,19.677375677800047,1.0,0.023524288784993023,,,excluded,outside the 500 m search radius
+52523893,136 West 22nd Street,Multifamily Housing,715,12.722213788289,1.0,0.014135793098098889,,,excluded,outside the 500 m search radius
+10063237,Andrews: 227 West 17 St,Multifamily Housing,319,11.320015403813791,1.0,0.026075916241847488,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6078588,31 Operating Corp. (31 West 12th Street),Multifamily Housing,915,9.830774920856166,1.0,0.00865923179557279,,,excluded,outside the 500 m search radius
+10149691,Andrews: 171 W 12th St.,Multifamily Housing,539,9.486318760082865,1.0,0.013689933694516867,,,excluded,outside the 500 m search radius
+30687928,62-66 9th Avenue AKA 366 West 15th Street,Multifamily Housing,121,8.443230088314026,1.0,0.041969272368812406,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+4951878,AKAM - 201 West 17th Street,Multifamily Housing,404,2.339439566114189,1.0,0.004380007998231411,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+6382013,250 West 26th Street,Office,825,1.094913400438786,1.0,0.0010636301604262492,,,excluded,outside the 500 m search radius
+26709703,158 West 27th St,Office,989,0.12934201839587367,1.0,0.00010581397077622003,,,excluded,outside the 500 m search radius
+26619471,809 Washington Street,Office,440,0.0002930710386613,1.0,5.083885364532755e-07,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+59808495,MEPA,Not Available,133,0.0,0.3927886633360209,0.0,,,excluded,insufficient data: only 1 year of LL84 records
+4045044,140 5th Avenue,Multifamily Housing,988,0.0,,,,,excluded,outside the 500 m search radius
+26278887,214 West 17 Street,Multifamily Housing,350,0.0,,,,,excluded,insufficient data: only 1 year of LL84 records
+26682952,541 WEST 21 STREET,Office,741,0.0,0.3927886633360209,0.0,,,excluded,outside the 500 m search radius
+32478054,Hauser &amp; Wirth,Museum,759,0.0,0.3927886633360209,0.0,,,excluded,outside the 500 m search radius
+33030547,MMS #1981,Self-Storage Facility,482,0.0,0.3927886633360209,0.0,,,excluded,insufficient data: only 1 year of LL84 records
+33030550,MMS #1992,Self-Storage Facility,630,0.0,0.3927886633360209,0.0,,,excluded,outside the 500 m search radius
+10063232,Andrews: 100 11th Ave,Multifamily Housing,652,0.0,,,,,excluded,outside the 500 m search radius
+6262473,201 West 21st Street,Multifamily Housing,575,0.0,,,,,excluded,outside the 500 m search radius
+51560292,76 8th Avenue,Office,222,0.0,0.3927886633360209,0.0,,,excluded,insufficient data: only 1 year of LL84 records
+53351492,157 W 18th Street,Office,528,0.0,0.3927886633360209,0.0,,,excluded,outside the 500 m search radius
+7435863,Icon West 25 Street,Office,933,0.0,0.3927886633360209,0.0,,,excluded,outside the 500 m search radius
+6812204,Moore Hotel,Hotel,485,0.0,0.3927886633360209,0.0,,,excluded,insufficient data: only 1 year of LL84 records
+6801920,LL84 - Winter- 550 West 25th Street,Parking,943,0.0,0.3927886633360209,0.0,,,excluded,outside the 500 m search radius
+6282832,Parkland: 97 Charles St,Parking,743,0.0,0.3927886633360209,0.0,,,excluded,outside the 500 m search radius
+15667798,URA Group - 405 W 13th Street,Office,273,0.0,0.3927886633360209,0.0,,,excluded,insufficient data: only 1 year of LL84 records
+7565449,61 - St Columba - School,K-12 School,761,0.0,0.3927886633360209,0.0,,,excluded,outside the 500 m search radius
+6667548,AKAM WVH - 690 Washington Street,Multifamily Housing,916,0.0,,,,,excluded,outside the 500 m search radius
+15988908,875 Washington Street,Office,325,0.0,0.3927886633360209,0.0,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+21355707,DPR_5659_Chelsea Park Comfort Station,Other - Recreation,977,0.0,0.3927886633360209,0.0,,,excluded,outside the 500 m search radius
+26634247,KINSEY EQUITIES LLC : 109 West 24 Street,Office,931,0.0,0.3927886633360209,0.0,,,excluded,outside the 500 m search radius
+6333460,Eagle Point - 521-527 West 20th Street,Office,638,0.0,0.3927886633360209,0.0,,,excluded,outside the 500 m search radius
+6682900,Garage: 160 W 10th St,Parking,802,0.0,0.3927886633360209,0.0,,,excluded,outside the 500 m search radius
+6802621,Piermont: 125 West 16th St.,Multifamily Housing,566,0.0,,,,,excluded,outside the 500 m search radius
+10497534,548 West 22nd Street,Museum,781,0.0,0.3927886633360209,0.0,,,excluded,outside the 500 m search radius
+10819672,93 Christopher Street,Multifamily Housing,872,0.0,,,,,excluded,outside the 500 m search radius
+11173623,AAR: 400 W 23 St (child),Multifamily Housing,570,0.0,,,,,excluded,outside the 500 m search radius
+15568359,AKAM WVH - 352 West 11th Street,Multifamily Housing,832,0.0,,,,,excluded,outside the 500 m search radius
+26618193,405 West 13th Street,Office,273,0.0,0.3927886633360209,0.0,,,excluded,heat demand below 2 GWh/yr (too small for a street connection)
+33561235,291 7th Ave Condo : 31 WEST 11 STREET,Multifamily Housing,942,0.0,,,,,excluded,outside the 500 m search radius
+4945597,AKAM - WVH 726 Washington Street,Multifamily Housing,776,0.0,,,,,excluded,outside the 500 m search radius
+6382008,241 West 26th Street,Office,869,0.0,0.3927886633360209,0.0,,,excluded,outside the 500 m search radius
+7440717,37 West 17th Street,Office,820,0.0,0.3927886633360209,0.0,,,excluded,outside the 500 m search radius

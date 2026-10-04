@@ -1,0 +1,28 @@
+req_id,requirement,status_for_proposal,evidence,gap_before_presentation
+R01,Identify and justify the most suitable heat offtakers,covered,"model_c/c_candidates.csv (695 records, reasons); 13 screening experiments + threshold audit (0.5/1 GWh) + small-building check; proposal_portfolios.json (per-building justification)","Hotel heating system (hydronic, A18) and 111 8th in-building DHW plant not verified on site"
+R02,Match supply and demand by temperature,covered,"Three temperature classes; steam radiators hot water only (H7); COP per class in proposal_portfolios.json (DHW 3.24, 45 C 4.54, hydronic 70 C 2.75)","Capture temperature A02 (30 C) is assumed; tenant condenser-loop data needed"
+R03,Match supply and demand by capacity,covered,"Interface 1.2 MW (phase 1) / 4.7 MW (phase 2) vs 79.6 GWh/yr recoverable; network takes at most 43% of DC heat in any hour (operating_modes_portfolios.csv)","DC IT share A01 unresolved (no public data)"
+R04,Match supply and demand by timing,covered,"8,760-hour merit dispatch; coldest/April/July weeks per building (allocation JSON)","DHW draw profile is flat (no measured hourly profile)"
+R05,Match supply and demand by seasonality,covered,"Monthly allocation per building; summer/winter ratio (111 8th 1.03, hotel 0.23, Rebuilt Fulton 0.32); M5 summer mode","Summer surplus heat has no offtaker (rejected to towers as today)"
+R06,Match supply and demand by continuity,covered,"M2 DC outage 72 h, M3 heat-pump maintenance: 0 MWh unserved for every portfolio",none
+R07,"Heat upgrading, distribution and building interfaces",covered,"Ambient loop + decentralised building heat pumps; costs from Con Ed pilot (audit_cost_decomposition.csv)","Route is a grid-distance estimate, not an engineered street route; interface cost scaled linearly from a 1.5 MW pilot (tested in combined sensitivity)"
+R08,Backup heat and continuity without compromising data-center cooling,covered,"Existing steam/boilers retained, electric boilers in rebuilt towers sized to 100% peak (H2); towers keep full capacity (H1); M4 network outage: all heat back to towers, 0 unserved","Tenant confirmation that the heat-recovery HX can be bypassed without affecting cooling SLAs"
+R09,Costs across stakeholders,covered,"System cost (audit_cost_decomposition.csv); actor positions (dc_net, users_net, operator_net) and no-worse-off funding gap per portfolio","Commercial tariff at which the hotel is no worse off must be negotiated (pilot tariff makes it pay $0.5M/yr more)"
+R10,Risks across stakeholders,covered,"delivery_governance.csv (RK*); combined Low/Base/High sensitivity; weight sensitivity; screening sensitivity","Risk register is qualitative (by design, no arbitrary scores)"
+R11,Ownership and responsibilities across stakeholders,partial,"delivery_governance.csv (OW*, RE*): operator / DC / owner / NYCHA-PACT roles with evidence levels","Named operator and funder for phases 1-2 not identified; needs a decision by the team (utility vs PACT developer vs DC owner)"
+R12-R15,"Network architecture, source and users, infrastructure, operating approach",covered,"proposal_portfolios.json (architecture, phases, sizing); operating modes M1-M5","Frontend Sankey / network diagram not yet built in the teammate's map"
+R16,Environmental impact,covered,"Net CO2 (LL97 factors), ERF, gas displaced; combined sensitivity of CO2","Phase 2 CO2 is near zero vs an all-electric rebuild baseline at A17 = 0.25; sign depends on A17"
+R17,Community impact,covered,"1,335 low-income households (Rebuilt Fulton), facilities served, DAC exposure, NYCHA bills under Term 4",Public-acceptance evidence is a register only (no engagement data)
+R18,Select one setting and justify it for the local context,covered,"Site 1 (111 8th Ave + Fulton rebuild design window, A15)",none
+R20-R21,Cooling reliability and heat continuity explained,covered,operating_modes_portfolios.csv (all pass),none
+R22,Measurable value for the data center,covered,"dc_net (fence price minus source electricity), heat reused, ERF",Fence price A06 to be negotiated with tenants
+R23,Measurable value for heat users,covered,"Per-building bill change (users_net) and NYCHA per-apartment change",Hotel bill change is negative at the pilot tariff (see R09)
+R24,Measurable value for the community,covered,"Households, facilities, CO2, NOx avoided",Health co-benefits not monetised (no dataset; stated)
+R25,"Show how costs, risks, ownership and responsibilities are shared",partial,"Actor positions + governance register + funding gap","Funding instrument (grant, rate base, LL97 compliance value, PACT capital) not selected"
+R26-R28,Technical sub-factors,covered,Models A and C outputs,"A01, A02, A17 tenant data"
+R29-R31,Economic + Delivery sub-factors,covered,"Model B + combined sensitivity + break-even conditions",see R11 / R25
+R32-R34,Environmental sub-factors,covered,"CO2, ERF, gas displaced; water saving excluded until tower type known (A14)",Cooling-tower type (A14) unknown
+R35-R37,Social + Regenerative sub-factors,covered,"S_li, S_eq, S_fac, S_aff (Term 4), DAC; governance panels",S_aff is constant after the rebuild (does not move the Social score); disclosed
+R38,No final score from Technical indicators alone,covered,schemas.assert_composite_ready; V11,none
+R39,Qualitative aspects without arbitrary scores,covered,"Governance panels unscored (frontend CONTRACT.md rule 6)",none
+R40,Select buildings and allocate heat by optimisation; explain selections and exclusions,covered,"Exhaustive enumeration + merit dispatch + explanations; FE1-FE5 contract checks","Integration into the teammate's map not yet done"

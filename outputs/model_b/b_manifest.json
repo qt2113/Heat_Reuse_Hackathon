@@ -1,0 +1,54 @@
+{
+  "model": "B",
+  "evaluations": 225,
+  "seconds": 1.8,
+  "fixed_inputs": {
+    "k_usd": 1.4193242421920225,
+    "hp_capex": 1348358.0300824214,
+    "hp_fom": 3018.541354286043,
+    "hp_vom": 4.357325423529509,
+    "life": 25.0,
+    "ashp_capex": 1561256.6664112248,
+    "ashp_fom": 3018.541354286043,
+    "ashp_vom": 1.2206188482851392,
+    "ashp_scop": 2.8,
+    "hx_capex": 1747016.7040000001,
+    "ec_capex": 2690000.0,
+    "apt_capex": 63814.43298969072,
+    "contingency": 0.15,
+    "steam_price": 107.58484471347803,
+    "gas_price": 38.85318705920206,
+    "tariff": 90.86534146,
+    "connection": 5000.0,
+    "nox": 0.1517374094663274,
+    "n_replacement": 2056.0,
+    "n_new": 3454.0,
+    "n_affordable_new": 875.0,
+    "ef": {
+      "steam": 0.15330754006,
+      "gas_or_oil": 0.1812188616199999,
+      "grid": 0.288962
+    }
+  },
+  "base_parameters": {
+    "A05": 29318.0,
+    "A06": 26.0,
+    "A07": 222.0,
+    "A08": 0.05,
+    "A09": 0.289,
+    "A12": 2.2,
+    "A21": 0.29,
+    "A22": 0.01
+  },
+  "sensitivity": [
+    "A05",
+    "A06",
+    "A07",
+    "A08",
+    "A12",
+    "A21",
+    "A22"
+  ],
+  "boundary": "served demand of connected buildings; transfers excluded from the system view",
+  "note": "No MCDA score is produced. KPIs are for review before Model C."
+}

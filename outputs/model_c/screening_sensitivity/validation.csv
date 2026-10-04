@@ -1,0 +1,4 @@
+test_id,test,status,value,expected
+S1,Reference experiment enumerates the same configurations as outputs/model_c,pass,1536 / 1536,all
+S2,Reference experiment reproduces every KPI and feasibility class,pass,0.0,< 1e-6
+S3,Reference experiment reproduces the equal-weights recommendation,pass,True,True

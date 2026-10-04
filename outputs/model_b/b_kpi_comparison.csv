@@ -1,0 +1,15 @@
+dim,KPI,unit,S1,S2,S3,S3R
+Economic + Delivery,C1 CAPEX per kW of heat-pump capacity,$/kWth,"3,680 [3,323…4,856]","7,291 [6,025…9,621]","112,851 [101,879…148,901]","9,918 [7,636…13,086]"
+Economic + Delivery,C2 Levelised cost of heat (system),$/MWh,146 [107…175],262 [225…308],"1,064 [889…1,367]",292 [248…351]
+Economic + Delivery,C3 Annual saving vs current heat cost,%,-4.28 [-25…23],-338 [-483…-276],"-990 [-1,301…-811]",-122 [-147…-89]
+Environmental,N1 Energy Reuse Factor,%,3.64 [1.11…5.10],28 [22…39],21 [16…29],50 [39…68]
+Environmental,N2 Net CO2 avoided,tCO2e/yr,198 [60…371],"1,759 [1,503…3,101]","1,271 [1,078…2,272]","-1,055 [-1,379…1,301]"
+Environmental,N4 On-site gas combustion displaced,MWh/yr,0.00,"28,084 [28,021…28,222]","10,617 [10,617…10,639]",0.00
+Environmental,N6 Winter peak avoided vs all-electric ASHP,MW,0.18 [-0.01…0.24],4.01 [0.33…5.04],1.04 [-0.09…1.31],5.93 [1.27…7.46]
+Social + Regenerative,S1 Low-income households served,households,0.00,0.00,"2,072","2,931"
+Social + Regenerative,"S3 EJ exposure of served buildings (DAC percentile, heat-weighted)",0-1,0.84 [0.84…0.84],0.82 [0.81…0.82],0.77 [0.76…0.78],0.78 [0.78…0.78]
+Social + Regenerative,S7 Net value to the data center,$/yr,-0.13 M [-0.18 M…+0.00 M],+0.62 M [+0.20 M…+1.65 M],+0.46 M [+0.15 M…+1.23 M],+1.08 M [+0.36 M…+2.89 M]
+Technical,T1 Recoverable heat,GWh/yr,80 [57…102],80 [57…102],80 [57…102],80 [57…102]
+Technical,T2 Seasonal heat-pump COP,-,3.24 [2.88…3.62],2.97 [2.64…3.29],3.24 [2.88…3.62],3.73 [3.32…4.26]
+Technical,T4 Hourly demand coverage (served classes),%,100 [100…100],99 [99…100],100 [100…100],99 [98…100]
+Technical,T7 Network route length,m,0.00,525,"1,416","1,416"

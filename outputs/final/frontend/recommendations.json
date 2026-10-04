@@ -1,0 +1,1008 @@
+{
+  "today": {
+    "equal (demonstration baseline)": {
+      "weights": {
+        "Technical": 0.25,
+        "Economic + Delivery": 0.25,
+        "Environmental": 0.25,
+        "Social + Regenerative": 0.25
+      },
+      "config_id": "today|1633052+1634606+19906892+4040951+4769672+7536925+8899918",
+      "status": "conditionally_feasible",
+      "score": 0.7279131625994801,
+      "message": "No fully feasible configuration under the current assumptions."
+    },
+    "technical-first": {
+      "weights": {
+        "Technical": 0.55,
+        "Economic + Delivery": 0.15,
+        "Environmental": 0.15,
+        "Social + Regenerative": 0.15
+      },
+      "config_id": "today|1633052+1634606+19906892+4040951+4769672+8899918",
+      "status": "conditionally_feasible",
+      "score": 0.7596828802096426,
+      "message": "No fully feasible configuration under the current assumptions."
+    },
+    "economic-first": {
+      "weights": {
+        "Technical": 0.15,
+        "Economic + Delivery": 0.55,
+        "Environmental": 0.15,
+        "Social + Regenerative": 0.15
+      },
+      "config_id": "today|1633052+1634606+19906892+4040951+7536925+8899918",
+      "status": "conditionally_feasible",
+      "score": 0.764082071829986,
+      "message": "No fully feasible configuration under the current assumptions."
+    },
+    "environmental-first": {
+      "weights": {
+        "Technical": 0.15,
+        "Economic + Delivery": 0.15,
+        "Environmental": 0.55,
+        "Social + Regenerative": 0.15
+      },
+      "config_id": "today|1633052+1634606+19906892+2830989+2831044+4040951+4473909+4769672+7536925+8899918",
+      "status": "conditionally_feasible",
+      "score": 0.8196809343141002,
+      "message": "No fully feasible configuration under the current assumptions."
+    },
+    "social-first": {
+      "weights": {
+        "Technical": 0.15,
+        "Economic + Delivery": 0.15,
+        "Environmental": 0.15,
+        "Social + Regenerative": 0.55
+      },
+      "config_id": "today|1633052+1634606+19906892+2831044+4040951+7536925+8899918",
+      "status": "conditionally_feasible",
+      "score": 0.7555839718659814,
+      "message": "No fully feasible configuration under the current assumptions."
+    },
+    "explanation_equal_weights": {
+      "config_id": "today|1633052+1634606+19906892+4040951+4769672+7536925+8899918",
+      "selected": [
+        {
+          "property_id": "1633052",
+          "name": "M440 (OECID: 0100175; BBL: 1007420007)",
+          "lat": 40.742867,
+          "lon": -74.002136,
+          "use_type": "K-12 School",
+          "dist_m": 230.0,
+          "measured": {
+            "steam_MWh": 0.0,
+            "gas_MWh": 5599.0,
+            "oil_MWh": 0.0,
+            "heat_fuel_MWh": 5599.0,
+            "years": "2022,2023,2024",
+            "estimated_months": false
+          },
+          "useful_demand_MWh": 4759.0,
+          "servable_share": 1.0,
+          "heating_system": "hydronic_assumed",
+          "network_heat_MWh": 4726.0,
+          "backup_heat_MWh": 33.0,
+          "share_heat_from_network": 0.993,
+          "bill_change_per_year": -465795.0,
+          "heat_pump_MW": 1.29,
+          "incremental": {
+            "Q_network_MWh": 4725.646685131702,
+            "E_val": -698961.6314842179,
+            "N_co2": 301.63210921558857,
+            "S_li": 0.0,
+            "E_fund": 336490.3122106092,
+            "capex_total": 4611259.937488094,
+            "capex_pipe": 0.0,
+            "route_m": 0.0,
+            "T_lf": -0.6837062623050159,
+            "overall": 0.046208833611151245,
+            "score_T": 0.002356158810755793,
+            "score_E": -0.011767054643991859,
+            "score_N": 0.09070485380851945,
+            "score_S": 0.10354137646932204
+          },
+          "reasons": [
+            "adds 4.7 GWh/yr of recovered heat to the network",
+            "adds 302 tCO2e/yr avoided",
+            "raises the overall score by +0.046 versus the same network without it"
+          ],
+          "limitations": [
+            "its heat users pay $466 k/yr more than today at the applied tariff (pilot rate)"
+          ]
+        },
+        {
+          "property_id": "1634606",
+          "name": "M070 (OECID: 0100079; BBL: 1007410010)",
+          "lat": 40.742129,
+          "lon": -74.002198,
+          "use_type": "K-12 School",
+          "dist_m": 153.0,
+          "measured": {
+            "steam_MWh": 0.0,
+            "gas_MWh": 84.0,
+            "oil_MWh": 2486.0,
+            "heat_fuel_MWh": 2570.0,
+            "years": "2022,2023,2024",
+            "estimated_months": false
+          },
+          "useful_demand_MWh": 2185.0,
+          "servable_share": 1.0,
+          "heating_system": "hydronic_assumed",
+          "network_heat_MWh": 2169.0,
+          "backup_heat_MWh": 15.0,
+          "share_heat_from_network": 0.993,
+          "bill_change_per_year": -216528.0,
+          "heat_pump_MW": 0.59,
+          "incremental": {
+            "Q_network_MWh": 2169.3090498785023,
+            "E_val": -397118.33246028423,
+            "N_co2": 138.4642796750013,
+            "S_li": 0.0,
+            "E_fund": 228021.0523119187,
+            "capex_total": 3058832.425298795,
+            "capex_pipe": 942032.6346567497,
+            "route_m": 22.313572877506658,
+            "T_lf": -0.29006284079489575,
+            "overall": 0.04129526244509574,
+            "score_T": 0.0010331511936649829,
+            "score_E": -0.007891257108407101,
+            "score_N": 0.04163808116544465,
+            "score_S": 0.13040107452968053
+          },
+          "reasons": [
+            "adds 2.2 GWh/yr of recovered heat to the network",
+            "adds 138 tCO2e/yr avoided",
+            "raises the overall score by +0.041 versus the same network without it"
+          ],
+          "limitations": [
+            "its heat users pay $217 k/yr more than today at the applied tariff (pilot rate)"
+          ]
+        },
+        {
+          "property_id": "19906892",
+          "name": "363 West 16th Street",
+          "lat": 40.741802,
+          "lon": -74.003244,
+          "use_type": "Hotel",
+          "dist_m": 132.0,
+          "measured": {
+            "steam_MWh": 0.0,
+            "gas_MWh": 5981.0,
+            "oil_MWh": 0.0,
+            "heat_fuel_MWh": 5981.0,
+            "years": "2022,2023,2024",
+            "estimated_months": true
+          },
+          "useful_demand_MWh": 5084.0,
+          "servable_share": 1.0,
+          "heating_system": "hydronic_assumed",
+          "network_heat_MWh": 5048.0,
+          "backup_heat_MWh": 36.0,
+          "share_heat_from_network": 0.993,
+          "bill_change_per_year": -497255.0,
+          "heat_pump_MW": 1.38,
+          "incremental": {
+            "Q_network_MWh": 5048.291454701168,
+            "E_val": -743745.1405264884,
+            "N_co2": 322.22612075665893,
+            "S_li": 0.0,
+            "E_fund": 356867.37296769023,
+            "capex_total": 4889798.555159092,
+            "capex_pipe": -36296.366636395454,
+            "route_m": -0.8597383915739556,
+            "T_lf": -0.7380271236961917,
+            "overall": 0.025149038938281576,
+            "score_T": 0.002531801118404231,
+            "score_E": -0.012456514776578165,
+            "score_N": 0.09689775154417968,
+            "score_S": 0.013623117867120671
+          },
+          "reasons": [
+            "adds 5.0 GWh/yr of recovered heat to the network",
+            "adds 322 tCO2e/yr avoided",
+            "raises the overall score by +0.025 versus the same network without it"
+          ],
+          "limitations": [
+            "its heat users pay $497 k/yr more than today at the applied tariff (pilot rate)",
+            "LL84 data include estimated months"
+          ]
+        },
+        {
+          "property_id": "4040951",
+          "name": "Manhattan Chelsea Market",
+          "lat": 40.741876,
+          "lon": -74.004713,
+          "use_type": "Office",
+          "dist_m": 274.0,
+          "measured": {
+            "steam_MWh": 0.0,
+            "gas_MWh": 12377.0,
+            "oil_MWh": 0.0,
+            "heat_fuel_MWh": 12377.0,
+            "years": "2022,2023,2024",
+            "estimated_months": true
+          },
+          "useful_demand_MWh": 10520.0,
+          "servable_share": 1.0,
+          "heating_system": "hydronic_assumed",
+          "network_heat_MWh": 10447.0,
+          "backup_heat_MWh": 74.0,
+          "share_heat_from_network": 0.993,
+          "bill_change_per_year": -1023654.0,
+          "heat_pump_MW": 2.86,
+          "incremental": {
+            "Q_network_MWh": 10446.736899816118,
+            "E_val": -1747477.5487267366,
+            "N_co2": 666.8021321666047,
+            "S_li": 0.0,
+            "E_fund": 952234.6316184523,
+            "capex_total": 12693113.871290669,
+            "capex_pipe": 2499245.697614886,
+            "route_m": 59.19869329457447,
+            "T_lf": -1.851280339071387,
+            "overall": 0.051970500027224364,
+            "score_T": 0.005784824539943889,
+            "score_E": -0.031870560815018045,
+            "score_N": 0.200516417415467,
+            "score_S": 0.03345131896850484
+          },
+          "reasons": [
+            "adds 10.4 GWh/yr of recovered heat to the network",
+            "adds 667 tCO2e/yr avoided",
+            "raises the overall score by +0.052 versus the same network without it"
+          ],
+          "limitations": [
+            "its heat users pay $1,024 k/yr more than today at the applied tariff (pilot rate)",
+            "LL84 data include estimated months"
+          ]
+        },
+        {
+          "property_id": "4769672",
+          "name": "London Terrace Towers",
+          "lat": 40.747226,
+          "lon": -74.003046,
+          "use_type": "Multifamily Housing",
+          "dist_m": 727.0,
+          "measured": {
+            "steam_MWh": 0.0,
+            "gas_MWh": 11674.0,
+            "oil_MWh": 0.0,
+            "heat_fuel_MWh": 11674.0,
+            "years": "2022,2023,2024",
+            "estimated_months": true
+          },
+          "useful_demand_MWh": 9923.0,
+          "servable_share": 1.0,
+          "heating_system": "hydronic_assumed",
+          "network_heat_MWh": 9867.0,
+          "backup_heat_MWh": 55.0,
+          "share_heat_from_network": 0.994,
+          "bill_change_per_year": -953126.0,
+          "heat_pump_MW": 2.25,
+          "incremental": {
+            "Q_network_MWh": 9867.138464181957,
+            "E_val": -3459611.748027145,
+            "N_co2": 650.5683963865258,
+            "S_li": 0.0,
+            "E_fund": 2725329.4658551137,
+            "capex_total": 34441655.24455285,
+            "capex_pipe": 26391008.104151204,
+            "route_m": 625.1138877555123,
+            "T_lf": 1.2851533042672756,
+            "overall": 0.016095730251667995,
+            "score_T": 0.015682008641131562,
+            "score_E": -0.09083951790695655,
+            "score_N": 0.19215192263702408,
+            "score_S": -0.05261149236452711
+          },
+          "reasons": [
+            "adds 9.9 GWh/yr of recovered heat to the network",
+            "adds 651 tCO2e/yr avoided",
+            "raises the overall score by +0.016 versus the same network without it"
+          ],
+          "limitations": [
+            "its heat users pay $953 k/yr more than today at the applied tariff (pilot rate)",
+            "LL84 data include estimated months"
+          ]
+        },
+        {
+          "property_id": "7536925",
+          "name": "111 Eighth Avenue",
+          "lat": 40.740704,
+          "lon": -74.001844,
+          "use_type": "Office",
+          "dist_m": 0.0,
+          "measured": {
+            "steam_MWh": 10190.0,
+            "gas_MWh": 1312.0,
+            "oil_MWh": 0.0,
+            "heat_fuel_MWh": 11501.0,
+            "years": "2022,2023,2024",
+            "estimated_months": true
+          },
+          "useful_demand_MWh": 8856.0,
+          "servable_share": 0.39,
+          "heating_system": "steam_radiators",
+          "network_heat_MWh": 3471.0,
+          "backup_heat_MWh": 7.0,
+          "share_heat_from_network": 0.392,
+          "bill_change_per_year": -39.0,
+          "heat_pump_MW": 0.4,
+          "incremental": {
+            "Q_network_MWh": 3471.410881531585,
+            "E_val": -20787.609009532258,
+            "N_co2": 197.98073161261982,
+            "S_li": 0.0,
+            "E_fund": 100439.32354632672,
+            "capex_total": 1461436.8613401055,
+            "capex_pipe": 0.0,
+            "route_m": 0.0,
+            "T_lf": 2.386712839807565,
+            "overall": 0.004440745206221619,
+            "score_T": -0.03156604363056914,
+            "score_E": 0.0006777689798207476,
+            "score_N": 0.039694832350347986,
+            "score_S": 0.008956423125286994
+          },
+          "reasons": [
+            "adds 3.5 GWh/yr of recovered heat to the network",
+            "adds 198 tCO2e/yr avoided",
+            "raises the overall score by +0.004 versus the same network without it"
+          ],
+          "limitations": [
+            "steam radiators: only hot water / base load is served (H7)",
+            "only 39% of its heat comes from the network",
+            "its heat users pay $0 k/yr more than today at the applied tariff (pilot rate)",
+            "LL84 data include estimated months"
+          ]
+        },
+        {
+          "property_id": "8899918",
+          "name": "61 9th Ave",
+          "lat": 40.74144,
+          "lon": -74.00502,
+          "use_type": "Other - Technology/Science",
+          "dist_m": 183.0,
+          "measured": {
+            "steam_MWh": 0.0,
+            "gas_MWh": 4325.0,
+            "oil_MWh": 0.0,
+            "heat_fuel_MWh": 4325.0,
+            "years": "2022,2023,2024",
+            "estimated_months": false
+          },
+          "useful_demand_MWh": 3676.0,
+          "servable_share": 1.0,
+          "heating_system": "hydronic_assumed",
+          "network_heat_MWh": 3650.0,
+          "backup_heat_MWh": 26.0,
+          "share_heat_from_network": 0.993,
+          "bill_change_per_year": -360949.0,
+          "heat_pump_MW": 1.0,
+          "incremental": {
+            "Q_network_MWh": 3650.4096750220197,
+            "E_val": -798339.4788707551,
+            "N_co2": 233.0010775545743,
+            "S_li": 0.0,
+            "E_fund": 517204.4122088887,
+            "capex_total": 6754221.48547326,
+            "capex_pipe": 3192171.8843446746,
+            "route_m": 75.61177538696052,
+            "T_lf": -0.5105271358113299,
+            "overall": 0.015954688196589184,
+            "score_T": 0.0017850891523056855,
+            "score_E": -0.017498345523899173,
+            "score_N": 0.0700665745824478,
+            "score_S": 0.009465434575502418
+          },
+          "reasons": [
+            "adds 3.7 GWh/yr of recovered heat to the network",
+            "adds 233 tCO2e/yr avoided",
+            "raises the overall score by +0.016 versus the same network without it"
+          ],
+          "limitations": [
+            "its heat users pay $361 k/yr more than today at the applied tariff (pilot rate)"
+          ]
+        }
+      ],
+      "not_selected": [
+        {
+          "property_id": "2831044",
+          "name": "FULTON",
+          "lat": 40.742321,
+          "lon": -74.004478,
+          "use_type": "Multifamily Housing",
+          "dist_m": 234.0,
+          "measured": {
+            "steam_MWh": 29396.0,
+            "gas_MWh": 0.0,
+            "oil_MWh": 0.0,
+            "heat_fuel_MWh": 29396.0,
+            "years": "2022,2023,2024",
+            "estimated_months": true
+          },
+          "useful_demand_MWh": 22635.0,
+          "servable_share": 0.33,
+          "heating_system": "steam_radiators",
+          "incremental_if_added": {
+            "Q_network_MWh": 7552.168523982633,
+            "E_val": -6309499.861911241,
+            "N_co2": 430.71359186965674,
+            "S_li": 944.0,
+            "E_fund": 6493662.450508041,
+            "capex_total": 91070125.97901249,
+            "capex_pipe": 2821303.3086873293,
+            "route_m": 66.82715085649261,
+            "T_lf": 4.539951662135145,
+            "overall": -0.0036385141242201158,
+            "score_T": -0.04534470464027418,
+            "score_E": -0.1958210711241678,
+            "score_N": 0.08635741307257772,
+            "score_S": 0.1402543061949837
+          },
+          "reasons": [
+            "temperature incompatibility: only 33% of its heat can be served (steam radiators, H7)",
+            "reduces annual net value by $6.31 M (its network heat costs more than its current heat)",
+            "lowers the overall score by -0.004 (largest drop: Economic + Delivery)"
+          ]
+        },
+        {
+          "property_id": "4473909",
+          "name": "ELLIOTT/CHELSEA ADDITION CAMPUS",
+          "lat": 40.75005,
+          "lon": -74.002436,
+          "use_type": "Multifamily Housing",
+          "dist_m": 852.0,
+          "measured": {
+            "steam_MWh": 0.0,
+            "gas_MWh": 16154.0,
+            "oil_MWh": 0.0,
+            "heat_fuel_MWh": 16154.0,
+            "years": "2022,2023,2024",
+            "estimated_months": true
+          },
+          "useful_demand_MWh": 13731.0,
+          "servable_share": 0.41,
+          "heating_system": "steam_radiators",
+          "incremental_if_added": {
+            "Q_network_MWh": 5624.125500381146,
+            "E_val": -6576226.571432225,
+            "N_co2": 400.04256461075965,
+            "S_li": 703.0,
+            "E_fund": 6537837.387800204,
+            "capex_total": 84481755.14428529,
+            "capex_pipe": 18762557.7531427,
+            "route_m": 444.4216520648747,
+            "T_lf": 3.4568872204971584,
+            "overall": -0.06359638284747993,
+            "score_T": -0.02475340575796192,
+            "score_E": -0.20088783084516937,
+            "score_N": 0.11340995022789546,
+            "score_S": -0.14215424501468377
+          },
+          "reasons": [
+            "temperature incompatibility: only 41% of its heat can be served (steam radiators, H7)",
+            "reduces annual net value by $6.58 M (its network heat costs more than its current heat)",
+            "lowers the overall score by -0.064 (largest drop: Economic + Delivery)"
+          ]
+        },
+        {
+          "property_id": "2830989",
+          "name": "CHELSEA",
+          "lat": 40.748178,
+          "lon": -74.001339,
+          "use_type": "Multifamily Housing",
+          "dist_m": 816.0,
+          "measured": {
+            "steam_MWh": 0.0,
+            "gas_MWh": 9979.0,
+            "oil_MWh": 0.0,
+            "heat_fuel_MWh": 9979.0,
+            "years": "2022,2023,2024",
+            "estimated_months": false
+          },
+          "useful_demand_MWh": 8482.0,
+          "servable_share": 0.4,
+          "heating_system": "steam_radiators",
+          "incremental_if_added": {
+            "Q_network_MWh": 3400.0758714964322,
+            "E_val": -3738160.2327404767,
+            "N_co2": 241.8465006537317,
+            "S_li": 425.0,
+            "E_fund": 3714951.9780554026,
+            "capex_total": 48139660.919201076,
+            "capex_pipe": 8408993.933090702,
+            "route_m": 199.18067808861042,
+            "T_lf": 2.1454785264392626,
+            "overall": -0.06095674610590818,
+            "score_T": -0.01793315394173689,
+            "score_E": -0.11454478206325236,
+            "score_N": 0.06856220319609607,
+            "score_S": -0.1799112516147392
+          },
+          "reasons": [
+            "temperature incompatibility: only 40% of its heat can be served (steam radiators, H7)",
+            "reduces annual net value by $3.74 M (its network heat costs more than its current heat)",
+            "lowers the overall score by -0.061 (largest drop: Social + Regenerative)"
+          ]
+        }
+      ]
+    }
+  },
+  "post_rebuild": {
+    "equal (demonstration baseline)": {
+      "weights": {
+        "Technical": 0.25,
+        "Economic + Delivery": 0.25,
+        "Environmental": 0.25,
+        "Social + Regenerative": 0.25
+      },
+      "config_id": "post_rebuild|1633052+1634606+19906892+4040951+7536925+8899918+R2831044",
+      "status": "conditionally_feasible",
+      "score": 0.6591863934206259,
+      "message": "No fully feasible configuration under the current assumptions."
+    },
+    "technical-first": {
+      "weights": {
+        "Technical": 0.55,
+        "Economic + Delivery": 0.15,
+        "Environmental": 0.15,
+        "Social + Regenerative": 0.15
+      },
+      "config_id": "post_rebuild|1633052+1634606+19906892+4040951+8899918+R2831044",
+      "status": "conditionally_feasible",
+      "score": 0.7182084326397474,
+      "message": "No fully feasible configuration under the current assumptions."
+    },
+    "economic-first": {
+      "weights": {
+        "Technical": 0.15,
+        "Economic + Delivery": 0.55,
+        "Environmental": 0.15,
+        "Social + Regenerative": 0.15
+      },
+      "config_id": "post_rebuild|7536925",
+      "status": "conditionally_feasible",
+      "score": 0.7285302590951271,
+      "message": "No fully feasible configuration under the current assumptions."
+    },
+    "environmental-first": {
+      "weights": {
+        "Technical": 0.15,
+        "Economic + Delivery": 0.15,
+        "Environmental": 0.55,
+        "Social + Regenerative": 0.15
+      },
+      "config_id": "post_rebuild|1633052+1634606+19906892+4040951+4769672+7536925+8899918+R2831044",
+      "status": "conditionally_feasible",
+      "score": 0.7380436530746299,
+      "message": "No fully feasible configuration under the current assumptions."
+    },
+    "social-first": {
+      "weights": {
+        "Technical": 0.15,
+        "Economic + Delivery": 0.15,
+        "Environmental": 0.15,
+        "Social + Regenerative": 0.55
+      },
+      "config_id": "post_rebuild|1633052+1634606+19906892+4040951+7536925+R2831044+R4473909",
+      "status": "conditionally_feasible",
+      "score": 0.6568567044631892,
+      "message": "No fully feasible configuration under the current assumptions."
+    },
+    "explanation_equal_weights": {
+      "config_id": "post_rebuild|1633052+1634606+19906892+4040951+7536925+8899918+R2831044",
+      "selected": [
+        {
+          "property_id": "1633052",
+          "name": "M440 (OECID: 0100175; BBL: 1007420007)",
+          "lat": 40.742867,
+          "lon": -74.002136,
+          "use_type": "K-12 School",
+          "dist_m": 230.0,
+          "measured": {
+            "steam_MWh": 0.0,
+            "gas_MWh": 5599.0,
+            "oil_MWh": 0.0,
+            "heat_fuel_MWh": 5599.0,
+            "years": "2022,2023,2024",
+            "estimated_months": false
+          },
+          "useful_demand_MWh": 4759.0,
+          "servable_share": 1.0,
+          "heating_system": "hydronic_assumed",
+          "network_heat_MWh": 4726.0,
+          "backup_heat_MWh": 33.0,
+          "share_heat_from_network": 0.993,
+          "bill_change_per_year": -465795.0,
+          "heat_pump_MW": 1.29,
+          "incremental": {
+            "Q_network_MWh": 4725.6466851316945,
+            "E_val": -1084945.790844543,
+            "N_co2": 301.6321092155904,
+            "S_li": 0.0,
+            "E_fund": 722474.471570937,
+            "capex_total": 9379295.056342974,
+            "capex_pipe": 4768035.118854914,
+            "route_m": 112.93865540639877,
+            "T_lf": -0.3251795447646515,
+            "overall": 0.0351274571251593,
+            "score_T": 0.00208447355794239,
+            "score_E": -0.05293767386304604,
+            "score_N": 0.09086556548861968,
+            "score_S": 0.10049746331712062
+          },
+          "reasons": [
+            "adds 4.7 GWh/yr of recovered heat to the network",
+            "adds 302 tCO2e/yr avoided",
+            "raises the overall score by +0.035 versus the same network without it"
+          ],
+          "limitations": [
+            "its heat users pay $466 k/yr more than today at the applied tariff (pilot rate)"
+          ]
+        },
+        {
+          "property_id": "1634606",
+          "name": "M070 (OECID: 0100079; BBL: 1007410010)",
+          "lat": 40.742129,
+          "lon": -74.002198,
+          "use_type": "K-12 School",
+          "dist_m": 153.0,
+          "measured": {
+            "steam_MWh": 0.0,
+            "gas_MWh": 84.0,
+            "oil_MWh": 2486.0,
+            "heat_fuel_MWh": 2570.0,
+            "years": "2022,2023,2024",
+            "estimated_months": false
+          },
+          "useful_demand_MWh": 2185.0,
+          "servable_share": 1.0,
+          "heating_system": "hydronic_assumed",
+          "network_heat_MWh": 2169.0,
+          "backup_heat_MWh": 15.0,
+          "share_heat_from_network": 0.993,
+          "bill_change_per_year": -216528.0,
+          "heat_pump_MW": 0.59,
+          "incremental": {
+            "Q_network_MWh": 2169.3090498785023,
+            "E_val": -397118.3324602833,
+            "N_co2": 138.4642796750004,
+            "S_li": 0.0,
+            "E_fund": 228021.0523119187,
+            "capex_total": 3058832.42529878,
+            "capex_pipe": 942032.6346567459,
+            "route_m": 22.313572877506545,
+            "T_lf": -0.14082400965851605,
+            "overall": 0.0379802450393687,
+            "score_T": 0.0009127147768583921,
+            "score_E": -0.016857934022815768,
+            "score_N": 0.04171185589413062,
+            "score_S": 0.12615434350930133
+          },
+          "reasons": [
+            "adds 2.2 GWh/yr of recovered heat to the network",
+            "adds 138 tCO2e/yr avoided",
+            "raises the overall score by +0.038 versus the same network without it"
+          ],
+          "limitations": [
+            "its heat users pay $217 k/yr more than today at the applied tariff (pilot rate)"
+          ]
+        },
+        {
+          "property_id": "19906892",
+          "name": "363 West 16th Street",
+          "lat": 40.741802,
+          "lon": -74.003244,
+          "use_type": "Hotel",
+          "dist_m": 132.0,
+          "measured": {
+            "steam_MWh": 0.0,
+            "gas_MWh": 5981.0,
+            "oil_MWh": 0.0,
+            "heat_fuel_MWh": 5981.0,
+            "years": "2022,2023,2024",
+            "estimated_months": true
+          },
+          "useful_demand_MWh": 5084.0,
+          "servable_share": 1.0,
+          "heating_system": "hydronic_assumed",
+          "network_heat_MWh": 5048.0,
+          "backup_heat_MWh": 36.0,
+          "share_heat_from_network": 0.993,
+          "bill_change_per_year": -497255.0,
+          "heat_pump_MW": 1.38,
+          "incremental": {
+            "Q_network_MWh": 5048.291454701161,
+            "E_val": -743745.140526481,
+            "N_co2": 322.22612075665893,
+            "S_li": 0.0,
+            "E_fund": 356867.3729676893,
+            "capex_total": 4889798.555159077,
+            "capex_pipe": -36296.36663638428,
+            "route_m": -0.8597383915737282,
+            "T_lf": -0.3500320830310599,
+            "overall": 0.018996635728924738,
+            "score_T": 0.0022404599541179238,
+            "score_E": -0.02618883404179284,
+            "score_N": 0.09706943585648187,
+            "score_S": 0.0028654811468917796
+          },
+          "reasons": [
+            "adds 5.0 GWh/yr of recovered heat to the network",
+            "adds 322 tCO2e/yr avoided",
+            "raises the overall score by +0.019 versus the same network without it"
+          ],
+          "limitations": [
+            "its heat users pay $497 k/yr more than today at the applied tariff (pilot rate)",
+            "LL84 data include estimated months"
+          ]
+        },
+        {
+          "property_id": "4040951",
+          "name": "Manhattan Chelsea Market",
+          "lat": 40.741876,
+          "lon": -74.004713,
+          "use_type": "Office",
+          "dist_m": 274.0,
+          "measured": {
+            "steam_MWh": 0.0,
+            "gas_MWh": 12377.0,
+            "oil_MWh": 0.0,
+            "heat_fuel_MWh": 12377.0,
+            "years": "2022,2023,2024",
+            "estimated_months": true
+          },
+          "useful_demand_MWh": 10520.0,
+          "servable_share": 1.0,
+          "heating_system": "hydronic_assumed",
+          "network_heat_MWh": 10447.0,
+          "backup_heat_MWh": 74.0,
+          "share_heat_from_network": 0.993,
+          "bill_change_per_year": -1023654.0,
+          "heat_pump_MW": 2.86,
+          "incremental": {
+            "Q_network_MWh": 10446.736899816118,
+            "E_val": -1545157.46811028,
+            "N_co2": 666.8021321666047,
+            "S_li": 0.0,
+            "E_fund": 749914.5510020005,
+            "capex_total": 10193868.173675768,
+            "capex_pipe": 0.0,
+            "route_m": -1.1368683772161603e-13,
+            "T_lf": -0.8303621061579491,
+            "overall": 0.039773168118890645,
+            "score_T": 0.005165468056343769,
+            "score_E": -0.05372175423406622,
+            "score_N": 0.20087169421684498,
+            "score_S": 0.006777264436439667
+          },
+          "reasons": [
+            "adds 10.4 GWh/yr of recovered heat to the network",
+            "adds 667 tCO2e/yr avoided",
+            "raises the overall score by +0.040 versus the same network without it"
+          ],
+          "limitations": [
+            "its heat users pay $1,024 k/yr more than today at the applied tariff (pilot rate)",
+            "LL84 data include estimated months"
+          ]
+        },
+        {
+          "property_id": "7536925",
+          "name": "111 Eighth Avenue",
+          "lat": 40.740704,
+          "lon": -74.001844,
+          "use_type": "Office",
+          "dist_m": 0.0,
+          "measured": {
+            "steam_MWh": 10190.0,
+            "gas_MWh": 1312.0,
+            "oil_MWh": 0.0,
+            "heat_fuel_MWh": 11501.0,
+            "years": "2022,2023,2024",
+            "estimated_months": true
+          },
+          "useful_demand_MWh": 8856.0,
+          "servable_share": 0.39,
+          "heating_system": "steam_radiators",
+          "network_heat_MWh": 3471.0,
+          "backup_heat_MWh": 7.0,
+          "share_heat_from_network": 0.392,
+          "bill_change_per_year": -39.0,
+          "heat_pump_MW": 0.4,
+          "incremental": {
+            "Q_network_MWh": 3471.410881531585,
+            "E_val": -20787.609009529464,
+            "N_co2": 197.98073161261982,
+            "S_li": 0.0,
+            "E_fund": 100439.32354632579,
+            "capex_total": 1461436.8613400757,
+            "capex_pipe": 0.0,
+            "route_m": 0.0,
+            "T_lf": 1.8438274812746727,
+            "overall": 0.0025234783638625746,
+            "score_T": -0.02685350399994435,
+            "score_E": 0.001868610139731608,
+            "score_N": 0.03317782713547335,
+            "score_S": 0.001900980180189471
+          },
+          "reasons": [
+            "adds 3.5 GWh/yr of recovered heat to the network",
+            "adds 198 tCO2e/yr avoided",
+            "raises the overall score by +0.003 versus the same network without it"
+          ],
+          "limitations": [
+            "steam radiators: only hot water / base load is served (H7)",
+            "only 39% of its heat comes from the network",
+            "its heat users pay $0 k/yr more than today at the applied tariff (pilot rate)",
+            "LL84 data include estimated months"
+          ]
+        },
+        {
+          "property_id": "8899918",
+          "name": "61 9th Ave",
+          "lat": 40.74144,
+          "lon": -74.00502,
+          "use_type": "Other - Technology/Science",
+          "dist_m": 183.0,
+          "measured": {
+            "steam_MWh": 0.0,
+            "gas_MWh": 4325.0,
+            "oil_MWh": 0.0,
+            "heat_fuel_MWh": 4325.0,
+            "years": "2022,2023,2024",
+            "estimated_months": false
+          },
+          "useful_demand_MWh": 3676.0,
+          "servable_share": 1.0,
+          "heating_system": "hydronic_assumed",
+          "network_heat_MWh": 3650.0,
+          "backup_heat_MWh": 26.0,
+          "share_heat_from_network": 0.993,
+          "bill_change_per_year": -360949.0,
+          "heat_pump_MW": 1.0,
+          "incremental": {
+            "Q_network_MWh": 3650.4096750220197,
+            "E_val": -798339.4788707513,
+            "N_co2": 233.00107755457338,
+            "S_li": 0.0,
+            "E_fund": 517204.41220888775,
+            "capex_total": 6754221.485473238,
+            "capex_pipe": 3192171.884344671,
+            "route_m": 75.61177538696052,
+            "T_lf": -0.2450072626902866,
+            "overall": 0.008967387655451464,
+            "score_T": 0.0015780875955828666,
+            "score_E": -0.0379062869600818,
+            "score_N": 0.07019071917281094,
+            "score_S": 0.0020070308134935155
+          },
+          "reasons": [
+            "adds 3.7 GWh/yr of recovered heat to the network",
+            "adds 233 tCO2e/yr avoided",
+            "raises the overall score by +0.009 versus the same network without it"
+          ],
+          "limitations": [
+            "its heat users pay $361 k/yr more than today at the applied tariff (pilot rate)"
+          ]
+        },
+        {
+          "property_id": "rebuild:2831044",
+          "name": "Rebuilt Fulton",
+          "lat": 40.742321,
+          "lon": -74.004478,
+          "use_type": "Multifamily Housing (rebuilt, modeled)",
+          "dist_m": 234.0,
+          "measured": {
+            "note": "future building: demand modeled from A03 x units (S18)"
+          },
+          "network_heat_MWh": 18704.0,
+          "backup_heat_MWh": 115.0,
+          "share_heat_from_network": 0.994,
+          "bill_change_per_year": 0.0,
+          "heat_pump_MW": 4.59,
+          "incremental": {
+            "Q_network_MWh": 18704.08771531688,
+            "E_val": -1144729.1174352057,
+            "N_co2": -570.6075502898993,
+            "S_li": 1334.7774000000002,
+            "E_fund": 1601825.4796526772,
+            "capex_total": 20505079.54473257,
+            "capex_pipe": 2821303.3086873367,
+            "route_m": 66.8271508564925,
+            "T_lf": -0.29213495302682446,
+            "overall": 0.032555317681038254,
+            "score_T": 0.01692268285176124,
+            "score_E": -0.055272432803611715,
+            "score_N": 0.039191723133529366,
+            "score_S": 0.12937929754247368
+          },
+          "reasons": [
+            "adds 18.7 GWh/yr of recovered heat to the network",
+            "serves 1,335 low-income households",
+            "raises the overall score by +0.033 versus the same network without it"
+          ],
+          "limitations": [
+            "future building: demand from assumptions A03 / A19"
+          ]
+        }
+      ],
+      "not_selected": [
+        {
+          "property_id": "4769672",
+          "name": "London Terrace Towers",
+          "lat": 40.747226,
+          "lon": -74.003046,
+          "use_type": "Multifamily Housing",
+          "dist_m": 727.0,
+          "measured": {
+            "steam_MWh": 0.0,
+            "gas_MWh": 11674.0,
+            "oil_MWh": 0.0,
+            "heat_fuel_MWh": 11674.0,
+            "years": "2022,2023,2024",
+            "estimated_months": true
+          },
+          "useful_demand_MWh": 9923.0,
+          "servable_share": 1.0,
+          "heating_system": "hydronic_assumed",
+          "incremental_if_added": {
+            "Q_network_MWh": 9578.97669724589,
+            "E_val": -3437757.123371252,
+            "N_co2": 633.3311698489069,
+            "S_li": 0.0,
+            "E_fund": 2725877.8505178867,
+            "capex_total": 34441655.244552836,
+            "capex_pipe": 26391008.104151197,
+            "route_m": 625.1138877555125,
+            "T_lf": 0.659497534134168,
+            "overall": -0.009675182214062383,
+            "score_T": 0.004288252032263129,
+            "score_E": -0.19117139664583943,
+            "score_N": 0.18679151675279193,
+            "score_S": -0.038609100995464996
+          },
+          "reasons": [
+            "high connection cost: +625 m of route, +$26.4 M pipe",
+            "reduces annual net value by $3.44 M (its network heat costs more than its current heat)",
+            "lowers the overall score by -0.010 (largest drop: Economic + Delivery)"
+          ]
+        },
+        {
+          "property_id": "rebuild:4473909",
+          "name": "Rebuilt Elliott-Chelsea",
+          "lat": 40.75005,
+          "lon": -74.002436,
+          "use_type": "Multifamily Housing (rebuilt, modeled)",
+          "dist_m": 852.0,
+          "measured": {
+            "note": "future building: demand modeled from A03 x units (S18)"
+          },
+          "incremental_if_added": {
+            "Q_network_MWh": 18260.841589499498,
+            "E_val": -4438573.293164092,
+            "N_co2": -927.4551305271307,
+            "S_li": 1596.2225999999998,
+            "E_fund": 5305038.631230465,
+            "capex_total": 66301094.48739982,
+            "capex_pipe": 45153565.85729391,
+            "route_m": 1069.5355398203872,
+            "T_lf": -2.518864173090769,
+            "overall": -0.05559760216385312,
+            "score_T": -0.03591870806049491,
+            "score_E": -0.30350643435331687,
+            "score_N": -0.029854639431916685,
+            "score_S": 0.14688937319031647
+          },
+          "reasons": [
+            "high connection cost: +1070 m of route, +$45.2 M pipe",
+            "reduces annual net value by $4.44 M (its network heat costs more than its current heat)",
+            "weak seasonal matching: lowers the interface load factor (mostly winter demand)",
+            "lowers the overall score by -0.056 (largest drop: Economic + Delivery)"
+          ]
+        }
+      ]
+    }
+  }
+}

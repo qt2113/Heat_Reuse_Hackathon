@@ -1,0 +1,32 @@
+ M data/reference/assumptions_scenarios.csv
+ M model/README.md
+ M model/config/requirements_coverage.csv
+ M model/config/scenarios.yaml
+ M model/model_a.py
+ M model/schemas.py
+ M outputs/model_a/a_annual_building.csv
+ M outputs/model_a/a_annual_system.csv
+ M outputs/model_a/a_runs.csv
+ M outputs/model_a/a_validation.csv
+ M outputs/model_a/hourly/S0_hp0.75_tk2_base.csv.gz
+ M outputs/model_a/hourly/S1_hp0.75_tk2_base.csv.gz
+ M outputs/model_a/hourly/S2_hp0.75_tk2_base.csv.gz
+ M outputs/model_a/hourly/S3R_hp0.75_tk2_base.csv.gz
+ M outputs/model_a/hourly/S3_hp0.75_tk2_base.csv.gz
+ M outputs/model_a/run_manifest.json
+ M outputs/schema_registry.json
+?? experiments/
+?? model/dispatch_kernel.py
+?? model/model_b.py
+?? model/model_c.py
+?? model/run_final_analysis.py
+?? model/run_model_b.py
+?? model/run_model_c.py
+?? model/run_redesign.py
+?? model/run_screening_sensitivity.py
+?? model/validate_model_b.py
+?? model/validate_model_c.py
+?? outputs/final/
+?? outputs/model_b/
+?? outputs/model_c/
+?? outputs/redesign/

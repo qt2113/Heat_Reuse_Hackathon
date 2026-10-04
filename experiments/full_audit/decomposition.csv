@@ -1,0 +1,10 @@
+component,usd_per_year
+decision layer: 13-indicator MCDA picked a 7-building network instead of the cheapest external network (S0 numbers),-8297540.469960898
+"data quality / interpretation (outlier years, pilot overlap, oil priced as gas) - on the recommended network",161820.4544425297
+"misapplied / missing costs (NYCHA scope, boilers, uncosted storage) - recommended network",169.30635743075982
+engineering assumption corrected (A17 on extracted basis) - recommended network,-99517.56755486969
+REMAINING genuine economic barrier (fully audited recommended network),-1101177.9083820397
+memo: same decomposition for the original 7-building network - data,318013.6899045799
+memo: 7-building network - costs,9408.264727927744
+memo: 7-building network - A17 basis,-660274.67037699
+memo: 7-building network fully audited,-9794043.28733251

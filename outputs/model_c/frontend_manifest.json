@@ -1,0 +1,207 @@
+{
+  "model": "C",
+  "seconds": 132.7,
+  "horizons": {
+    "today": [
+      "2831044",
+      "4473909",
+      "4040951",
+      "4769672",
+      "7536925",
+      "2830989",
+      "19906892",
+      "1633052",
+      "8899918",
+      "1634606"
+    ],
+    "post_rebuild": [
+      "4040951",
+      "4769672",
+      "7536925",
+      "19906892",
+      "1633052",
+      "8899918",
+      "1634606",
+      "rebuild:2831044",
+      "rebuild:4473909"
+    ]
+  },
+  "n_configurations": {
+    "today": 1024,
+    "post_rebuild": 512
+  },
+  "indicators": [
+    {
+      "id": "T_cov",
+      "dimension": "Technical",
+      "name": "Recovered-heat share of connected buildings' heat",
+      "unit": "%",
+      "direction": "max",
+      "level": "network",
+      "formula": "100 x Q_network / D_useful_connected",
+      "source": "A: a_annual_system.Q_network_MWh, D_useful_connected_MWh",
+      "normalisation": "min-max over technically feasible configurations of the horizon (incl. today = no network); inverted for 'min'"
+    },
+    {
+      "id": "T_lf",
+      "dimension": "Technical",
+      "name": "Seasonal load factor of the heat-recovery interface",
+      "unit": "%",
+      "direction": "max",
+      "level": "network",
+      "formula": "100 x Q_DC_used / (HX_cap x 8760)",
+      "source": "A: Q_DC_used_MWh, HX_cap_MW",
+      "normalisation": "min-max over technically feasible configurations of the horizon (incl. today = no network); inverted for 'min'"
+    },
+    {
+      "id": "T_bk",
+      "dimension": "Technical",
+      "name": "Backup dependency of served demand",
+      "unit": "%",
+      "direction": "min",
+      "level": "network",
+      "formula": "100 x (Q_backup + Q_unserved) / D_served_classes",
+      "source": "A: Q_backup_MWh, Q_unserved_MWh, D_served_classes_MWh",
+      "normalisation": "min-max over technically feasible configurations of the horizon (incl. today = no network); inverted for 'min'"
+    },
+    {
+      "id": "E_lcoh",
+      "dimension": "Economic + Delivery",
+      "name": "Levelised cost of network heat (system)",
+      "unit": "$/MWh",
+      "direction": "min",
+      "level": "network",
+      "formula": "(CAPEX x CRF + O&M + electricity incl. source side) / Q_network",
+      "source": "B: b_economics.lcoh_system",
+      "normalisation": "min-max over technically feasible configurations of the horizon (incl. today = no network); inverted for 'min'"
+    },
+    {
+      "id": "E_val",
+      "dimension": "Economic + Delivery",
+      "name": "Annual net economic value (system, vs today)",
+      "unit": "$/yr",
+      "direction": "max",
+      "level": "network",
+      "formula": "baseline cost of served demand - (annualised CAPEX + O&M + electricity + backup fuel)",
+      "source": "B: annual_savings",
+      "normalisation": "min-max over technically feasible configurations of the horizon (incl. today = no network); inverted for 'min'"
+    },
+    {
+      "id": "E_fund",
+      "dimension": "Economic + Delivery",
+      "name": "External funding needed by the network operator",
+      "unit": "$/yr",
+      "direction": "min",
+      "level": "stakeholder",
+      "formula": "max(0, -(tariff + connection - fence payments - operator capex x CRF - network O&M))",
+      "source": "B: public_funding_need",
+      "normalisation": "min-max over technically feasible configurations of the horizon (incl. today = no network); inverted for 'min'"
+    },
+    {
+      "id": "N_co2",
+      "dimension": "Environmental",
+      "name": "Net CO2 avoided (LL97 factors)",
+      "unit": "tCO2e/yr",
+      "direction": "max",
+      "level": "network",
+      "formula": "baseline CO2 of served demand - (electricity x 0.289 + backup fuel x EF)",
+      "source": "B: co2_avoided",
+      "normalisation": "min-max over technically feasible configurations of the horizon (incl. today = no network); inverted for 'min'"
+    },
+    {
+      "id": "N_erf",
+      "dimension": "Environmental",
+      "name": "Energy Reuse Factor",
+      "unit": "%",
+      "direction": "max",
+      "level": "network",
+      "formula": "100 x Q_DC_used / E_IT",
+      "source": "B: erf",
+      "normalisation": "min-max over technically feasible configurations of the horizon (incl. today = no network); inverted for 'min'"
+    },
+    {
+      "id": "N_gas",
+      "dimension": "Environmental",
+      "name": "On-site gas combustion displaced",
+      "unit": "MWh/yr",
+      "direction": "max",
+      "level": "network",
+      "formula": "sum over gas buildings of (baseline fuel of served demand - backup fuel)",
+      "source": "B: gas_displaced_MWh",
+      "normalisation": "min-max over technically feasible configurations of the horizon (incl. today = no network); inverted for 'min'"
+    },
+    {
+      "id": "S_li",
+      "dimension": "Social + Regenerative",
+      "name": "Low-income households benefited",
+      "unit": "households",
+      "direction": "max",
+      "level": "building",
+      "formula": "NYCHA / DAC apartments connected (rebuild: replacement + new affordable share)",
+      "source": "B: low_income_households",
+      "normalisation": "min-max over technically feasible configurations of the horizon (incl. today = no network); inverted for 'min'"
+    },
+    {
+      "id": "S_aff",
+      "dimension": "Social + Regenerative",
+      "name": "NYCHA heating-cost change per apartment",
+      "unit": "$/apt/yr",
+      "direction": "max",
+      "level": "stakeholder",
+      "formula": "NYCHA users' net value / NYCHA apartments (0 when none connected)",
+      "source": "B: nycha_net_per_apt",
+      "normalisation": "min-max over technically feasible configurations of the horizon (incl. today = no network); inverted for 'min'"
+    },
+    {
+      "id": "S_eq",
+      "dimension": "Social + Regenerative",
+      "name": "Share of network heat delivered to low-income / DAC buildings",
+      "unit": "%",
+      "direction": "max",
+      "level": "network",
+      "formula": "100 x Q_network(NYCHA or DAC buildings) / Q_network",
+      "source": "A+B: b_building_bills",
+      "normalisation": "min-max over technically feasible configurations of the horizon (incl. today = no network); inverted for 'min'"
+    },
+    {
+      "id": "S_fac",
+      "dimension": "Social + Regenerative",
+      "name": "Community facilities served",
+      "unit": "count",
+      "direction": "max",
+      "level": "building",
+      "formula": "number of connected schools, universities, museums, care facilities",
+      "source": "features: use_type",
+      "normalisation": "min-max over technically feasible configurations of the horizon (incl. today = no network); inverted for 'min'"
+    }
+  ],
+  "dimensions": [
+    "Technical",
+    "Economic + Delivery",
+    "Environmental",
+    "Social + Regenerative"
+  ],
+  "tariff_rule": "Term 4 affordability cap: NYCHA pays at most its break-even loop-heat rate, no connection charge (comparison under the pilot tariff in c_recommendations_pilot_tariff.csv)",
+  "overall_score": "sum_d w_d x score_d; frontend may recompute from score_T/E/N/S columns of c_configurations.csv with user weights (sum 100%)",
+  "default_weights": "equal 25% each: a demonstration baseline, not prescribed by the organizers",
+  "feasibility_classes": [
+    "fully_feasible",
+    "conditionally_feasible",
+    "infeasible"
+  ],
+  "files": {
+    "candidates_geojson": "c_candidates.geojson",
+    "candidates_table": "c_candidates.csv",
+    "configurations": "c_configurations.csv",
+    "recommendations": "c_recommendations.json",
+    "weight_sensitivity": "c_weight_sensitivity.csv",
+    "pareto": "c_pareto.csv",
+    "allocation": {
+      "today": "c_allocation_today.json",
+      "post_rebuild": "c_allocation_post_rebuild.json"
+    },
+    "governance_panels": "../../model/config/delivery_governance.csv",
+    "validation": "c_validation.csv"
+  },
+  "governance_note": "37 unscored governance/delivery items are shown next to the recommendation; no numeric score is given to them."
+}

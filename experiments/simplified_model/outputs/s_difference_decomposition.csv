@@ -1,0 +1,25 @@
+case,cause,d_heat_MWh,d_net_value,d_co2,d_li
+C1 internal,storage (2 h tank -> none; temporal model),9.094947017729282e-13,-1.6007106751203537e-10,-1.7053025658242404e-13,0.0
+C1 internal,Fulton apartments already on the Con Ed pilot excluded,0.0,0.0,0.0,0.0
+C1 internal,low-income = NYCHA only (DAC-tract market-rate units removed),0.0,0.0,0.0,0.0
+C1 internal,distribution loss 1%/km added,0.0,0.0,0.0,0.0
+ABC phase 1 (111 8th + 363 W 16th hotel),storage (2 h tank -> none; temporal model),-15.543112469231346,1439.1889059795067,-0.4555412780177903,0.0
+ABC phase 1 (111 8th + 363 W 16th hotel),Fulton apartments already on the Con Ed pilot excluded,0.0,0.0,0.0,0.0
+ABC phase 1 (111 8th + 363 W 16th hotel),low-income = NYCHA only (DAC-tract market-rate units removed),0.0,0.0,0.0,0.0
+ABC phase 1 (111 8th + 363 W 16th hotel),distribution loss 1%/km added,0.0,-361.85478762490675,-0.26925224831416017,0.0
+ABC S2 commercial block,storage (2 h tank -> none; temporal model),-73.496341843962,7230.14535191562,-2.154048460982267,0.0
+ABC S2 commercial block,Fulton apartments already on the Con Ed pilot excluded,0.0,0.0,0.0,0.0
+ABC S2 commercial block,low-income = NYCHA only (DAC-tract market-rate units removed),0.0,0.0,0.0,0.0
+ABC S2 commercial block,distribution loss 1%/km added,0.0,-10260.444558792748,-7.027597796392001,0.0
+"ABC equal-weights, today (7 bldgs)",storage (2 h tank -> none; temporal model),-101.79997837967676,10058.376465324312,-2.9835782469590413,0.0
+"ABC equal-weights, today (7 bldgs)",Fulton apartments already on the Con Ed pilot excluded,0.0,0.0,0.0,0.0
+"ABC equal-weights, today (7 bldgs)",low-income = NYCHA only (DAC-tract market-rate units removed),0.0,0.0,0.0,0.0
+"ABC equal-weights, today (7 bldgs)",distribution loss 1%/km added,0.0,-31648.23281682469,-21.763011071290748,0.0
+Existing Fulton + internal,storage (2 h tank -> none; temporal model),0.0,9.733194716274738,0.0,0.0
+Existing Fulton + internal,Fulton apartments already on the Con Ed pilot excluded,-2328.051949659901,1874578.97462859,-132.77293986659947,-291.0
+Existing Fulton + internal,low-income = NYCHA only (DAC-tract market-rate units removed),0.0,0.0,0.0,0.0
+Existing Fulton + internal,distribution loss 1%/km added,0.0,-885.6311792973429,-0.8119517655006803,0.0
+ABC phase 2 (post-rebuild),storage (2 h tank -> none; temporal model),-62.9213018028895,-3643.7852389421314,-7.3404075962848765,0.0
+ABC phase 2 (post-rebuild),Fulton apartments already on the Con Ed pilot excluded,0.0,0.0,0.0,0.0
+ABC phase 2 (post-rebuild),low-income = NYCHA only (DAC-tract market-rate units removed),0.0,0.0,0.0,0.0
+ABC phase 2 (post-rebuild),distribution loss 1%/km added,0.0,-4641.013262649532,-3.215630633013916,0.0

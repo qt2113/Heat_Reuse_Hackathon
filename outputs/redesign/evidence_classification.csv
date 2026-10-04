@@ -1,0 +1,17 @@
+lever,used_in_case,value,evidence_class,source_or_reason
+Con Ed pilot pipe cost,reference,"$29,318 per route-m",measured (NYC),S13 UDS construction 11.17 M$ / 381 m
+Pipe cost at 0.6 x pilot (A05 Low),"optimised_urban, advanced_recovery","$17,590 per route-m",plausible - unverified,Filing expects much lower cost-based rates at scale; no second NYC project to confirm
+Soft costs 15 % (A21 Low),"optimised_urban, advanced_recovery",0.15 of construction,plausible - unverified,Repeat-project assumption; pilot ratio is 0.29 (design / construction)
+40-year network and interface life,"optimised_urban, advanced_recovery",40 yr (heat pumps stay 25 yr),engineering convention,Pre-insulated district-heating pipe design life; not in our datasets
+Hot-water / base-load-only service and storage sizing,"optimised_urban, advanced_recovery","scope, heat-pump fraction 0.5-0.75, storage 2-6 h",supported design choice,Model A design grid; same physics and costs as the validated model
+Pre-war gas buildings treated as steam-radiator (hot water only),"optimised_urban, advanced_recovery",PLUTO year built < 1940,correction (conservative),PLUTO; Manhattan pre-war heating practice
+Con Ed pilot overlap removed from existing Fulton,"optimised_urban, advanced_recovery","-2,681 MWh useful, -291 apartments",correction (conservative),S13 pilot loads
+Electric backup boilers of rebuilt towers costed,"optimised_urban, advanced_recovery",DEA electric boiler capex + fixed O&M,correction (conservative),DEA catalogue '41 Electric boiler, large'
+Capture at 35 C (A02 High),advanced_recovery,35 C condenser water,plausible - needs tenant data,Register High; pilot heating-mode loop up to 36 C (S13); OCP air-cooled return 27-35 C
+Heat-pump efficiency 0.50 x Carnot (A10 High),advanced_recovery,eta 0.50,plausible - large machines,Register High (DEA catalogue); pilot-calibrated value is 0.45
+No extra data-center electricity (A17 Low),advanced_recovery,0 MWh_e per MWh_th,unverified - decisive,Team assumption; the only measurement (pilot at 85 10th Ave) is +0.25; needs metering at 111 8th Ave
+Direct liquid cooling at 45 C,liquid_cooling_speculative,45 C capture,speculative / future,Outside the register range; depends on tenants deploying liquid-cooled racks
+Teammate pipe cost $3k/m,not used,"$3,000 per m",not credible for Manhattan,EU rural/suburban benchmark; teammate's own note says Manhattan is 2-5x higher
+NYCHA retrofit at $1.2k/kW,not used,heat-pump cost only,not credible,Pilot measured $63.8k per apartment for building-side works
+Steam radiators fed with 65 C water,not used,full space heat from network,not credible,Pilot keeps steam radiators and serves hot water (and one building's small space-heat load)
+LL97 penalties avoided as a benefit,not used in societal value,$268/t,transfer,Payment from owner to the city; counted only in the stakeholder view

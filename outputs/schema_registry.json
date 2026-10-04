@@ -284,6 +284,20 @@
       ],
       "description": "Unscored structured assessment: revenue/connection model, ownership, responsibilities, risk allocation, public acceptance, local-context fit, stakeholder-value structure; each item with evidence level and source."
     },
+    "config/scenarios.yaml": {
+      "producer": "team",
+      "status": "implemented",
+      "consumers": [
+        "A",
+        "B",
+        "C",
+        "frontend"
+      ],
+      "key": [
+        "scenario"
+      ],
+      "description": "Scenario connection sets, physics constants, design grid, operating modes, sensitivity list."
+    },
     "config/requirements_coverage.csv": {
       "producer": "team",
       "status": "implemented",
@@ -309,7 +323,7 @@
     },
     "model_b/b_kpis.csv": {
       "producer": "B",
-      "status": "planned",
+      "status": "implemented",
       "consumers": [
         "C"
       ],
@@ -321,7 +335,7 @@
     },
     "model_b/b_building_bills.csv": {
       "producer": "B",
-      "status": "planned",
+      "status": "implemented",
       "consumers": [
         "C (H6)",
         "frontend page 3"
@@ -334,7 +348,7 @@
     },
     "model_b/b_stakeholder_value.csv": {
       "producer": "B",
-      "status": "planned",
+      "status": "implemented",
       "consumers": [
         "C (evaluation report)",
         "frontend page 3"
@@ -348,7 +362,7 @@
     },
     "model_b/b_delivery_assessment.csv": {
       "producer": "B",
-      "status": "planned",
+      "status": "implemented",
       "consumers": [
         "C (evaluation report)",
         "frontend page 3"
@@ -361,85 +375,167 @@
     },
     "model_b/b_constraints.csv": {
       "producer": "B",
-      "status": "planned",
+      "status": "implemented",
       "consumers": [
         "C"
       ],
       "key": [
         "run_id",
+        "b_set",
         "constraint_id"
       ],
-      "description": "H6 affordability result."
+      "description": "H6 affordability (NYCHA bill vs today at the pilot tariff) and financial checks F1 society gains, F2 operator self-financing, F3 data-center participation, F4 payback <= 25 yr."
     },
-    "model_c/c_feasibility.csv": {
-      "producer": "C",
-      "status": "planned",
+    "model_b/b_economics.csv": {
+      "producer": "B",
+      "status": "implemented",
       "consumers": [
-        "frontend"
-      ],
-      "key": [
-        "run_id"
-      ],
-      "description": "All H1-H7 joined; feasible = all pass."
-    },
-    "model_c/c_normalized.csv": {
-      "producer": "C",
-      "status": "planned",
-      "consumers": [
-        "frontend"
+        "C",
+        "frontend page 3"
       ],
       "key": [
         "run_id",
-        "kpi_id"
+        "b_set"
       ],
-      "description": "Baseline-referenced score s_k = clip((x - x_S0)/(target - x_S0), 0, 1)."
+      "description": "CAPEX by component, OPEX, LCOH (system), baseline cost, annual savings, payback, transfers, actor positions, CO2, NOx, ERF, peak."
     },
-    "model_c/c_offtaker_scores.csv": {
-      "producer": "C (screening)",
-      "status": "planned",
+    "model_b/b_validation.csv": {
+      "producer": "B",
+      "status": "implemented",
       "consumers": [
-        "frontend page 1"
+        "README / judges"
+      ],
+      "key": [
+        "test_id"
+      ],
+      "description": "Transfers cancel, one baseline per building, carbon bookkeeping, sensitivity directions, pilot cross-check."
+    },
+    "model_b/b_kpi_comparison.csv": {
+      "producer": "B",
+      "status": "implemented",
+      "consumers": [
+        "review",
+        "frontend page 3"
+      ],
+      "key": [
+        "KPI"
+      ],
+      "description": "Reference design, base values with one-at-a-time sensitivity range, S1-S3R."
+    },
+    "model_c/c_candidates.csv": {
+      "producer": "C (screening)",
+      "status": "implemented",
+      "consumers": [
+        "frontend EXPLORE"
       ],
       "key": [
         "property_id"
       ],
-      "description": "Offtaker suitability ranking (demand, distance, temperature compatibility, baseline carbon, equity, timing)."
+      "description": "All 695 de-duplicated LL84 properties with screening status, reason, useful and servable demand; 10 shortlisted."
     },
-    "model_c/c_evaluation_report.json": {
+    "model_c/c_candidates.geojson": {
       "producer": "C",
-      "status": "planned",
+      "status": "implemented",
       "consumers": [
-        "frontend page 3",
+        "frontend map"
+      ],
+      "key": [
+        "id"
+      ],
+      "description": "Map layer: source + candidates with measured energy, status and reasons."
+    },
+    "model_c/c_configurations.csv": {
+      "producer": "C",
+      "status": "implemented",
+      "consumers": [
+        "frontend OPTIMIZE / EVALUATE"
+      ],
+      "key": [
+        "config_id"
+      ],
+      "description": "Every building combination of both horizons: 13 indicators (raw + normalised), feasibility class, failed checks, conditional levers, dimension scores T/E/N/S, Pareto flag."
+    },
+    "model_c/c_recommendations.json": {
+      "producer": "C",
+      "status": "implemented",
+      "consumers": [
+        "frontend EVALUATE",
         "slides"
       ],
       "key": [
-        "scenario"
+        "horizon",
+        "preset"
       ],
-      "description": "Per scenario: feasibility (H1-H7), KPIs by all four dimensions, composite (only if all four present), stakeholder value split, operating-mode results, and the unscored governance panels with evidence levels."
+      "description": "Preferred configuration per weight preset and horizon, feasibility message, explanations for selected and non-selected buildings."
     },
-    "model_c/c_composite.csv": {
+    "model_c/c_weight_sensitivity.csv": {
       "producer": "C",
-      "status": "planned",
+      "status": "implemented",
       "consumers": [
-        "frontend page 3"
+        "frontend"
       ],
       "key": [
-        "run_id",
-        "weight_set"
+        "horizon",
+        "T",
+        "E",
+        "N",
+        "S"
       ],
-      "description": "Composite over ALL FOUR dimensions for feasible runs only."
+      "description": "Winner for every weight set on a 10% simplex grid."
     },
-    "model_c/c_sensitivity.csv": {
+    "model_c/c_pareto.csv": {
       "producer": "C",
-      "status": "planned",
+      "status": "implemented",
       "consumers": [
-        "frontend page 3"
+        "frontend"
       ],
       "key": [
-        "scenario",
-        "test"
+        "config_id"
       ],
-      "description": "Low/High tornado and Dirichlet weight rank stability."
+      "description": "Non-dominated configurations on the four dimension scores."
+    },
+    "model_c/c_allocation_<horizon>.json": {
+      "producer": "C (Model A merit dispatch)",
+      "status": "implemented",
+      "consumers": [
+        "frontend seasonal/hourly view"
+      ],
+      "key": [
+        "config_id"
+      ],
+      "description": "Monthly and representative-week heat allocation per building for the preferred configuration."
+    },
+    "model_c/c_recommendations_pilot_tariff.csv": {
+      "producer": "C",
+      "status": "implemented",
+      "consumers": [
+        "review"
+      ],
+      "key": [
+        "horizon",
+        "preset"
+      ],
+      "description": "Same optimisation without the Term 4 affordability cap (pilot tariff for NYCHA)."
+    },
+    "model_c/frontend_manifest.json": {
+      "producer": "C",
+      "status": "implemented",
+      "consumers": [
+        "frontend"
+      ],
+      "key": [],
+      "description": "Indicator definitions, normalisation, weights rule, file index."
+    },
+    "model_c/c_validation.csv": {
+      "producer": "C",
+      "status": "implemented",
+      "consumers": [
+        "README / judges"
+      ],
+      "key": [
+        "test_id"
+      ],
+      "description": "18 tests incl. A/B re-check, physics in every configuration, transfers, feasibility, weights."
     }
   },
   "governance_aspects": [

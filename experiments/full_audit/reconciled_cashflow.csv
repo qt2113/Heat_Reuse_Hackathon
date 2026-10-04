@@ -1,0 +1,127 @@
+network,line,usd_per_year
+internal (111 8th),A  avoided baseline heating cost,486026.2172889778
+internal (111 8th),B  heat-pump + pumping electricity,-245738.3138311463
+internal (111 8th),C  additional data-center electricity (A17),-195625.3848853537
+internal (111 8th),D  backup fuel,-998.6840081280365
+internal (111 8th),E  maintenance (heat pumps + network),-23228.93345301433
+internal (111 8th),"F  annualised CAPEX (25 yr, 5 %)",-103692.53649975313
+internal (111 8th),= NET ANNUAL SOCIETAL VALUE,-83257.6353884177
+internal (111 8th),check: ledger - audit evaluate(),-5.820766091346741e-11
+internal (111 8th),stakeholder: data center (fence revenue - extra electricity),-195625.3848853537
+internal (111 8th),stakeholder: heat users / building owners (incl. NYCHA),112367.74949693603
+internal (111 8th),stakeholder: network operator (tariffs - fence - network capex/O&M),0.0
+internal (111 8th),stakeholder sum (must equal societal value; transfers cancel),-83257.63538841768
+internal (111 8th),transfer: fence payments to data center,0.0
+internal (111 8th),transfer: tariffs + connection charges,0.0
+internal (111 8th),memo: funding gap at pilot tariffs (operator deficit),0.0
+internal (111 8th),memo: minimum support if all parties held harmless,83257.63538841764
+internal (111 8th),"memo: LL97 penalty avoidance (transfer, not societal)",31266.978917457298
+internal (111 8th),"memo: CO2 avoided t/yr (LL97 2024-29 factors; baseline existing fuel, ASHP for rebuilt)",116.66783178155708
++ Dream Hotel,A  avoided baseline heating cost,578486.4917972706
++ Dream Hotel,B  heat-pump + pumping electricity,-292486.88653318945
++ Dream Hotel,C  additional data-center electricity (A17),-232840.61349623324
++ Dream Hotel,D  backup fuel,-1188.6708735560353
++ Dream Hotel,E  maintenance (heat pumps + network),-91796.51259629043
++ Dream Hotel,"F  annualised CAPEX (25 yr, 5 %)",-578568.5940647981
++ Dream Hotel,= NET ANNUAL SOCIETAL VALUE,-618394.7857667967
++ Dream Hotel,check: ledger - audit evaluate(),-1.1641532182693481e-10
++ Dream Hotel,stakeholder: data center (fence revenue - extra electricity),20496.976710629533
++ Dream Hotel,stakeholder: heat users / building owners (incl. NYCHA),-4095.5059500918724
++ Dream Hotel,stakeholder: network operator (tariffs - fence - network capex/O&M),-634796.2565273342
++ Dream Hotel,stakeholder sum (must equal societal value; transfers cancel),-618394.7857667966
++ Dream Hotel,transfer: fence payments to data center,253337.59020686278
++ Dream Hotel,transfer: tariffs + connection charges,269476.1548926444
++ Dream Hotel,memo: funding gap at pilot tariffs (operator deficit),634796.2565273342
++ Dream Hotel,memo: minimum support if all parties held harmless,618394.7857667966
++ Dream Hotel,"memo: LL97 penalty avoidance (transfer, not societal)",37215.12194126092
++ Dream Hotel,"memo: CO2 avoided t/yr (LL97 2024-29 factors; baseline existing fuel, ASHP for rebuilt)",138.86239530321245
++ M070 school,A  avoided baseline heating cost,748844.9493776038
++ M070 school,B  heat-pump + pumping electricity,-414762.2125916993
++ M070 school,C  additional data-center electricity (A17),-311640.0549873188
++ M070 school,D  backup fuel,-3648.8652410098475
++ M070 school,E  maintenance (heat pumps + network),-145624.60179193222
++ M070 school,"F  annualised CAPEX (25 yr, 5 %)",-974347.1231476835
++ M070 school,= NET ANNUAL SOCIETAL VALUE,-1101177.9083820397
++ M070 school,check: ledger - audit evaluate(),0.0
++ M070 school,stakeholder: data center (fence revenue - extra electricity),27433.697469096107
++ M070 school,stakeholder: heat users / building owners (incl. NYCHA),-54396.05155153677
++ M070 school,stakeholder: network operator (tariffs - fence - network capex/O&M),-1074215.554299599
++ M070 school,stakeholder sum (must equal societal value; transfers cancel),-1101177.9083820397
++ M070 school,transfer: fence payments to data center,339073.7524564149
++ M070 school,transfer: tariffs + connection charges,357289.7703043973
++ M070 school,memo: funding gap at pilot tariffs (operator deficit),1074215.554299599
++ M070 school,memo: minimum support if all parties held harmless,1101177.9083820397
++ M070 school,"memo: LL97 penalty avoidance (transfer, not societal)",55398.50747935105
++ M070 school,"memo: CO2 avoided t/yr (LL97 2024-29 factors; baseline existing fuel, ASHP for rebuilt)",383.8941747071983
++ hotel,A  avoided baseline heating cost,669798.2632132056
++ hotel,B  heat-pump + pumping electricity,-556800.5446589639
++ hotel,C  additional data-center electricity (A17),-409132.36440305016
++ hotel,D  backup fuel,-2851.783379570291
++ hotel,E  maintenance (heat pumps + network),-127885.06773043168
++ hotel,"F  annualised CAPEX (25 yr, 5 %)",-850352.4220506218
++ hotel,= NET ANNUAL SOCIETAL VALUE,-1277223.9190094322
++ hotel,check: ledger - audit evaluate(),2.3283064365386963e-10
++ hotel,stakeholder: data center (fence revenue - extra electricity),36015.95279626694
++ hotel,stakeholder: heat users / building owners (incl. NYCHA),-392753.65281849896
++ hotel,stakeholder: network operator (tariffs - fence - network capex/O&M),-920486.2189872001
++ hotel,stakeholder sum (must equal societal value; transfers cancel),-1277223.9190094322
++ hotel,transfer: fence payments to data center,445148.3171993171
++ hotel,transfer: tariffs + connection charges,465934.60334683885
++ hotel,memo: funding gap at pilot tariffs (operator deficit),920486.2189872001
++ hotel,memo: minimum support if all parties held harmless,1277223.9190094324
++ hotel,"memo: LL97 penalty avoidance (transfer, not societal)",75677.30883406744
++ hotel,"memo: CO2 avoided t/yr (LL97 2024-29 factors; baseline existing fuel, ASHP for rebuilt)",282.3780180375652
++ existing Fulton (DHW),A  avoided baseline heating cost,1217445.7190261204
++ existing Fulton (DHW),B  heat-pump + pumping electricity,-615549.2184005913
++ existing Fulton (DHW),C  additional data-center electricity (A17),-490021.4821537202
++ existing Fulton (DHW),D  backup fuel,-2501.6007925194926
++ existing Fulton (DHW),E  maintenance (heat pumps + network),-175880.31231642625
++ existing Fulton (DHW),"F  annualised CAPEX (25 yr, 5 %)",-3665154.109763601
++ existing Fulton (DHW),= NET ANNUAL SOCIETAL VALUE,-3731661.0044007376
++ existing Fulton (DHW),check: ledger - audit evaluate(),0.0
++ existing Fulton (DHW),stakeholder: data center (fence revenue - extra electricity),43136.62791296304
++ existing Fulton (DHW),stakeholder: heat users / building owners (incl. NYCHA),7426.221019859135
++ existing Fulton (DHW),stakeholder: network operator (tariffs - fence - network capex/O&M),-3782223.85333356
++ existing Fulton (DHW),stakeholder sum (must equal societal value; transfers cancel),-3731661.0044007376
++ existing Fulton (DHW),transfer: fence payments to data center,533158.1100666833
++ existing Fulton (DHW),transfer: tariffs + connection charges,551076.941195222
++ existing Fulton (DHW),memo: funding gap at pilot tariffs (operator deficit),3782223.85333356
++ existing Fulton (DHW),memo: minimum support if all parties held harmless,3731661.0044007376
++ existing Fulton (DHW),"memo: LL97 penalty avoidance (transfer, not societal)",31266.97891745727
++ existing Fulton (DHW),"memo: CO2 avoided t/yr (LL97 2024-29 factors; baseline existing fuel, ASHP for rebuilt)",292.2409271310253
++ Rebuilt Fulton,A  avoided baseline heating cost,2937932.989332884
++ Rebuilt Fulton,B  heat-pump + pumping electricity,-1383709.2329762497
++ Rebuilt Fulton,C  additional data-center electricity (A17),-1314071.2453883064
++ Rebuilt Fulton,D  backup fuel,-37570.46957718535
++ Rebuilt Fulton,E  maintenance (heat pumps + network),-323763.087401089
++ Rebuilt Fulton,"F  annualised CAPEX (25 yr, 5 %)",-2261286.4941355567
++ Rebuilt Fulton,= NET ANNUAL SOCIETAL VALUE,-2382467.5401455034
++ Rebuilt Fulton,check: ledger - audit evaluate(),4.656612873077393e-10
++ Rebuilt Fulton,stakeholder: data center (fence revenue - extra electricity),115677.79052114463
++ Rebuilt Fulton,stakeholder: heat users / building owners (incl. NYCHA),-67856.3855895471
++ Rebuilt Fulton,stakeholder: network operator (tariffs - fence - network capex/O&M),-2430288.9450771003
++ Rebuilt Fulton,stakeholder sum (must equal societal value; transfers cancel),-2382467.540145503
++ Rebuilt Fulton,transfer: fence payments to data center,1429749.035909451
++ Rebuilt Fulton,transfer: tariffs + connection charges,772683.425826721
++ Rebuilt Fulton,memo: funding gap at pilot tariffs (operator deficit),2430288.9450771003
++ Rebuilt Fulton,memo: minimum support if all parties held harmless,2382467.540145504
++ Rebuilt Fulton,"memo: LL97 penalty avoidance (transfer, not societal)",31266.978917457298
++ Rebuilt Fulton,"memo: CO2 avoided t/yr (LL97 2024-29 factors; baseline existing fuel, ASHP for rebuilt)",-925.7802819586759
+phase 2 (hotel + Rebuilt Fulton),A  avoided baseline heating cost,3121705.035257112
+phase 2 (hotel + Rebuilt Fulton),B  heat-pump + pumping electricity,-1694771.4638040678
+phase 2 (hotel + Rebuilt Fulton),C  additional data-center electricity (A17),-1527578.2249060029
+phase 2 (hotel + Rebuilt Fulton),D  backup fuel,-39423.5689486276
+phase 2 (hotel + Rebuilt Fulton),E  maintenance (heat pumps + network),-379899.931665575
+phase 2 (hotel + Rebuilt Fulton),"F  annualised CAPEX (25 yr, 5 %)",-2663690.09440328
+phase 2 (hotel + Rebuilt Fulton),= NET ANNUAL SOCIETAL VALUE,-3183658.2484704414
+phase 2 (hotel + Rebuilt Fulton),check: ledger - audit evaluate(),4.656612873077393e-10
+phase 2 (hotel + Rebuilt Fulton),stakeholder: data center (fence revenue - extra electricity),134472.82597917435
+phase 2 (hotel + Rebuilt Fulton),stakeholder: heat users / building owners (incl. NYCHA),-460570.80922771775
+phase 2 (hotel + Rebuilt Fulton),stakeholder: network operator (tariffs - fence - network capex/O&M),-2857560.2652218975
+phase 2 (hotel + Rebuilt Fulton),stakeholder sum (must equal societal value; transfers cancel),-3183658.248470441
+phase 2 (hotel + Rebuilt Fulton),transfer: fence payments to data center,1662051.0508851772
+phase 2 (hotel + Rebuilt Fulton),transfer: tariffs + connection charges,1015614.2973191666
+phase 2 (hotel + Rebuilt Fulton),memo: funding gap at pilot tariffs (operator deficit),2857560.2652218975
+phase 2 (hotel + Rebuilt Fulton),memo: minimum support if all parties held harmless,3183658.248470442
+phase 2 (hotel + Rebuilt Fulton),"memo: LL97 penalty avoidance (transfer, not societal)",75677.30883406744
+phase 2 (hotel + Rebuilt Fulton),"memo: CO2 avoided t/yr (LL97 2024-29 factors; baseline existing fuel, ASHP for rebuilt)",-760.0700957026679

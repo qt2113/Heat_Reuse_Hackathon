@@ -2,3 +2,15 @@
 sources/
 data/cache/
 __pycache__/
+
+# Large or regenerable model outputs (rebuild with the run_* scripts)
+outputs/model_a/hourly/
+outputs/model_c/screening_sensitivity*/configurations_*.csv.gz
+outputs/model_c/screening_sensitivity*/run.log
+outputs/model_c/threshold_run.log
+outputs/model_c/c_configurations_pilot_tariff_*.csv
+outputs/final/combined_sensitivity.csv.gz
+outputs/final/combined_run.log
+outputs/redesign/networks_all.csv.gz
+experiments/full_audit/raw_verification/pilot_filing.txt
+*.pyc
