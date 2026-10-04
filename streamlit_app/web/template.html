@@ -6,7 +6,7 @@
 /* Layout: one column operations board — banner, full-width street map, priority picker, KPI grid, tabbed detail. */
 :root {
   --bg: #f3f5f7; --surface: #ffffff; --ink: #18202b; --muted: #5d6878; --line: #d9dee5;
-  --heat: #e0612a; --heat-soft: #fbe6da; --dc: #2a78d6; --boiler: #1baf7a; --pilot: #13906a;
+  --heat: #e0612a; --heat-soft: #fbe6da; --dc: #2a78d6; --boiler: #1baf7a; --pilot: #6d55d6;
   --street: #c3cad4; --good: #1a7f45; --bad: #c03a3a; --window: #fff3ea; --skip: #7a63d8;
   --font-display: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
   --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -15,11 +15,11 @@
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
   --bg: #0e1217; --surface: #151b23; --ink: #e7ebf0; --muted: #97a2b1; --line: #283140;
-  --heat: #f07b47; --heat-soft: #3a2318; --dc: #3987e5; --boiler: #199e70; --pilot: #2bbf89;
+  --heat: #f07b47; --heat-soft: #3a2318; --dc: #3987e5; --boiler: #199e70; --pilot: #a493f2;
   --street: #2c3644; --good: #45c27f; --bad: #ef6b6b; --window: #ffe3cf; --skip: #a493f2; color-scheme: dark } }
 :root[data-theme="dark"] {
   --bg: #0e1217; --surface: #151b23; --ink: #e7ebf0; --muted: #97a2b1; --line: #283140;
-  --heat: #f07b47; --heat-soft: #3a2318; --dc: #3987e5; --boiler: #199e70; --pilot: #2bbf89;
+  --heat: #f07b47; --heat-soft: #3a2318; --dc: #3987e5; --boiler: #199e70; --pilot: #a493f2;
   --street: #2c3644; --good: #45c27f; --bad: #ef6b6b; --window: #ffe3cf; --skip: #a493f2; color-scheme: dark }
 * { box-sizing: border-box }
 body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--font-body); }
@@ -116,6 +116,27 @@ td.r, th.r { text-align: right }
   padding: 8px 10px; font-size: .8rem; min-width: 190px; box-shadow: 0 6px 20px rgba(0,0,0,.15) }
 .key { display: flex; flex-wrap: wrap; gap: 14px; font-size: .82rem }
 .key span.sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px }
+.why { position: absolute; top: 12px; right: 12px; width: min(360px, calc(100% - 24px)); max-height: calc(100% - 24px); overflow: auto;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.22); z-index: 6 }
+.why .x { position: absolute; top: 6px; right: 8px; border: 0; background: none; font-size: 1.2rem; color: var(--muted) }
+.flow { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around; gap: 8px; padding: 16px }
+.flow .step { display: grid; justify-items: center; text-align: center; gap: 4px; flex: 1 1 130px; min-width: 0 }
+.flow .big { font: 600 1.5rem var(--font-data) }
+.flow .arrow { color: var(--muted); font-size: 1.4rem }
+.small { font-size: .8rem }
+.pbar, .rbar { display: grid; grid-template-columns: 104px 1fr 48px; gap: 8px; align-items: center; font-size: .85rem }
+.rbar { grid-template-columns: minmax(120px, 230px) 1fr 48px }
+.pbar .num, .rbar .num { text-align: right }
+.big-bar { height: 12px; border-radius: 6px } .big-bar > i { border-radius: 6px }
+.ba { display: grid; grid-template-columns: 1fr auto auto auto; gap: 8px; align-items: baseline }
+.eqchips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-weight: 600 }
+.eqchips span { border-radius: 8px; padding: 3px 10px; font-size: .88rem }
+.chip-g { background: var(--good); color: var(--surface) } .chip-r { background: var(--bad); color: var(--surface) }
+.chip-s { border: 2px solid var(--ink) }
+.pictos { display: flex; flex-wrap: wrap; gap: 2px; align-items: center } .pictos .small { margin-left: 6px }
+.splitbar { display: flex; height: 10px; border-radius: 5px; overflow: hidden } .splitbar i { display: block; height: 100% }
+@media (max-width: 560px) { .flow .arrow { display: none } }
 .section-head { display: grid; gap: 4px; margin-bottom: 12px } .section-head p { margin: 0; color: var(--muted); max-width: 70ch }
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px }
 .pcard { padding: 14px 16px; display: grid; gap: 6px; align-content: start }
@@ -181,7 +202,7 @@ function Skyline({ names }) {
   const hotX = [...on].map(i => SLOTS[i][0] + SLOTS[i][1] / 2);
   const left = Math.min(centre, ...hotX.filter(x => x < centre)), right = Math.max(centre, ...hotX.filter(x => x > centre));
   return html`<svg className="skyline" viewBox="0 0 ${W} ${GROUND + 30}" role="img"
-      aria-label=${`Skyline: ${names.length} buildings connected to 111 8th Ave, shown in orange`}>
+      aria-label=${`Skyline: ${names.length} buildings connected to 111 8th Ave, shown in green`}>
     ${FAR.map(([x, w, h], i) => html`<rect key=${"f" + i} x=${x} y=${GROUND - h} width=${w} height=${h} fill="currentColor" fillOpacity=".06" />`)}
     ${[[0, 34, 112], [7, 20, 128], [12, 10, 140]].map(([dx, w, h], i) =>
       html`<rect key=${"e" + i} x=${1010 + dx} y=${GROUND - h} width=${w} height=${h} fill="currentColor" fillOpacity=".09" />`)}
@@ -191,7 +212,7 @@ function Skyline({ names }) {
       if (hot) for (let wy = GROUND - h + 8; wy < GROUND - 6; wy += 14) for (let wx = x + 5; wx < x + w - 8; wx += 12)
         wins.push(html`<rect key=${wx + "-" + wy} x=${wx} y=${wy} width="5" height="5" fill="var(--window)" fillOpacity=".8" />`);
       return html`<g key=${"s" + i}>
-        <rect x=${x} y=${GROUND - h} width=${w} height=${h} fill=${hot ? "var(--heat)" : "currentColor"} fillOpacity=${hot ? .95 : .16} />
+        <rect x=${x} y=${GROUND - h} width=${w} height=${h} fill=${hot ? "var(--good)" : "currentColor"} fillOpacity=${hot ? .95 : .16} />
         ${wins}${label ? html`<text className="sk-label" x=${x} y=${GROUND - h - 6}>${label}</text>` : null}</g>`;
     })}
     ${[[0, DCW, 104], [12, DCW - 24, 118], [28, DCW - 56, 130]].map(([dx, w, h], i) =>
@@ -232,7 +253,7 @@ function useWidth(ref) {
   return w;
 }
 
-function MapView({ s }) {
+function MapView({ s, pick, onPick }) {
   const box = useRef(null), svgRef = useRef(null);
   const width = useWidth(box);
   const height = Math.round(Math.min(720, Math.max(380, width * 0.62)));
@@ -274,17 +295,18 @@ function MapView({ s }) {
         <path d=${streetsD} fill="none" stroke="var(--street)" strokeWidth=${1.4 / k} strokeLinecap="round" />
         <path d=${ring} fill="none" stroke="var(--muted)" strokeOpacity=".5" strokeWidth=${1 / k} strokeDasharray=${`${4 / k} ${6 / k}`} />
         ${DATA.buildings.map((b, i) => connected.has(i) ? null : html`<circle key=${i} cx=${P(b.lat, b.lon)[0]} cy=${P(b.lat, b.lon)[1]}
-            r=${rad(b.mwh)} fill=${s.scores.reason[i] === 5 ? "var(--muted)" : "var(--skip)"} fillOpacity=${s.scores.reason[i] === 5 ? .25 : .5}
-            stroke="var(--surface)" strokeWidth=${0.8 / k}
-            onMouseMove=${e => show(e, b, null, i)} onMouseLeave=${() => setTip(null)} />`)}
+            r=${rad(b.mwh)} fill=${s.scores.reason[i] === 5 ? "var(--muted)" : "var(--bad)"} fillOpacity=${s.scores.reason[i] === 5 ? .2 : .12}
+            stroke=${s.scores.reason[i] === 5 ? "none" : "var(--bad)"} strokeWidth=${1.5 / k} strokeOpacity=".85" style=${{ cursor: "pointer" }}
+            onMouseMove=${e => show(e, b, null, i)} onMouseLeave=${() => setTip(null)} onClick=${() => { setTip(null); onPick({ i, b, c: null }); }} />`)}
         ${s.pipes.map((line, i) => html`<path key=${"p" + i} className="pipe" strokeWidth=${4.5 / k}
             style=${{ strokeDasharray: `${9 / k} ${7 / k}` }}
             d=${d3.line()(line.map(([la, lo]) => P(la, lo)))} />`)}
         ${s.services.map(([la, lo, nla, nlo], i) => html`<line key=${"s" + i} x1=${P(la, lo)[0]} y1=${P(la, lo)[1]}
             x2=${P(nla, nlo)[0]} y2=${P(nla, nlo)[1]} stroke="var(--heat)" strokeWidth=${2 / k} />`)}
         ${s.connected.map(c => { const b = DATA.buildings[c.i], [x, y] = P(b.lat, b.lon);
-          return html`<circle key=${"c" + c.i} cx=${x} cy=${y} r=${rad(c.mwh)} fill="var(--dc)" stroke="var(--surface)" strokeWidth=${1.6 / k}
-            onMouseMove=${e => show(e, b, c, c.i)} onMouseLeave=${() => setTip(null)} />`; })}
+          return html`<circle key=${"c" + c.i} cx=${x} cy=${y} r=${rad(c.mwh)} fill="var(--good)" stroke="var(--surface)" strokeWidth=${1.6 / k}
+            style=${{ cursor: "pointer" }} onMouseMove=${e => show(e, b, c, c.i)} onMouseLeave=${() => setTip(null)}
+            onClick=${() => { setTip(null); onPick({ i: c.i, b, c }); }} />`; })}
         ${DATA.pilot.receivers.map((p, i) => { const [x, y] = P(p.lat, p.lon);
           return html`<circle key=${"r" + i} cx=${x} cy=${y} r=${12 / Math.sqrt(k)} fill="none" stroke="var(--pilot)" strokeWidth=${2.2 / k}
             strokeDasharray=${`${3 / k} ${3 / k}`} pointerEvents="none" />`; })}
@@ -306,21 +328,21 @@ function MapView({ s }) {
       <button onClick=${reset} aria-label="Reset view" style=${{ fontSize: ".8rem" }}>⟲</button>
     </div>
     <div className="legend">
-      <div><span className="sw" style=${{ background: "var(--dc)" }}></span>Connected building (area ∝ heat demand)</div>
-      <div><span className="sw" style=${{ background: "var(--skip)", opacity: .6 }}></span>Skipped option (hover to see why)</div>
+      <div><span className="sw" style=${{ background: "var(--good)" }}></span>Supplied with heat</div>
+      <div><span className="sw" style=${{ border: "2px solid var(--bad)", background: "none" }}></span>Skipped · hover or tap to see why</div>
       <div><span className="sw" style=${{ background: "var(--heat)", borderRadius: "2px", height: "4px" }}></span>Heat pipe, flowing outward</div>
       <div><span className="sw" style=${{ border: "2px dashed var(--pilot)", background: "none" }}></span>Con Ed Chelsea pilot (85 10th Ave → Fulton)</div>
     </div>
     <div className="hint">Drag to pan · Ctrl/⌘ + scroll to zoom</div>
+    ${pick ? html`<${WhyPanel} s=${s} pick=${pick} onClose=${() => onPick(null)} />` : null}
     ${tip ? html`<div className="tip" style=${{ left: tip.x, top: tip.y }}>
       <b>${tip.b.n}</b><div className="muted">${tip.b.a} · ${tip.b.t}</div>
       <div>Heated by <b>${tip.b.f}</b> · ${fmt.int(tip.c ? tip.c.mwh : tip.b.mwh)} MWh/yr · ${fmt.int(tip.b.d)} m away</div>
-      ${tip.c ? html`<div style=${{ color: "var(--dc)", fontWeight: 600, marginTop: "4px" }}>Chosen for the network</div>
-          <div>Served <b>${fmt.int(tip.c.served)} MWh/yr</b> · score ${fmtK(s.scores.score[tip.i])}/yr</div>`
-        : (() => { const [head, why] = reasonText(s, tip.b, s.scores.reason[tip.i]);
-            return html`<div style=${{ color: "var(--skip)", fontWeight: 600, marginTop: "4px" }}>Skipped: ${head}</div><div>${why}</div>
-              ${s.scores.score[tip.i] !== null ? html`<div className="muted" style=${{ fontSize: ".78rem", marginTop: "4px" }}>Score if connected alone: ${fmtK(s.scores.score[tip.i])}/yr
-                (heat ${fmtK(s.scores.value[tip.i])} − pipe ${fmtK(s.scores.pipe[tip.i])} − connection ${fmtK(s.scores.conn[tip.i])})</div>` : null}`; })()}
+      ${tip.c ? html`<div style=${{ color: "var(--good)", fontWeight: 600, marginTop: "4px" }}>● Supplied: ${fmt.int(tip.c.served)} MWh/yr</div>`
+        : html`<div style=${{ color: "var(--bad)", fontWeight: 600, marginTop: "4px" }}>○ Skipped: ${REASON_LABEL[s.scores.reason[tip.i]]}</div>`}
+      ${s.prices[tip.b.f] !== undefined ? html`<${PriceCompare} mine=${s.prices[tip.b.f]} ours=${s.prices.network} fuel=${tip.b.f} />` : null}
+      <${Waterfall} s=${s} i=${tip.i} w=${270} />
+      <div className="muted" style=${{ fontSize: ".75rem" }}>Click to keep this explanation open</div>
       ${tip.b.pr ? html`<div style=${{ color: "var(--pilot)" }}>Public housing / school</div>` : null}
     </div>` : null}
   </section>`;
@@ -564,7 +586,6 @@ function Assumptions() {
 
 /* ---------------- shared helpers for the explanation sections ---------------- */
 const fmtK = v => v === null || v === undefined ? "n/a" : (v < 0 ? "−$" : "$") + Math.abs(v).toLocaleString("en-US") + "k";
-const fmtM1 = v => (v < 0 ? "−$" : "$") + Math.abs(v / 1e6).toFixed(1) + "M";
 // drop property-manager codes that LL84 prefixes to names ("DEPM 1174 - ", "(4082) - ", "Orsid - ") before shortening
 const clean = n => n.replace(/^(DEPM\s*\d+\s*-\s*|\(\d+\)\s*-\s*|Orsid\s*-\s*)/, "");
 const short = (n, len = 24) => { const c = clean(n); return c.length > len ? c.slice(0, len - 1) + "…" : c; };
@@ -581,37 +602,140 @@ function reasonText(s, b, r) {
   return [REASON_LABEL[5], "Its reported energy use failed our sanity check in this scenario, so it was not considered."];
 }
 
-/* ---------------- our proposal (the team's recommendation = "Most realistic") ---------------- */
+/* ---------------- small drawn icons (inline SVG, no icon font) ---------------- */
+const ICONS = {
+  server: html`<rect x="4" y="3" width="16" height="7" rx="1.5"/><rect x="4" y="14" width="16" height="7" rx="1.5"/><path d="M8 6.5h.01M8 17.5h.01"/>`,
+  pump: html`<circle cx="12" cy="12" r="8"/><path d="M12 16.5V7.5M8.5 11L12 7.5l3.5 3.5"/>`,
+  pipe: html`<path d="M3 9h7a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2h7"/><path d="M3 5v8M21 11v8"/>`,
+  building: html`<rect x="5" y="3" width="14" height="18" rx="1"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2"/>`,
+  flame: html`<path d="M12 3c1 4 5 5.5 5 10a5 5 0 0 1-10 0c0-2.5 1.5-4 2.5-5 .3 1.6 1 2.5 2 3 0-3 .2-5.5.5-8z"/>`,
+  coin: html`<circle cx="12" cy="12" r="9"/><path d="M14.5 9.5c-.4-.9-1.4-1.5-2.5-1.5-1.5 0-2.5.8-2.5 2s1 1.6 2.5 2 2.5.8 2.5 2-1 2-2.5 2c-1.1 0-2.1-.6-2.5-1.5M12 6.5v11"/>`,
+  leaf: html`<path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14z"/><path d="M5 19c3-4 6-6 9-7.5"/>`,
+  drop: html`<path d="M12 3c3.5 4.5 6 7.7 6 11a6 6 0 0 1-12 0c0-3.3 2.5-6.5 6-11z"/>`,
+  car: html`<path d="M4 16v-3l2-5h12l2 5v3z"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/>`,
+  pool: html`<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M5 12c1.5-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0"/>`,
+  score: html`<path d="M4 20V10M10 20V4M16 20v-7M2 20h20"/>`,
+  grow: html`<circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7.5 11l9-4M7.5 13l9 4"/>`,
+  share: html`<circle cx="12" cy="12" r="9"/><path d="M12 3v9l6.5 6"/>`,
+  refine: html`<path d="M20 11a8 8 0 0 0-14.5-4.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/>`,
+};
+function Icon({ name, size = 22, color = "currentColor" }) {
+  return html`<svg width=${size} height=${size} viewBox="0 0 24 24" fill="none" stroke=${color} strokeWidth="1.8"
+    strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" style=${{ flex: "none" }}>${ICONS[name]}</svg>`;
+}
+
+/* ---------------- per-building graphics ---------------- */
+// Waterfall: heat value up, pipe and connection costs down, final score (the optimiser's stand-alone score).
+function Waterfall({ s, i, w = 300 }) {
+  const sc = s.scores;
+  if (sc.score[i] === null || sc.street_m[i] < 0) return null;
+  let run = 0;
+  const bars = [["Heat value", sc.value[i]], ["Pipe", -sc.pipe[i]], ["Connection", -sc.conn[i]]].map(([l, v]) => {
+    const a = run; run += v; return { l, v, a, b: run, total: false }; });
+  bars.push({ l: "Score", v: sc.score[i], a: 0, b: sc.score[i], total: true });
+  const h = 112, top = 18, bot = 22, bw = w / 4;
+  const y = d3.scaleLinear().domain(d3.extent([0, ...bars.flatMap(b => [b.a, b.b])])).nice().range([h - bot, top]);
+  return html`<svg viewBox=${`0 0 ${w} ${h}`} style=${{ width: "100%", maxWidth: w + "px", display: "block" }} role="img"
+      aria-label=${`Score: heat value ${fmtK(sc.value[i])} minus pipe ${fmtK(sc.pipe[i])} minus connection ${fmtK(sc.conn[i])} equals ${fmtK(sc.score[i])} per year`}>
+    <line x1="0" x2=${w} y1=${y(0)} y2=${y(0)} stroke="var(--muted)" strokeOpacity=".5" />
+    ${bars.map((b, k) => { const x = k * bw, up = b.total ? b.b >= 0 : b.v >= 0, y0 = Math.min(y(b.a), y(b.b));
+      return html`<g key=${b.l}>
+        <rect x=${x + 6} y=${y0} width=${bw - 12} height=${Math.max(2, Math.abs(y(b.a) - y(b.b)))} rx="3"
+          fill=${up ? "var(--good)" : "var(--bad)"} fillOpacity=${b.total ? 1 : .75} />
+        <text x=${x + bw / 2} y=${y0 - 5} textAnchor="middle" style=${{ font: "600 11px var(--font-data)", fill: "var(--ink)" }}>${fmtK(b.v)}</text>
+        <text x=${x + bw / 2} y=${h - 6} textAnchor="middle" style=${{ font: "11px var(--font-body)", fill: "var(--muted)" }}>${b.l}</text></g>`; })}
+  </svg>`;
+}
+
+function PriceCompare({ mine, ours, fuel }) {
+  const max = Math.max(mine, ours) * 1.08, cheaper = ours < mine;
+  const row = (label, v, color) => html`<div className="pbar"><span>${label}</span>
+    <div className="bar big-bar"><i style=${{ width: (v / max * 100) + "%", background: color }}></i></div><span className="num">$${Math.round(v)}</span></div>`;
+  return html`<div style=${{ display: "grid", gap: "4px" }}>
+    ${row(`Its ${fuel} heat`, mine, cheaper ? "var(--bad)" : "var(--muted)")}${row("Our heat", ours, cheaper ? "var(--good)" : "var(--bad)")}
+    <span className="muted small">cost of 1 MWh of heat</span></div>`;
+}
+
+function WhyPanel({ s, pick, onClose }) {
+  const { i, b, c } = pick, sc = s.scores, r = sc.reason[i], mine = s.prices[b.f];
+  const text = c ? `Its heat is worth ${fmtK(sc.value[i])} a year, more than the ${fmtK(sc.pipe[i] + sc.conn[i])} it costs to reach and connect.`
+                 : reasonText(s, b, r)[1];
+  return html`<div className="why" role="dialog" aria-label=${"Why: " + clean(b.n)}>
+    <button className="x" onClick=${onClose} aria-label="Close">×</button>
+    <div style=${{ font: "600 1rem var(--font-display)", paddingRight: "22px" }}>${clean(b.n)}</div>
+    <div className="muted small">${b.t} · ${fmt.int(b.d)} m from the data center</div>
+    <div style=${{ fontWeight: 600, color: c ? "var(--good)" : "var(--bad)" }}>${c ? "● Supplied with heat" : "○ Skipped: " + REASON_LABEL[r]}</div>
+    ${mine !== undefined ? html`<${PriceCompare} mine=${mine} ours=${s.prices.network} fuel=${b.f} />` : null}
+    <${Waterfall} s=${s} i=${i} w=${320} />
+    <div className="small">${text}</div>
+  </div>`;
+}
+
+function Donut({ frac, size = 96 }) {
+  const r = size / 2 - 8, C = 2 * Math.PI * r;
+  return html`<svg width=${size} height=${size} viewBox=${`0 0 ${size} ${size}`} role="img" aria-label=${`${Math.round(frac * 100)}% covered by our heat`}>
+    <circle cx=${size / 2} cy=${size / 2} r=${r} fill="none" stroke="var(--line)" strokeWidth="12" />
+    <circle cx=${size / 2} cy=${size / 2} r=${r} fill="none" stroke="var(--good)" strokeWidth="12" strokeDasharray=${`${C * frac} ${C}`}
+      transform=${`rotate(-90 ${size / 2} ${size / 2})`} strokeLinecap="butt" />
+    <text x=${size / 2} y=${size / 2 + 6} textAnchor="middle" style=${{ font: "600 18px var(--font-data)", fill: "var(--ink)" }}>${Math.round(frac * 100)}%</text>
+  </svg>`;
+}
+
+function Pictos({ n, icon, unit }) {
+  const per = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000].find(p => n / p <= 10) || 10000;
+  const k = Math.max(0, Math.round(n / per));
+  return html`<div className="pictos" role="img" aria-label=${`${fmt.int(n)} ${unit}`}>
+    ${Array.from({ length: k }, (_, j) => html`<${Icon} key=${j} name=${icon} size=${20} color="var(--heat)" />`)}
+    <span className="muted small">each = ${fmt.int(per)} ${unit}</span></div>`;
+}
+
+/* ---------------- our proposal (team recommendation = "Most realistic"), as graphics ---------------- */
 function Proposal() {
   const r = SC.realistic, lc = SC.liquid_cooling, pr = r.prices;
-  const cards = [
-    ["What we do", `Capture ${r.q_src} MW of server heat at 111 8th Ave, boost it from ${r.t_source} °C to ${r.t_sink} °C with a heat pump, and pipe it ${r.kpi.pipe_km.toFixed(1)} km under the streets to ${r.kpi.buildings} nearby buildings.`],
-    ["Who gets it first", `Steam-heated buildings such as Fulton Houses (NYCHA), 212 W 18th St and 155 W 11th St. Con Ed steam costs them about $${Math.round(pr.steam)} per MWh of heat; ours costs about $${Math.round(pr.network)}.`],
-    ["Who waits", `Gas-heated buildings pay about $${Math.round(pr.gas)} per MWh today, less than our heat, so connecting them now would lose money.`],
-    ["What stays in place", `Buildings keep their boilers for the coldest hours. Our heat covers about ${Math.round(r.kpi.coverage * 100)}% of what the connected buildings need.`],
-    ["Next step", `If the data center moves to liquid cooling, its heat gets cheaper to upgrade (about $${Math.round(lc.prices.network)}/MWh) and the network can grow to ${lc.kpi.buildings} buildings.`],
-  ];
+  const flow = [["server", `${r.q_src} MW`, `server heat at ${r.t_source} °C`], ["pump", `${r.t_sink} °C`, "heat pump boosts it"],
+                ["pipe", `${r.kpi.pipe_km.toFixed(1)} km`, "pipe under the streets"], ["building", `${r.kpi.buildings}`, "buildings heated"]];
+  const prices = [["Con Ed steam", pr.steam, "var(--bad)", "switch to our heat"], ["Our heat", pr.network, "var(--good)", null],
+                  ["Gas boiler", pr.gas, "var(--muted)", "cheaper today, so they wait"]];
+  const maxP = Math.max(...prices.map(x => x[1])) * 1.05;
   return html`<section aria-labelledby="proposal-h">
     <div className="section-head"><h2 id="proposal-h">Our proposal</h2>
-      <p>Reuse the data center's waste heat where it replaces the most expensive heat nearby: Con Ed steam.</p></div>
-    <div className="cards">${cards.map(([k, v]) => html`<div className="panel pcard" key=${k}><div className="eyebrow">${k}</div><p>${v}</p></div>`)}</div>
+      <p>Reuse the data center's waste heat where it replaces the most expensive heat nearby.</p></div>
+    <div className="panel flow">${flow.map(([ic, big, small], k) => html`<${React.Fragment} key=${ic}>
+      ${k ? html`<div className="arrow" aria-hidden="true">→</div>` : null}
+      <div className="step"><${Icon} name=${ic} size=${30} color="var(--heat)" /><div className="big num">${big}</div><div className="muted small">${small}</div></div>
+    </${React.Fragment}>`)}</div>
+    <div className="cards" style=${{ marginTop: "12px" }}>
+      <div className="panel pcard"><div className="eyebrow">Who gets it first</div>
+        ${prices.map(([l, v, c, note]) => html`<div key=${l} style=${{ display: "grid", gap: "2px" }}>
+          <div className="pbar"><span>${l}</span><div className="bar big-bar"><i style=${{ width: (v / maxP * 100) + "%", background: c }}></i></div>
+          <span className="num">$${Math.round(v)}</span></div>${note ? html`<div className="muted small">${note}</div>` : null}</div>`)}
+        <div className="muted small">cost of 1 MWh of heat</div></div>
+      <div className="panel pcard"><div className="eyebrow">What stays in place</div>
+        <div style=${{ display: "flex", gap: "12px", alignItems: "center" }}><${Donut} frac=${r.kpi.coverage} />
+          <div className="small">of the buildings' heat comes from us. Their boilers stay for the coldest hours.</div></div></div>
+      <div className="panel pcard"><div className="eyebrow">Next step: liquid cooling</div>
+        ${[["Our heat cost", `$${Math.round(pr.network)}`, `$${Math.round(lc.prices.network)}/MWh`], ["Buildings heated", r.kpi.buildings, lc.kpi.buildings],
+           ["Net value", fmt.usdM(r.kpi.net_usd), fmt.usdM(lc.kpi.net_usd) + "/yr"]].map(([l, a, b]) => html`<div key=${l} className="ba">
+          <span className="muted small">${l}</span><span className="num">${a}</span><span aria-hidden="true">→</span>
+          <span className="num" style=${{ color: "var(--good)", fontWeight: 600 }}>${b}</span></div>`)}</div>
+    </div>
   </section>`;
 }
 
-/* ---------------- how we choose the route ---------------- */
+/* ---------------- how we choose the route, as graphics ---------------- */
 function ScoreBars({ s, rows }) {
   const box = useRef(null), width = useWidth(box);
   const rowH = 28, labelW = Math.max(150, Math.min(190, width * 0.45)), h = rows.length * rowH + 28, sc = s.scores;
   const vals = rows.map(i => sc.score[i]), lo = Math.min(0, ...vals), hi = Math.max(0, ...vals);
   const x = d3.scaleLinear().domain([lo, hi]).nice().range([labelW + 8, width - 64]);
   return html`<div ref=${box}><svg viewBox=${`0 0 ${width} ${h}`} style=${{ width: "100%", display: "block" }} role="img"
-      aria-label="Score per building in thousands of dollars per year; chosen buildings in blue, skipped in purple">
+      aria-label="Score per building in dollars per year; supplied buildings in green, skipped in red">
     <line x1=${x(0)} x2=${x(0)} y1="4" y2=${h - 20} stroke="var(--ink)" strokeOpacity=".5" />
     ${rows.map((i, k) => { const v = sc.score[i], y = 6 + k * rowH, chosen = sc.reason[i] === 0;
       return html`<g key=${i}>
         <text x=${labelW} y=${y + 15} textAnchor="end" style=${{ font: "13px var(--font-body)", fill: "var(--ink)" }}>${short(DATA.buildings[i].n)}</text>
         <rect x=${Math.min(x(0), x(v))} y=${y + 3} width=${Math.max(2, Math.abs(x(v) - x(0)))} height=${rowH - 10} rx="3"
-          fill=${chosen ? "var(--dc)" : "var(--skip)"} fillOpacity=${chosen ? .95 : .75} />
+          fill=${chosen ? "var(--good)" : "var(--bad)"} fillOpacity=${chosen ? .95 : .7} />
         <text x=${v >= 0 ? x(v) + 6 : x(0) + 6} y=${y + 15} style=${{ font: "500 12px var(--font-data)", fill: "var(--muted)" }}>${fmtK(v)}</text>
       </g>`; })}
     <text x=${x(0)} y=${h - 4} textAnchor="middle" style=${{ font: "11px var(--font-body)", fill: "var(--muted)" }}>score, $ per year</text>
@@ -627,42 +751,39 @@ function RouteLogic({ s }) {
   const rows = [...chosen.slice(0, 6), ...near, ...cheap];
   const e = chosen[0];
   const counts = [1, 2, 3, 4, 5].map(r => [r, sc.reason.filter(x => x === r).length]).filter(([, n]) => n > 0);
-  const skipped = counts.reduce((t, [, n]) => t + n, 0);
-  const weighted = s.carbon_price > 0 || s.priority_weight > 1 || s.perspective === "operator";
-  const extra = e !== undefined ? sc.value[e] - Math.round(sc.heat[e] * sc.margin[e] / 1000) : 0;
+  const skipped = counts.reduce((t, [, n]) => t + n, 0), maxN = Math.max(...counts.map(([, n]) => n));
+  const notes = [s.carbon_price > 0 ? `carbon valued at $${s.carbon_price}/t` : null, s.priority_weight > 1 ? `public housing & schools ×${s.priority_weight}` : null,
+                 s.perspective === "operator" ? "owner's profit only" : null].filter(Boolean);
+  const steps = [["score", "Score every building", `${B.length} candidates, real 2023 energy use`], ["grow", "Grow from the data center", "add the best next one, pay only for new pipe"],
+                 ["share", "Share limited heat", "checked for every hour of the year"], ["refine", "Re-route and refine", "until no change helps"]];
   return html`<section aria-labelledby="route-h">
     <div className="section-head"><h2 id="route-h">How we choose the route</h2>
-      <p>Every building gets a yearly score. We connect the combination that adds up to the most, along real streets.</p></div>
-    <div className="two">
+      <p>Each building gets a yearly score. We connect the set that is worth the most.</p></div>
+    <div className="panel flow">${steps.map(([ic, t, sub], k) => html`<${React.Fragment} key=${ic}>
+      ${k ? html`<div className="arrow" aria-hidden="true">→</div>` : null}
+      <div className="step"><${Icon} name=${ic} size=${28} color="var(--dc)" /><div style=${{ fontWeight: 600 }}>${k + 1}. ${t}</div><div className="muted small">${sub}</div></div>
+    </${React.Fragment}>`)}</div>
+    <div className="two" style=${{ marginTop: "12px" }}>
       <div className="panel card" style=${{ display: "grid", gap: "10px", alignContent: "start" }}>
         <h3>The score</h3>
-        <div style=${{ font: "600 1rem var(--font-display)" }}>Score = value of the heat it would buy − cost of the pipe to reach it − cost of connecting it</div>
-        <p className="muted" style=${{ margin: 0, fontSize: ".88rem" }}>Value of heat = MWh it would take × (what it pays for heat today − what our heat costs), plus any LL97 climate fines it avoids. Costs are spread over 25–30 years at 6%.
-          ${weighted ? html` <b>In this scenario</b> the score also ${[s.carbon_price > 0 ? `counts carbon at $${s.carbon_price}/t` : null, s.priority_weight > 1 ? `gives public housing and schools ×${s.priority_weight} weight` : null, s.perspective === "operator" ? "counts only the data-center owner's profit" : null].filter(Boolean).join(" and ")}.` : null}</p>
-        ${e !== undefined ? html`<div className="tablewrap"><table><tbody>
-          <tr><td colSpan="2"><b>Example: ${B[e].n}</b> (${B[e].f}-heated)</td></tr>
-          <tr><td>Heat it would take: ${fmt.int(sc.heat[e])} MWh × $${sc.margin[e]}/MWh saving${extra >= 1 ? " + LL97 fines avoided" : ""}</td><td className="r num">${fmtK(sc.value[e])}</td></tr>
-          <tr><td>Pipe from the data center (${fmt.int(sc.street_m[e])} m of street)</td><td className="r num">−${fmtK(sc.pipe[e]).replace("$", "$")}</td></tr>
-          <tr><td>Building connection (heat exchanger, controls)</td><td className="r num">−${fmtK(sc.conn[e])}</td></tr>
-          <tr><td><b>Score</b></td><td className="r num"><b>${fmtK(sc.score[e])} per year</b></td></tr>
-        </tbody></table></div>` : html`<p>No building scores above zero in this scenario.</p>`}
-        <h3 style=${{ marginTop: "6px" }}>How the network grows</h3>
-        <ol className="steps">
-          <li>Score all ${B.length} candidate buildings within ${DATA.site.radius_m} m, using their real 2023 energy use.</li>
-          <li>Start at the data center and add the building that adds the most, counting only the new pipe needed. Repeat until the next one would lose money.</li>
-          <li>The heat pump's output is limited, so each new building can take heat from the others; we re-check every hour of the year.</li>
-          <li>Finally, re-route pipes along the shortest streets and try dropping or adding buildings until nothing improves.</li>
-        </ol>
+        <div className="eqchips"><span className="chip-g">Heat value</span>−<span className="chip-r">Pipe</span>−<span className="chip-r">Connection</span>=<span className="chip-s">Score</span></div>
+        <div className="muted small">Heat value = MWh it takes × (its heat price − ours) + climate fines avoided${notes.length ? " · this scenario adds " + notes.join(", ") : ""}</div>
+        ${e !== undefined ? html`<div className="small"><b>Example: ${clean(B[e].n)}</b></div><${Waterfall} s=${s} i=${e} w=${440} />`
+          : html`<p className="small">No building scores above zero here.</p>`}
       </div>
       <div className="panel card" style=${{ display: "grid", gap: "10px", alignContent: "start" }}>
-        <h3>Chosen vs skipped</h3>
-        <div className="key"><span><span className="sw" style=${{ background: "var(--dc)" }}></span>Chosen</span>
-          <span><span className="sw" style=${{ background: "var(--skip)" }}></span>Skipped</span></div>
+        <h3>Supplied vs skipped</h3>
+        <div className="key"><span><span className="sw" style=${{ background: "var(--good)" }}></span>Supplied</span>
+          <span><span className="sw" style=${{ background: "var(--bad)" }}></span>Skipped</span></div>
         <${ScoreBars} s=${s} rows=${rows} />
-        <h3 style=${{ marginTop: "6px" }}>Why ${fmt.int(skipped)} buildings were skipped</h3>
-        <ul className="reasons">${counts.map(([r, n]) => html`<li key=${r}><span className="n">${fmt.int(n)}</span>
-          <span><b>${REASON_LABEL[r]}.</b> <span className="muted">${reasonText(s, { f: "gas" }, r)[1]}</span></span></li>`)}</ul>
       </div>
+    </div>
+    <div className="panel card" style=${{ marginTop: "12px", display: "grid", gap: "10px" }}>
+      <h3>Why ${fmt.int(skipped)} buildings were skipped</h3>
+      ${counts.map(([r, n]) => html`<div key=${r} className="rbar"><span>${REASON_LABEL[r]}</span>
+        <div className="bar big-bar"><i style=${{ width: (n / maxN * 100) + "%", background: r === 5 ? "var(--muted)" : "var(--bad)" }}></i></div>
+        <span className="num">${fmt.int(n)}</span></div>`)}
+      <div className="muted small">Hover over or tap any red ring on the map for that building's own reason.</div>
     </div>
   </section>`;
 }
@@ -696,27 +817,31 @@ function Sentiment({ s }) {
 
 function Impact({ s }) {
   const k = s.kpi, C = DATA.consts, loss = k.net_usd < 0;
+  const owner = Math.max(0, k.operator_profit_usd), bldg = Math.max(0, k.building_savings_usd), split = owner + bldg;
   const cards = [
-    ["Energy reused", (k.recovered_heat_mwh / 1000).toFixed(1) + " GWh", "of server heat reused each year instead of vented into the air",
-      `Delivered as ${fmt.gwh(k.served_mwh)} GWh of heat to ${k.buildings} buildings.`,
-      `The heat pump takes ${s.q_src} MW of server heat and adds electricity to lift it to ${s.t_sink} °C. We simulate every hour of a year using 2023 weather; when buildings need more than the network can give, their own boilers cover the rest.`],
-    ["Money", fmt.usdM(k.net_usd), loss ? "net loss per year after paying for pipes and equipment" : "saved per year after paying for pipes and equipment",
-      `Local buildings save ${fmt.usdM(k.building_savings_usd)} · data-center owner ${loss ? "loses" : "earns"} ${fmt.usdM(Math.abs(k.operator_profit_usd))}`,
-      `Fuel the buildings no longer buy (${fmt.usdM(k.avoided_fuel_usd)}) + climate fines avoided (${fmt.usdM(k.avoided_ll97_usd)}) + cooling water saved (${fmt.usdM(k.water_usd)}) − electricity for the heat pump (${fmt.usdM(k.electricity_usd)}) − the yearly share of building it (${fmt.usdM(k.capex_total_usd)}: pipes, heat pump, connections and tank, spread over 20–30 years at 6%).`],
-    ["Climate", fmt.int(k.co2_net_t) + " t CO₂", "avoided per year",
-      `≈ ${fmt.int(k.co2_net_t / C.car_t)} cars off the road`,
-      `Emissions from fuel no longer burned (${fmt.int(k.co2_fuel_avoided_t)} t) minus emissions from the grid power the heat pump uses (${fmt.int(k.co2_grid_added_t)} t). One typical car emits about ${C.car_t} t a year (US EPA).`],
-    ["Water", fmt.int(k.water_m3) + " m³", "of cooling-tower water saved per year",
-      `≈ ${(k.water_m3 / C.pool_m3).toFixed(0)} Olympic swimming pools`,
-      `Heat sent to buildings is heat the data center's cooling towers no longer evaporate away: about 1.6 m³ of water per MWh.`],
+    { icon: "flame", label: "Energy reused", num: (k.recovered_heat_mwh / 1000).toFixed(1) + " GWh", plain: "of server heat reused each year instead of vented",
+      graphic: html`<div className="small">→ delivered as <b className="num">${fmt.gwh(k.served_mwh)} GWh</b> of heat to <b>${k.buildings}</b> buildings</div>`,
+      how: `The heat pump takes ${s.q_src} MW of server heat and adds electricity to lift it to ${s.t_sink} °C. We simulate every hour of a year using 2023 weather; when buildings need more than the network gives, their own boilers cover the rest.` },
+    { icon: "coin", label: "Money", num: fmt.usdM(k.net_usd), plain: loss ? "net loss per year after paying for pipes and equipment" : "saved per year after paying for pipes and equipment",
+      graphic: split > 0 ? html`<div className="splitbar" aria-hidden="true"><i style=${{ width: bldg / split * 100 + "%", background: "var(--good)" }}></i><i style=${{ width: owner / split * 100 + "%", background: "var(--dc)" }}></i></div>
+        <div className="key small"><span><span className="sw" style=${{ background: "var(--good)" }}></span>Local buildings ${fmt.usdM(k.building_savings_usd)}</span>
+          <span><span className="sw" style=${{ background: "var(--dc)" }}></span>Data-center owner ${fmt.usdM(k.operator_profit_usd)}</span></div>`
+        : html`<div className="small">Local buildings ${fmt.usdM(k.building_savings_usd)} · data-center owner ${fmt.usdM(k.operator_profit_usd)}</div>`,
+      how: `Fuel the buildings no longer buy (${fmt.usdM(k.avoided_fuel_usd)}) + climate fines avoided (${fmt.usdM(k.avoided_ll97_usd)}) + cooling water saved (${fmt.usdM(k.water_usd)}) − electricity for the heat pump (${fmt.usdM(k.electricity_usd)}) − the yearly share of building it (${fmt.usdM(k.capex_total_usd)}: pipes, heat pump, connections and tank, spread over 20–30 years at 6%).` },
+    { icon: "leaf", label: "Climate", num: fmt.int(k.co2_net_t) + " t CO₂", plain: `avoided per year, like taking ${fmt.int(k.co2_net_t / C.car_t)} cars off the road`,
+      graphic: html`<${Pictos} n=${Math.max(0, k.co2_net_t / C.car_t)} icon="car" unit="cars" />`,
+      how: `Emissions from fuel no longer burned (${fmt.int(k.co2_fuel_avoided_t)} t) minus emissions from the grid power the heat pump uses (${fmt.int(k.co2_grid_added_t)} t). One typical car emits about ${C.car_t} t a year (US EPA).` },
+    { icon: "drop", label: "Water", num: fmt.int(k.water_m3) + " m³", plain: `of cooling-tower water saved per year, about ${(k.water_m3 / C.pool_m3).toFixed(0)} Olympic pools`,
+      graphic: html`<${Pictos} n=${k.water_m3 / C.pool_m3} icon="pool" unit="pools" />`,
+      how: "Heat sent to buildings is heat the data center's cooling towers no longer evaporate away: about 1.6 m³ of water per MWh." },
   ];
   return html`<section aria-labelledby="impact-h">
     <div className="section-head"><h2 id="impact-h">Impact</h2><p>${s.icon} ${s.label}: what this network achieves in a year.</p></div>
     <div className="cards">
-      ${cards.map(([label, num, plain, eq, how]) => html`<div className="panel impact" key=${label}>
-        <div className="label">${label}</div><div className="hero-num">${num}</div><div className="plain">${plain}</div>
-        <div className="eq">${eq}</div>
-        <details><summary>How we calculated this</summary><p>${how}</p></details></div>`)}
+      ${cards.map(c => html`<div className="panel impact" key=${c.label}>
+        <div className="label" style=${{ display: "flex", gap: "8px", alignItems: "center" }}><${Icon} name=${c.icon} size=${20} color="var(--heat)" />${c.label}</div>
+        <div className="hero-num">${c.num}</div><div className="plain">${c.plain}</div>${c.graphic}
+        <details><summary>How we calculated this</summary><p>${c.how}</p></details></div>`)}
       <${Sentiment} s=${s} />
     </div>
   </section>`;
@@ -729,11 +854,12 @@ function App() {
   const initial = (location.hash || "").slice(1);
   const [key, setKeyState] = useState(SC[initial] ? initial : DEFAULT_KEY);
   const [tab, setTab] = useState("money");
-  const setKey = k => { setKeyState(k); try { history.replaceState(null, "", "#" + k); } catch (e) {} };
+  const [pick, setPick] = useState(null);   // building whose explanation is pinned on the map
+  const setKey = k => { setKeyState(k); setPick(null); try { history.replaceState(null, "", "#" + k); } catch (e) {} };
   const s = SC[key];
   return html`<main className="wrap">
     <${Hero} s=${s} />
-    <${MapView} s=${s} />
+    <${MapView} s=${s} pick=${pick} onPick=${setPick} />
     <${Presets} s=${s} setKey=${setKey} />
     <${Proposal} />
     <${RouteLogic} s=${s} />
