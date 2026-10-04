@@ -1,0 +1,1947 @@
+{
+ "schema": "abc_results/1.0",
+ "generated": "2026-10-04T00:50:03",
+ "seconds": 2.6,
+ "site": {
+  "name": "111 8th Avenue",
+  "property_id": "7536925",
+  "lat": 40.7413598,
+  "lon": -74.0032081,
+  "source_it_electricity_MWh_3yr_mean": 141197.0
+ },
+ "recommended_scenario": "recommended",
+ "decision_rule": {
+  "rule": "hard constraints then least public support per tCO2 avoided",
+  "constraints": {
+   "HC0": "at least one external offtaker (not only in-building reuse)",
+   "HC1-5": "technical feasibility: cooling independence, backup, temperature compatibility (Model A H1-H5, H7)",
+   "HC6": "net CO2 avoided >= 0 (including source-side electricity)",
+   "HC7": "NYCHA households no worse off (H6) when NYCHA is connected"
+  },
+  "weights": "the four-dimension weighted score is optional (sensitivity / visualisation only) and does not drive the recommendation"
+ },
+ "definitions": {
+  "waste_heat_recovered": "data-center waste heat extracted from the cooling loop (MWh/yr). Not net energy savings.",
+  "useful_heat_delivered": "heat received by connected buildings from the network (MWh/yr). Higher than recovered heat because it includes heat-pump compressor input.",
+  "net_co2_avoided": "baseline fuel CO2 minus grid CO2 of all added electricity (heat pumps, pumps and source side) minus backup CO2, LL97 factors, t/yr",
+  "net_annual_societal_value": "baseline heat cost minus annualised CAPEX, O&M, all electricity and backup energy, USD/yr; negative means the system costs more than today's heating",
+  "community_beneficiaries": "households served (all residential units connected), low-income households (NYCHA / rebuilt affordable share) and community facilities (schools etc.)"
+ },
+ "corrections_applied": [
+  "A17 = 0.367 MWh_e per MWh extracted (Con Ed pilot 666 MWh / 1,813.5 MWh injected); A17 = 0 only for the liquid-cooling scenario (capture 45 C)",
+  "oil share of gas/oil buildings priced at the EIA NY heating-oil price and LL97 oil factor",
+  "LL84 zero / isolated-anomaly years ignored (42 properties)",
+  "existing NYCHA: hot-water-only retrofit cost; rebuilt towers: electric backup boilers costed; storage removed (it was not costed)",
+  "Con Ed pilot demand NOT subtracted by default (scenario flag: corrections.pilot_overlap = false)"
+ ],
+ "scenarios": [
+  {
+   "key": "recommended",
+   "label": "Recommended: in-building reuse + M070 school",
+   "status": "recommended (main external offtaker candidate)",
+   "description": "111 8th Ave heat reused in the building plus the M070 public school: chosen by the hard-constraint / least-public-support rule.",
+   "horizon": "today",
+   "members": [
+    "7536925",
+    "1634606"
+   ],
+   "notes": [
+    "Needs public support: no network with an external offtaker pays for itself on current evidence.",
+    "Selected by Model C: least public support per tCO2 avoided (n=254 configurations passed the hard constraints)."
+   ],
+   "primary": {
+    "waste_heat_recovered_MWh_per_year": 3822.0,
+    "useful_heat_delivered_MWh_per_year": 5634.0,
+    "net_co2_avoided_t_per_year": 384.0,
+    "co2_baseline_t_per_year": 1337.0,
+    "co2_project_t_per_year": 953.0,
+    "net_annual_societal_value_usd_per_year": -1100934.0,
+    "community_beneficiaries": {
+     "households_served": 0.0,
+     "low_income_households": 0.0,
+     "community_facilities": 1,
+     "community_facility_names": [
+      "M070 (OECID: 0100079; BBL: 1007410010)"
+     ]
+    }
+   },
+   "secondary": {
+    "cop_seasonal": 3.11,
+    "lcoh_usd_per_MWh": 328.0,
+    "capex_total_usd": 13732394.0,
+    "capex_network_usd": 11808445.0,
+    "capex_building_side_usd": 1923949.0,
+    "capex_annualised_usd_per_year": 974347.0,
+    "opex_usd_per_year": 875431.0,
+    "opex_breakdown_usd_per_year": {
+     "om": 145625.0,
+     "electricity_heat_pumps_pumps": 414762.0,
+     "electricity_source_side": 311396.0,
+     "backup_energy": 3649.0
+    },
+    "baseline_heat_cost_usd_per_year": 748845.0,
+    "funding_gap_usd_per_year": {
+     "operator_gap_at_tariff": 1074216.0,
+     "minimum_public_support": 1100934.0,
+     "note": "minimum_public_support = max(0, -net societal value); operator_gap_at_tariff depends on the heat-price rules (stakeholder view)"
+    },
+    "fuel_displaced_MWh_per_year": {
+     "total": 7053.0,
+     "steam_MWh": 4508.0,
+     "gas_MWh": 83.0,
+     "oil_MWh": 2461.0
+    },
+    "coverage": {
+     "recovered_heat_share_of_connected_demand_pct": 51.0,
+     "network_share_of_served_demand_pct": 99.5
+    },
+    "backup_reliability": {
+     "backup_share_of_served_demand_pct": 0.5,
+     "unserved_heat_MWh": 0.0,
+     "technical_constraints": {
+      "H1": "pass",
+      "H2": "pass",
+      "H3": "pass",
+      "H4": "pass",
+      "H5": "pass",
+      "H6": "pending_model_B",
+      "H7": "pass"
+     },
+     "technical_feasible": true,
+     "note": "buildings keep their own boilers/steam (existing) or electric boilers (rebuilt), so heat is never unserved; reliability = how little of the served heat depends on backup"
+    },
+    "heat_recovery_interface_load_factor_pct": 66.3,
+    "energy_reuse_factor_pct": 5.8,
+    "feasibility": "conditionally_feasible",
+    "failed_checks": "F1 society savings;F2 operator self-financing",
+    "hard_constraints": {
+     "HC0_external_offtaker": true,
+     "HC1_5_technical": true,
+     "HC6_co2_not_negative": true,
+     "HC7_nycha_no_worse_off": true
+    },
+    "net_value_to_data_center_usd": 27678.0,
+    "net_value_to_heat_users_usd": -54396.0,
+    "net_value_to_operator_usd": -1074216.0,
+    "cost_per_tCO2_avoided_usd": 2865.0
+   },
+   "buildings": [
+    {
+     "id": "7536925",
+     "name": "111 Eighth Avenue",
+     "role": "source and offtaker",
+     "lat": 40.740704,
+     "lon": -74.001844,
+     "use_type": "Office",
+     "households": 0,
+     "low_income_households": 0.0,
+     "is_nycha": false,
+     "community_facility": false,
+     "rebuilt": false,
+     "heating_system": "steam_radiators",
+     "main_fuel_today": "steam",
+     "backup": "steam",
+     "heat_from_network_MWh": 3471.0,
+     "backup_heat_MWh": 7.0,
+     "share_of_served_heat_from_network": 0.392,
+     "heat_pump_MW": 0.4,
+     "annual_bill_change_usd": -39.0,
+     "distance_to_source_m": 0.0
+    },
+    {
+     "id": "1634606",
+     "name": "M070 (OECID: 0100079; BBL: 1007410010)",
+     "role": "offtaker",
+     "lat": 40.742129,
+     "lon": -74.002198,
+     "use_type": "K-12 School",
+     "households": 0,
+     "low_income_households": 0.0,
+     "is_nycha": false,
+     "community_facility": true,
+     "rebuilt": false,
+     "heating_system": "hydronic_assumed",
+     "main_fuel_today": "gas_or_oil",
+     "backup": "gas_or_oil",
+     "heat_from_network_MWh": 2163.0,
+     "backup_heat_MWh": 22.0,
+     "share_of_served_heat_from_network": 0.99,
+     "heat_pump_MW": 0.59,
+     "annual_bill_change_usd": -54357.0,
+     "distance_to_source_m": 153.0
+    }
+   ],
+   "pipeline": {
+    "route_length_m": 149.0,
+    "capex_usd": 6280558.0,
+    "heat_exchanger_MW": 0.66,
+    "polylines": [
+     {
+      "from_id": "source",
+      "to_id": "1634606",
+      "latlon": [
+       [
+        40.74136,
+        -74.003208
+       ],
+       [
+        40.741867,
+        -74.002008
+       ],
+       [
+        40.742129,
+        -74.002198
+       ]
+      ],
+      "length_m": 149.0
+     }
+    ],
+    "method": "minimum spanning tree, L1 distance on the Manhattan grid rotated 29 deg; drawn as L-shaped legs. Schematic: not street-graph routing"
+   },
+   "monthly": {
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "heat_recovered_MWh": [
+     431.7,
+     375.5,
+     368.0,
+     317.7,
+     279.8,
+     252.4,
+     254.6,
+     254.8,
+     249.3,
+     296.3,
+     335.9,
+     406.0
+    ],
+    "heat_delivered_MWh": [
+     647.1,
+     561.9,
+     546.7,
+     468.6,
+     407.9,
+     366.0,
+     368.3,
+     368.7,
+     361.1,
+     434.0,
+     497.2,
+     606.4
+    ],
+    "backup_heat_MWh": [
+     12.8,
+     15.4,
+     0.9,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "building_heat_demand_MWh": [
+     659.9,
+     577.4,
+     547.6,
+     468.6,
+     407.9,
+     366.0,
+     368.3,
+     368.7,
+     361.1,
+     434.0,
+     497.2,
+     606.4
+    ],
+    "electricity_heat_pumps_pumps_MWh": [
+     221.9,
+     192.1,
+     184.1,
+     155.6,
+     132.3,
+     117.2,
+     117.4,
+     117.6,
+     115.4,
+     142.0,
+     166.3,
+     206.4
+    ],
+    "electricity_source_side_MWh": [
+     158.4,
+     137.8,
+     135.1,
+     116.6,
+     102.7,
+     92.6,
+     93.4,
+     93.5,
+     91.5,
+     108.8,
+     123.3,
+     149.0
+    ]
+   },
+   "assumptions": {
+    "A17_source_electricity_MWh_per_MWh_extracted": 0.367,
+    "capture_temperature_C": 30.0,
+    "electricity_price_usd_per_MWh": 222.0,
+    "gas_price_usd_per_MWh_fuel": 38.9,
+    "oil_price_usd_per_MWh_fuel": 104.4,
+    "steam_price_usd_per_MWh": 107.6,
+    "pipe_cost_usd_per_m": 29318.0,
+    "discount_rate": 0.05,
+    "storage_hours": 0
+   }
+  },
+  {
+   "key": "recommended_plus_dream_hotel",
+   "label": "Recommended + Dream Hotel (conditional)",
+   "status": "conditional",
+   "description": "Adds the Dream Hotel (steam-heated). Conditional: its LL84 history is a single year with a large steam share.",
+   "horizon": "today",
+   "members": [
+    "7536925",
+    "1634606",
+    "4978579"
+   ],
+   "notes": [
+    "Conditional on a second year of Dream Hotel data and on the hotel agreeing to hot-water-only service."
+   ],
+   "primary": {
+    "waste_heat_recovered_MWh_per_year": 4278.0,
+    "useful_heat_delivered_MWh_per_year": 6294.0,
+    "net_co2_avoided_t_per_year": 406.0,
+    "co2_baseline_t_per_year": 1469.0,
+    "co2_project_t_per_year": 1063.0,
+    "net_annual_societal_value_usd_per_year": -1116743.0,
+    "community_beneficiaries": {
+     "households_served": 0.0,
+     "low_income_households": 0.0,
+     "community_facilities": 1,
+     "community_facility_names": [
+      "M070 (OECID: 0100079; BBL: 1007410010)"
+     ]
+    }
+   },
+   "secondary": {
+    "cop_seasonal": 3.12,
+    "lcoh_usd_per_MWh": 310.0,
+    "capex_total_usd": 14010414.0,
+    "capex_network_usd": 11939789.0,
+    "capex_building_side_usd": 2070625.0,
+    "capex_annualised_usd_per_year": 994073.0,
+    "opex_usd_per_year": 963975.0,
+    "opex_breakdown_usd_per_year": {
+     "om": 150044.0,
+     "electricity_heat_pumps_pumps": 461511.0,
+     "electricity_source_side": 348582.0,
+     "backup_energy": 3839.0
+    },
+    "baseline_heat_cost_usd_per_year": 841305.0,
+    "funding_gap_usd_per_year": {
+     "operator_gap_at_tariff": 1089274.0,
+     "minimum_public_support": 1116743.0,
+     "note": "minimum_public_support = max(0, -net societal value); operator_gap_at_tariff depends on the heat-price rules (stakeholder view)"
+    },
+    "fuel_displaced_MWh_per_year": {
+     "total": 7910.0,
+     "steam_MWh": 5366.0,
+     "gas_MWh": 83.0,
+     "oil_MWh": 2461.0
+    },
+    "coverage": {
+     "recovered_heat_share_of_connected_demand_pct": 49.5,
+     "network_share_of_served_demand_pct": 99.5
+    },
+    "backup_reliability": {
+     "backup_share_of_served_demand_pct": 0.5,
+     "unserved_heat_MWh": 0.0,
+     "technical_constraints": {
+      "H1": "pass",
+      "H2": "pass",
+      "H3": "pass",
+      "H4": "pass",
+      "H5": "pass",
+      "H6": "pending_model_B",
+      "H7": "pass"
+     },
+     "technical_feasible": true,
+     "note": "buildings keep their own boilers/steam (existing) or electric boilers (rebuilt), so heat is never unserved; reliability = how little of the served heat depends on backup"
+    },
+    "heat_recovery_interface_load_factor_pct": 68.8,
+    "energy_reuse_factor_pct": 6.49,
+    "feasibility": "conditionally_feasible",
+    "failed_checks": "F1 society savings;F2 operator self-financing",
+    "hard_constraints": {
+     "HC0_external_offtaker": true,
+     "HC1_5_technical": true,
+     "HC6_co2_not_negative": true,
+     "HC7_nycha_no_worse_off": true
+    },
+    "net_value_to_data_center_usd": 30983.0,
+    "net_value_to_heat_users_usd": -58452.0,
+    "net_value_to_operator_usd": -1089274.0,
+    "cost_per_tCO2_avoided_usd": 2748.0
+   },
+   "buildings": [
+    {
+     "id": "7536925",
+     "name": "111 Eighth Avenue",
+     "role": "source and offtaker",
+     "lat": 40.740704,
+     "lon": -74.001844,
+     "use_type": "Office",
+     "households": 0,
+     "low_income_households": 0.0,
+     "is_nycha": false,
+     "community_facility": false,
+     "rebuilt": false,
+     "heating_system": "steam_radiators",
+     "main_fuel_today": "steam",
+     "backup": "steam",
+     "heat_from_network_MWh": 3471.0,
+     "backup_heat_MWh": 7.0,
+     "share_of_served_heat_from_network": 0.392,
+     "heat_pump_MW": 0.4,
+     "annual_bill_change_usd": -39.0,
+     "distance_to_source_m": 0.0
+    },
+    {
+     "id": "1634606",
+     "name": "M070 (OECID: 0100079; BBL: 1007410010)",
+     "role": "offtaker",
+     "lat": 40.742129,
+     "lon": -74.002198,
+     "use_type": "K-12 School",
+     "households": 0,
+     "low_income_households": 0.0,
+     "is_nycha": false,
+     "community_facility": true,
+     "rebuilt": false,
+     "heating_system": "hydronic_assumed",
+     "main_fuel_today": "gas_or_oil",
+     "backup": "gas_or_oil",
+     "heat_from_network_MWh": 2163.0,
+     "backup_heat_MWh": 22.0,
+     "share_of_served_heat_from_network": 0.99,
+     "heat_pump_MW": 0.59,
+     "annual_bill_change_usd": -54357.0,
+     "distance_to_source_m": 153.0
+    },
+    {
+     "id": "4978579",
+     "name": "Dream Hotel: 355 West 16th St",
+     "role": "offtaker",
+     "lat": 40.741733,
+     "lon": -74.003082,
+     "use_type": "Hotel",
+     "households": 0,
+     "low_income_households": 0.0,
+     "is_nycha": false,
+     "community_facility": false,
+     "rebuilt": false,
+     "heating_system": "steam_radiators",
+     "main_fuel_today": "steam",
+     "backup": "steam",
+     "heat_from_network_MWh": 660.0,
+     "backup_heat_MWh": 1.0,
+     "share_of_served_heat_from_network": 0.392,
+     "heat_pump_MW": 0.08,
+     "annual_bill_change_usd": -4056.0,
+     "distance_to_source_m": 105.0
+    }
+   ],
+   "pipeline": {
+    "route_length_m": 149.0,
+    "capex_usd": 6280558.0,
+    "heat_exchanger_MW": 0.71,
+    "polylines": [
+     {
+      "from_id": "source",
+      "to_id": "4978579",
+      "latlon": [
+       [
+        40.74136,
+        -74.003208
+       ],
+       [
+        40.741488,
+        -74.002904
+       ],
+       [
+        40.741733,
+        -74.003082
+       ]
+      ],
+      "length_m": 60.0
+     },
+     {
+      "from_id": "4978579",
+      "to_id": "1634606",
+      "latlon": [
+       [
+        40.741733,
+        -74.003082
+       ],
+       [
+        40.742112,
+        -74.002186
+       ],
+       [
+        40.742129,
+        -74.002198
+       ]
+      ],
+      "length_m": 89.0
+     }
+    ],
+    "method": "minimum spanning tree, L1 distance on the Manhattan grid rotated 29 deg; drawn as L-shaped legs. Schematic: not street-graph routing"
+   },
+   "monthly": {
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "heat_recovered_MWh": [
+     470.1,
+     410.1,
+     406.9,
+     355.3,
+     318.6,
+     290.0,
+     293.4,
+     293.7,
+     286.9,
+     335.2,
+     373.5,
+     444.8
+    ],
+    "heat_delivered_MWh": [
+     702.7,
+     611.9,
+     602.9,
+     523.0,
+     464.1,
+     420.4,
+     424.5,
+     425.0,
+     415.5,
+     490.2,
+     551.6,
+     662.6
+    ],
+    "backup_heat_MWh": [
+     13.4,
+     16.2,
+     0.9,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "building_heat_demand_MWh": [
+     716.1,
+     628.1,
+     603.8,
+     523.0,
+     464.1,
+     420.4,
+     424.5,
+     425.0,
+     415.5,
+     490.2,
+     551.6,
+     662.6
+    ],
+    "electricity_heat_pumps_pumps_MWh": [
+     239.6,
+     208.0,
+     202.1,
+     172.9,
+     150.2,
+     134.6,
+     135.4,
+     135.5,
+     132.7,
+     159.9,
+     183.6,
+     224.4
+    ],
+    "electricity_source_side_MWh": [
+     172.5,
+     150.5,
+     149.3,
+     130.4,
+     116.9,
+     106.4,
+     107.7,
+     107.8,
+     105.3,
+     123.0,
+     137.1,
+     163.3
+    ]
+   },
+   "assumptions": {
+    "A17_source_electricity_MWh_per_MWh_extracted": 0.367,
+    "capture_temperature_C": 30.0,
+    "electricity_price_usd_per_MWh": 222.0,
+    "gas_price_usd_per_MWh_fuel": 38.9,
+    "oil_price_usd_per_MWh_fuel": 104.4,
+    "steam_price_usd_per_MWh": 107.6,
+    "pipe_cost_usd_per_m": 29318.0,
+    "discount_rate": 0.05,
+    "storage_hours": 0
+   }
+  },
+  {
+   "key": "internal_only",
+   "label": "In-building reuse only (111 8th Ave)",
+   "status": "reference",
+   "description": "No external offtaker: the data-center building uses its own heat. Fails HC0 (needs at least one external offtaker) so is never recommended.",
+   "horizon": "today",
+   "members": [
+    "7536925"
+   ],
+   "notes": [],
+   "primary": {
+    "waste_heat_recovered_MWh_per_year": 2399.0,
+    "useful_heat_delivered_MWh_per_year": 3471.0,
+    "net_co2_avoided_t_per_year": 117.0,
+    "co2_baseline_t_per_year": 693.0,
+    "co2_project_t_per_year": 576.0,
+    "net_annual_societal_value_usd_per_year": -83104.0,
+    "community_beneficiaries": {
+     "households_served": 0.0,
+     "low_income_households": 0.0,
+     "community_facilities": 0,
+     "community_facility_names": []
+    }
+   },
+   "secondary": {
+    "cop_seasonal": 3.24,
+    "lcoh_usd_per_MWh": 164.0,
+    "capex_total_usd": 1461437.0,
+    "capex_network_usd": 690422.0,
+    "capex_building_side_usd": 771015.0,
+    "capex_annualised_usd_per_year": 103693.0,
+    "opex_usd_per_year": 465438.0,
+    "opex_breakdown_usd_per_year": {
+     "om": 23229.0,
+     "electricity_heat_pumps_pumps": 245738.0,
+     "electricity_source_side": 195472.0,
+     "backup_energy": 999.0
+    },
+    "baseline_heat_cost_usd_per_year": 486026.0,
+    "funding_gap_usd_per_year": {
+     "operator_gap_at_tariff": 0.0,
+     "minimum_public_support": 83104.0,
+     "note": "minimum_public_support = max(0, -net societal value); operator_gap_at_tariff depends on the heat-price rules (stakeholder view)"
+    },
+    "fuel_displaced_MWh_per_year": {
+     "total": 4508.0,
+     "steam_MWh": 4508.0,
+     "gas_MWh": 0.0,
+     "oil_MWh": 0.0
+    },
+    "coverage": {
+     "recovered_heat_share_of_connected_demand_pct": 39.2,
+     "network_share_of_served_demand_pct": 99.8
+    },
+    "backup_reliability": {
+     "backup_share_of_served_demand_pct": 0.2,
+     "unserved_heat_MWh": 0.0,
+     "technical_constraints": {
+      "H1": "pass",
+      "H2": "pass",
+      "H3": "pass",
+      "H4": "pass",
+      "H5": "pass",
+      "H6": "pending_model_B",
+      "H7": "pass"
+     },
+     "technical_feasible": true,
+     "note": "buildings keep their own boilers/steam (existing) or electric boilers (rebuilt), so heat is never unserved; reliability = how little of the served heat depends on backup"
+    },
+    "heat_recovery_interface_load_factor_pct": 99.8,
+    "energy_reuse_factor_pct": 3.64,
+    "feasibility": "conditionally_feasible",
+    "failed_checks": "F1 society savings;F3 data-center value",
+    "hard_constraints": {
+     "HC0_external_offtaker": false,
+     "HC1_5_technical": true,
+     "HC6_co2_not_negative": true,
+     "HC7_nycha_no_worse_off": true
+    },
+    "net_value_to_data_center_usd": -195472.0,
+    "net_value_to_heat_users_usd": 112368.0,
+    "net_value_to_operator_usd": 0.0,
+    "cost_per_tCO2_avoided_usd": 711.0
+   },
+   "buildings": [
+    {
+     "id": "7536925",
+     "name": "111 Eighth Avenue",
+     "role": "source and offtaker",
+     "lat": 40.740704,
+     "lon": -74.001844,
+     "use_type": "Office",
+     "households": 0,
+     "low_income_households": 0.0,
+     "is_nycha": false,
+     "community_facility": false,
+     "rebuilt": false,
+     "heating_system": "steam_radiators",
+     "main_fuel_today": "steam",
+     "backup": "steam",
+     "heat_from_network_MWh": 3471.0,
+     "backup_heat_MWh": 7.0,
+     "share_of_served_heat_from_network": 0.392,
+     "heat_pump_MW": 0.4,
+     "annual_bill_change_usd": 222965.0,
+     "distance_to_source_m": 0.0
+    }
+   ],
+   "pipeline": {
+    "route_length_m": 0.0,
+    "capex_usd": 0.0,
+    "heat_exchanger_MW": 0.27,
+    "polylines": [],
+    "method": "none"
+   },
+   "monthly": {
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "heat_recovered_MWh": [
+     202.0,
+     181.7,
+     204.2,
+     197.6,
+     204.2,
+     197.6,
+     204.2,
+     204.2,
+     197.6,
+     204.2,
+     197.6,
+     204.2
+    ],
+    "heat_delivered_MWh": [
+     292.3,
+     262.9,
+     295.4,
+     285.9,
+     295.4,
+     285.9,
+     295.4,
+     295.4,
+     285.9,
+     295.4,
+     285.9,
+     295.4
+    ],
+    "backup_heat_MWh": [
+     3.2,
+     4.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "building_heat_demand_MWh": [
+     295.4,
+     266.8,
+     295.4,
+     285.9,
+     295.4,
+     285.9,
+     295.4,
+     295.4,
+     285.9,
+     295.4,
+     285.9,
+     295.4
+    ],
+    "electricity_heat_pumps_pumps_MWh": [
+     93.2,
+     83.8,
+     94.2,
+     91.2,
+     94.2,
+     91.2,
+     94.2,
+     94.2,
+     91.2,
+     94.2,
+     91.2,
+     94.2
+    ],
+    "electricity_source_side_MWh": [
+     74.1,
+     66.7,
+     74.9,
+     72.5,
+     74.9,
+     72.5,
+     74.9,
+     74.9,
+     72.5,
+     74.9,
+     72.5,
+     74.9
+    ]
+   },
+   "assumptions": {
+    "A17_source_electricity_MWh_per_MWh_extracted": 0.367,
+    "capture_temperature_C": 30.0,
+    "electricity_price_usd_per_MWh": 222.0,
+    "gas_price_usd_per_MWh_fuel": 38.9,
+    "oil_price_usd_per_MWh_fuel": 104.4,
+    "steam_price_usd_per_MWh": 107.6,
+    "pipe_cost_usd_per_m": 29318.0,
+    "discount_rate": 0.05,
+    "storage_hours": 0
+   }
+  },
+  {
+   "key": "rebuilt_fulton",
+   "label": "Rebuilt Fulton (future, with today's cooling technology)",
+   "status": "future scenario (technology-dependent)",
+   "description": "The rebuilt Fulton / Elliott-Chelsea campus designed for 45 C space heat. Evaluated with the evidence-based source-side electricity (A17 = 0.367).",
+   "horizon": "post_rebuild",
+   "members": [
+    "7536925",
+    "rebuild:2831044"
+   ],
+   "notes": [
+    "Net CO2 is negative at A17 = 0.367, so it fails HC6 and is never recommended in this configuration."
+   ],
+   "primary": {
+    "waste_heat_recovered_MWh_per_year": 16116.0,
+    "useful_heat_delivered_MWh_per_year": 22128.0,
+    "net_co2_avoided_t_per_year": -924.0,
+    "co2_baseline_t_per_year": 2635.0,
+    "co2_project_t_per_year": 3559.0,
+    "net_annual_societal_value_usd_per_year": -2381438.0,
+    "community_beneficiaries": {
+     "households_served": 2509.0,
+     "low_income_households": 1335.0,
+     "community_facilities": 0,
+     "community_facility_names": []
+    }
+   },
+   "secondary": {
+    "cop_seasonal": 3.68,
+    "lcoh_usd_per_MWh": 239.0,
+    "capex_total_usd": 31739258.0,
+    "capex_network_usd": 21228731.0,
+    "capex_building_side_usd": 10510527.0,
+    "capex_annualised_usd_per_year": 2251978.0,
+    "opex_usd_per_year": 3067392.0,
+    "opex_breakdown_usd_per_year": {
+     "om": 333071.0,
+     "electricity_heat_pumps_pumps": 1383709.0,
+     "electricity_source_side": 1313041.0,
+     "backup_energy": 37570.0
+    },
+    "baseline_heat_cost_usd_per_year": 2937933.0,
+    "funding_gap_usd_per_year": {
+     "operator_gap_at_tariff": 2498106.0,
+     "minimum_public_support": 2381438.0,
+     "note": "minimum_public_support = max(0, -net societal value); operator_gap_at_tariff depends on the heat-price rules (stakeholder view)"
+    },
+    "fuel_displaced_MWh_per_year": {
+     "total": 4508.0,
+     "steam_MWh": 4508.0,
+     "gas_MWh": 0.0,
+     "oil_MWh": 0.0
+    },
+    "coverage": {
+     "recovered_heat_share_of_connected_demand_pct": 80.0,
+     "network_share_of_served_demand_pct": 99.2
+    },
+    "backup_reliability": {
+     "backup_share_of_served_demand_pct": 0.8,
+     "unserved_heat_MWh": 0.0,
+     "technical_constraints": {
+      "H1": "pass",
+      "H2": "pass",
+      "H3": "pass",
+      "H4": "pass",
+      "H5": "pass",
+      "H6": "pending_model_B",
+      "H7": "pass"
+     },
+     "technical_feasible": true,
+     "note": "buildings keep their own boilers/steam (existing) or electric boilers (rebuilt), so heat is never unserved; reliability = how little of the served heat depends on backup"
+    },
+    "heat_recovery_interface_load_factor_pct": 48.9,
+    "energy_reuse_factor_pct": 24.46,
+    "feasibility": "conditionally_feasible",
+    "failed_checks": "F1 society savings;F2 operator self-financing;H6 NYCHA affordability",
+    "hard_constraints": {
+     "HC0_external_offtaker": true,
+     "HC1_5_technical": true,
+     "HC6_co2_not_negative": false,
+     "HC7_nycha_no_worse_off": false
+    },
+    "net_value_to_data_center_usd": 116708.0,
+    "net_value_to_heat_users_usd": -39.0,
+    "net_value_to_operator_usd": -2498106.0,
+    "cost_per_tCO2_avoided_usd": null
+   },
+   "buildings": [
+    {
+     "id": "7536925",
+     "name": "111 Eighth Avenue",
+     "role": "source and offtaker",
+     "lat": 40.740704,
+     "lon": -74.001844,
+     "use_type": "Office",
+     "households": 0,
+     "low_income_households": 0.0,
+     "is_nycha": false,
+     "community_facility": false,
+     "rebuilt": false,
+     "heating_system": "steam_radiators",
+     "main_fuel_today": "steam",
+     "backup": "steam",
+     "heat_from_network_MWh": 3471.0,
+     "backup_heat_MWh": 7.0,
+     "share_of_served_heat_from_network": 0.392,
+     "heat_pump_MW": 0.4,
+     "annual_bill_change_usd": -39.0,
+     "distance_to_source_m": 0.0
+    },
+    {
+     "id": "rebuild:2831044",
+     "name": "Rebuilt Fulton",
+     "role": "offtaker",
+     "lat": 40.742321,
+     "lon": -74.004478,
+     "use_type": "Multifamily Housing (rebuilt, modelled)",
+     "households": 2509.0,
+     "low_income_households": 1335.0,
+     "is_nycha": true,
+     "community_facility": false,
+     "rebuilt": true,
+     "heating_system": "low_temp_new",
+     "main_fuel_today": "new_electric",
+     "backup": "electric_boiler",
+     "heat_from_network_MWh": 18656.0,
+     "backup_heat_MWh": 163.0,
+     "share_of_served_heat_from_network": 0.991,
+     "heat_pump_MW": 4.59,
+     "annual_bill_change_usd": -0.0,
+     "distance_to_source_m": 234.0
+    }
+   ],
+   "pipeline": {
+    "route_length_m": 187.0,
+    "capex_usd": 7895822.0,
+    "heat_exchanger_MW": 3.76,
+    "polylines": [
+     {
+      "from_id": "source",
+      "to_id": "rebuild:2831044",
+      "latlon": [
+       [
+        40.74136,
+        -74.003208
+       ],
+       [
+        40.741175,
+        -74.003645
+       ],
+       [
+        40.742321,
+        -74.004478
+       ]
+      ],
+      "length_m": 187.0
+     }
+    ],
+    "method": "minimum spanning tree, L1 distance on the Manhattan grid rotated 29 deg; drawn as L-shaped legs. Schematic: not street-graph routing"
+   },
+   "monthly": {
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "heat_recovered_MWh": [
+     2312.5,
+     1968.9,
+     1743.4,
+     1352.9,
+     975.7,
+     784.9,
+     756.5,
+     758.9,
+     758.0,
+     1119.8,
+     1511.0,
+     2073.5
+    ],
+    "heat_delivered_MWh": [
+     3088.3,
+     2635.4,
+     2360.0,
+     1855.2,
+     1375.6,
+     1127.0,
+     1094.7,
+     1097.7,
+     1092.5,
+     1560.3,
+     2058.0,
+     2783.2
+    ],
+    "backup_heat_MWh": [
+     74.4,
+     89.1,
+     6.4,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.3
+    ],
+    "building_heat_demand_MWh": [
+     3162.7,
+     2724.5,
+     2366.4,
+     1855.2,
+     1375.6,
+     1127.0,
+     1094.7,
+     1097.7,
+     1092.5,
+     1560.3,
+     2058.0,
+     2783.5
+    ],
+    "electricity_heat_pumps_pumps_MWh": [
+     806.6,
+     692.8,
+     640.1,
+     520.9,
+     413.7,
+     353.4,
+     349.0,
+     349.7,
+     345.4,
+     456.2,
+     567.5,
+     737.5
+    ],
+    "electricity_source_side_MWh": [
+     848.7,
+     722.6,
+     639.8,
+     496.5,
+     358.1,
+     288.1,
+     277.7,
+     278.5,
+     278.2,
+     410.9,
+     554.5,
+     761.0
+    ]
+   },
+   "assumptions": {
+    "A17_source_electricity_MWh_per_MWh_extracted": 0.367,
+    "capture_temperature_C": 30.0,
+    "electricity_price_usd_per_MWh": 222.0,
+    "gas_price_usd_per_MWh_fuel": 38.9,
+    "oil_price_usd_per_MWh_fuel": 104.4,
+    "steam_price_usd_per_MWh": 107.6,
+    "pipe_cost_usd_per_m": 29318.0,
+    "discount_rate": 0.05,
+    "storage_hours": 0
+   }
+  },
+  {
+   "key": "rebuilt_fulton_liquid_cooling",
+   "label": "Rebuilt Fulton with warm-water liquid cooling (future technology)",
+   "status": "future scenario (speculative technology)",
+   "description": "As above but the data center captures heat at 45 C by direct liquid cooling, so no compressor-forced extra electricity (A17 = 0).",
+   "horizon": "post_rebuild",
+   "members": [
+    "7536925",
+    "rebuild:2831044"
+   ],
+   "notes": [
+    "Technology-dependent: outside the register range for capture temperature (A02 30 C base). Not a current-evidence result."
+   ],
+   "primary": {
+    "waste_heat_recovered_MWh_per_year": 18340.0,
+    "useful_heat_delivered_MWh_per_year": 22128.0,
+    "net_co2_avoided_t_per_year": 1427.0,
+    "co2_baseline_t_per_year": 2635.0,
+    "co2_project_t_per_year": 1208.0,
+    "net_annual_societal_value_usd_per_year": -678169.0,
+    "community_beneficiaries": {
+     "households_served": 2509.0,
+     "low_income_households": 1335.0,
+     "community_facilities": 0,
+     "community_facility_names": []
+    }
+   },
+   "secondary": {
+    "cop_seasonal": 5.84,
+    "lcoh_usd_per_MWh": 162.0,
+    "capex_total_usd": 33016836.0,
+    "capex_network_usd": 22506308.0,
+    "capex_building_side_usd": 10510527.0,
+    "capex_annualised_usd_per_year": 2342626.0,
+    "opex_usd_per_year": 1273476.0,
+    "opex_breakdown_usd_per_year": {
+     "om": 345847.0,
+     "electricity_heat_pumps_pumps": 890059.0,
+     "electricity_source_side": 0.0,
+     "backup_energy": 37570.0
+    },
+    "baseline_heat_cost_usd_per_year": 2937933.0,
+    "funding_gap_usd_per_year": {
+     "operator_gap_at_tariff": 2350025.0,
+     "minimum_public_support": 678169.0,
+     "note": "minimum_public_support = max(0, -net societal value); operator_gap_at_tariff depends on the heat-price rules (stakeholder view)"
+    },
+    "fuel_displaced_MWh_per_year": {
+     "total": 4508.0,
+     "steam_MWh": 4508.0,
+     "gas_MWh": 0.0,
+     "oil_MWh": 0.0
+    },
+    "coverage": {
+     "recovered_heat_share_of_connected_demand_pct": 80.0,
+     "network_share_of_served_demand_pct": 99.2
+    },
+    "backup_reliability": {
+     "backup_share_of_served_demand_pct": 0.8,
+     "unserved_heat_MWh": 0.0,
+     "technical_constraints": {
+      "H1": "pass",
+      "H2": "pass",
+      "H3": "pass",
+      "H4": "pass",
+      "H5": "pass",
+      "H6": "pending_model_B",
+      "H7": "pass"
+     },
+     "technical_feasible": true,
+     "note": "buildings keep their own boilers/steam (existing) or electric boilers (rebuilt), so heat is never unserved; reliability = how little of the served heat depends on backup"
+    },
+    "heat_recovery_interface_load_factor_pct": 49.1,
+    "energy_reuse_factor_pct": 27.83,
+    "feasibility": "conditionally_feasible",
+    "failed_checks": "F1 society savings;F2 operator self-financing",
+    "hard_constraints": {
+     "HC0_external_offtaker": true,
+     "HC1_5_technical": true,
+     "HC6_co2_not_negative": true,
+     "HC7_nycha_no_worse_off": true
+    },
+    "net_value_to_data_center_usd": 1627022.0,
+    "net_value_to_heat_users_usd": 44835.0,
+    "net_value_to_operator_usd": -2350025.0,
+    "cost_per_tCO2_avoided_usd": 475.0
+   },
+   "buildings": [
+    {
+     "id": "7536925",
+     "name": "111 Eighth Avenue",
+     "role": "source and offtaker",
+     "lat": 40.740704,
+     "lon": -74.001844,
+     "use_type": "Office",
+     "households": 0,
+     "low_income_households": 0.0,
+     "is_nycha": false,
+     "community_facility": false,
+     "rebuilt": false,
+     "heating_system": "steam_radiators",
+     "main_fuel_today": "steam",
+     "backup": "steam",
+     "heat_from_network_MWh": 3471.0,
+     "backup_heat_MWh": 7.0,
+     "share_of_served_heat_from_network": 0.392,
+     "heat_pump_MW": 0.4,
+     "annual_bill_change_usd": 44835.0,
+     "distance_to_source_m": 0.0
+    },
+    {
+     "id": "rebuild:2831044",
+     "name": "Rebuilt Fulton",
+     "role": "offtaker",
+     "lat": 40.742321,
+     "lon": -74.004478,
+     "use_type": "Multifamily Housing (rebuilt, modelled)",
+     "households": 2509.0,
+     "low_income_households": 1335.0,
+     "is_nycha": true,
+     "community_facility": false,
+     "rebuilt": true,
+     "heating_system": "low_temp_new",
+     "main_fuel_today": "new_electric",
+     "backup": "electric_boiler",
+     "heat_from_network_MWh": 18656.0,
+     "backup_heat_MWh": 163.0,
+     "share_of_served_heat_from_network": 0.991,
+     "heat_pump_MW": 4.59,
+     "annual_bill_change_usd": 0.0,
+     "distance_to_source_m": 234.0
+    }
+   ],
+   "pipeline": {
+    "route_length_m": 187.0,
+    "capex_usd": 7895822.0,
+    "heat_exchanger_MW": 4.27,
+    "polylines": [
+     {
+      "from_id": "source",
+      "to_id": "rebuild:2831044",
+      "latlon": [
+       [
+        40.74136,
+        -74.003208
+       ],
+       [
+        40.741175,
+        -74.003645
+       ],
+       [
+        40.742321,
+        -74.004478
+       ]
+      ],
+      "length_m": 187.0
+     }
+    ],
+    "method": "minimum spanning tree, L1 distance on the Manhattan grid rotated 29 deg; drawn as L-shaped legs. Schematic: not street-graph routing"
+   },
+   "monthly": {
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "heat_recovered_MWh": [
+     2626.1,
+     2236.3,
+     1981.9,
+     1539.4,
+     1112.6,
+     896.3,
+     864.5,
+     867.1,
+     865.8,
+     1275.7,
+     1718.5,
+     2355.6
+    ],
+    "heat_delivered_MWh": [
+     3088.3,
+     2635.4,
+     2360.0,
+     1855.2,
+     1375.6,
+     1127.0,
+     1094.7,
+     1097.7,
+     1092.5,
+     1560.3,
+     2058.0,
+     2783.2
+    ],
+    "backup_heat_MWh": [
+     74.4,
+     89.1,
+     6.4,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.3
+    ],
+    "building_heat_demand_MWh": [
+     3162.7,
+     2724.5,
+     2366.4,
+     1855.2,
+     1375.6,
+     1127.0,
+     1094.7,
+     1097.7,
+     1092.5,
+     1560.3,
+     2058.0,
+     2783.5
+    ],
+    "electricity_heat_pumps_pumps_MWh": [
+     493.0,
+     425.4,
+     401.7,
+     334.4,
+     276.8,
+     242.0,
+     241.1,
+     241.5,
+     237.6,
+     300.2,
+     360.1,
+     455.4
+    ],
+    "electricity_source_side_MWh": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "assumptions": {
+    "A17_source_electricity_MWh_per_MWh_extracted": 0.0,
+    "capture_temperature_C": 45.0,
+    "electricity_price_usd_per_MWh": 222.0,
+    "gas_price_usd_per_MWh_fuel": 38.9,
+    "oil_price_usd_per_MWh_fuel": 104.4,
+    "steam_price_usd_per_MWh": 107.6,
+    "pipe_cost_usd_per_m": 29318.0,
+    "discount_rate": 0.05,
+    "storage_hours": 0,
+    "technology": "warm-water liquid cooling"
+   }
+  },
+  {
+   "key": "existing_fulton_pilot_double_count",
+   "label": "Existing Fulton as today's candidate, pilot demand claimed (default)",
+   "status": "labelled scenario",
+   "description": "Existing Fulton houses served hot water only; the Con Ed pilot demand is still counted as available (as in the input data).",
+   "horizon": "today",
+   "members": [
+    "7536925",
+    "2831044"
+   ],
+   "notes": [
+    "Whether the pilot's 291 apartments are already served is not established operationally; the default does not subtract them."
+   ],
+   "primary": {
+    "waste_heat_recovered_MWh_per_year": 7619.0,
+    "useful_heat_delivered_MWh_per_year": 11024.0,
+    "net_co2_avoided_t_per_year": 371.0,
+    "co2_baseline_t_per_year": 2199.0,
+    "co2_project_t_per_year": 1828.0,
+    "net_annual_societal_value_usd_per_year": -4932447.0,
+    "community_beneficiaries": {
+     "households_served": 944.0,
+     "low_income_households": 944.0,
+     "community_facilities": 0,
+     "community_facility_names": []
+    }
+   },
+   "secondary": {
+    "cop_seasonal": 3.24,
+    "lcoh_usd_per_MWh": 587.0,
+    "capex_total_usd": 68780300.0,
+    "capex_network_usd": 13961879.0,
+    "capex_building_side_usd": 54818421.0,
+    "capex_annualised_usd_per_year": 4880131.0,
+    "opex_usd_per_year": 1595708.0,
+    "opex_breakdown_usd_per_year": {
+     "om": 191458.0,
+     "electricity_heat_pumps_pumps": 780350.0,
+     "electricity_source_side": 620728.0,
+     "backup_energy": 3171.0
+    },
+    "baseline_heat_cost_usd_per_year": 1543392.0,
+    "funding_gap_usd_per_year": {
+     "operator_gap_at_tariff": 4998373.0,
+     "minimum_public_support": 4932447.0,
+     "note": "minimum_public_support = max(0, -net societal value); operator_gap_at_tariff depends on the heat-price rules (stakeholder view)"
+    },
+    "fuel_displaced_MWh_per_year": {
+     "total": 14316.0,
+     "steam_MWh": 14316.0,
+     "gas_MWh": 0.0,
+     "oil_MWh": 0.0
+    },
+    "coverage": {
+     "recovered_heat_share_of_connected_demand_pct": 35.0,
+     "network_share_of_served_demand_pct": 99.8
+    },
+    "backup_reliability": {
+     "backup_share_of_served_demand_pct": 0.2,
+     "unserved_heat_MWh": 0.0,
+     "technical_constraints": {
+      "H1": "pass",
+      "H2": "pass",
+      "H3": "pass",
+      "H4": "pass",
+      "H5": "pass",
+      "H6": "pending_model_B",
+      "H7": "pass"
+     },
+     "technical_feasible": true,
+     "note": "buildings keep their own boilers/steam (existing) or electric boilers (rebuilt), so heat is never unserved; reliability = how little of the served heat depends on backup"
+    },
+    "heat_recovery_interface_load_factor_pct": 99.8,
+    "energy_reuse_factor_pct": 11.56,
+    "feasibility": "conditionally_feasible",
+    "failed_checks": "F1 society savings;F2 operator self-financing",
+    "hard_constraints": {
+     "HC0_external_offtaker": true,
+     "HC1_5_technical": true,
+     "HC6_co2_not_negative": true,
+     "HC7_nycha_no_worse_off": true
+    },
+    "net_value_to_data_center_usd": 55172.0,
+    "net_value_to_heat_users_usd": 10753.0,
+    "net_value_to_operator_usd": -4998373.0,
+    "cost_per_tCO2_avoided_usd": 13291.0
+   },
+   "buildings": [
+    {
+     "id": "7536925",
+     "name": "111 Eighth Avenue",
+     "role": "source and offtaker",
+     "lat": 40.740704,
+     "lon": -74.001844,
+     "use_type": "Office",
+     "households": 0,
+     "low_income_households": 0.0,
+     "is_nycha": false,
+     "community_facility": false,
+     "rebuilt": false,
+     "heating_system": "steam_radiators",
+     "main_fuel_today": "steam",
+     "backup": "steam",
+     "heat_from_network_MWh": 3471.0,
+     "backup_heat_MWh": 7.0,
+     "share_of_served_heat_from_network": 0.392,
+     "heat_pump_MW": 0.4,
+     "annual_bill_change_usd": -39.0,
+     "distance_to_source_m": 0.0
+    },
+    {
+     "id": "2831044",
+     "name": "FULTON",
+     "role": "offtaker",
+     "lat": 40.742321,
+     "lon": -74.004478,
+     "use_type": "Multifamily Housing",
+     "households": 944.0,
+     "low_income_households": 944.0,
+     "is_nycha": true,
+     "community_facility": false,
+     "rebuilt": false,
+     "heating_system": "steam_radiators",
+     "main_fuel_today": "steam",
+     "backup": "steam",
+     "heat_from_network_MWh": 7552.0,
+     "backup_heat_MWh": 16.0,
+     "share_of_served_heat_from_network": 0.334,
+     "heat_pump_MW": 0.86,
+     "annual_bill_change_usd": 10792.0,
+     "distance_to_source_m": 234.0
+    }
+   ],
+   "pipeline": {
+    "route_length_m": 187.0,
+    "capex_usd": 7895822.0,
+    "heat_exchanger_MW": 0.87,
+    "polylines": [
+     {
+      "from_id": "source",
+      "to_id": "2831044",
+      "latlon": [
+       [
+        40.74136,
+        -74.003208
+       ],
+       [
+        40.741175,
+        -74.003645
+       ],
+       [
+        40.742321,
+        -74.004478
+       ]
+      ],
+      "length_m": 187.0
+     }
+    ],
+    "method": "minimum spanning tree, L1 distance on the Manhattan grid rotated 29 deg; drawn as L-shaped legs. Schematic: not street-graph routing"
+   },
+   "monthly": {
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "heat_recovered_MWh": [
+     641.4,
+     576.9,
+     648.4,
+     627.5,
+     648.4,
+     627.5,
+     648.4,
+     648.4,
+     627.5,
+     648.4,
+     627.5,
+     648.4
+    ],
+    "heat_delivered_MWh": [
+     928.1,
+     834.8,
+     938.2,
+     907.9,
+     938.2,
+     907.9,
+     938.2,
+     938.2,
+     907.9,
+     938.2,
+     907.9,
+     938.2
+    ],
+    "backup_heat_MWh": [
+     10.1,
+     12.6,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "building_heat_demand_MWh": [
+     938.2,
+     847.4,
+     938.2,
+     907.9,
+     938.2,
+     907.9,
+     938.2,
+     938.2,
+     907.9,
+     938.2,
+     907.9,
+     938.2
+    ],
+    "electricity_heat_pumps_pumps_MWh": [
+     295.9,
+     266.2,
+     299.2,
+     289.5,
+     299.2,
+     289.5,
+     299.2,
+     299.2,
+     289.5,
+     299.2,
+     289.5,
+     299.2
+    ],
+    "electricity_source_side_MWh": [
+     235.4,
+     211.7,
+     238.0,
+     230.3,
+     238.0,
+     230.3,
+     238.0,
+     238.0,
+     230.3,
+     238.0,
+     230.3,
+     238.0
+    ]
+   },
+   "assumptions": {
+    "A17_source_electricity_MWh_per_MWh_extracted": 0.367,
+    "capture_temperature_C": 30.0,
+    "electricity_price_usd_per_MWh": 222.0,
+    "gas_price_usd_per_MWh_fuel": 38.9,
+    "oil_price_usd_per_MWh_fuel": 104.4,
+    "steam_price_usd_per_MWh": 107.6,
+    "pipe_cost_usd_per_m": 29318.0,
+    "discount_rate": 0.05,
+    "storage_hours": 0
+   }
+  },
+  {
+   "key": "existing_fulton_pilot_removed",
+   "label": "Existing Fulton with pilot-served apartments removed",
+   "status": "labelled scenario",
+   "description": "Same as above but the 291 apartments already on the Con Ed pilot loop are excluded from the demand.",
+   "horizon": "today",
+   "members": [
+    "7536925",
+    "2831044"
+   ],
+   "notes": [
+    "Scenario only: applies the Con Ed pilot overlap (S13). Not the reference."
+   ],
+   "primary": {
+    "waste_heat_recovered_MWh_per_year": 6010.0,
+    "useful_heat_delivered_MWh_per_year": 8696.0,
+    "net_co2_avoided_t_per_year": 293.0,
+    "co2_baseline_t_per_year": 1735.0,
+    "co2_project_t_per_year": 1442.0,
+    "net_annual_societal_value_usd_per_year": -3731277.0,
+    "community_beneficiaries": {
+     "households_served": 653.0,
+     "low_income_households": 653.0,
+     "community_facilities": 0,
+     "community_facility_names": []
+    }
+   },
+   "secondary": {
+    "cop_seasonal": 3.24,
+    "lcoh_usd_per_MWh": 569.0,
+    "capex_total_usd": 51656479.0,
+    "capex_network_usd": 13498857.0,
+    "capex_building_side_usd": 38157621.0,
+    "capex_annualised_usd_per_year": 3665154.0,
+    "opex_usd_per_year": 1283569.0,
+    "opex_breakdown_usd_per_year": {
+     "om": 175880.0,
+     "electricity_heat_pumps_pumps": 615549.0,
+     "electricity_source_side": 489637.0,
+     "backup_energy": 2502.0
+    },
+    "baseline_heat_cost_usd_per_year": 1217446.0,
+    "funding_gap_usd_per_year": {
+     "operator_gap_at_tariff": 3782224.0,
+     "minimum_public_support": 3731277.0,
+     "note": "minimum_public_support = max(0, -net societal value); operator_gap_at_tariff depends on the heat-price rules (stakeholder view)"
+    },
+    "fuel_displaced_MWh_per_year": {
+     "total": 11293.0,
+     "steam_MWh": 11293.0,
+     "gas_MWh": 0.0,
+     "oil_MWh": 0.0
+    },
+    "coverage": {
+     "recovered_heat_share_of_connected_demand_pct": 30.2,
+     "network_share_of_served_demand_pct": 99.8
+    },
+    "backup_reliability": {
+     "backup_share_of_served_demand_pct": 0.2,
+     "unserved_heat_MWh": 0.0,
+     "technical_constraints": {
+      "H1": "pass",
+      "H2": "pass",
+      "H3": "pass",
+      "H4": "pass",
+      "H5": "pass",
+      "H6": "pending_model_B",
+      "H7": "pass"
+     },
+     "technical_feasible": true,
+     "note": "buildings keep their own boilers/steam (existing) or electric boilers (rebuilt), so heat is never unserved; reliability = how little of the served heat depends on backup"
+    },
+    "heat_recovery_interface_load_factor_pct": 99.8,
+    "energy_reuse_factor_pct": 9.12,
+    "feasibility": "conditionally_feasible",
+    "failed_checks": "F1 society savings;F2 operator self-financing",
+    "hard_constraints": {
+     "HC0_external_offtaker": true,
+     "HC1_5_technical": true,
+     "HC6_co2_not_negative": true,
+     "HC7_nycha_no_worse_off": true
+    },
+    "net_value_to_data_center_usd": 43521.0,
+    "net_value_to_heat_users_usd": 7426.0,
+    "net_value_to_operator_usd": -3782224.0,
+    "cost_per_tCO2_avoided_usd": 12746.0
+   },
+   "buildings": [
+    {
+     "id": "7536925",
+     "name": "111 Eighth Avenue",
+     "role": "source and offtaker",
+     "lat": 40.740704,
+     "lon": -74.001844,
+     "use_type": "Office",
+     "households": 0,
+     "low_income_households": 0.0,
+     "is_nycha": false,
+     "community_facility": false,
+     "rebuilt": false,
+     "heating_system": "steam_radiators",
+     "main_fuel_today": "steam",
+     "backup": "steam",
+     "heat_from_network_MWh": 3471.0,
+     "backup_heat_MWh": 7.0,
+     "share_of_served_heat_from_network": 0.392,
+     "heat_pump_MW": 0.4,
+     "annual_bill_change_usd": -39.0,
+     "distance_to_source_m": 0.0
+    },
+    {
+     "id": "2831044",
+     "name": "FULTON",
+     "role": "offtaker",
+     "lat": 40.742321,
+     "lon": -74.004478,
+     "use_type": "Multifamily Housing",
+     "households": 653.0,
+     "low_income_households": 653.0,
+     "is_nycha": true,
+     "community_facility": false,
+     "rebuilt": false,
+     "heating_system": "steam_radiators",
+     "main_fuel_today": "steam",
+     "backup": "steam",
+     "heat_from_network_MWh": 5224.0,
+     "backup_heat_MWh": 11.0,
+     "share_of_served_heat_from_network": 0.262,
+     "heat_pump_MW": 0.6,
+     "annual_bill_change_usd": 7465.0,
+     "distance_to_source_m": 234.0
+    }
+   ],
+   "pipeline": {
+    "route_length_m": 187.0,
+    "capex_usd": 7895822.0,
+    "heat_exchanger_MW": 0.69,
+    "polylines": [
+     {
+      "from_id": "source",
+      "to_id": "2831044",
+      "latlon": [
+       [
+        40.74136,
+        -74.003208
+       ],
+       [
+        40.741175,
+        -74.003645
+       ],
+       [
+        40.742321,
+        -74.004478
+       ]
+      ],
+      "length_m": 187.0
+     }
+    ],
+    "method": "minimum spanning tree, L1 distance on the Manhattan grid rotated 29 deg; drawn as L-shaped legs. Schematic: not street-graph routing"
+   },
+   "monthly": {
+    "months": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "heat_recovered_MWh": [
+     506.0,
+     455.1,
+     511.5,
+     495.0,
+     511.5,
+     495.0,
+     511.5,
+     511.5,
+     495.0,
+     511.5,
+     495.0,
+     511.5
+    ],
+    "heat_delivered_MWh": [
+     732.1,
+     658.5,
+     740.0,
+     716.2,
+     740.0,
+     716.2,
+     740.0,
+     740.0,
+     716.2,
+     740.0,
+     716.2,
+     740.0
+    ],
+    "backup_heat_MWh": [
+     8.0,
+     9.9,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "building_heat_demand_MWh": [
+     740.0,
+     668.4,
+     740.0,
+     716.2,
+     740.0,
+     716.2,
+     740.0,
+     740.0,
+     716.2,
+     740.0,
+     716.2,
+     740.0
+    ],
+    "electricity_heat_pumps_pumps_MWh": [
+     233.4,
+     210.0,
+     236.0,
+     228.4,
+     236.0,
+     228.4,
+     236.0,
+     236.0,
+     228.4,
+     236.0,
+     228.4,
+     236.0
+    ],
+    "electricity_source_side_MWh": [
+     185.7,
+     167.0,
+     187.7,
+     181.7,
+     187.7,
+     181.7,
+     187.7,
+     187.7,
+     181.7,
+     187.7,
+     181.7,
+     187.7
+    ]
+   },
+   "assumptions": {
+    "A17_source_electricity_MWh_per_MWh_extracted": 0.367,
+    "capture_temperature_C": 30.0,
+    "electricity_price_usd_per_MWh": 222.0,
+    "gas_price_usd_per_MWh_fuel": 38.9,
+    "oil_price_usd_per_MWh_fuel": 104.4,
+    "steam_price_usd_per_MWh": 107.6,
+    "pipe_cost_usd_per_m": 29318.0,
+    "discount_rate": 0.05,
+    "storage_hours": 0,
+    "pilot_overlap_removed": true
+   }
+  }
+ ]
+}

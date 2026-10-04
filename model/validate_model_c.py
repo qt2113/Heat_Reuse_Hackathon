@@ -53,7 +53,7 @@ def validate(ctx: dict | None = None) -> pd.DataFrame:
     bad = []
     for h, r in recs.items():
         for p, ch in r.items():
-            if p.startswith("explanation") or not ch.get("config_id"):
+            if p.startswith("explanation") or p == "recommendation" or not ch.get("config_id"):
                 continue
             row = c[c.config_id == ch["config_id"]].iloc[0]
             anyfull = ((c.horizon == h) & (c.feasibility == "fully_feasible") & (c.n_buildings > 0)).any()
@@ -107,8 +107,7 @@ def validate(ctx: dict | None = None) -> pd.DataFrame:
     A_low = dict(A, A01=0.3)
     today = [m for m in c[c.horizon == "today"].members.iloc[-1].split("|")]
     spec = MA.RunSpec("stress", "stress", cfg["reference_design"]["hp_frac"], cfg["reference_design"]["tank_hours"])
-    fuel = ctx["offt"].set_index("property_id").main_fuel
-    dv = {m: ctx["dv"][fuel.get(m, "gas_or_oil")] for m in today}
+    dv = MC.member_dispatch_values(ctx, today, [])
     vals = {}
     for pol in ("class_priority", "merit"):
         r = MA.simulate(spec, cfg, bundle, A_low, scen_override={"members": today}, policy=pol, dispatch_value=dv)
@@ -128,6 +127,22 @@ def validate(ctx: dict | None = None) -> pd.DataFrame:
     add("C12", "Pareto configurations are non-dominated", dom == 0, dom, "0")
     add("C13", "'No network' is never recommended", all(not str(ch.get("config_id", "")).endswith("|none") for r in recs.values()
                                                        for k, ch in r.items() if not k.startswith("explanation")), "never", "never")
+
+    # C15 decision rule: recommendation passes every hard constraint and has the least support per tCO2 among the passing configurations
+    bad = []
+    for h, r in recs.items():
+        d = c[(c.horizon == h)]
+        ok = d[d.hard_pass.astype(bool)]
+        rec = r["recommendation"]
+        if rec["config_id"] is None:
+            bad.append(f"{h}: none") if len(ok) else None
+            continue
+        row = d[d.config_id == rec["config_id"]].iloc[0]
+        if not bool(row.hard_pass) or (row.support_per_tCO2 > ok.support_per_tCO2.min() + 1e-9 and not pd.isna(row.support_per_tCO2)):
+            bad.append(h)
+        if row.n_external < 1 or row.N_co2 < 0 or not bool(row.tech_ok):
+            bad.append(f"{h}: constraint")
+    add("C15", "Automatic recommendation passes the hard constraints (>=1 external, technical, CO2 >= 0, NYCHA) and has least support per tCO2", not bad, len(bad), "0", "; ".join(bad))
 
     # C14 screening is configurable, and the configured reference values reproduce the validated shortlist
     from .run_model_c import screen

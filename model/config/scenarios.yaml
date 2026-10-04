@@ -29,7 +29,16 @@ physics:
 design_grid:
   hp_frac: [0.5, 0.75, 1.0]     # space-heat heat-pump capacity as a share of the class design peak
   tank_hours: [0, 2, 6]         # A13 storage, hours of each class's design peak
-reference_design: {hp_frac: 0.75, tank_hours: 2}
+reference_design: {hp_frac: 0.75, tank_hours: 0}   # storage is not costed in Model B, so the reference design has none (audit: no_storage)
+
+# Final-integration corrections (experiments/full_audit/FINAL_AUDIT_REPORT.md). Each is a switch so the audit can be reproduced.
+corrections:
+  outlier_years: true      # LL84 property-years that are zero or isolated anomalies (> 50 % off the other, consistent years) are ignored
+  pilot_overlap: false     # true = remove the 291 Fulton apartments already served by the Con Ed pilot (SCENARIO only: operational overlap not established)
+  oil_priced_as_oil: true  # oil share of gas_or_oil buildings uses EIA NY heating-oil price and the LL97 oil factor
+  nycha_dhw_only_cost: true   # existing NYCHA keep steam radiators: hot-water-only retrofit cost (S13 p.90: whole-building cost less ~$7M HVAC)
+  backup_boiler_cost: true    # electric backup boilers of rebuilt towers are costed (DEA)
+
 
 # Model C candidate screening. These values define the validated reference case (outputs/model_c/);
 # model/run_screening_sensitivity.py varies them without overwriting it.

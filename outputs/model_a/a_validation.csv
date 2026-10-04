@@ -3,10 +3,10 @@ V1a,Pilot DHW heat-pump COP,pass,2.993,3.011 (pilot) +/-15%,"error -0.6%; loop 2
 V1b,Pilot space-heat heat-pump COP,pass,4.058,3.790 (pilot) +/-15%,"error +7.1%; loop 24.2 C, DHW 60.0 C"
 V1c,Pilot heat-pump electricity (MWh/yr),pass,864.964,866.545 (pilot) +/-15%,"error -0.2%; loop 24.2 C, DHW 60.0 C"
 V1d,DEA 10 MW datasheet COP at its own temperatures (info),info,2.41,"4.7 (DEA, two-stage, glide-optimised)",Single-stage Carnot model is conservative for large two-stage DH heat pumps
-V2,Energy balances close in every run,pass,2.842170943040401e-13,< 1e-6,
-V3,Demand split adds up (DHW + space heat served + not served = useful demand),pass,1.4551915228366852e-11,< 1e-6,
-V3b,Served demand = network + backup + unserved,pass,7.275957614183426e-12,< 1e-6,
-V3c,Building allocation sums to system totals,pass,1.4551915228366852e-11,< 1e-6,
+V2,Energy balances close in every run,pass,2.273736754432321e-13,< 1e-6,
+V3,Demand split adds up (DHW + space heat served + not served = useful demand),pass,7.275957614183426e-12,< 1e-6,
+V3b,Served demand = network + backup + unserved,pass,1.4551915228366852e-11,< 1e-6,
+V3c,Building allocation sums to system totals,pass,2.1827872842550278e-11,< 1e-6,
 V4,S0 (today) has zero network heat and electricity,pass,0.0,0,
 V5,"Technical constraints H1-H5, H7 in all base runs",pass,0,0 failures,
 V5b,H6 (affordability) deferred to Model B,pass,pending_model_B,pending_model_B,

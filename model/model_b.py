@@ -48,6 +48,12 @@ def load_inputs() -> dict:
     pluto = pd.read_csv(D / "processed" / "pluto_lots_1km.csv", dtype={"bbl": str, "tract_geoid": str}).set_index("bbl").tract_geoid
     offt = pd.read_csv(F.ROOT / "outputs" / "features" / "offtakers_features.csv", dtype={"property_id": str}).set_index("property_id")
 
+    dea_all = pd.read_csv(D / "processed" / "equipment_dea_heat.csv")
+    boiler = dea_all[(dea_all.ws == "41 Electric boiler, large") & (dea_all.year == 2025)].set_index("parameter").ctrl
+    oil = pd.read_csv(D / "reference" / "eia_ny_heating_oil_residential_weekly.csv", parse_dates=["date"])
+    oil = oil[oil.date >= oil.date.max() - pd.Timedelta(days=365)]
+    oil_price = float(oil.usd_per_gal.mean()) / 0.1387 * 3.412142                    # $/MWh fuel (EIA NY residential No. 2, 12-month mean)
+    corr = F.load_config().get("corrections", {})
     hp_w = dea.loc["40 Comp. hp, waste heat 3 MW"]
     hp_a = dea.loc["40 Comp. hp, airsource 3 MW"]
     src_cap_MW = float(pilot["source_low_grade_capacity"]) * 1000 / 3.412142 / 1e6   # 5,000 MBH -> MW
@@ -63,7 +69,13 @@ def load_inputs() -> dict:
         hx_capex=float(pilot["thermal_resource_construction"]) * 1e6 / src_cap_MW,  # $/MW of interface (pilot)
         src_cap_MW=src_cap_MW,
         ec_capex=float(pilot["energy_center_construction"]) * 1e6,             # $ per networked scheme (pilot)
-        apt_capex=float(bench["customer_building_cost_per_apartment"]),        # $/apt existing NYCHA retrofit (pilot)
+        apt_capex=float(bench["customer_building_cost_per_apartment"]),        # $/apt existing NYCHA retrofit (pilot, whole building)
+        # existing NYCHA keep steam radiators (H7): hot-water-only scope = whole-building cost less ~$7 M of HVAC work (S13 p.90, 291 apts)
+        apt_capex_dhw=float(bench["customer_building_cost_per_apartment"]) - 7.0e6 / 291 if corr.get("nycha_dhw_only_cost") else float(bench["customer_building_cost_per_apartment"]),
+        boiler_capex=float(boiler["capex_MEUR_per_MWth"]) * 1e6 * k_usd if corr.get("backup_boiler_cost") else 0.0,   # $/MW electric backup boiler (DEA)
+        boiler_fom=float(boiler["fixed_om_EUR_per_MWth_yr"]) * k_usd if corr.get("backup_boiler_cost") else 0.0,
+        oil_price=oil_price if corr.get("oil_priced_as_oil") else float(prices["gas_commercial_USD_MWh_fuel_12mo_mean"]),
+        ef_oil=float(ll97["fuel_oil_2"]) if corr.get("oil_priced_as_oil") else float(ll97["natural_gas"]),
         contingency=0.15,                                                      # pilot (S13 p.89)
         steam_price=float(bench["implied_marginal_steam_cost_per_MWh_steam"]),  # $/MWh steam (pilot-implied)
         gas_price=float(prices["gas_commercial_USD_MWh_fuel_12mo_mean"]),      # $/MWh fuel (EIA)
@@ -105,8 +117,13 @@ def evaluate(run: pd.Series, sysr: pd.Series, bld: pd.DataFrame, P: dict, I: dic
     b = bld.copy()
     if len(b):
         b["served_useful_MWh"] = b.D_dhw_MWh + b.D_sh_served_MWh
-        b["price_fuel"] = np.where(b.main_fuel == "steam", I["steam_price"], I["gas_price"])
         ex = ~b.rebuilt.astype(bool)
+        # oil share of a 'gas_or_oil' building (LL84 oil / (gas + oil)) is priced at heating oil with the LL97 oil factor
+        oi = I["offt"]
+        s_oil = b.property_id.map(lambda p: float(oi.loc[p, "oil_MWh"]) / max(float(oi.loc[p, "gas_MWh"] + oi.loc[p, "oil_MWh"]), 1e-9) if p in oi.index else 0.0)
+        s_oil = s_oil.where((b.main_fuel == "gas_or_oil") & ex, 0.0)
+        b["price_fuel"] = np.where(b.main_fuel == "steam", I["steam_price"], I["gas_price"] + s_oil * (I["oil_price"] - I["gas_price"]))
+        b["ef_fuel"] = np.where(b.main_fuel == "steam", I["ef"]["steam"], I["ef"]["gas_or_oil"] + s_oil * (I["ef_oil"] - I["ef"]["gas_or_oil"]))
         # ---------- baseline (served scope)
         b["base_fuel_MWh"] = np.where(ex, b.served_useful_MWh / b.eta_base, 0.0)
         b["base_cost"] = np.where(ex, b.base_fuel_MWh * b.price_fuel, 0.0)
@@ -114,16 +131,18 @@ def evaluate(run: pd.Series, sysr: pd.Series, bld: pd.DataFrame, P: dict, I: dic
         ashp_el = b.served_useful_MWh / I["ashp_scop"]
         b["base_capex"] = np.where(ex, 0.0, ashp_cap * I["ashp_capex"] * markup)
         b["base_cost"] += np.where(ex, 0.0, b.base_capex * k + ashp_cap * I["ashp_fom"] + b.served_useful_MWh * I["ashp_vom"] + ashp_el * p_el)
-        b["base_co2"] = np.where(ex, b.base_fuel_MWh * b.main_fuel.map(I["ef"]).fillna(I["ef"]["gas_or_oil"]), ashp_el * I["ef"]["grid"])
+        b["base_co2"] = np.where(ex, b.base_fuel_MWh * b.ef_fuel, ashp_el * I["ef"]["grid"])
         # ---------- project, building side
-        b["bld_capex"] = np.where(ex & b.is_nycha.astype(bool), b.units * I["apt_capex"], b.HP_cap_MW * I["hp_capex"]) * markup
+        # rebuilt towers also get electric backup boilers sized to their served peak (DEA), capital in bld_capex and fixed O&M in hp_om
+        boiler = np.where(b.backup_type == "electric_boiler", b.peak_served_MW, 0.0)
+        b["bld_capex"] = (np.where(ex & b.is_nycha.astype(bool), b.units * I["apt_capex_dhw"], b.HP_cap_MW * I["hp_capex"] + boiler * I["boiler_capex"])) * markup
         b["bld_capex_funder"] = np.where(ex, "operator", "owner")           # pilot: utility funds retrofits; developer builds new towers
-        b["hp_om"] = b.HP_cap_MW * I["hp_fom"] + b.Q_network_MWh * I["hp_vom"]
+        b["hp_om"] = b.HP_cap_MW * I["hp_fom"] + b.Q_network_MWh * I["hp_vom"] + boiler * I["boiler_fom"]
         b["elec_cost"] = (b.E_HP_MWh + b.E_pump_MWh) * p_el
         b["backup_cost"] = np.where(b.backup_type == "electric_boiler", b.backup_fuel_MWh * p_el, b.backup_fuel_MWh * b.price_fuel)
         b["proj_co2"] = (b.E_HP_MWh + b.E_pump_MWh + b.E_src_MWh) * I["ef"]["grid"] + np.where(
             b.backup_type == "electric_boiler", b.backup_fuel_MWh * I["ef"]["grid"],
-            b.backup_fuel_MWh * b.main_fuel.map(I["ef"]).fillna(I["ef"]["gas_or_oil"]))
+            b.backup_fuel_MWh * b.ef_fuel)
         b["gas_displaced_MWh"] = np.where(ex & (b.main_fuel == "gas_or_oil"), b.base_fuel_MWh - b.backup_fuel_MWh, 0.0)
         # ---------- transfers (stakeholder view only)
         b["tariff_paid"] = 0.0 if internal else b.Q_loop_MWh * tariff

@@ -62,7 +62,8 @@ def enumerate_horizon(name: str, cands: list, ctx: dict) -> tuple[pd.DataFrame, 
             raw[ind["config_id"]] = combo
     df = MC.normalise(pd.DataFrame(rows))
     df["pareto"] = MC.pareto(df)
-    df["overall_equal_weights"] = MC.overall(df, DEFAULT)
+    df["overall_equal_weights"] = MC.overall(df, DEFAULT)      # optional visualisation score only
+    df = MC.decision_table(df)
     return df, raw
 
 
@@ -239,9 +240,11 @@ def main() -> None:
         for pname, w in MC.PRESETS.items():
             ch = MC.choose(df, w)
             recs[hname][pname] = dict(weights=w, **ch)
-        dch = recs[hname]["equal (demonstration baseline)"]
+        rec = MC.recommend(df)                                   # AUTOMATIC recommendation: hard constraints + least support per benefit
+        recs[hname]["recommendation"] = rec                      # weighted presets stay alongside as optional sensitivity
+        dch = rec
         if dch["config_id"]:
-            recs[hname]["explanation_equal_weights"] = explain(df, dch["config_id"], DEFAULT, short, ctx)
+            recs[hname]["explanation"] = explain(df, dch["config_id"], DEFAULT, short, ctx)
             sel_members = tuple(sorted(df.loc[df.config_id == dch["config_id"], "members"].iloc[0].split("|")))
             alloc[hname] = allocation_json(sel_members, hname, ctx)
             (OUT / f"c_allocation_{hname}.json").write_text(json.dumps(alloc[hname]), encoding="utf-8")
@@ -258,6 +261,9 @@ def main() -> None:
             ch = MC.choose(dfp, w)
             nm = dfp.loc[dfp.config_id == ch["config_id"], "names"].iloc[0] if ch["config_id"] else ""
             comp.append(dict(horizon=hname, preset=pname, tariff_rule="pilot", **ch, names=nm))
+        rp = MC.recommend(dfp)
+        comp.append(dict(horizon=hname, preset="hard constraints + least support per tCO2", tariff_rule="pilot", config_id=rp["config_id"],
+                         status=rp["status"], names=rp.get("names", "")))
     pd.DataFrame(comp).to_csv(OUT / "c_recommendations_pilot_tariff.csv", index=False)
     allc = pd.concat(tables, ignore_index=True)
     allc.to_csv(OUT / "c_configurations.csv", index=False)
@@ -274,8 +280,9 @@ def main() -> None:
         model="C", seconds=round(time.time() - t0, 1), screening=screening, horizons=H, n_configurations={h: int((allc.horizon == h).sum()) for h in H},
         indicators=ind_def, dimensions=list(MC.DIMS),
         tariff_rule="Term 4 affordability cap: NYCHA pays at most its break-even loop-heat rate, no connection charge (comparison under the pilot tariff in c_recommendations_pilot_tariff.csv)",
-        overall_score="sum_d w_d x score_d; frontend may recompute from score_T/E/N/S columns of c_configurations.csv with user weights (sum 100%)",
-        default_weights="equal 25% each: a demonstration baseline, not prescribed by the organizers",
+        decision_rule="AUTOMATIC: hard constraints HC0-HC7 (c_configurations.csv columns hard_pass, HC0..HC7) then least public support per tCO2 avoided (support_per_tCO2); see c_recommendations.json -> recommendation",
+        overall_score="OPTIONAL visualisation/sensitivity only: sum_d w_d x score_d from score_T/E/N/S columns with user weights (sum 100%); min-max scores are size-biased and do not drive the recommendation",
+        default_weights="equal 25% each: a demonstration baseline for the optional score only",
         feasibility_classes=["fully_feasible", "conditionally_feasible", "infeasible"],
         files=dict(candidates_geojson="c_candidates.geojson", candidates_table="c_candidates.csv", configurations="c_configurations.csv",
                    recommendations="c_recommendations.json", weight_sensitivity="c_weight_sensitivity.csv", pareto="c_pareto.csv",

@@ -91,7 +91,7 @@ def validate() -> pd.DataFrame:
     # B9 pilot cross-checks (information)
     s3 = b[(b.scenario == "S3") & (b.b_set == "base") & b.is_nycha.astype(bool)]
     add("B9", "S3 NYCHA building-side cost per apartment equals the pilot (incl. markups)", None,
-        round(float((s3.bld_capex / s3.units).median()), 0), "63,814 $/apt x (1 + 15% contingency + A21)")
+        round(float((s3.bld_capex / s3.units).median()), 0), "39,759 $/apt (hot-water-only scope, S13 p.90) x (1 + 15% contingency + A21)")
 
     # B10 constraints recorded; no score produced
     add("B10", "H6 and F1-F4 evaluated for every run", bool(c.groupby("run_id").constraint_id.nunique().eq(5).all()), int(c.run_id.nunique()), "5 checks per run")

@@ -1,7 +1,7 @@
 {
   "model": "B",
   "evaluations": 225,
-  "seconds": 1.8,
+  "seconds": 2.4,
   "fixed_inputs": {
     "k_usd": 1.4193242421920225,
     "hp_capex": 1348358.0300824214,
@@ -13,8 +13,14 @@
     "ashp_vom": 1.2206188482851392,
     "ashp_scop": 2.8,
     "hx_capex": 1747016.7040000001,
+    "src_cap_MW": 1.4653551933067264,
     "ec_capex": 2690000.0,
     "apt_capex": 63814.43298969072,
+    "apt_capex_dhw": 39759.45017182131,
+    "boiler_capex": 99352.69695344157,
+    "boiler_fom": 1614.9196245430326,
+    "oil_price": 104.40273978171695,
+    "ef_oil": 0.25321505782,
     "contingency": 0.15,
     "steam_price": 107.58484471347803,
     "gas_price": 38.85318705920206,

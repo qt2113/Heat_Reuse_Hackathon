@@ -1,7 +1,7 @@
 {
   "model": "A",
   "runs": 155,
-  "seconds": 12.8,
+  "seconds": 40.0,
   "E_el_111_MWh_3yr_mean": 141196.50683333335,
   "design_temperature_C": -10.5,
   "q_dhw_per_apartment_MWh": 8.01665109190484,

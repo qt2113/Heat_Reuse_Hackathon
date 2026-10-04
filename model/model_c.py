@@ -7,9 +7,11 @@ Planning level : which candidate buildings to connect. Every subset of a screene
 Operation level: for each configuration Model A allocates the finite data-center heat hour by hour
                  (policy="merit": building-level streams in order of net value per MWh of source heat).
 Evaluation     : Model B economics/carbon/stakeholder value -> feasibility screening -> 13 indicators in
-                 four dimensions -> min-max normalisation over the enumerated set -> dimension scores ->
-                 user-weighted overall score. Weights only re-rank configurations; they never change the
-                 physical or economic results of a configuration.
+                 four dimensions.
+Decision       : AUTOMATIC recommendation = hard feasibility constraints (HC0-HC7) + least public support per unit
+                 of benefit (recommend()). The min-max normalised, user-weighted four-dimension score is kept only
+                 for optional sensitivity / visualisation (it is size-biased); weights never change the physical or
+                 economic results of a configuration.
 """
 from __future__ import annotations
 
@@ -137,6 +139,22 @@ def dispatch_values(I: dict, A: dict) -> dict:
     return {"steam": I["steam_price"] / A["A04"], "gas_or_oil": I["gas_price"] / 0.85, "new_electric": A["A07"] / I["ashp_scop"]}
 
 
+def member_dispatch_values(ctx: dict, existing: list, rebuilt: list) -> dict:
+    """Per-building ordering value: displaced fuel price per useful MWh. Gas/oil buildings use their own oil share (heating-oil price)."""
+    I, A, offt = ctx["I"], ctx["A"], ctx["offt"].set_index("property_id")
+    out = {}
+    for m in existing:
+        if m in offt.index and offt.loc[m, "main_fuel"] == "steam":
+            out[m] = ctx["dv"]["steam"]
+        elif m in offt.index:
+            g, o = float(offt.loc[m, "gas_MWh"]), float(offt.loc[m, "oil_MWh"])
+            out[m] = (I["gas_price"] + o / max(g + o, 1e-9) * (I["oil_price"] - I["gas_price"])) / 0.85
+        else:
+            out[m] = ctx["dv"]["gas_or_oil"]
+    out.update({m: ctx["dv"]["new_electric"] for m in rebuilt})
+    return out
+
+
 def evaluate_config(members: tuple, horizon: str, ctx: dict, return_streams: bool = False) -> dict:
     cfg, bundle, A, I, P = ctx["cfg"], ctx["bundle"], ctx["A"], ctx["I"], ctx["P"]
     ref = cfg["reference_design"]
@@ -148,9 +166,7 @@ def evaluate_config(members: tuple, horizon: str, ctx: dict, return_streams: boo
         scen["rebuild"] = dict(rb, sites=[s for s in rb["sites"] if f"rebuild:{s['anchor_property_id']}" in rebuilt])
     cid = config_id(horizon, members)
     spec = MA.RunSpec(cid, cid, ref["hp_frac"], ref["tank_hours"])
-    fuel = ctx["offt"].set_index("property_id").main_fuel
-    dv = {m: ctx["dv"][fuel.get(m, "gas_or_oil")] for m in existing}
-    dv.update({m: ctx["dv"]["new_electric"] for m in rebuilt})
+    dv = member_dispatch_values(ctx, existing, rebuilt)
     res = MA.simulate(spec, cfg, bundle, A, scen_override=scen, policy="merit", dispatch_value=dv, return_streams=return_streams)
     s = pd.Series(res["summary"])
     run = pd.Series(dict(run_id=cid, scenario=cid, hp_frac=ref["hp_frac"], tank_hours=ref["tank_hours"], assumption_set="base",
@@ -180,6 +196,7 @@ def indicators(r: dict, ctx: dict) -> dict:
     fac = int(sum(uses.get(m, "") in COMMUNITY_USES for m in r["members"]))
     out = dict(
         config_id=r["id"], n_buildings=len(r["members"]), members="|".join(r["members"]),
+        n_external=sum(m != ctx["cfg"]["site"]["property_id"] for m in r["members"]),
         names="; ".join(b.name) if len(b) else "",
         T_cov=100 * q / s.D_useful_connected_MWh if s.D_useful_connected_MWh > 0 else 0.0,
         T_lf=100 * s.Q_DC_used_MWh / (s.HX_cap_MW * 8760) if s.HX_cap_MW > 0 else 0.0,
@@ -242,7 +259,58 @@ def conditions(o: dict, e: dict, ctx: dict) -> dict:
     )
 
 
-# ------------------------------------------------------------------ scoring (weights never touch physical results)
+# ------------------------------------------------------------------ decision rule (hard constraints + least public support per benefit)
+HARD_CONSTRAINTS = {
+    "HC0": "at least one external offtaker (not only in-building reuse)",
+    "HC1-5": "technical feasibility: cooling independence, backup, temperature compatibility (Model A H1-H5, H7)",
+    "HC6": "net CO2 avoided >= 0 (including source-side electricity)",
+    "HC7": "NYCHA households no worse off (H6) when NYCHA is connected",
+}
+
+
+def decision_table(df: pd.DataFrame) -> pd.DataFrame:
+    """Adds the hard-constraint flags and the support metrics. Support = max(0, -net annual societal value): what has to be paid
+    by someone other than the heat users and the data center for the system to break even."""
+    d = df.copy()
+    d["HC0"] = d.n_external >= 1
+    d["HC1_5"] = d.tech_ok.astype(bool)
+    d["HC6"] = d.N_co2 >= 0
+    d["HC7"] = d.H6_affordability.map(lambda v: str(v) != "False")
+    d["hard_pass"] = d.HC0 & d.HC1_5 & d.HC6 & d.HC7
+    d["support_usd"] = np.maximum(0.0, -d.E_val)
+    d["support_per_tCO2"] = np.where(d.N_co2 > 0, d.support_usd / d.N_co2.where(d.N_co2 > 0), np.nan)
+    d["support_per_household"] = np.where(d.S_li > 0, d.support_usd / d.S_li.where(d.S_li > 0), np.nan)
+    return d
+
+
+def recommend(df: pd.DataFrame) -> dict:
+    """Automatic recommendation of one horizon: among configurations passing every hard constraint, the least public support per tCO2
+    avoided (ties: highest net value). Also reports the least absolute support and the best community option. No weights."""
+    d = decision_table(df) if "hard_pass" not in df else df
+    ok = d[d.hard_pass]
+    if ok.empty:
+        return dict(status="none", config_id=None, message="No configuration passes the hard constraints.", n_pass=0)
+    key = ok.assign(_k=ok.support_per_tCO2.fillna(np.inf)).sort_values(["_k", "E_val"], ascending=[True, False])
+
+    def pick(row, why):
+        return dict(config_id=row.config_id, members=row.members, names=row.names, rule=why, net_value_usd=float(row.E_val),
+                    support_usd=float(row.support_usd), co2_avoided_t=float(row.N_co2),
+                    support_per_tCO2=None if pd.isna(row.support_per_tCO2) else float(row.support_per_tCO2),
+                    low_income_households=float(row.S_li), community_facilities=int(row.S_fac), feasibility=row.feasibility)
+    best = key.iloc[0]
+    least_abs = ok.sort_values(["support_usd", "N_co2"], ascending=[True, False]).iloc[0]
+    comm = ok[(ok.S_li > 0) | (ok.S_fac > 0)]
+    out = dict(status="no_support_needed" if best.support_usd <= 0 else "support_needed", n_pass=int(len(ok)),
+               message="" if best.support_usd <= 0 else "No configuration pays for itself: the recommendation is the one needing least public support per tCO2 avoided.",
+               hard_constraints=HARD_CONSTRAINTS, **pick(best, "least public support per tCO2 avoided"),
+               least_absolute_support=pick(least_abs, "least absolute public support"))
+    if len(comm):
+        c = comm.sort_values(["support_usd", "S_li"], ascending=[True, False]).iloc[0]
+        out["best_community_option"] = pick(c, "least public support among options serving households or community facilities")
+    return out
+
+
+# ------------------------------------------------------------------ scoring: optional sensitivity / visualisation only (weights never touch physical results)
 def check_weights(w: dict) -> dict:
     if set(w) != set(DIMS):
         raise ValueError(f"weights must cover exactly {DIMS}")

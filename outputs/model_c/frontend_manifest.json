@@ -1,16 +1,22 @@
 {
   "model": "C",
-  "seconds": 132.7,
+  "seconds": 216.2,
+  "screening": {
+    "search_radius_m": 1000,
+    "max_candidates": 10,
+    "min_annual_heat_demand_gwh": 2.0,
+    "max_candidates_per_building_type": 2
+  },
   "horizons": {
     "today": [
       "2831044",
       "4473909",
       "4040951",
+      "2830989",
       "4769672",
       "7536925",
-      "2830989",
-      "19906892",
       "1633052",
+      "19906892",
       "8899918",
       "1634606"
     ],
@@ -18,8 +24,8 @@
       "4040951",
       "4769672",
       "7536925",
-      "19906892",
       "1633052",
+      "19906892",
       "8899918",
       "1634606",
       "rebuild:2831044",
@@ -182,8 +188,9 @@
     "Social + Regenerative"
   ],
   "tariff_rule": "Term 4 affordability cap: NYCHA pays at most its break-even loop-heat rate, no connection charge (comparison under the pilot tariff in c_recommendations_pilot_tariff.csv)",
-  "overall_score": "sum_d w_d x score_d; frontend may recompute from score_T/E/N/S columns of c_configurations.csv with user weights (sum 100%)",
-  "default_weights": "equal 25% each: a demonstration baseline, not prescribed by the organizers",
+  "decision_rule": "AUTOMATIC: hard constraints HC0-HC7 (c_configurations.csv columns hard_pass, HC0..HC7) then least public support per tCO2 avoided (support_per_tCO2); see c_recommendations.json -> recommendation",
+  "overall_score": "OPTIONAL visualisation/sensitivity only: sum_d w_d x score_d from score_T/E/N/S columns with user weights (sum 100%); min-max scores are size-biased and do not drive the recommendation",
+  "default_weights": "equal 25% each: a demonstration baseline for the optional score only",
   "feasibility_classes": [
     "fully_feasible",
     "conditionally_feasible",

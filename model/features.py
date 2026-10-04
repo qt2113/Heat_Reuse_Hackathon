@@ -59,6 +59,37 @@ def source_annual_electricity_MWh() -> float:
     return float(s.electricity_MWh.mean())  # 3-year mean of metered LL84 electricity
 
 
+# ------------------------------------------------------------------ data corrections (switches in scenarios.yaml: corrections)
+def outlier_years(y: pd.DataFrame) -> pd.DataFrame:
+    """Property-years that are (a) zero while other years are not (missing filing), or (b) > 50 % away from the median of the
+    other years while those other years agree within 25 % (an isolated anomaly, not a trend). Needs >= 3 years."""
+    out = []
+    for pid, g in y.groupby("property_id"):
+        if len(g) < 3:
+            continue
+        for i, r in g.iterrows():
+            others = g.drop(i).heat_fuel_MWh
+            med = float(others.median())
+            if med <= 0:
+                continue
+            agree = (others.max() - others.min()) / med <= 0.25
+            zero = r.heat_fuel_MWh <= 0
+            if zero or (agree and abs(r.heat_fuel_MWh - med) / med > 0.5):
+                out.append(dict(property_id=pid, report_year=r.report_year, heat_fuel_MWh=r.heat_fuel_MWh, median_other_years=med,
+                                kind="zero year" if zero else "isolated anomaly"))
+    return pd.DataFrame(out, columns=["property_id", "report_year", "heat_fuel_MWh", "median_other_years", "kind"])
+
+
+def remove_pilot_overlap(t: pd.DataFrame, A: dict) -> pd.DataFrame:
+    """SCENARIO: the Con Ed Chelsea pilot serves 291 Fulton apartments (2,333 MWh hot water + 348 MWh space heat, S13)."""
+    pr = pd.read_csv(DATA / "reference" / "chelsea_uten_pilot_stage2.csv").set_index("metric").value
+    useful = sum(float(pr[k]) for k in ("dhw_load_401_W_16th", "dhw_load_410_W_17th", "dhw_load_420_W_17th", "space_heating_load_401_W_16th")) / 3.412142
+    i = t.index[t.property_id == "2831044"]
+    t.loc[i, "heat_fuel_MWh"] = t.loc[i, "heat_fuel_MWh"] - useful / A["A04"]
+    t.loc[i, "units_res"] = t.loc[i, "units_res"] - float(pr["apartments_served"])
+    return t
+
+
 # ------------------------------------------------------------------ offtakers (property level, de-duplicated)
 def build_offtakers() -> tuple[pd.DataFrame, pd.DataFrame]:
     """Rebuild the offtaker table by LL84 property_id (names change between years) and drop
@@ -68,6 +99,10 @@ def build_offtakers() -> tuple[pd.DataFrame, pd.DataFrame]:
     for c in ("steam_MWh", "gas_MWh", "oil_MWh", "heat_fuel_MWh", "electricity_MWh"):
         y[c] = pd.to_numeric(y[c], errors="coerce")
     y = y.sort_values("report_year")
+    corr = load_config().get("corrections", {})
+    yc = y.copy()                                    # blanks count as 0 only inside the outlier screen
+    yc[["steam_MWh", "gas_MWh", "oil_MWh", "heat_fuel_MWh"]] = yc[["steam_MWh", "gas_MWh", "oil_MWh", "heat_fuel_MWh"]].fillna(0.0)
+    bad = outlier_years(yc) if corr.get("outlier_years") else pd.DataFrame(columns=["property_id", "report_year"])
     g = y.groupby("property_id")
     t = pd.DataFrame({
         "property_name": g.property_name.last(),
@@ -85,6 +120,16 @@ def build_offtakers() -> tuple[pd.DataFrame, pd.DataFrame]:
         "any_estimated": g.estimated_data_flag.apply(lambda s: "Yes" in set(s)),
     }).reset_index()
     t[["steam_MWh", "gas_MWh", "oil_MWh"]] = t[["steam_MWh", "gas_MWh", "oil_MWh"]].fillna(0.0)
+    if len(bad):                                     # means over the remaining years (n_years keeps counting all filings)
+        keep = yc.merge(bad[["property_id", "report_year"]], how="left", indicator=True)
+        keep = keep[keep._merge == "left_only"].groupby("property_id")[["steam_MWh", "gas_MWh", "oil_MWh", "heat_fuel_MWh"]]
+        agg = keep.mean()
+        m = t.property_id.isin(set(bad.property_id))
+        for c in agg.columns:
+            t.loc[m, c] = t.loc[m, "property_id"].map(agg[c]).values
+        t["outlier_years_removed"] = t.property_id.map(bad.groupby("property_id").report_year.apply(lambda s: ",".join(sorted(s)))).fillna("")
+    else:
+        t["outlier_years_removed"] = ""
 
     # same BBL set filed twice with overlapping years -> keep the record with more years (then more heat)
     t["_yrs"] = t.years.str.split(",").apply(set)
@@ -107,6 +152,8 @@ def build_offtakers() -> tuple[pd.DataFrame, pd.DataFrame]:
     t["is_nycha"] = t.property_id.isin(["2831044", "4473909", "2830989"])  # Fulton, Elliott-Chelsea campus, Chelsea
     # existing steam buildings and NYCHA (steam radiators, pilot) cannot take low-temperature space heat (H7)
     t["sh_system"] = np.where((t.main_fuel == "steam") | t.is_nycha, "steam_radiators", "hydronic_assumed")
+    if corr.get("pilot_overlap"):
+        t = remove_pilot_overlap(t, assumption_values())
     return t.sort_values("heat_fuel_MWh", ascending=False).reset_index(drop=True), pd.DataFrame(dropped)
 
 
