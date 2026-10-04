@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Heat Reuse Exhibition: 111 8th Avenue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Same visual identity as the original visualizer (dark theme, Space Grotesk / IBM Plex), refined into a map -> radar -> flip-card story. */
+:root, :root[data-theme="dark"] {
+  --bg: #0e1217; --surface: #151b23; --surface2: #1a222c; --ink: #e7ebf0; --muted: #97a2b1; --line: #283140;
+  --heat: #f07b47; --heat-soft: #3a2318; --dc: #3987e5; --street: #2c3644; --good: #45c27f; --bad: #ef6b6b; --warn: #e2b44f; --pilot: #a493f2;
+  --c-t: #f07b47; --c-e: #e2b44f; --c-n: #45c27f; --c-s: #5bb8e6;
+  --font-display: "Space Grotesk", "IBM Plex Sans", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --radius: 14px; color-scheme: dark }
+* { box-sizing: border-box }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 var(--font-body) }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 22px 16px 56px; display: grid; gap: 30px }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; letter-spacing: -.01em }
+h1 { font-size: clamp(1.7rem, 3.4vw, 2.6rem); font-weight: 700 }
+h2 { font-size: 1.35rem; font-weight: 600 }
+h3 { font-size: 1rem; font-weight: 600 }
+p { margin: 0 }
+.muted { color: var(--muted) } .num { font-family: var(--font-data); font-variant-numeric: tabular-nums }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius) }
+button { font: inherit; color: inherit; cursor: pointer }
+button:focus-visible, summary:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--heat); outline-offset: 2px }
+.section-head { display: grid; gap: 4px; margin-bottom: 14px } .section-head p { color: var(--muted); max-width: 72ch }
+.step-n { font: 600 .72rem var(--font-data); letter-spacing: .12em; color: var(--heat); text-transform: uppercase }
+
+/* hero + scenario picker */
+.hero { padding: 18px 22px 6px; display: grid; gap: 4px; overflow: hidden }
+.hero p.lead { color: var(--muted); max-width: 70ch }
+.skyline { width: 100%; height: auto; display: block; color: var(--ink); max-height: 120px }
+.sk-label { font: 12px var(--font-body); fill: var(--ink); fill-opacity: .72 } .sk-strong { fill-opacity: .92; font-weight: 600 }
+.picker { padding: 14px 16px; display: grid; gap: 10px }
+.presets { display: flex; flex-wrap: wrap; gap: 8px }
+.preset { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 14px; font-size: .9rem }
+.preset:hover { border-color: var(--muted) }
+.preset[aria-pressed="true"] { border-color: var(--heat); background: var(--heat-soft); font-weight: 600 }
+.summary { border-left: 3px solid var(--heat); padding: 2px 0 2px 12px; color: var(--ink) }
+.badge { display: inline-block; font-size: .72rem; border-radius: 999px; padding: 1px 10px; border: 1px solid currentColor; white-space: nowrap }
+.badge.good { color: var(--good) } .badge.warn { color: var(--warn) } .badge.bad { color: var(--bad) } .badge.mute { color: var(--muted) }
+
+/* map */
+.mapbox { position: relative; overflow: hidden; padding: 0 }
+.mapbox svg { display: block; width: 100%; touch-action: none; cursor: grab } .mapbox svg:active { cursor: grabbing }
+.map-ctrl { position: absolute; top: 12px; left: 12px; display: grid; gap: 6px }
+.map-ctrl button { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); font-size: 1.1rem }
+.legend { position: absolute; left: 12px; bottom: 12px; background: color-mix(in srgb, var(--surface) 92%, transparent); border: 1px solid var(--line);
+  border-radius: 10px; padding: 7px 11px; font-size: .78rem; display: flex; gap: 14px; flex-wrap: wrap; max-width: calc(100% - 24px); align-items: center }
+.legend i { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 6px; vertical-align: -1px }
+.hint { position: absolute; right: 12px; bottom: 12px; font-size: .74rem; color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 3px 8px }
+.tip { position: absolute; pointer-events: none; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 7px 10px; font-size: .82rem; box-shadow: 0 6px 20px rgba(0,0,0,.4); z-index: 5; max-width: 260px }
+.pipe { fill: none; stroke-linecap: round; stroke-dasharray: 10 8; animation: flow 1.2s linear infinite }
+@keyframes flow { from { stroke-dashoffset: 18 } to { stroke-dashoffset: 0 } }
+.glow { fill: none; stroke-linecap: round; stroke-linejoin: round; filter: blur(3px) }
+.lbl { font: 600 11px var(--font-data); fill: var(--ink); paint-order: stroke; stroke: var(--bg); stroke-width: 4px; stroke-linejoin: round }
+.pop { position: absolute; top: 12px; right: 12px; width: min(330px, calc(100% - 24px)); max-height: calc(100% - 24px); overflow: auto; background: var(--surface);
+  border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; display: grid; gap: 10px; box-shadow: 0 12px 34px rgba(0,0,0,.5); z-index: 6 }
+.pop .x { position: absolute; top: 6px; right: 10px; border: 0; background: none; font-size: 1.3rem; color: var(--muted) }
+.pop .head { display: flex; gap: 10px; align-items: center; padding-right: 18px } .pop .head svg { flex: 0 0 44px }
+.pop .kpi { font: 600 1.7rem/1.1 var(--font-data) } .pop .kpi small { font: 400 .8rem var(--font-body); color: var(--muted); display: block; margin-top: 2px }
+.pop .why { font-size: .92rem }
+.pop .btn { border: 1px solid var(--line); background: var(--surface2); border-radius: 10px; padding: 6px 12px; justify-self: start; font-size: .86rem }
+.pop dl { margin: 0; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-size: .84rem } .pop dt { color: var(--muted) } .pop dd { margin: 0; text-align: right; font-family: var(--font-data) }
+@media (prefers-reduced-motion: reduce) { .pipe { animation: none } }
+
+/* radar */
+.radarbox { padding: 16px 18px; display: grid; grid-template-columns: minmax(300px, 1.1fr) 1fr; gap: 20px; align-items: center }
+@media (max-width: 800px) { .radarbox { grid-template-columns: 1fr } }
+.radar-tip { position: absolute; left: 50%; top: 6px; transform: translateX(-50%); background: var(--surface2); border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; font-size: .8rem; min-width: 230px; pointer-events: none }
+.rules { display: grid; gap: 10px }
+.chips { display: flex; flex-wrap: wrap; gap: 6px }
+.note { background: var(--surface2); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; font-size: .86rem; color: var(--muted) }
+.note b { color: var(--ink) }
+
+/* flip cards */
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px }
+@media (max-width: 760px) { .grid2 { grid-template-columns: 1fr } }
+.fc { perspective: 1400px; height: 470px; --ac: var(--c-t) }
+.fc-in { position: relative; width: 100%; height: 100%; transition: transform .75s cubic-bezier(.22,.8,.24,1); transform-style: preserve-3d }
+.fc.flipped .fc-in { transform: rotateY(180deg) }
+.face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 18px; border: 1px solid color-mix(in srgb, var(--ac) 38%, var(--line));
+  background: radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--ac) 20%, var(--surface)) 0%, var(--surface) 62%); overflow: hidden }
+.front { display: grid; grid-template-rows: auto auto auto auto 1fr auto; justify-items: center; text-align: center; padding: 18px 20px 14px; gap: 4px; cursor: pointer }
+.front:hover { border-color: var(--ac); box-shadow: 0 0 0 1px var(--ac), 0 10px 40px color-mix(in srgb, var(--ac) 22%, transparent) }
+.fc .dim { font: 600 .78rem var(--font-data); letter-spacing: .14em; text-transform: uppercase; color: var(--ac) }
+.fc .sub { color: var(--muted); font-size: .84rem; margin-top: -2px }
+.fc .art { width: 150px; height: 150px; margin: 4px 0 2px }
+.fc .headline { font: 700 clamp(2rem, 4.2vw, 2.9rem)/1.05 var(--font-display); letter-spacing: -.02em }
+.fc .hl-label { color: var(--muted); font-size: .92rem }
+.fc .take { font-size: .98rem; max-width: 34ch; align-self: start; margin-top: 8px }
+.fc .flip-cta { font-size: .78rem; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 2px 12px }
+.back { transform: rotateY(180deg); padding: 16px 18px; display: grid; gap: 10px; align-content: start; overflow: auto }
+.back .bar { display: flex; justify-content: space-between; align-items: center }
+.back .bar button { border: 1px solid var(--line); background: var(--surface2); border-radius: 999px; padding: 3px 12px; font-size: .8rem }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px }
+.stat { background: color-mix(in srgb, var(--ac) 8%, var(--surface2)); border-radius: 10px; padding: 7px 9px } .stat b { display: block; font: 600 1.05rem var(--font-data) } .stat span { font-size: .72rem; color: var(--muted); line-height: 1.2; display: block }
+.concl { font-size: .93rem; border-left: 3px solid var(--ac); padding-left: 10px }
+.back details summary { cursor: pointer; color: var(--muted); font-size: .82rem } .back details p { font-size: .8rem; color: var(--muted); margin-top: 4px }
+.viz svg { width: 100%; display: block; overflow: visible } .viz text { fill: var(--muted); font: 10.5px var(--font-body) } .viz text.v { fill: var(--ink); font: 600 11px var(--font-data) }
+@keyframes pulse { 0%, 100% { opacity: .55 } 50% { opacity: 1 } }
+@keyframes rise { 0% { transform: translateY(10px); opacity: 0 } 40% { opacity: .9 } 100% { transform: translateY(-14px); opacity: 0 } }
+@keyframes fillup { 0% { transform: translateY(86px) } 100% { transform: translateY(18px) } }
+@keyframes wave { from { transform: translateX(0) } to { transform: translateX(-40px) } }
+@keyframes shine { 0%, 60% { transform: translateX(-60px) } 100% { transform: translateX(160px) } }
+@keyframes lit { 0%, 100% { opacity: .25 } 50% { opacity: 1 } }
+.a-rise { animation: rise 2.6s ease-in-out infinite } .a-pulse { animation: pulse 2.4s ease-in-out infinite }
+.a-fill { animation: fillup 5s ease-in-out infinite alternate } .a-wave { animation: wave 2.4s linear infinite } .a-shine { animation: shine 4s ease-in-out infinite } .a-lit { animation: lit 3.2s ease-in-out infinite }
+@media (prefers-reduced-motion: reduce) { .a-rise, .a-pulse, .a-fill, .a-wave, .a-shine, .a-lit, .fc-in { animation: none; transition: none } .a-fill { transform: translateY(40px) } }
+
+/* details */
+.tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); overflow-x: auto }
+.tab { border: 0; background: none; padding: 10px 14px; border-bottom: 2px solid transparent; color: var(--muted); white-space: nowrap }
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--heat); font-weight: 600 }
+.tablewrap { overflow-x: auto } table { border-collapse: collapse; width: 100%; font-size: .85rem }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top } th { color: var(--muted); font-size: .76rem; font-weight: 600; white-space: nowrap }
+td.r, th.r { text-align: right }
+.more { padding: 16px 18px } .more > summary { cursor: pointer; font: 600 1.05rem var(--font-display) }
+footer { font-size: .8rem; color: var(--muted); display: grid; gap: 4px }
+
+/* story sections (proposal, method, impact) */
+.flowrow { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-around; gap: 8px; padding: 16px }
+.flowrow .step { display: grid; justify-items: center; text-align: center; gap: 4px; flex: 1 1 130px; min-width: 0 } .flowrow .big { font: 600 1.4rem var(--font-data) }
+.flowrow .big.t { font: 600 1rem var(--font-display) } .flowrow .arrow { color: var(--muted); font-size: 1.4rem } .small { font-size: .8rem }
+.cards3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin-top: 12px }
+.two2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; margin-top: 12px } .two2 > * { min-width: 0 }
+.card { padding: 14px 16px } .pcard { padding: 14px 16px; display: grid; gap: 8px; align-content: start }
+.eyebrow { font-size: .74rem; letter-spacing: .08em; text-transform: uppercase; color: var(--heat); font-weight: 600 }
+.pbar, .rbar { display: grid; grid-template-columns: 104px 1fr 48px; gap: 8px; align-items: center; font-size: .85rem } .rbar { grid-template-columns: minmax(120px, 210px) 1fr 40px }
+.pbar .num, .rbar .num { text-align: right }
+.bar { height: 10px; border-radius: 5px; background: var(--line) } .bar > i { display: block; height: 100%; border-radius: 5px }
+.ba { display: grid; grid-template-columns: 1fr auto auto auto; gap: 8px; align-items: baseline }
+.key { display: flex; flex-wrap: wrap; gap: 14px; font-size: .82rem } .key .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px }
+.impact { padding: 16px 18px; display: grid; gap: 8px; align-content: start } .impact .label { font-size: .85rem; color: var(--muted) }
+.impact .hero-num { font: 600 clamp(1.8rem, 3.4vw, 2.4rem)/1.1 var(--font-data) } .impact details summary { cursor: pointer; color: var(--muted); font-size: .82rem } .impact details p { font-size: .84rem; color: var(--muted); margin-top: 6px }
+.share { display: flex; height: 14px; border-radius: 7px; overflow: hidden; background: var(--line) } .share i { display: block; height: 100% }
+.pictos { display: flex; flex-wrap: wrap; gap: 2px; align-items: center }
+.preview-note { font-size: .8rem; color: var(--warn); border: 1px solid color-mix(in srgb, var(--warn) 45%, var(--line)); border-radius: 10px; padding: 6px 12px; background: color-mix(in srgb, var(--warn) 7%, var(--surface)) }
+</style>
+
+</head><body>
+<div id="root"></div>
+<script id="data" type="application/json">/*__DATA__*/null</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js"></script>
+<script>
+document.documentElement.setAttribute("data-theme", "dark");
+const DATA = JSON.parse(document.getElementById("data").textContent);   // the teammate's exported results (web/data.json), unchanged
+const { useState, useMemo, useRef, useEffect, useLayoutEffect } = React;
+const html = htm.bind(React.createElement);
+const SCN = DATA.scenarios, B = DATA.buildings, site = DATA.site;
+const DEFAULT_KEY = "realistic";
+const f = {
+  int: v => Math.round(v).toLocaleString("en-US"), gwh: v => (v / 1000).toFixed(2),
+  usdM: v => (v < 0 ? "−$" : "$") + Math.abs(v / 1e6).toFixed(2) + "M", usd: v => (v < 0 ? "−$" : "$") + Math.round(Math.abs(v)).toLocaleString("en-US"),
+};
+const KIND_LABEL = { datacenter: "Data center", school: "School", residential: "Residential housing", hotel: "Hotel", office: "Office / commercial", other: "Other building" };
+const RES = new Set(DATA.consts.residential_types);
+function kindOf(t) {
+  if (RES.has(t) || t === "Residential Care Facility") return "residential";
+  if (t === "K-12 School" || t === "College/University") return "school";
+  if (t === "Hotel") return "hotel";
+  if (["Office", "Medical Office", "Retail Store", "Mixed Use Property", "Other - Technology/Science", "Urgent Care/Clinic/Other Outpatient", "Fitness Center/Health Club/Gym"].includes(t)) return "office";
+  return "other";
+}
+const clean = n => n.replace(/^(DEPM\s*\d+\s*-\s*|\(\d+\)\s*-\s*|Orsid\s*-\s*)/, "");
+const short = (n, len = 26) => { const c = clean(n); return c.length > len ? c.slice(0, len - 1) + "…" : c; };
+const REASON_LABEL = { 1: "Its current heat is already cheaper", 2: "Too costly to reach", 3: "Heat supply already used", 4: "Not in the fixed design", 5: "Screened out" };
+
+/* ---------------- building icons ---------------- */
+function Glyph({ kind }) {
+  const s = { fill: "none", stroke: "#fff", strokeWidth: 1.7, strokeLinecap: "round", strokeLinejoin: "round" };
+  const g = {
+    datacenter: html`<g ...${s}><rect x="5" y="4" width="14" height="5" rx="1"/><rect x="5" y="10" width="14" height="5" rx="1"/><rect x="5" y="16" width="14" height="4" rx="1"/><path d="M8 6.5h.01M8 12.5h.01M8 18h.01"/></g>`,
+    school: html`<g ...${s}><path d="M3 10l9-5 9 5"/><path d="M5 10v9h14v-9"/><path d="M10 19v-5h4v5"/><path d="M12 5V2.5h3"/></g>`,
+    residential: html`<g ...${s}><rect x="6" y="3" width="12" height="17" rx="1"/><path d="M9.5 7h.01M14.5 7h.01M9.5 11h.01M14.5 11h.01M9.5 15h.01M14.5 15h.01"/></g>`,
+    hotel: html`<g ...${s}><path d="M4 19V8M4 14h16v5M20 14v-2.5A2.5 2.5 0 0017.5 9H11v5"/><circle cx="7.5" cy="11" r="1.6"/></g>`,
+    office: html`<g ...${s}><path d="M7 20V6l7-3v17M14 9h4v11M5 20h14"/><path d="M10 8h.01M10 12h.01M10 16h.01"/></g>`,
+    other: html`<g ...${s}><path d="M3 9l9-5 9 5M5 9v9M9.5 9v9M14.5 9v9M19 9v9M3 20h18"/></g>`,
+  };
+  return g[kind] || g.other;
+}
+function Badge({ kind, r = 14, fill = "var(--good)", ring = "var(--bg)", glow = false }) {
+  const sc = r / 12;
+  return html`<g>${glow ? html`<circle r=${r + 6} fill=${fill} opacity=".25" />` : null}
+    <circle r=${r} fill=${fill} stroke=${ring} strokeWidth="2" /><g transform=${`scale(${sc * 0.72}) translate(-12,-12)`}><${Glyph} kind=${kind} /></g></g>`;
+}
+
+/* ---------------- skyline ---------------- */
+const SLOTS = [[10,38,56],[52,50,38],[110,34,88,"FULTON","Fulton Houses"],[150,34,66,"FULTON"],[190,34,88,"FULTON"],[232,26,60],[264,120,40,"CHELSEA MARKET","Chelsea Market"],
+  [390,26,72],[572,30,50],[608,44,96,"212 WEST 18TH","212 W 18th St"],[658,50,62],[714,28,84],[750,46,44],[802,34,70],[842,70,68,"155 WEST 11TH","155 W 11th St"],[918,30,52],[954,44,80],[1004,56,46],[1066,32,64],[1104,44,36],[1152,40,58]];
+const FAR = [[70,40,80],[300,50,96],[520,30,120],[690,44,104],[880,40,92],[1120,50,86]];
+const GROUND = 150, DCX = 424, DCW = 140, W = 1200;
+function Skyline({ names }) {
+  const up = names.map(n => n.toUpperCase());
+  const namedOn = SLOTS.map(s => s[3] ? up.some(n => n.includes(s[3])) : false);
+  const hit = new Set(SLOTS.filter((s, i) => s[3] && namedOn[i]).map(s => s[3]));
+  const others = up.filter(n => ![...hit].some(k => n.includes(k))).length;
+  const centre = DCX + DCW / 2;
+  const generic = SLOTS.map((s, i) => i).filter(i => !SLOTS[i][3]).sort((a, b) => Math.abs(SLOTS[a][0] + SLOTS[a][1] / 2 - centre) - Math.abs(SLOTS[b][0] + SLOTS[b][1] / 2 - centre));
+  const on = new Set([...SLOTS.map((s, i) => namedOn[i] ? i : -1).filter(i => i >= 0), ...generic.slice(0, others)]);
+  return html`<svg className="skyline" viewBox=${`0 0 ${W} ${GROUND + 14}`} role="img" aria-label=${`Skyline: ${names.length} buildings connected to 111 8th Ave, shown in green`}>
+    ${FAR.map(([x, w, h], i) => html`<rect key=${"f" + i} x=${x} y=${GROUND - h} width=${w} height=${h} fill="currentColor" fillOpacity=".06" />`)}
+    ${SLOTS.map(([x, w, h, , label], i) => html`<g key=${"s" + i}><rect x=${x} y=${GROUND - h} width=${w} height=${h} fill=${on.has(i) ? "var(--good)" : "currentColor"} fillOpacity=${on.has(i) ? .95 : .16} />
+      ${label ? html`<text className="sk-label" x=${x} y=${GROUND - h - 6}>${label}</text>` : null}</g>`)}
+    ${[[0, DCW, 104], [12, DCW - 24, 118], [28, DCW - 56, 130]].map(([dx, w, h], i) => html`<rect key=${"d" + i} x=${DCX + dx} y=${GROUND - h} width=${w} height=${h} fill="var(--dc)" />`)}
+    <text className="sk-label sk-strong" x=${DCX + 20} y=${GROUND - 138}>111 8th Ave · data center</text>
+    <rect x="0" y=${GROUND} width=${W} height="10" fill="currentColor" fillOpacity=".2" />
+  </svg>`;
+}
+
+/* ---------------- derived data (everything is computed from the teammate's fields, nothing added) ---------------- */
+const hav = ([a, b], [c, d]) => { const R = 6371000, r = Math.PI / 180, x = (d - b) * r * Math.cos((a + c) / 2 * r), y = (c - a) * r; return R * Math.hypot(x, y); };
+const keyOf = p => p[0].toFixed(5) + "," + p[1].toFixed(5);
+function pipeFlows(s) {   // heat carried by each pipe edge: sum of the heat served to every building downstream of it (tree rooted at the data center)
+  const adj = new Map(), pos = new Map();
+  s.pipes.forEach(line => line.forEach((p, i) => { pos.set(keyOf(p), p); if (i) { const a = keyOf(line[i - 1]), b = keyOf(p); (adj.get(a) || adj.set(a, new Set()).get(a)).add(b); (adj.get(b) || adj.set(b, new Set()).get(b)).add(a); } }));
+  const nearest = ll => { let best = null, bd = 1e9; pos.forEach((p, k) => { const d = hav(p, ll); if (d < bd) { bd = d; best = k; } }); return best; };
+  const root = keyOf(s.pipes[0][0]), load = new Map();
+  s.connected.forEach((c, k) => { const sv = s.services[k]; const n = nearest([sv[2], sv[3]]); load.set(n, (load.get(n) || 0) + c.served); });
+  const seen = new Set([root]), flow = new Map();
+  const dfs = (n, parent) => { let t = load.get(n) || 0; (adj.get(n) || []).forEach(m => { if (m !== parent && !seen.has(m)) { seen.add(m); const ft = dfs(m, n); flow.set(n + ">" + m, ft); flow.set(m + ">" + n, ft); t += ft; } }); return t; };
+  dfs(root, null);
+  return s.pipes.map(line => { const edges = line.slice(1).map((p, i) => flow.get(keyOf(line[i]) + ">" + keyOf(p)) || 0);
+    let len = 0; line.forEach((p, i) => { if (i) len += hav(line[i - 1], p); }); return { line, len, edges, flow: Math.max(0, ...edges) }; });
+}
+const demandOf = s => s.kpi.served_mwh / (s.kpi.coverage || 1);
+const homesShare = s => { const tot = d3.sum(s.connected, c => c.served) || 1; return d3.sum(s.connected.filter(c => RES.has(B[c.i].t)), c => c.served) / tot; };
+const priorityShare = s => { const tot = d3.sum(s.connected, c => c.served) || 1; return d3.sum(s.connected.filter(c => B[c.i].pr), c => c.served) / tot; };
+
+/* ---------------- map ---------------- */
+function useWidth(ref) {
+  const [w, setW] = useState(900);
+  useLayoutEffect(() => { if (!ref.current) return; const ro = new ResizeObserver(e => setW(Math.max(300, Math.round(e[0].contentRect.width)))); ro.observe(ref.current); return () => ro.disconnect(); }, []);
+  return w;
+}
+function MapView({ s, pick, onPick }) {
+  const box = useRef(null), svgRef = useRef(null), fitted = useRef(false), width = useWidth(box);
+  const height = Math.round(Math.min(700, Math.max(400, width * 0.6)));
+  const [t, setT] = useState(d3.zoomIdentity), [tip, setTip] = useState(null), zoom = useRef(null);
+  const proj = useMemo(() => d3.geoMercator().fitExtent([[10, 10], [width - 10, height - 10]], d3.geoCircle().center([site.lon, site.lat]).radius(site.radius_m * 1.12 / 111195)()), [width, height]);
+  const path = useMemo(() => d3.geoPath(proj), [proj]);
+  const streetsD = useMemo(() => path({ type: "MultiLineString", coordinates: DATA.streets }), [path]);
+  const ring = useMemo(() => path(d3.geoCircle().center([site.lon, site.lat]).radius(site.radius_m / 111195)()), [path]);
+  useEffect(() => { const z = d3.zoom().scaleExtent([0.8, 8]).filter(e => e.type === "wheel" ? (e.ctrlKey || e.metaKey) : !e.button).on("zoom", e => setT(e.transform));
+    zoom.current = z; d3.select(svgRef.current).call(z); }, []);
+  const Pj = (lat, lon) => proj([lon, lat]);
+  useEffect(() => {   // fit the view to the source and the connected buildings
+    if (!zoom.current || !svgRef.current) return;
+    const pts = [[site.lat, site.lon], ...s.connected.map(c => [B[c.i].lat, B[c.i].lon])].map(([la, lo]) => proj([lo, la]));
+    const x0 = d3.min(pts, p => p[0]), x1 = d3.max(pts, p => p[0]), y0 = d3.min(pts, p => p[1]), y1 = d3.max(pts, p => p[1]);
+    const kk = Math.max(1.2, Math.min(4, 0.62 * Math.min(width / Math.max(40, x1 - x0), height / Math.max(40, y1 - y0))));
+    const tf = d3.zoomIdentity.translate(width / 2 - kk * (x0 + x1) / 2, height / 2 - kk * (y0 + y1) / 2).scale(kk);
+    const animate = fitted.current !== false && fitted.current !== s.key; fitted.current = s.key;
+    if (animate) d3.select(svgRef.current).transition().duration(450).call(zoom.current.transform, tf); else d3.select(svgRef.current).call(zoom.current.transform, tf);
+  }, [s.key, width, height]);
+  const zoomBy = k => d3.select(svgRef.current).transition().duration(250).call(zoom.current.scaleBy, k);
+  const reset = () => d3.select(svgRef.current).transition().duration(250).call(zoom.current.transform, d3.zoomIdentity);
+  const k = t.k, sk = Math.sqrt(k);
+  const pf = useMemo(() => pipeFlows(s), [s]);
+  const maxFlow = Math.max(1, ...pf.map(p => p.flow));
+  const wOf = fl => 3 + 8 * Math.sqrt(fl / maxFlow);
+  const conn = useMemo(() => new Map(s.connected.map((c, j) => [c.i, { ...c, j }])), [s]);
+  const isPick = i => pick && pick.i === i;
+  const [dx, dy] = Pj(site.lat, site.lon);
+  const onHover = (e, label, sub) => { const r = box.current.getBoundingClientRect(); setTip({ x: Math.min(e.clientX - r.left + 14, r.width - 270), y: e.clientY - r.top + 14, label, sub }); };
+  const skipped = B.map((b, i) => ({ b, i })).filter(({ i }) => !conn.has(i));
+  const big = skipped.filter(({ b, i }) => b.mwh >= 4000 && s.scores.reason[i] !== 5);
+  const bigSet = new Set(big.map(x => x.i));
+  return html`<section className="panel mapbox" ref=${box} aria-label="Network map">
+    <svg ref=${svgRef} width=${width} height=${height} viewBox=${`0 0 ${width} ${height}`} role="img" aria-label=${`Map of ${s.connected.length} connected buildings and ${s.kpi.pipe_km.toFixed(1)} km of pipe around 111 8th Ave`}>
+      <rect width=${width} height=${height} fill="var(--surface)" />
+      <g transform=${t.toString()}>
+        <path d=${streetsD} fill="none" stroke="var(--street)" strokeWidth=${1.4 / k} strokeLinecap="round" />
+        <path d=${ring} fill="none" stroke="var(--muted)" strokeOpacity=".4" strokeWidth=${1 / k} strokeDasharray=${`${4 / k} ${6 / k}`} />
+        ${skipped.filter(({ i }) => !bigSet.has(i)).map(({ b, i }) => { const [x, y] = Pj(b.lat, b.lon); return html`<circle key=${i} cx=${x} cy=${y} r=${2.2 / sk} fill="var(--muted)" fillOpacity=${s.scores.reason[i] === 5 ? .2 : .38}
+          onMouseMove=${e => onHover(e, short(b.n), "Not connected · " + KIND_LABEL[kindOf(b.t)])} onMouseLeave=${() => setTip(null)} onClick=${() => { setTip(null); onPick({ i }); }} style=${{ cursor: "pointer" }} />`; })}
+        ${pf.map((p, i) => { const pts = p.line.map(([la, lo]) => Pj(la, lo)); const d = d3.line()(pts);
+          return html`<g key=${"g" + i}><path className="glow" d=${d} stroke="var(--heat)" strokeOpacity=".55" strokeWidth=${(wOf(p.flow) + 6) / k} />
+            <path className="pipe" d=${d} stroke="#ffd2b8" strokeWidth=${wOf(p.flow) / k} style=${{ strokeDasharray: `${10 / k} ${8 / k}` }} /></g>`; })}
+        ${s.services.map(([la, lo, nla, nlo], i) => html`<line key=${"sv" + i} x1=${Pj(la, lo)[0]} y1=${Pj(la, lo)[1]} x2=${Pj(nla, nlo)[0]} y2=${Pj(nla, nlo)[1]} stroke="var(--heat)" strokeWidth=${2 / k} strokeOpacity=".8" />`)}
+        ${pf.filter(p => p.len >= 60).map((p, i) => { const m = p.line[Math.floor(p.line.length / 2)], [x, y] = Pj(m[0], m[1]);
+          return html`<text key=${"t" + i} className="lbl" x=${x} y=${y - 8 / k} textAnchor="middle" style=${{ fontSize: 12 / k + "px", strokeWidth: 5 / k + "px" }}>${f.int(p.len)} m</text>`; })}
+        ${big.map(({ b, i }) => { const [x, y] = Pj(b.lat, b.lon); return html`<g key=${"b" + i} transform=${`translate(${x},${y}) scale(${1 / sk})`} style=${{ cursor: "pointer" }} opacity=${isPick(i) ? 1 : .62}
+          onMouseMove=${e => onHover(e, short(b.n), "Not connected · " + KIND_LABEL[kindOf(b.t)])} onMouseLeave=${() => setTip(null)} onClick=${() => { setTip(null); onPick({ i }); }}>
+          <${Badge} kind=${kindOf(b.t)} r=${9} fill="#566273" ring=${isPick(i) ? "var(--ink)" : "var(--surface)"} /></g>`; })}
+        ${DATA.pilot.receivers.map((p, i) => { const [x, y] = Pj(p.lat, p.lon); return html`<circle key=${"r" + i} cx=${x} cy=${y} r=${12 / sk} fill="none" stroke="var(--pilot)" strokeWidth=${1.6 / k} strokeDasharray=${`${3 / k} ${3 / k}`} pointerEvents="none" opacity=".7" />`; })}
+        ${s.connected.map(c => { const b = B[c.i], [x, y] = Pj(b.lat, b.lon);
+          return html`<g key=${"c" + c.i} transform=${`translate(${x},${y}) scale(${1 / sk})`} style=${{ cursor: "pointer" }}
+            onMouseMove=${e => onHover(e, short(b.n), "Connected · " + f.gwh(c.served) + " GWh/yr")} onMouseLeave=${() => setTip(null)} onClick=${() => { setTip(null); onPick({ i: c.i }); }}>
+            <${Badge} kind=${kindOf(b.t)} r=${isPick(c.i) ? 17 : 15} fill="var(--good)" ring=${isPick(c.i) ? "var(--ink)" : "var(--bg)"} glow=${true} />
+            <text className="lbl" x="19" y="4" style=${{ fontFamily: "var(--font-body)", fontWeight: 600 }}>${short(b.n, 22)}</text></g>`; })}
+        <g transform=${`translate(${dx},${dy}) scale(${1 / sk})`} style=${{ cursor: "default" }} onMouseMove=${e => onHover(e, "111 8th Avenue data center", "Heat source")} onMouseLeave=${() => setTip(null)}>
+          <${Badge} kind="datacenter" r=${20} fill="var(--dc)" ring="var(--bg)" glow=${true} />
+          <text className="lbl" x="25" y="5" style=${{ fontFamily: "var(--font-display)", fontSize: "13px" }}>111 8th Ave data center</text></g>
+      </g>
+    </svg>
+    <div className="map-ctrl"><button onClick=${() => zoomBy(1.6)} aria-label="Zoom in">+</button><button onClick=${() => zoomBy(1 / 1.6)} aria-label="Zoom out">−</button>
+      <button onClick=${reset} aria-label="Reset view" style=${{ fontSize: ".8rem" }}>⟲</button></div>
+    <div className="legend"><span><i style=${{ background: "var(--good)" }}></i>Connected</span><span><i style=${{ background: "#566273" }}></i>Not connected</span>
+      <span><i style=${{ background: "var(--heat)", borderRadius: 2, height: 4 }}></i>Pipe: thicker = more heat</span></div>
+    <div className="hint">Drag to pan · Ctrl/⌘ + scroll to zoom · click a building</div>
+    ${pick ? html`<${Popup} s=${s} pick=${pick} onClose=${() => onPick(null)} />` : null}
+    ${tip ? html`<div className="tip" style=${{ left: tip.x, top: tip.y }}><b>${tip.label}</b><div className="muted">${tip.sub}</div></div>` : null}
+  </section>`;
+}
+
+/* ---------------- simplified building popup ---------------- */
+function reasonText(s, b, r) {
+  const mine = s.prices[b.f], ours = s.prices.network;
+  if (r === 1) return `Its current ${b.f} heat costs ${mine !== undefined ? "$" + Math.round(mine) : "less"}/MWh, against $${Math.round(ours)}/MWh for network heat, so it would not save money.`;
+  if (r === 2) return "The pipe to reach it and its connection would cost more each year than its heat would save.";
+  if (r === 3) return "It would pay off on its own, but the heat pump's output was already taken by buildings that save more.";
+  if (r === 4) return "It would pay off under these conditions, but this stress test keeps the base-case network fixed.";
+  return "Its reported energy use failed the sanity check in this scenario, so it was not considered.";
+}
+function Popup({ s, pick, onClose }) {
+  const [more, setMore] = useState(false);
+  useEffect(() => setMore(false), [pick.i]);
+  const b = B[pick.i], j = s.connected.findIndex(c => c.i === pick.i), c = j >= 0 ? s.connected[j] : null;
+  const kind = kindOf(b.t), r = s.scores.reason[pick.i];
+  const status = c ? ["Connected", "good"] : r === 5 ? ["Screened out", "bad"] : ["Not connected", "mute"];
+  const kpi = c ? [f.gwh(c.served) + " GWh/yr", "heat delivered per year"] : ["≈ " + f.gwh(b.mwh) + " GWh/yr", "annual heat demand"];
+  const why = c ? `Network heat costs $${Math.round(s.prices.network)}/MWh against $${Math.round(s.prices[b.f] ?? 0)}/MWh for its ${b.f} heat today${b.pr ? " · public housing or school" : ""}.` : reasonText(s, b, r);
+  return html`<div className="pop" role="dialog" aria-label=${clean(b.n)}>
+    <button className="x" onClick=${onClose} aria-label="Close">×</button>
+    <div className="head"><svg width="44" height="44" viewBox="-22 -22 44 44"><${Badge} kind=${kind} r=${19} fill=${c ? "var(--good)" : "#566273"} /></svg>
+      <div><h3>${clean(b.n)}</h3><div className="muted" style=${{ fontSize: ".84rem" }}>${KIND_LABEL[kind]} · ${f.int(b.d)} m from the data center</div></div></div>
+    <div><span className=${"badge " + status[1]}>${status[0]}</span> ${b.pr ? html`<span className="badge" style=${{ color: "var(--pilot)" }}>public housing / school</span>` : null}</div>
+    <div className="kpi">${kpi[0]}<small>${kpi[1]}</small></div>
+    <div className="why">${why}</div>
+    <button className="btn" onClick=${() => setMore(!more)} aria-expanded=${more}>${more ? "Hide details" : "Explore details"}</button>
+    ${more ? html`<dl>
+      <dt>Heated today by</dt><dd>${b.f}</dd><dt>Address</dt><dd>${b.a}</dd>
+      ${c ? html`<dt>Share of its heat from the network</dt><dd>${Math.round(100 * c.served / b.mwh)}%</dd><dt>Value of that heat</dt><dd>${f.usd(c.value)}/yr</dd>
+        <dt>Pipe + connection cost</dt><dd>${f.usd(s.scores.pipe[pick.i] + s.scores.conn[pick.i] * 1000)}/yr</dd><dt>Building's saving</dt><dd>${f.usd(c.save)}/yr</dd>` : html`<dt>Heat it would add</dt><dd>${f.gwh(s.scores.heat[pick.i])} GWh/yr</dd><dt>Street distance</dt><dd>${f.int(s.scores.street_m[pick.i])} m</dd>`}</dl>` : null}
+  </div>`;
+}
+
+/* ---------------- scenario picker ---------------- */
+function Picker({ s, setKey }) {
+  return html`<section className="panel picker" aria-label="Choose a scenario">
+    <div className="presets" role="group" aria-label="Scenarios">${SCN.map(sc => html`<button key=${sc.key} className="preset" aria-pressed=${sc.key === s.key} onClick=${() => setKey(sc.key)}>${sc.icon} ${sc.label}</button>`)}</div>
+    <div className="summary"><b>${s.icon} ${s.label}.</b> <span className="muted">${s.summary}</span></div>
+  </section>`;
+}
+
+/* ---------------- radar ---------------- */
+const DIMS = [
+  { key: "T", name: "Technical", col: "var(--c-t)", ind: [
+    ["Useful heat delivered", s => s.kpi.served_mwh, 1, v => f.gwh(v) + " GWh/yr"],
+    ["Demand covered by the network", s => 100 * s.kpi.coverage, 1, v => v.toFixed(0) + "%"],
+    ["Heat from building boilers", s => 100 * s.kpi.share_backup, -1, v => v.toFixed(0) + "%"]] },
+  { key: "E", name: "Economic + Delivery", col: "var(--c-e)", ind: [
+    ["Net annual value", s => s.kpi.net_usd, 1, v => f.usdM(v) + "/yr"],
+    ["Annualised capital cost", s => s.kpi.capex_total_usd, -1, v => f.usdM(v) + "/yr"],
+    ["Building owners' savings", s => s.kpi.building_savings_usd, 1, v => f.usdM(v) + "/yr"]] },
+  { key: "N", name: "Environmental", col: "var(--c-n)", ind: [
+    ["Net CO₂ avoided", s => s.kpi.co2_net_t, 1, v => f.int(v) + " t/yr"],
+    ["Waste heat recovered", s => s.kpi.recovered_heat_mwh, 1, v => f.gwh(v) + " GWh/yr"],
+    ["Fuel CO₂ replaced", s => s.kpi.co2_fuel_avoided_t, 1, v => f.int(v) + " t/yr"]] },
+  { key: "S", name: "Social + Regenerative", col: "var(--c-s)", ind: [
+    ["Public housing & school buildings", s => s.kpi.priority_buildings, 1, v => f.int(v)],
+    ["Buildings connected", s => s.kpi.buildings, 1, v => f.int(v)],
+    ["Heat reaching public housing & schools", s => 100 * priorityShare(s), 1, v => v.toFixed(0) + "%"]] },
+];
+const RANGE = {};
+DIMS.forEach(d => d.ind.forEach(([n, g]) => { const v = SCN.map(g); RANGE[d.key + n] = [Math.min(...v), Math.max(...v)]; }));
+const INNER = 0.12;
+const dimScore = (d, s) => INNER + (1 - INNER) * d3.mean(d.ind.map(([n, g, dir]) => { const [lo, hi] = RANGE[d.key + n]; const x = hi === lo ? 1 : (g(s) - lo) / (hi - lo); return dir > 0 ? x : 1 - x; }));
+
+function Radar({ s }) {
+  const [hov, setHov] = useState(null);
+  const Wd = 640, H = 400, cx = Wd / 2, cy = H / 2 + 6, R = 130, n = 4, ang = i => -Math.PI / 2 + i * 2 * Math.PI / n;
+  const pt = (i, fr) => [cx + Math.cos(ang(i)) * R * fr, cy + Math.sin(ang(i)) * R * fr];
+  const poly = sc => DIMS.map((d, i) => pt(i, dimScore(d, sc)).map(v => v.toFixed(1)).join(",")).join(" ");
+  const base = SCN.find(x => x.key === "base"), showBase = s.key !== "base";
+  const co2ok = s.kpi.co2_net_t >= 0;
+  return html`<div className="panel radarbox">
+    <div style=${{ position: "relative" }}>
+      <svg viewBox=${`0 0 ${Wd} ${H}`} style=${{ width: "100%", display: "block" }} role="img" aria-label=${`Four-dimension radar for ${s.label}, relative to the other scenarios`}>
+        ${[INNER, .34, .56, .78, 1].map(fr => html`<polygon key=${fr} points=${DIMS.map((_, i) => pt(i, fr).join(",")).join(" ")} fill="none" stroke="var(--line)" />`)}
+        ${DIMS.map((_, i) => { const [x, y] = pt(i, 1); return html`<line key=${i} x1=${cx} y1=${cy} x2=${x} y2=${y} stroke="var(--line)" />`; })}
+        ${showBase ? html`<polygon points=${poly(base)} fill="none" stroke="var(--muted)" strokeWidth="1.6" strokeDasharray="5 4" />` : null}
+        <polygon points=${poly(s)} fill="var(--heat)" fillOpacity=".2" stroke="var(--heat)" strokeWidth="2.4" strokeLinejoin="round" />
+        ${DIMS.map((d, i) => { const [x, y] = pt(i, dimScore(d, s)), [lx, ly] = pt(i, 1.2), c = Math.cos(ang(i)), an = Math.abs(c) < .2 ? "middle" : c > 0 ? "start" : "end";
+          return html`<g key=${d.key}><text x=${lx} y=${ly + (Math.sin(ang(i)) > .5 ? 12 : Math.sin(ang(i)) < -.5 ? -4 : 4)} textAnchor=${an} style=${{ font: "600 13px var(--font-body)", fill: d.col }}>${d.name}</text>
+            <circle cx=${x} cy=${y} r=${hov === i ? 7 : 5} fill=${d.col} stroke="var(--surface)" strokeWidth="2" />
+            <circle cx=${x} cy=${y} r="18" fill="transparent" onMouseEnter=${() => setHov(i)} onMouseLeave=${() => setHov(null)} /></g>`; })}
+      </svg>
+      ${hov !== null ? html`<div className="radar-tip"><b style=${{ color: DIMS[hov].col }}>${DIMS[hov].name}</b>
+        ${DIMS[hov].ind.map(([nm, g, , fm]) => html`<div key=${nm} style=${{ display: "flex", justifyContent: "space-between", gap: 12 }}><span>${nm}</span><span className="num">${fm(g(s))}</span></div>`)}
+        <div className="muted" style=${{ fontSize: ".72rem", marginTop: 4 }}>Average of three indicators, each scaled across the ${SCN.length} scenarios</div></div>` : null}
+    </div>
+    <div className="rules">
+      <div><div className="step-n">Step 2 · Overall picture</div><h2>${s.icon} ${s.label}</h2></div>
+      <div className="note"><b>A relative picture, not a verdict.</b> Each axis compares this scenario with the other ${SCN.length - 1} (further out = better)${showBase ? "; the dashed line is the base case" : ""}.
+        Feasibility checks still apply and a big shape cannot override them.</div>
+      <div><div className="muted" style=${{ fontSize: ".8rem", marginBottom: 6 }}>Checks this model can run</div>
+        <div className="chips"><span className=${"badge " + (co2ok ? "good" : "bad")}>${co2ok ? "✓" : "✕"} Net CO₂ ≥ 0</span>
+          <span className="badge good">✓ Building boilers cover what the network cannot</span></div></div>
+      <div className="muted" style=${{ fontSize: ".84rem" }}>This model does not test pipe-temperature compatibility with each building's heating system, the extra electricity used at the data center, or tenant affordability.</div>
+    </div>
+  </div>`;
+}
+
+/* ---------------- flip cards ---------------- */
+function ArtHeat() {
+  return html`<svg className="art" viewBox="0 0 120 150" aria-hidden="true"><defs><linearGradient id="gf" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#e2531f"/><stop offset="1" stop-color="#ffb36b"/></linearGradient></defs>
+    <path d="M60 12C68 42 98 52 96 92 94 118 78 134 60 134 42 134 26 118 26 94 26 72 44 64 48 42 53 54 57 52 60 12Z" fill="url(#gf)" opacity=".92" className="a-pulse"/>
+    <path d="M60 70C64 86 78 92 76 108 75 120 68 126 60 126 52 126 44 120 44 110 44 98 56 92 60 70Z" fill="#fff3d9" opacity=".7"/>
+    ${[22, 60, 98].map((x, i) => html`<path key=${i} className="a-rise" style=${{ animationDelay: i * .8 + "s" }} d=${`M${x} 148 q-6 -7 0 -14 q6 -7 0 -14`} fill="none" stroke="var(--c-t)" strokeWidth="2.5" strokeLinecap="round"/>`)}</svg>`;
+}
+function ArtCoins() {
+  return html`<svg className="art" viewBox="0 0 120 150" aria-hidden="true"><defs><linearGradient id="gc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3d27a"/><stop offset="1" stop-color="#b8892b"/></linearGradient>
+    <clipPath id="cc"><rect x="14" y="40" width="92" height="96"/></clipPath></defs>
+    <g clipPath="url(#cc)">${[0, 1, 2, 3].map(i => html`<g key=${i} transform=${`translate(0,${100 - i * 17})`}><rect x="22" y="0" width="76" height="14" fill="url(#gc)"/><ellipse cx="60" cy="14" rx="38" ry="9" fill="#a47a22"/><ellipse cx="60" cy="0" rx="38" ry="9" fill="#f3d27a" stroke="#b8892b"/></g>`)}
+    <rect className="a-shine" x="-20" y="30" width="24" height="120" fill="#fff" opacity=".28" transform="skewX(-20)"/></g>
+    <text x="60" y="48" textAnchor="middle" style=${{ font: "700 26px var(--font-display)", fill: "#7b5b15" }}>$</text>
+    <path d="M20 26 C 40 6, 80 6, 100 26" fill="none" strokeWidth="3" strokeDasharray="6 6" className="pipe" style=${{ stroke: "var(--pilot)" }}/>
+    <path d="M100 26 l-9 -2 M100 26 l-3 9" stroke="var(--pilot)" strokeWidth="3" strokeLinecap="round"/></svg>`;
+}
+function ArtLeaf({ negative }) {
+  const col = negative ? "#e2b44f" : "#45c27f";
+  return html`<svg className="art" viewBox="0 0 120 150" aria-hidden="true"><defs><clipPath id="lc"><path d="M60 6C22 18 8 66 30 106c6 10 14 16 22 18v20h8v-20c42-4 64-52 52-100C100 8 80 4 60 6Z"/></clipPath></defs>
+    <path d="M60 6C22 18 8 66 30 106c6 10 14 16 22 18v20h8v-20c42-4 64-52 52-100C100 8 80 4 60 6Z" fill=${col} fillOpacity=".12" stroke=${col} strokeWidth="2.5" strokeOpacity=".9"/>
+    <g clipPath="url(#lc)"><g className="a-fill"><g className="a-wave"><path d="M-20 18 q10 -8 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0 V160 H-20Z" fill=${col} fillOpacity=".55"/></g></g></g>
+    <path d="M56 126C54 96 62 60 90 30" fill="none" stroke="#fff" strokeOpacity=".55" strokeWidth="2" strokeLinecap="round"/></svg>`;
+}
+function ArtSchool() {
+  return html`<svg className="art" viewBox="0 0 120 150" aria-hidden="true"><defs><radialGradient id="gs" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#ffe3a8"/><stop offset="1" stop-color="#ffb36b" stop-opacity="0"/></radialGradient></defs>
+    <ellipse cx="60" cy="86" rx="62" ry="46" fill="url(#gs)" className="a-pulse"/>
+    <path d="M60 24L10 56h100Z" fill="#3b7da3" stroke="#5bb8e6" strokeWidth="2" strokeLinejoin="round"/>
+    <rect x="16" y="56" width="88" height="62" fill="#27506b" stroke="#5bb8e6" strokeWidth="2"/>
+    ${[26, 46, 78].map((x, i) => [64, 88].map((y, j) => html`<rect key=${i + "-" + j} className="a-lit" style=${{ animationDelay: (i * .5 + j * .9) + "s" }} x=${x} y=${y} width="14" height="16" fill="#ffd9a0"/>`))}
+    <rect x="53" y="94" width="14" height="24" fill="#ffd9a0" className="a-lit"/>
+    <path d="M60 24V8h14" fill="none" stroke="#5bb8e6" strokeWidth="2.5"/>
+    <path d="M0 132 H52" strokeWidth="4" strokeLinecap="round" className="pipe" style=${{ stroke: "var(--heat)" }}/></svg>`;
+}
+
+function Flow({ s }) {   // data-center heat + heat-pump electricity -> delivered heat
+  const k = s.kpi, rec = k.recovered_heat_mwh, el = k.hp_elec_mwh, del = k.served_mwh, bk = demandOf(s) - del, mx = Math.max(del, rec + el, 1);
+  const sc = v => Math.max(3, v / mx * 90);
+  let y0 = 8;
+  return html`<svg viewBox="0 0 360 118" role="img" aria-label="Energy flow from data-center heat and electricity to delivered heat">
+    ${[[rec, "Data-center heat", "var(--dc)"], [el, "Electricity", "var(--c-e)"]].map(([v, l, c]) => { const y = y0, h = sc(v); y0 += h + 6; return html`<g key=${l}><rect x="0" y=${y} width="104" height=${h} rx="4" fill=${c} opacity=".85"/>
+      <text x="4" y=${y + Math.min(h - 3, 13)} style=${{ fill: "#0b0f14", font: "600 10.5px var(--font-body)" }}>${l}</text><text className="v" x="4" y=${y + Math.min(h - 3, 13) + 12} style=${{ fill: "#0b0f14" }}>${f.gwh(v)} GWh</text>
+      <path d=${`M104 ${y + h / 2} C 150 ${y + h / 2}, 150 50, 196 50`} fill="none" stroke=${c} strokeOpacity=".5" strokeWidth=${Math.max(2, h * .7)} /></g>`; })}
+    <rect x="196" y="6" width="78" height=${sc(del) + 8} rx="4" fill="var(--heat)"/><text x="202" y="24" style=${{ fill: "#0b0f14", font: "600 10.5px var(--font-body)" }}>Heat pump</text>
+    <path d=${`M274 ${6 + (sc(del) + 8) / 2} H 296`} stroke="var(--heat)" strokeWidth=${Math.max(3, sc(del) * .8)} />
+    <rect x="296" y="6" width="64" height=${sc(del) + 8} rx="4" fill="var(--good)"/><text x="301" y="24" style=${{ fill: "#0b0f14", font: "600 10.5px var(--font-body)" }}>Buildings</text><text className="v" x="301" y="37" style=${{ fill: "#0b0f14" }}>${f.gwh(del)}</text>
+    <text x="190" y="112">Own-boiler backup: ${f.gwh(bk)} GWh · ${(100 * k.share_backup).toFixed(0)}%</text></svg>`;
+}
+function Waterfall({ s }) {
+  const k = s.kpi, steps = [["Fuel saved", k.avoided_fuel_usd, "g"], ["Electricity", -k.electricity_usd, "r"], ["Pipes", -k.capex_pipes_usd, "r"], ["Connect.", -k.capex_connections_usd, "r"],
+    ["Heat pump", -(k.capex_heat_pump_usd + k.capex_storage_usd), "r"], ["LL97 + water", k.avoided_ll97_usd + k.water_usd, "m"]];
+  let run = 0; const bars = steps.map(([l, v, c]) => { const a = run; run += v; return { l, v, a, b: run, c }; });
+  const net = run, all = [0, ...bars.flatMap(b => [b.a, b.b])], lo = Math.min(...all), hi = Math.max(...all), Hh = 120, y = v => 8 + (hi - v) / (hi - lo || 1) * Hh, bw = 38;
+  const col = c => c === "g" ? "var(--good)" : c === "r" ? "var(--bad)" : "#7d8794";
+  return html`<svg viewBox="0 0 360 170" role="img" aria-label="Waterfall from fuel saved to net annual value">
+    <line x1="0" x2="360" y1=${y(0)} y2=${y(0)} stroke="var(--line)"/>
+    ${bars.map((b, i) => html`<g key=${i}><rect x=${6 + i * 49} y=${Math.min(y(b.a), y(b.b))} width=${bw} height=${Math.max(2, Math.abs(y(b.a) - y(b.b)))} rx="3" fill=${col(b.c)} opacity=${b.c === "m" ? .6 : .85}/>
+      <text className="v" x=${6 + i * 49 + bw / 2} y=${Math.min(y(b.a), y(b.b)) - 3} textAnchor="middle">${(b.v < 0 ? "−" : "+") + Math.abs(b.v / 1e6).toFixed(2)}</text>
+      <text x=${6 + i * 49 + bw / 2} y="160" textAnchor="middle" style=${{ fontSize: "8.5px" }}>${b.l.split(" ")[0]}</text></g>`)}
+    <rect x=${6 + 6 * 49} y=${Math.min(y(0), y(net))} width=${bw} height=${Math.max(2, Math.abs(y(0) - y(net)))} rx="3" fill=${net < 0 ? "var(--c-e)" : "var(--c-e)"}/>
+    <text className="v" x=${6 + 6 * 49 + bw / 2} y=${Math.min(y(0), y(net)) - 3} textAnchor="middle">${net < 0 ? "−" : "+"}${Math.abs(net / 1e6).toFixed(2)}</text>
+    <text x=${6 + 6 * 49 + bw / 2} y="160" textAnchor="middle" style=${{ fontSize: "8.5px" }}>Net</text></svg>`;
+}
+function BeforeAfter({ s }) {
+  const b = s.kpi.co2_fuel_avoided_t, a = s.kpi.co2_grid_added_t, mx = Math.max(a, b, 1), h = v => v / mx * 96, d = b - a;
+  return html`<svg viewBox="0 0 360 140" role="img" aria-label="CO2 of the fuel replaced versus CO2 of the electricity added">
+    <line x1="10" x2="350" y1="118" y2="118" stroke="var(--line)"/>
+    <rect x="46" y=${118 - h(b)} width="72" height=${h(b)} rx="4" fill="var(--muted)" opacity=".7"/><text className="v" x="82" y=${112 - h(b)} textAnchor="middle">${f.int(b)} t</text><text x="82" y="132" textAnchor="middle">Fuel emissions replaced</text>
+    <rect x="170" y=${118 - h(a)} width="72" height=${h(a)} rx="4" fill="var(--c-e)" opacity=".9"/><text className="v" x="206" y=${112 - h(a)} textAnchor="middle">${f.int(a)} t</text><text x="206" y="132" textAnchor="middle">Added grid electricity</text>
+    <text className="v" x="298" y="64" textAnchor="middle" style=${{ fill: d >= 0 ? "var(--c-n)" : "var(--c-e)", fontSize: "20px" }}>${d >= 0 ? "−" : "+"}${f.int(Math.abs(d))} t</text>
+    <text x="298" y="80" textAnchor="middle">change in emissions / yr</text></svg>`;
+}
+function Allocation({ s }) {
+  const bs = s.connected.map(c => ({ ...c, b: B[c.i] })).sort((a, b) => b.served - a.served).slice(0, 6), mx = Math.max(1, ...bs.map(x => x.served));
+  return html`<svg viewBox=${`0 0 360 ${bs.length * 30 + 4}`} role="img" aria-label="Heat delivered to each connected building">
+    ${bs.map((x, i) => html`<g key=${x.i} transform=${`translate(0,${i * 30})`}><g transform="translate(14,14)"><${Badge} kind=${kindOf(x.b.t)} r=${11} fill=${x.b.pr ? "var(--pilot)" : "var(--c-s)"} /></g>
+      <text x="32" y="11" style=${{ fill: "var(--ink)" }}>${short(x.b.n, 32)}</text>
+      <rect x="32" y="16" width=${Math.max(3, x.served / mx * 240)} height="7" rx="3.5" fill=${x.b.pr ? "var(--pilot)" : "var(--c-s)"} opacity=".85"/><text className="v" x=${32 + Math.max(3, x.served / mx * 240) + 6} y="23">${f.gwh(x.served)} GWh</text></g>`)}</svg>`;
+}
+
+function Card({ ac, dim, sub, art, headline, hlLabel, take, stats, viz, concl, how }) {
+  const [flip, setFlip] = useState(new URLSearchParams(location.search).get("flip") === "1");
+  const toggle = e => { e.stopPropagation(); setFlip(v => !v); };
+  return html`<div className=${"fc" + (flip ? " flipped" : "")} style=${{ "--ac": ac }}>
+    <div className="fc-in">
+      <div className="face front" role="button" tabIndex=${flip ? -1 : 0} aria-label=${`${dim}: ${headline} ${hlLabel}. Click to flip.`} onClick=${toggle} onKeyDown=${e => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), toggle(e))}>
+        <div className="dim">${dim}</div><div className="sub">${sub}</div>${art}
+        <div><div className="headline">${headline}</div><div className="hl-label">${hlLabel}</div></div>
+        <div className="take">${take}</div><div className="flip-cta">Click to explore ↻</div>
+      </div>
+      <div className="face back" aria-hidden=${!flip}>
+        <div className="bar"><span className="dim">${dim}</span><button tabIndex=${flip ? 0 : -1} onClick=${toggle}>↺ Flip back</button></div>
+        <div className="stats">${stats.map(([v, l]) => html`<div className="stat" key=${l}><b>${v}</b><span>${l}</span></div>`)}</div>
+        <div className="viz">${viz}</div>
+        <div className="concl">${concl}</div>
+        <details><summary>How we calculated this</summary><p>${how}</p></details>
+      </div>
+    </div></div>`;
+}
+function Cards({ s }) {
+  const k = s.kpi, neg = k.co2_net_t < 0, extras = k.avoided_ll97_usd + k.water_usd, hs = homesShare(s), ps = priorityShare(s);
+  const nf = k.net_usd, prio = k.priority_buildings;
+  return html`<div className="grid2">
+    <${Card} ac="var(--c-t)" dim="Technical" sub="Heat & reliability" art=${html`<${ArtHeat} />`} headline=${f.gwh(k.served_mwh) + " GWh/yr"} hlLabel="Useful heat delivered"
+      take=${`The network covers ${(100 * k.coverage).toFixed(0)}% of the connected demand; the buildings' own boilers cover the rest.`}
+      stats=${[[f.gwh(k.recovered_heat_mwh), "GWh/yr waste heat recovered"], [f.gwh(k.served_mwh), "GWh/yr heat delivered"], [k.hp_cop.toFixed(2), "heat-pump COP"]]}
+      viz=${html`<${Flow} s=${s} />`} concl="Recovered heat plus the electricity that lifts its temperature becomes the heat the buildings receive."
+      how="Recovered = data-center heat taken by the heat pump (hourly dispatch). Delivered = heat served to the connected buildings. Backup = the remainder of their demand, still produced by each building's existing boilers or steam. Electricity = heat-pump and pump input." />
+    <${Card} ac="var(--c-e)" dim="Economic + Delivery" sub="Financial feasibility" art=${html`<${ArtCoins} />`} headline=${(nf < 0 ? "−" : "") + f.usdM(Math.abs(nf)).replace("−", "") + "/yr"} hlLabel=${nf < 0 ? "Annual shortfall" : "Net annual value"}
+      take=${nf < 0 ? "The network costs more each year than the fuel it replaces." : `Includes ${f.usdM(extras)} of avoided LL97 fines and cooling water; without them: ${f.usdM(nf - extras)}.`}
+      stats=${[[f.usdM(nf), "net annual value"], [f.usdM(k.capex_total_usd), "capital cost per year"], [f.usdM(nf - extras), "net without LL97 & water"]]}
+      viz=${html`<${Waterfall} s=${s} />`} concl=${`Fuel saved (${f.usdM(k.avoided_fuel_usd)}) minus electricity and the annual cost of pipes and equipment; the grey bar is avoided fines and water, not savings from heat.`}
+      how="This model's definition: net = avoided fuel + avoided LL97 penalties + cooling-tower water − electricity − annualised capital (pipes, connections, heat pump, tank). LL97 penalties are payments to the City and the water saving depends on an assumed evaporative tower, so both are shown apart. No operating or maintenance cost is included in this model." />
+    <${Card} ac=${neg ? "var(--c-e)" : "var(--c-n)"} dim="Environmental" sub="Carbon & resource reuse" art=${html`<${ArtLeaf} negative=${neg} />`} headline=${f.int(k.co2_net_t) + " t/yr"} hlLabel="Net CO₂ avoided"
+      take=${neg ? "Adds CO₂: the extra electricity outweighs the fuel it replaces." : "Fuel no longer burnt, minus the grid electricity the heat pump uses."}
+      stats=${[[f.gwh(k.recovered_heat_mwh), "GWh/yr waste heat reused"], [f.int(k.co2_fuel_avoided_t) + " t", "fuel CO₂ replaced"], [f.int(k.co2_grid_added_t) + " t", "grid CO₂ added"]]}
+      viz=${html`<${BeforeAfter} s=${s} />`} concl=${neg ? "The grid electricity needed outweighs the fuel saved, so emissions rise." : "Even after counting the electricity used, yearly emissions fall."}
+      how="Net = CO₂ of the fuel the buildings no longer burn − CO₂ of the grid electricity used by the heat pump and pumps. Waste heat recovered is energy reused, not CO₂ saved. This model counts compressor and pump electricity only, not extra electricity at the data center." />
+    <${Card} ac="var(--c-s)" dim="Social + Regenerative" sub="Community value" art=${html`<${ArtSchool} />`} headline=${String(prio)} hlLabel=${prio === 1 ? "public housing or school building" : "public housing & school buildings"}
+      take=${`${Math.round(100 * hs)}% of the delivered heat reaches homes; ${Math.round(100 * ps)}% reaches public housing and schools.`}
+      stats=${[[String(k.buildings), "buildings connected"], [Math.round(100 * hs) + "%", "of heat to homes"], [Math.round(100 * ps) + "%", "to public housing & schools"]]}
+      viz=${html`<${Allocation} s=${s} />`} concl="Bars show how the network's heat is shared between the connected buildings; purple marks public housing and schools."
+      how="Public housing and school buildings are the connected buildings flagged as priority in the model (NYCHA campuses and schools). Share of heat = heat served to those buildings ÷ total heat served. Household counts are not part of this model." />
+  </div>`;
+}
+
+/* ---------------- story sections kept from the original page, simplified ---------------- */
+const fmtK = v => (v < 0 ? "−" : "") + "$" + Math.abs(Math.round(v / 1000)) + "k";
+function Ico({ name, color = "var(--heat)" }) {
+  const s = { fill: "none", stroke: color, strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round" };
+  const g = {
+    server: html`<g ...${s}><rect x="4" y="4" width="16" height="5" rx="1"/><rect x="4" y="11" width="16" height="5" rx="1"/><path d="M7 6.5h.01M7 13.5h.01M8 20h8"/></g>`,
+    pump: html`<g ...${s}><circle cx="12" cy="12" r="8"/><path d="M8 13l4-5 4 5M12 8v9"/></g>`,
+    pipe: html`<g ...${s}><path d="M3 8h10a4 4 0 014 4v0a4 4 0 004 4h0M3 16h4"/><circle cx="21" cy="16" r="0.5"/></g>`,
+    building: html`<g ...${s}><rect x="6" y="3" width="12" height="17" rx="1"/><path d="M9.5 7h.01M14.5 7h.01M9.5 11h.01M14.5 11h.01M9.5 15h.01M14.5 15h.01"/></g>`,
+    score: html`<g ...${s}><path d="M4 20V10M10 20V4M16 20v-7M2 20h20"/></g>`,
+    grow: html`<g ...${s}><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7.5 11l9-4M7.5 13l9 4"/></g>`,
+    share: html`<g ...${s}><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6.5 6"/></g>`,
+    refine: html`<g ...${s}><path d="M20 11a8 8 0 00-14.5-4.5L4 8M4 4v4h4M4 13a8 8 0 0014.5 4.5L20 16M20 20v-4h-4"/></g>`,
+    car: html`<g ...${s}><path d="M4 16v-3l2-5h12l2 5v3z"/><circle cx="7.5" cy="16.5" r="1.8"/><circle cx="16.5" cy="16.5" r="1.8"/></g>`,
+  };
+  return html`<svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">${g[name]}</svg>`;
+}
+function Flow4({ steps, color }) {
+  return html`<div className="panel flowrow">${steps.map(([ic, big, small], k) => html`<${React.Fragment} key=${k}>
+    ${k ? html`<div className="arrow" aria-hidden="true">→</div>` : null}
+    <div className="step"><${Ico} name=${ic} color=${color} /><div className=${"big " + (String(big).length > 9 ? "t" : "num")}>${big}</div><div className="muted small">${small}</div></div></${React.Fragment}>`)}</div>`;
+}
+function Donut({ frac, size = 92 }) {
+  const r = size / 2 - 8, C = 2 * Math.PI * r;
+  return html`<svg width=${size} height=${size} viewBox=${`0 0 ${size} ${size}`} role="img" aria-label=${`${Math.round(frac * 100)}% of heat from the network`}>
+    <circle cx=${size / 2} cy=${size / 2} r=${r} fill="none" stroke="var(--line)" strokeWidth="12" />
+    <circle cx=${size / 2} cy=${size / 2} r=${r} fill="none" stroke="var(--good)" strokeWidth="12" strokeDasharray=${`${C * frac} ${C}`} transform=${`rotate(-90 ${size / 2} ${size / 2})`} />
+    <text x=${size / 2} y=${size / 2 + 6} textAnchor="middle" style=${{ font: "600 18px var(--font-data)", fill: "var(--ink)" }}>${Math.round(frac * 100)}%</text></svg>`;
+}
+
+/* Our proposal: the teammate's "Most realistic" scenario, shown as pictures */
+function Proposal() {
+  const r = SCN.find(x => x.key === "realistic"), lc = SCN.find(x => x.key === "liquid_cooling"), pr = r.prices;
+  const prices = [["Con Ed steam", pr.steam, "var(--bad)", "switch to network heat"], ["Network heat", pr.network, "var(--good)", null], ["Gas boiler", pr.gas, "var(--muted)", "cheaper today, so these wait"]];
+  const maxP = Math.max(...prices.map(x => x[1])) * 1.05;
+  return html`<section aria-labelledby="proposal-h">
+    <div className="section-head"><div className="step-n">The idea</div><h2 id="proposal-h">Our proposal</h2><p>Reuse the data center's heat where it replaces the most expensive heat nearby.</p></div>
+    <${Flow4} color="var(--heat)" steps=${[["server", `${r.q_src} MW`, `server heat at ${r.t_source} °C`], ["pump", `${r.t_sink} °C`, "heat pump lifts it"], ["pipe", `${r.kpi.pipe_km.toFixed(1)} km`, "pipe under the streets"], ["building", String(r.kpi.buildings), "buildings heated"]]} />
+    <div className="cards3">
+      <div className="panel pcard"><div className="eyebrow">Who gets it first</div>
+        ${prices.map(([l, v, c, note]) => html`<div key=${l}><div className="pbar"><span>${l}</span><div className="bar"><i style=${{ width: (v / maxP * 100) + "%", background: c }}></i></div><span className="num">$${Math.round(v)}</span></div>
+          ${note ? html`<div className="muted small">${note}</div>` : null}</div>`)}<div className="muted small">cost of 1 MWh of heat</div></div>
+      <div className="panel pcard"><div className="eyebrow">What stays in place</div>
+        <div style=${{ display: "flex", gap: 12, alignItems: "center" }}><${Donut} frac=${r.kpi.coverage} /><div className="small">of the connected buildings' heat comes from the network. Their boilers stay for the coldest hours.</div></div></div>
+      <div className="panel pcard"><div className="eyebrow">Next step: liquid cooling</div>
+        ${[["Network heat cost", `$${Math.round(pr.network)}`, `$${Math.round(lc.prices.network)}/MWh`], ["Buildings heated", r.kpi.buildings, lc.kpi.buildings], ["Net value", f.usdM(r.kpi.net_usd), f.usdM(lc.kpi.net_usd) + "/yr"]].map(([l, a, b]) =>
+          html`<div key=${l} className="ba"><span className="muted small">${l}</span><span className="num">${a}</span><span aria-hidden="true">→</span><span className="num" style=${{ color: "var(--good)", fontWeight: 600 }}>${b}</span></div>`)}</div>
+    </div></section>`;
+}
+
+/* How we choose the route */
+function RouteLogic({ s }) {
+  const sc = s.scores, chosen = s.connected.map(c => c.i).sort((a, b) => sc.score[b] - sc.score[a]);
+  const idx = B.map((_, i) => i).filter(i => sc.score[i] !== null);
+  const near = idx.filter(i => [2, 3, 4].includes(sc.reason[i])).sort((a, b) => sc.score[b] - sc.score[a]).slice(0, 3);
+  const cheap = idx.filter(i => sc.reason[i] === 1).sort((a, b) => B[b].mwh - B[a].mwh).slice(0, 3);
+  const rows = [...chosen.slice(0, 5), ...near, ...cheap];
+  const vals = rows.map(i => sc.score[i]), lo = Math.min(0, ...vals), hi = Math.max(0, ...vals);
+  const x = d3.scaleLinear().domain([lo, hi]).nice().range([190, 520]), rowH = 26, h = rows.length * rowH + 26;
+  const counts = [1, 2, 3, 4, 5].map(r => [r, sc.reason.filter(v => v === r).length]).filter(([, n]) => n > 0);
+  const skipped = counts.reduce((t, [, n]) => t + n, 0), maxN = Math.max(...counts.map(([, n]) => n));
+  return html`<section aria-labelledby="route-h">
+    <div className="section-head"><div className="step-n">The method</div><h2 id="route-h">How we choose the route</h2><p>Each building gets a yearly score; we connect the set that is worth the most.</p></div>
+    <${Flow4} color="var(--dc)" steps=${[["score", "Score every building", `${B.length} candidates`], ["grow", "Grow from the data center", "add the best next one"], ["share", "Share the limited heat", "checked every hour"], ["refine", "Re-route and refine", "until nothing improves"]]} />
+    <div className="two2">
+      <div className="panel card"><h3>Supplied vs skipped</h3>
+        <div className="key" style=${{ margin: "6px 0" }}><span><i className="sw" style=${{ background: "var(--good)" }}></i>Supplied</span><span><i className="sw" style=${{ background: "var(--bad)" }}></i>Skipped</span></div>
+        <svg viewBox=${`0 0 560 ${h}`} style=${{ width: "100%", display: "block" }} role="img" aria-label="Yearly score per building: supplied in green, skipped in red">
+          <line x1=${x(0)} x2=${x(0)} y1="2" y2=${h - 18} stroke="var(--ink)" strokeOpacity=".4" />
+          ${rows.map((i, k) => { const v = sc.score[i], y = 4 + k * rowH, ok = sc.reason[i] === 0;
+            return html`<g key=${i}><text x="182" y=${y + 15} textAnchor="end" style=${{ font: "12.5px var(--font-body)", fill: "var(--ink)" }}>${short(B[i].n, 24)}</text>
+              <rect x=${Math.min(x(0), x(v))} y=${y + 3} width=${Math.max(2, Math.abs(x(v) - x(0)))} height=${rowH - 10} rx="3" fill=${ok ? "var(--good)" : "var(--bad)"} opacity=${ok ? .95 : .7} />
+              <text x=${v >= 0 ? x(v) + 6 : x(0) + 6} y=${y + 15} style=${{ font: "500 11.5px var(--font-data)", fill: "var(--muted)" }}>${fmtK(v)}</text></g>`; })}
+          <text x=${x(0)} y=${h - 3} textAnchor="middle" style=${{ font: "10.5px var(--font-body)", fill: "var(--muted)" }}>score, $ per year</text></svg>
+        <details style=${{ marginTop: 8 }}><summary>How the score is built</summary><p className="muted small" style=${{ marginTop: 6 }}>Score = heat value − pipe cost − connection cost, per year.
+          Heat value = MWh it takes × (its current heat price − network heat price) + climate fines avoided${s.carbon_price > 0 ? "; this scenario also values carbon at $" + s.carbon_price + "/t" : ""}${s.priority_weight > 1 ? "; public housing and schools count ×" + s.priority_weight : ""}.</p></details></div>
+      <div className="panel card"><h3>Why ${f.int(skipped)} buildings were skipped</h3>
+        <div style=${{ display: "grid", gap: 8, marginTop: 8 }}>${counts.map(([r, n]) => html`<div key=${r} className="rbar"><span>${REASON_LABEL[r]}</span>
+          <div className="bar"><i style=${{ width: (n / maxN * 100) + "%", background: r === 5 ? "var(--muted)" : "var(--bad)" }}></i></div><span className="num">${f.int(n)}</span></div>`)}</div>
+        <div className="muted small" style=${{ marginTop: 8 }}>Click any grey building on the map for its own reason.</div></div>
+    </div></section>`;
+}
+
+/* Impact: relatable equivalents and who gets the heat (the money, heat and CO2 totals are already on the cards above) */
+function Impact({ s }) {
+  const k = s.kpi, C = DATA.consts, cars = Math.max(0, k.co2_net_t / C.car_t);
+  const tot = { home: 0, pub: 0, biz: 0 };
+  s.connected.forEach(c => { const b = B[c.i]; tot[b.pr ? "pub" : RES.has(b.t) ? "home" : "biz"] += c.served; });
+  const all = tot.home + tot.pub + tot.biz || 1;
+  const parts = [["home", "Homes", "var(--dc)"], ["pub", "Public housing & schools", "var(--pilot)"], ["biz", "Businesses & institutions", "var(--muted)"]];
+  const perCar = [1, 2, 5, 10, 20, 50, 100, 200, 500, 1000].find(p => cars / p <= 12) || 2000, nCar = Math.round(cars / perCar);
+  return html`<section aria-labelledby="impact-h">
+    <div className="section-head"><div className="step-n">The result</div><h2 id="impact-h">Impact</h2><p>${s.icon} ${s.label}: what this network means in everyday terms.</p></div>
+    <div className="two2">
+      <div className="panel impact"><div className="label">Climate</div><div className="hero-num">${f.int(k.co2_net_t)} t CO₂</div>
+        <div className="plain">avoided per year, like taking ${f.int(cars)} cars off the road</div>
+        <div className="pictos" role="img" aria-label=${`${f.int(cars)} cars`}>${Array.from({ length: nCar }, (_, j) => html`<${Ico} key=${j} name="car" color="var(--c-n)" />`)}<span className="muted small" style=${{ marginLeft: 6 }}>each = ${f.int(perCar)} cars</span></div>
+        <details><summary>How we calculated this</summary><p>CO₂ of the fuel no longer burned (${f.int(k.co2_fuel_avoided_t)} t) minus CO₂ of the grid electricity used (${f.int(k.co2_grid_added_t)} t). One car emits about ${C.car_t} t a year (US EPA).</p></details></div>
+      <div className="panel impact"><div className="label">Who gets the heat</div>
+        <div className="hero-num">${Math.round((tot.home + tot.pub) / all * 100)}%</div><div className="plain">of delivered heat reaches homes, public housing and schools</div>
+        <div className="share" aria-hidden="true">${parts.map(([g, , c]) => html`<i key=${g} style=${{ width: tot[g] / all * 100 + "%", background: c }}></i>`)}</div>
+        <div className="key">${parts.map(([g, l, c]) => html`<span key=${g}><i className="sw" style=${{ background: c }}></i>${l} ${Math.round(tot[g] / all * 100)}%</span>`)}</div>
+        <details><summary>About this measure</summary><p>Share of delivered heat by building group. It shows who receives the heat, not how residents feel about the project; no survey is behind it.</p></details></div>
+    </div></section>`;
+}
+
+/* ---------------- details ---------------- */
+function Details({ s }) {
+  const [tab, setTab] = useState("b"), k = s.kpi;
+  const tabs = [["b", "Buildings"], ["m", "Money"], ["c", "Compare scenarios"], ["a", "Assumptions & data"]];
+  return html`<details className="panel more"><summary>Explore the details: buildings, money, all scenarios, assumptions</summary>
+    <div className="tabs" role="tablist" style=${{ marginTop: 12 }}>${tabs.map(([t, l]) => html`<button key=${t} role="tab" className="tab" aria-selected=${tab === t} onClick=${() => setTab(t)}>${l}</button>`)}</div>
+    <div style=${{ paddingTop: 14 }}>
+    ${tab === "b" ? html`<div className="tablewrap"><table><thead><tr><th>Building</th><th>Type</th><th className="r">Demand (MWh/yr)</th><th className="r">Heat from network (MWh/yr)</th><th className="r">Its saving ($/yr)</th></tr></thead>
+      <tbody>${s.connected.map(c => html`<tr key=${c.i}><td>${clean(B[c.i].n)}</td><td>${B[c.i].t}</td><td className="r num">${f.int(B[c.i].mwh)}</td><td className="r num">${f.int(c.served)}</td><td className="r num">${f.usd(c.save)}</td></tr>`)}</tbody></table></div>` : null}
+    ${tab === "m" ? html`<div className="tablewrap"><table><tbody>${[["Fuel no longer bought", k.avoided_fuel_usd], ["LL97 penalties avoided (a transfer to the City)", k.avoided_ll97_usd], ["Cooling-tower water saved (unverified)", k.water_usd],
+        ["Electricity (heat pump + pumps)", -k.electricity_usd], ["Pipes (annualised)", -k.capex_pipes_usd], ["Building connections", -k.capex_connections_usd], ["Heat pump", -k.capex_heat_pump_usd], ["Storage tank", -k.capex_storage_usd], ["Net", k.net_usd]].map(([l, v]) =>
+        html`<tr key=${l}><td>${l}</td><td className="r num">${f.usd(v)}/yr</td></tr>`)}<tr><td>Pipe length (incl. services)</td><td className="r num">${k.pipe_km.toFixed(2)} km</td></tr></tbody></table></div>` : null}
+    ${tab === "c" ? html`<div className="tablewrap"><table><thead><tr><th>Scenario</th><th className="r">Recovered GWh</th><th className="r">Delivered GWh</th><th className="r">Net CO₂ t</th><th className="r">Net value $M/yr</th><th className="r">Buildings</th></tr></thead>
+      <tbody>${SCN.map(x => html`<tr key=${x.key}><td>${x.icon} ${x.label}</td><td className="r num">${f.gwh(x.kpi.recovered_heat_mwh)}</td><td className="r num">${f.gwh(x.kpi.served_mwh)}</td>
+        <td className="r num">${f.int(x.kpi.co2_net_t)}</td><td className="r num">${(x.kpi.net_usd / 1e6).toFixed(2)}</td><td className="r num">${x.kpi.buildings}</td></tr>`)}</tbody></table></div>` : null}
+    ${tab === "a" ? html`<div style=${{ display: "grid", gap: 10 }}>
+      <div><b>What this scenario changes</b><ul>${s.changes.length ? s.changes.map((c, i) => html`<li key=${i}>${c}</li>`) : html`<li>Nothing: this is the base case.</li>`}</ul></div>
+      <div className="tablewrap"><table><thead><tr><th>Assumption</th><th>Value</th><th>Unit</th><th>Source</th></tr></thead><tbody>${DATA.assumptions.map(a => html`<tr key=${a.p}><td>${a.p}</td><td className="num">${a.v}</td><td>${a.u}</td><td>${a.s}</td></tr>`)}</tbody></table></div></div>` : null}
+    </div></details>`;
+}
+
+/* ---------------- app ---------------- */
+function App() {
+  const QS = new URLSearchParams(location.search);
+  const [key, setKey] = useState(SCN.some(x => x.key === QS.get("s")) ? QS.get("s") : DEFAULT_KEY), [pick, setPick] = useState(null);
+  useEffect(() => { const i = QS.get("pick"); if (i !== null) setPick({ i: +i }); }, []);
+  const s = SCN.find(x => x.key === key);
+  const sel = k => { setKey(k); setPick(null); };
+  return html`<main className="wrap">
+    <header className="panel hero"><div><span className="step-n">111 8th Avenue · Chelsea, Manhattan</span><h1>Can a data center warm its neighbours?</h1></div>
+      <p className="lead">The building's servers shed heat all year. This exhibition shows where that heat could go, what it would deliver, and what it would cost. Pick a scenario, then explore.</p>
+      <div className="preview-note" role="note">Design preview. Figures are the teammate's original model results (web/data.json), not our final audited A→B→C outputs.</div>
+      <${Skyline} names=${s.connected.map(c => B[c.i].n)} /></header>
+    <section aria-label="Map"><div className="section-head"><div className="step-n">Step 1 · Browse the map</div><h2>Where the heat goes</h2>
+      <p>Click any building. Thicker, glowing pipes carry more heat; the number on a pipe is its length.</p></div>
+      <div style=${{ display: "grid", gap: 12 }}><${Picker} s=${s} setKey=${sel} /><${MapView} s=${s} pick=${pick} onPick=${setPick} /></div></section>
+    <section aria-label="Overall picture"><${Radar} s=${s} /></section>
+    <section aria-label="Four dimensions"><div className="section-head"><div className="step-n">Step 3 · Explore the four dimensions</div><h2>${s.icon} ${s.label}: what it means</h2>
+      <p>Click a card to flip it. Recovered heat, delivered heat, CO₂ avoided and money are four different things, shown separately.</p></div><${Cards} s=${s} key=${s.key} /></section>
+    <${Proposal} /><${RouteLogic} s=${s} /><${Impact} s=${s} />
+    <section aria-label="Details"><${Details} s=${s} /></section>
+    <footer><div>Results from the teammate's heat-reuse network model (web/data.json, generated ${DATA.generated}). Street map: OpenStreetMap. LL84 energy disclosures and MapPLUTO for the buildings.</div>
+      <div>Cooling-water savings and LL97 fines are shown apart from the headline figures: the first is unverified and the second is a payment, not a resource saving.</div></footer>
+  </main>`;
+}
+ReactDOM.createRoot(document.getElementById("root")).render(html`<${App} />`);
+</script>
+</body></html>
