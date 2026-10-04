@@ -7,17 +7,20 @@ The web page cannot run the Python model, so it shows these precomputed preset s
 from __future__ import annotations
 
 import json
+import re
 import logging
 import sys
 from pathlib import Path
 
+import networkx as nx
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from src.config import ROOT, Config  # noqa: E402
 from src.fetch import fetch_streets  # noqa: E402
 from src.mapviz import pipe_branches  # noqa: E402
-from src.network import to_simple_graph  # noqa: E402
+from src.metrics import fuel_cost_per_mwh_heat, network_heat_cost_per_mwh, water_usd_per_mwh  # noqa: E402
+from src.network import Prizes, cost_per_m_yr, to_simple_graph  # noqa: E402
 from src.scenario import evaluate, prepare  # noqa: E402
 
 WEB = ROOT / "web"
@@ -54,7 +57,7 @@ def r(x, nd=1):
     return [round(float(v), nd) for v in x]
 
 
-def scenario_payload(key: str, preset: dict, base: Config, preps: dict, base_sel_cache: dict) -> dict:
+def scenario_payload(key: str, preset: dict, base: Config, preps: dict, base_sel_cache: dict) -> tuple[dict, object]:
     cfg = base.with_overrides(preset["overrides"])
     prep_ov = tuple(sorted((k, v) for k, v in preset["overrides"].items() if k.startswith(PREP_PREFIXES)))
     if prep_ov not in preps:
@@ -78,6 +81,10 @@ def scenario_payload(key: str, preset: dict, base: Config, preps: dict, base_sel
                          round(n["lat"], 5), round(n["lon"], 5)])
     pipes = [[[round(a, 5), round(b, 5)] for a, b in line]
              for line in pipe_branches(p.graph, res.selection.tree_edges, base.v("site.lat"), base.v("site.lon"))]
+    scores = candidate_scores(p, res, cfg, locked is not None)
+    fuel_cost = fuel_cost_per_mwh_heat(cfg)
+    pen = cfg.v("emissions.ll97_penalty_usd_t") if cfg.get("emissions.ll97_enabled") else 0.0
+    d = cfg.v("objective.heat_discount")
     changes = [f"{LABELS.get(k_, k_)}: {fmt(base.v(k_))} → {fmt(v)}" for k_, v in preset["overrides"].items()]
     if locked is not None:
         changes.insert(0, "Network fixed to the base-case design (same buildings and pipes)")
@@ -88,14 +95,57 @@ def scenario_payload(key: str, preset: dict, base: Config, preps: dict, base_sel
         "heat_discount": cfg.v("objective.heat_discount"), "carbon_price": cfg.v("objective.carbon_price_usd_t"),
         "connected": [{"i": int(i), "mwh": round(float(x.annual_heat_mwh)), "served": round(float(x.served_mwh)),
                        "value": round(float(x.value_usd_yr)), "margin": round(float(x.margin_usd_mwh)),
-                       "ll97": round(float(x.ll97_excess_t))} for i, x in sel.iterrows()],
+                       "ll97": round(float(x.ll97_excess_t)),
+                       # what the heat delivered is worth at the building's current price, and the owner's saving
+                       "worth": round(float(x.served_mwh * x.fuel_cost_usd_mwh)),
+                       "save": round(float(x.served_mwh * x.fuel_cost_usd_mwh * d
+                                           + pen * min(x.ll97_excess_t, max(x.co2_cut_t_mwh, 0) * x.served_mwh)))}
+                      for i, x in sel.iterrows()],
+        "scores": scores,
+        "prices": {"network": round(network_heat_cost_per_mwh(cfg, res.dispatch.hp), 1),
+                   "water_per_mwh": round(water_usd_per_mwh(cfg, res.dispatch.hp), 1),
+                   **{f: round(v, 1) for f, v in fuel_cost.items()}},
+        "q_src": cfg.v("supply.q_src_mw"), "t_source": cfg.v("supply.t_source_c"),
+        "t_sink": cfg.v("supply.t_supply_c") + cfg.v("supply.hx_penalty_k"),
+        "perspective": cfg.get("objective.perspective"), "priority_weight": cfg.v("objective.priority_weight"),
+        "ll97_on": bool(cfg.get("emissions.ll97_enabled")),
         "pipes": pipes, "services": services,
         "daily": {"t": [d.strftime("%Y-%m-%d") for d in daily.index], "dc": r(daily.dc_direct), "tank": r(daily.storage_discharge),
                   "backup": r(daily.backup), "demand": r(daily.demand)},
         "week": {"start": week.index[0].strftime("%Y-%m-%d"), "dc": r(week.dc_direct, 2), "tank": r(week.storage_discharge, 2),
                  "backup": r(week.backup, 2), "demand": r(week.demand, 2)},
         "hp_mw": round(res.dispatch.hp.q_delivered_mw, 3),
-    }
+    }, p
+
+
+# Why a building is not connected (shown on the map and in "How we choose the route")
+REASON_CONNECTED, REASON_CHEAPER, REASON_TOO_COSTLY, REASON_SUPPLY, REASON_LOCKED = 0, 1, 2, 3, 4
+
+
+def candidate_scores(p, res, cfg: Config, locked: bool) -> dict:
+    """Stand-alone score of every candidate, exactly as the optimiser values it ($/yr):
+    value of the heat it would take if it were the only building connected (capped by the
+    heat pump), minus its connection cost, minus the street pipe from the data center.
+    Arrays are in candidate order; money in $k/yr."""
+    hp = res.dispatch.hp
+    cost_m = cost_per_m_yr(cfg, network_heat_cost_per_mwh(cfg, hp))
+    prizes = Prizes.build(res.econ, p.demand, p.node, p.service_m, cost_m, hp.q_delivered_mw, cfg)
+    n = len(res.econ)
+    value = prizes.marginal_values([], np.zeros(p.demand.shape[1]), np.arange(n))
+    served_alone = np.minimum(p.demand, hp.q_delivered_mw).sum(axis=1)
+    dist = nx.single_source_dijkstra_path_length(p.graph, p.root, weight="length")
+    street_m = np.array([dist.get(p.node[i], np.nan) for i in range(n)])
+    pipe = np.nan_to_num(street_m * cost_m, nan=1e9)
+    fixed = prizes.fixed_cost
+    score = value - fixed - pipe
+    connected = res.econ["connected"].to_numpy()
+    reason = np.where(connected, REASON_CONNECTED,
+             np.where(value <= 0, REASON_CHEAPER,
+             np.where(score <= 0, REASON_TOO_COSTLY, REASON_LOCKED if locked else REASON_SUPPLY)))
+    k = lambda a: [int(round(x / 1000)) for x in a]
+    return {"score": k(score), "value": k(value), "pipe": k(pipe), "conn": k(fixed),
+            "heat": [int(round(x)) for x in served_alone], "street_m": [int(x) if x == x else -1 for x in street_m],
+            "margin": [int(round(x)) for x in prizes.margin], "reason": [int(x) for x in reason]}
 
 
 def assumptions(c: Config) -> list[dict]:
@@ -116,16 +166,38 @@ def main() -> None:
     logging.basicConfig(level=logging.ERROR)
     base = Config.load()
     preps, base_sel = {}, {}
-    scenarios = [scenario_payload(k, pr, base, preps, base_sel) for k, pr in base.get("presets").items()]
+    raw = [scenario_payload(k, pr, base, preps, base_sel) for k, pr in base.get("presets").items()]
     p0 = preps[()]
-    b = p0.buildings
+    # Scenarios can have slightly different candidate lists (e.g. smoothing lowers peaks, so fewer
+    # buildings fail the outlier screen). Build ONE master list keyed by building identity and
+    # translate every scenario's indices into it.
     pat = "|".join(base.get("objective.priority_name_patterns"))
-    prio = (b["property_name"].str.upper().str.contains(pat, regex=True)
-            | b["primary_property_type"].isin(base.get("objective.priority_property_types")))
-    buildings = [{"n": str(x.property_name), "a": str(x.address_1), "t": str(x.primary_property_type), "f": str(x.main_fuel),
-                  "lat": round(float(x.latitude), 5), "lon": round(float(x.longitude), 5), "d": round(float(x.distance_m)),
-                  "mwh": round(float(x.annual_heat_mwh)), "pk": round(float(x.peak_kw)), "pr": bool(prio[i])}
-                 for i, x in b.iterrows()]
+    key_of = lambda r: f"{r.property_id}|{r.bbl}|{r.property_name}"
+    master, index = [], {}
+    for prep in [p0] + [pp for _, pp in raw if pp is not p0]:
+        for r in prep.buildings.itertuples():
+            k = key_of(r)
+            if k not in index:
+                index[k] = len(master)
+                prio = bool(re.search(pat, str(r.property_name).upper())) or r.primary_property_type in base.get("objective.priority_property_types")
+                master.append({"n": str(r.property_name), "a": str(r.address_1), "t": str(r.primary_property_type), "f": str(r.main_fuel),
+                               "lat": round(float(r.latitude), 5), "lon": round(float(r.longitude), 5), "d": round(float(r.distance_m)),
+                               "mwh": round(float(r.annual_heat_mwh)), "pk": round(float(r.peak_kw)), "pr": prio})
+    scenarios = []
+    for payload, prep in raw:
+        to_master = [index[key_of(r)] for r in prep.buildings.itertuples()]
+        for c in payload["connected"]:
+            c["i"] = to_master[c["i"]]
+        sc = payload["scores"]
+        for name, arr in list(sc.items()):
+            full = [None] * len(master)
+            for local, v in enumerate(arr):
+                full[to_master[local]] = v
+            if name == "reason":   # 5 = not a candidate in this scenario (screened out as an outlier)
+                full = [5 if v is None else v for v in full]
+            sc[name] = full
+        scenarios.append(payload)
+    buildings = master
     g = to_simple_graph(fetch_streets(base, p0.qlog))
     streets = [[[round(lo, 5), round(la, 5)] for lo, la in d["coords"]] for *_, d in g.edges(data=True)]
     q = p0.qlog.frame()
@@ -138,6 +210,8 @@ def main() -> None:
         "provenance": p0.qlog.provenance,
         "quality": q["kind"].value_counts().to_dict(),
         "generated": "2026-10-03",
+        "consts": {"car_t": base.v("communication.car_tco2_per_year"), "pool_m3": base.v("communication.olympic_pool_m3"),
+                   "residential_types": base.get("communication.residential_types")},
     }
     WEB.mkdir(exist_ok=True)
     js = json.dumps(data, separators=(",", ":"), ensure_ascii=False)

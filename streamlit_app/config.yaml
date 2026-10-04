@@ -189,6 +189,15 @@ objective:
   priority_property_types: ["K-12 School"]
 
 # ---------------------------------------------------------------------------
+# Plain-language equivalents used on the shared web page (display only, never in the model)
+# ---------------------------------------------------------------------------
+communication:
+  car_tco2_per_year: {value: 4.6, unit: tCO2/car/yr, source: "US EPA, typical passenger vehicle: about 4.6 t CO2 per year. https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle"}
+  olympic_pool_m3: {value: 2500, unit: m3, source: "Olympic pool 50 m x 25 m x 2 m = 2,500 m3."}
+  # Property types counted as homes for the community-sentiment indicator (public housing and schools are counted separately via objective.priority_*)
+  residential_types: ["Multifamily Housing", "Residence Hall/Dormitory", "Senior Living Community", "Senior Care Community"]
+
+# ---------------------------------------------------------------------------
 # Presets for non-technical users. Overrides use dotted config paths; anything not listed
 # keeps its default. lock_base_network = keep the network chosen under "base" and test it
 # under these conditions (stress test), instead of re-optimising.
