@@ -24,6 +24,8 @@ from src.network import Prizes, cost_per_m_yr, to_simple_graph  # noqa: E402
 from src.scenario import evaluate, prepare  # noqa: E402
 
 WEB = ROOT / "web"
+STANDALONE_HEAD = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
+                   '<meta name="viewport" content="width=device-width, initial-scale=1">\n</head>\n<body style="margin:0">\n')
 PREP_PREFIXES = ("data.", "demand.", "con_ed_pilot.")
 LABELS = {  # human labels for the "what this changes" list
     "objective.perspective": "Whose money is maximised", "objective.heat_discount": "Heat price discount",
@@ -218,7 +220,10 @@ def main() -> None:
     (WEB / "data.json").write_text(js)
     template = (WEB / "template.html").read_text()
     page = template.replace("/*__DATA__*/null", js.replace("</", "<\\/"))
-    (WEB / "index.html").write_text(page)
+    (WEB / "index.html").write_text(page)          # what is published as the claude.ai artifact
+    # standalone copy for hosting anywhere (GitHub Pages, Netlify, opened from disk): the artifact
+    # viewer normally adds the document skeleton, so add it here
+    (WEB / "standalone.html").write_text(STANDALONE_HEAD + page + "\n</body>\n</html>\n")
     print(f"{len(scenarios)} scenarios, {len(buildings)} buildings, {len(streets)} street edges; "
           f"data {len(js) / 1024:.0f} KB, page {len(page) / 1024:.0f} KB")
 
